@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Article from './article'
-import Link from 'next/link'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Article from "./article";
+import Link from "next/link";
 
-export default function Home({data}) {
+export default function Home({ data }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -12,10 +12,7 @@ export default function Home({data}) {
       </Head>
 
       <main className={styles.main}>
-       {data.title}
-       <Link href={"/article"}>
-         click
-        </Link>
+        <Link href={"/article"}>click</Link>
       </main>
 
       <footer className={styles.footer}>
@@ -24,20 +21,10 @@ export default function Home({data}) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
-  )
-}
-
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  console.log("startgin");
-  const res = await fetch(`https://shakedm.co.il/api/articles/article/8`);
-  const data = await res.json();
-  // Pass data to the page via props
-  return { props: { data } };
+  );
 }
