@@ -10,6 +10,10 @@ RUN npm install
 # Copying source files
 COPY . .
 
+
+EXPOSE 3000
+
+
 # Building app
 RUN npm run build
 
