@@ -1,8 +1,8 @@
 import React from "react";
-import Head from 'next/head'
+import Head from "next/head";
+import axios from "axios";
 
 const Article = ({ data }) => {
-  console.log(data);
   return (
     <div>
       <Head>
@@ -10,7 +10,11 @@ const Article = ({ data }) => {
         <meta charSet="utf-8" />
         <meta name="description" content={data.introduction}></meta>
         <meta property="og:title" content={data.title} key="ogtitle" />
-        <meta property="og:description" content={data.introduction} key="ogdesc" />
+        <meta
+          property="og:description"
+          content={data.introduction}
+          key="ogdesc"
+        />
         <title>{"shaked"}</title>
       </Head>
 
@@ -22,9 +26,11 @@ const Article = ({ data }) => {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  console.log("startgin");
-  const res = await fetch(`https://shakedm.co.il/api/articles/article/8`);
-  const data = await res.json();
+
+  const url = `${process.env.API_URL}/articles/article/8`
+  const res = await axios.get(url);
+
+  const data = await res.data;
   // Pass data to the page via props
   return { props: { data } };
 }
