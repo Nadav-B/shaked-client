@@ -3,7 +3,6 @@ const colors = {
   lightGrey: "#EFF2EF",
   darkGrey: "#D9D9D9",
 
-
   aliceBlue: "#E6F5FF",
   bisque: "#FFE1BE",
   black: "#000",
@@ -55,5 +54,5 @@ export const theme = {
     large: "20px",
   },
   sizes: { sidebarWidth: "345px", gridWidth: "120px" },
-  colors,
+  colors
 }

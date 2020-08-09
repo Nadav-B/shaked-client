@@ -15,7 +15,7 @@ const StyledButton = styled.button`
   min-width: 172px;
   padding: 0 10px;
   background: ${p => p.theme.colors.lightGrey};
-  border: ${p => p.theme.colors.darkGrey};;
+  border: ${p => p.theme.colors.darkGrey};
   border-radius: 3px;
   outline: none;
   color: ${p => p.theme.colors.navyBlue};

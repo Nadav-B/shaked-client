@@ -11,7 +11,7 @@ const Header = ({ menuLinks, siteTitle }) => {
         <StyledLink>
           <Link href={"/homepage"}>
             <SizeWrapper height={150} width={150}>
-              <img  src="logos/favicon.svg" alt="Logo" />
+              <img src="logos/favicon.svg" alt="Logo" />
             </SizeWrapper>
           </Link>
         </StyledLink>
@@ -38,7 +38,7 @@ Header.defaultProps = {
 };
 
 const HeaderWrapper = styled.div`
-  display: block;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;

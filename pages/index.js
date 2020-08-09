@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Article from "./article";
 import Link from "next/link";
 
 const Index = () => {
@@ -11,7 +10,6 @@ const Index = () => {
       </Head>
 
       <main>
-        <Link href={"/article"}>article test</Link>
       </main>
 
       <footer></footer>
