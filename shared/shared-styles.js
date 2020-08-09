@@ -1,6 +1,6 @@
-import React from "react"
-import { Global, css } from "@emotion/core"
-import { theme } from "./theme"
+import React from "react";
+import { Global, css } from "@emotion/core";
+import { theme } from "./theme";
 
 const styles = css`
   html,
@@ -43,8 +43,8 @@ const styles = css`
   a:hover {
     color: #0a589d;
   }
-`
+`;
 
-const GlobalStyles = () => <Global styles={styles} />
+const GlobalStyles = () => <Global styles={styles} />;
 
-export default GlobalStyles
+export default GlobalStyles;

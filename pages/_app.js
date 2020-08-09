@@ -1,6 +1,6 @@
 import App from "next/app";
 import { ThemeProvider } from "styled-components";
-import Article from "./article";
+import GlobalStyles  from "../shared/shared-styles";
 import { theme } from "../shared/theme";
 
 export default class MyApp extends App {
@@ -8,6 +8,7 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
+        <GlobalStyles />
         <h1>Shaked</h1>
         <Component {...pageProps} />
       </ThemeProvider>
