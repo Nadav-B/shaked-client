@@ -2,6 +2,8 @@ import App from "next/app";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "../shared/shared-styles";
 import { theme } from "../shared/theme";
+import Header from "../components/header";
+import menuLinks from "../config/menuLinks";
 
 export default class MyApp extends App {
   render() {
@@ -10,6 +12,7 @@ export default class MyApp extends App {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <h1>Shaked</h1>
+        <Header menuLinks={menuLinks} />
         <div
           style={{
             margin: `0 auto`,
