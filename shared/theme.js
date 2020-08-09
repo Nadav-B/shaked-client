@@ -1,0 +1,59 @@
+const colors = {
+  navyBlue: "#0a589d",
+  lightGrey: "#EFF2EF",
+  darkGrey: "#D9D9D9",
+
+
+  aliceBlue: "#E6F5FF",
+  bisque: "#FFE1BE",
+  black: "#000",
+  blackTransparent: "#00000029",
+  caribbeanGreen: "#00be83",
+  cobalt: "#054CA0",
+  columbiaBlue: "#B6E3FD",
+  denim: "#2266B6",
+  denim1: "#1352AF",
+  denim2: "#1765B7",
+  dimGray: "#727272",
+  eden: "#226E5C",
+  electricIndigo: "#8015FD",
+  goldenPoppy: "#ffc400",
+  hollywoodCerise: "#FF00A7",
+  jade: "#00CB71",
+  lightningYellow: "#FDA022",
+  nobel: "#9A9A9A",
+  mediumBlue: "#0000CB",
+  midnightBlue: "#180371",
+  pelorous: "#1684BE",
+  radicalRed: "#ff3444",
+  salem: "#07804A",
+  silver: "#C7C5C5",
+  solitude: "#E5EDFA",
+  summerSky: "#29B4FD",
+  torchRed: "#FC103E",
+  turquoise: "#42DEE4",
+  veryLightGrey: "#C9C9C9C9",
+  whiteSmoke: "#F5F5F5",
+  whisper: "#E8E8E8",
+  white: "#fff",
+  zambezi: "#5D5D5D",
+}
+
+// TODO: don't include colors in theme and later rename 'mode' to colors which holds the current mode colors
+export const theme = {
+  fontFamily: 
+    '"Inter", -apple-system, BlinkMacSystemFont, "Roboto",  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",  "Helvetica Neue", sans-serif',
+  fontWeight: {
+    regular: 400,
+    medium: 500,
+    semiBold: 600,
+  },
+  fontSize: {
+    tiny: "12px",
+    small: "14px",
+    normal: "16px",
+    large: "20px",
+  },
+  sizes: { sidebarWidth: "345px", gridWidth: "120px" },
+  colors,
+}
