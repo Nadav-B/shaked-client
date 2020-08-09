@@ -9,7 +9,7 @@ const menuLinks = [
     link: "/surveys",
   },
 
-  /*
+
   {
     name: "אודותינו ",
     link: "/about",
@@ -23,7 +23,7 @@ const menuLinks = [
     name: "צור קשר",
     link: "/contact",
   },
-  */
+
 ];
 
 export default menuLinks;

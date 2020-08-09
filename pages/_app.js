@@ -11,7 +11,6 @@ export default class MyApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <h1>Shaked</h1>
         <Header menuLinks={menuLinks} />
         <div
           style={{

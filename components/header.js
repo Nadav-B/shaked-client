@@ -4,28 +4,30 @@ import styled from "@emotion/styled";
 import SizeWrapper from "../elements/SizeWrapper";
 import Link from "next/link";
 
-const Header = ({ menuLinks, siteTitle }) => (
-
-  <HeaderWrapper>
-    <NavigationWrapper>
-      <StyledLink>
-        <Link href={"/homepage"}>
-
-          <SizeWrapper height={150} width={150}></SizeWrapper>
-        </Link>
-      </StyledLink>
-      <StyledNavigation>
-        <ul>
-          {menuLinks.map((link) => (
-            <li key={link.name}>
-              <Link href={link.link}>{link.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </StyledNavigation>
-    </NavigationWrapper>
-  </HeaderWrapper>
-);
+const Header = ({ menuLinks, siteTitle }) => {
+  return (
+    <HeaderWrapper>
+      <NavigationWrapper>
+        <StyledLink>
+          <Link href={"/homepage"}>
+            <SizeWrapper height={150} width={150}>
+              <img src="logos/favicon.svg" alt="Logo" />
+            </SizeWrapper>
+          </Link>
+        </StyledLink>
+        <StyledNavigation>
+          <ul>
+            {menuLinks.map((link) => (
+              <li key={link.name}>
+                <Link href={link.link}>{link.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </StyledNavigation>
+      </NavigationWrapper>
+    </HeaderWrapper>
+  );
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
