@@ -25,9 +25,7 @@ const Article = ({ data }) => {
         dangerouslySetInnerHTML={{
           __html: data.content,
         }}
-
       ></div>
-
     </div>
   );
 };
