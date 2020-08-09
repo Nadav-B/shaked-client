@@ -3,6 +3,8 @@ import Head from "next/head";
 import axios from "axios";
 
 const Article = ({ data }) => {
+  const image = `${process.env.API_URL}/articles/article/image/`;
+
   return (
     <div>
       <Head>
@@ -18,7 +20,12 @@ const Article = ({ data }) => {
         <title>{"shaked"}</title>
       </Head>
 
-      <h1>{data.title}</h1>
+      <img src={`${image}${data.id}`} alt="" />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: data.content,
+        }}
+      ></div>
     </div>
   );
 };
@@ -27,7 +34,7 @@ const Article = ({ data }) => {
 export async function getServerSideProps() {
   // Fetch data from external API
 
-  const url = `${process.env.API_URL}/articles/article/8`
+  const url = `${process.env.API_URL}/articles/article/8`;
   const res = await axios.get(url);
 
   const data = await res.data;
