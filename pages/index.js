@@ -11,8 +11,7 @@ const Index = () => {
       </Head>
 
       <main>
-        <Link href={"/article"}>click</Link>
-        <h1>hey</h1>
+        <Link href={"/article"}>article test</Link>
       </main>
 
       <footer></footer>

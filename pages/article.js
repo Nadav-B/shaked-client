@@ -1,14 +1,11 @@
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
-import ArticlePreview from "../elements/ArticlePreview";
-import Layout from "../../shaked-web/src/components/layout";
 
 const Article = ({ data }) => {
   const image = `${process.env.API_URL}/articles/article/image/`;
 
   return (
-    <Layout>
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,9 +26,7 @@ const Article = ({ data }) => {
           __html: data.content,
         }}
       ></div>
-      <ArticlePreview data ={data}></ArticlePreview>
     </div>
-    </Layout>
   );
 };
 
