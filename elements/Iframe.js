@@ -16,11 +16,10 @@ const Iframe = ({ src = "", title = "" }) => {
         frameBorder="none"
         style={{
           position: "absolute",
-          top: 0,
+          top: 110,
           left: 0,
           display: () => (ready ? "none" : "block"),
-        }
-      }
+        }}
       />
     </React.Fragment>
   );

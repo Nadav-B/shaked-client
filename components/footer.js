@@ -44,6 +44,7 @@ const StyledFooter = styled.footer`
 
 
     width: 40%;
+    position: absolute;
     margin: auto;
 
     height: 150px;

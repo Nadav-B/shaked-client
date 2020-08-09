@@ -4,7 +4,7 @@ import GlobalStyles from "../shared/shared-styles";
 import { theme } from "../shared/theme";
 import Header from "../components/header";
 import menuLinks from "../config/menuLinks";
-
+import Footer from "../components/footer"
 export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
@@ -23,6 +23,8 @@ export default class MyApp extends App {
             <Component {...pageProps} />
           </main>
         </div>
+
+        <Footer/>
       </ThemeProvider>
     );
   }
