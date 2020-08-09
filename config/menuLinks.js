@@ -2,7 +2,12 @@ const menuLinks = [
   {
     name: "עמוד ראשי",
     link: "/homepage",
-  }
+  },
+
+  {
+    name: "שאלונים",
+    link: "/surveys",
+  },
 
   /*
   {
@@ -13,10 +18,7 @@ const menuLinks = [
     name: "כתבות",
     link: "/articles",
   },
-  {
-    name: "שאלונים",
-    link: "/surveys",
-  },
+
   {
     name: "צור קשר",
     link: "/contact",
