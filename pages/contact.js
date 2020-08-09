@@ -1,8 +1,8 @@
+import Iframe from "../elements/Iframe"
+
+
 const Contact = () => {
+  return <Iframe src="https://shakedm.co.il/contact" />;
+};
 
-return (
-    <h1>צור קשר</h1>
-)
-}
-
-export default Contact
+export default Contact;
