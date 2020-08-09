@@ -1,14 +1,5 @@
-import React from "react"
+import React from "react";
 
+const Homepage = () => <div>שקד משכנתאות</div>;
 
-const Homepage = () => (
-  <div>
-
-
-
-    <h1>Hey</h1>
-
-    </div>
-)
-
-export default Homepage
+export default Homepage;
