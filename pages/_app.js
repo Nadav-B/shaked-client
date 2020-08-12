@@ -23,8 +23,6 @@ export default class MyApp extends App {
             <Component {...pageProps} />
           </main>
         </div>
-
-        <Footer/>
       </ThemeProvider>
     );
   }
