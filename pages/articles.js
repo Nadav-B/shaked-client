@@ -4,12 +4,11 @@ import Link from "next/link";
 import ArticlePreview from "../elements/ArticlePreview"
 
 const Articles = ({ data }) => {
-  console.log(data);
   return (
     <div>
 
       {data.map((article) => (
-        <Link passHref href={"/articles/" + article.id}>
+        <Link  key={article.id} passHref href="/article/[id]" as={`/article/${article.id}`}>
           <ArticlePreview key={article.id} article={article} />
         </Link>
       ))}

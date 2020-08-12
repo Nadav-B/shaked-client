@@ -1,10 +1,11 @@
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const Article = ({ data }) => {
-  const image = `${process.env.API_URL}/articles/article/image/`;
-
+  //const image = `${process.env.API_URL}/articles/article/image/`;
+  const image = `https://shakedm.co.il/api/articles/article/image/${data.id}`
   return (
     <div>
       <Head>
@@ -20,7 +21,7 @@ const Article = ({ data }) => {
         <title>{"shaked"}</title>
       </Head>
 
-      <img src={`${image}${data.id}`} alt="" />
+      <img src={image} alt="" />
       <div
         dangerouslySetInnerHTML={{
           __html: data.content,
@@ -31,10 +32,12 @@ const Article = ({ data }) => {
 };
 
 // This gets called on every request
-export async function getServerSideProps() {
+export async function getServerSideProps({ query }) {
+  const id = query.id
+
   // Fetch data from external API
 
-  const url = `${process.env.API_URL}/articles/article/8`;
+  const url = `${process.env.API_URL}/articles/article/${id}`;
   const res = await axios.get(url);
 
   const data = await res.data;
