@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components'
 
 const Button = ({ children, onClick, focus }) => (
   <StyledButton>
@@ -14,8 +14,11 @@ const StyledButton = styled.button`
   height: 40px;
   min-width: 172px;
   padding: 0 10px;
-  background: ${p => p.theme.colors.lightGrey};
-  border: ${p => p.theme.colors.darkGrey};
+  /**
+   * background: ${p => p.theme.colors.lightGrey};
+   *   border: ${p => p.theme.colors.darkGrey};
+   */
+
   border-radius: 3px;
   outline: none;
   color: ${p => p.theme.colors.navyBlue};
