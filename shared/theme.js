@@ -40,8 +40,7 @@ const colors = {
 
 // TODO: don't include colors in theme and later rename 'mode' to colors which holds the current mode colors
 export const theme = {
-  fontFamily: 
-    '"Inter", -apple-system, BlinkMacSystemFont, "Roboto",  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",  "Helvetica Neue", sans-serif',
+  fontFamily: "Varela Round",
   fontWeight: {
     regular: 400,
     medium: 500,
