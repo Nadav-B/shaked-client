@@ -9,9 +9,8 @@ const menuLinks = [
     link: "/surveys",
   },
 
-
   {
-    name: "אודותינו ",
+    name: "אודות ",
     link: "/about",
   },
   {
@@ -23,7 +22,6 @@ const menuLinks = [
     name: "צור קשר",
     link: "/contact",
   },
-
 ];
 
 export default menuLinks;

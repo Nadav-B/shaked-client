@@ -12,31 +12,27 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <div>
-      <Head>
+        <Head>
+          <title>שקד משכנתאות</title>
+          <link rel="icon" href="/logos/favicon.ico" />
+        </Head>
 
-<title>שקד משכנתאות</title>
-<link rel="icon" href="/logos/favicon.ico" />
-</Head>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <Header menuLinks={menuLinks} />
+          <div
+            style={{
+              margin: `0 auto`,
+              maxWidth: 960,
+              padding: `0 1.0875rem 1.45rem`,
+            }}
+          >
+            <main>
+              <Component {...pageProps} />
+            </main>
+          </div>
 
-
-
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Header menuLinks={menuLinks} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0 1.0875rem 1.45rem`,
-          }}
-        >
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </div>
-
-        <Footer/>
-      </ThemeProvider>
+        </ThemeProvider>
       </div>
     );
   }
