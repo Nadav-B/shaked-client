@@ -4,11 +4,22 @@ import GlobalStyles from "../shared/shared-styles";
 import { theme } from "../shared/theme";
 import Header from "../components/header";
 import menuLinks from "../config/menuLinks";
-import Footer from "../components/footer"
+import Footer from "../components/footer";
+import Head from "next/head";
+
 export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
+      <div>
+      <Head>
+
+<title>שקד משכנתאות</title>
+<link rel="icon" href="/logos/favicon.ico" />
+</Head>
+
+
+
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Header menuLinks={menuLinks} />
@@ -23,7 +34,10 @@ export default class MyApp extends App {
             <Component {...pageProps} />
           </main>
         </div>
+
+        <Footer/>
       </ThemeProvider>
+      </div>
     );
   }
 }
