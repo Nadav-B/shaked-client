@@ -20,10 +20,7 @@ export default class MyApp extends App {
         <ThemeProvider theme={theme}>
           <GlobalStyles />
           <Header menuLinks={menuLinks} /> 
-          <style>
-            @import
-            url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-          </style>
+    
           <div
             style={{
               margin: `0 auto`,

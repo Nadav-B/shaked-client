@@ -1,23 +1,28 @@
 import React from "react";
+import {useState} from "react";
+import ToggleButton from "../elements/ToggleButton";
 import PropTypes from "prop-types";
 import SizeWrapper from "../elements/SizeWrapper";
 import Link from "next/link";
-import styled from 'styled-components'
-
-
+import styled from "styled-components";
 
 const Header = ({ menuLinks, siteTitle }) => {
+
+  const [open, setOpen] = useState(false);
+
   return (
     <HeaderWrapper>
       <NavigationWrapper>
         <StyledLink>
           <Link href={"/homepage"}>
-            <SizeWrapper height={150} width={150}>
+            <SizeWrapper height={120} width={120}>
               <img src="logos/favicon.svg" alt="Logo" />
             </SizeWrapper>
           </Link>
         </StyledLink>
-        <StyledNavigation>
+        <ToggleButton/>
+        <StyledNavigation >
+
           <ul>
             {menuLinks.map((link) => (
               <li key={link.name}>
@@ -59,7 +64,29 @@ const StyledNavigation = styled.nav`
     color: black;
     text-align: center;
   }
+  @media (max-width: 768px) {
+
+      position: fixed;
+      top: 120px;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: white;
+      li {
+        direction: rtl;
+        width: auto;
+        float: none;
+        margin: auto;
+        text-align: center;
+        padding: 20px;
+        border-width: 5px;
+        border-top-style: solid;
+        border: 1px solid rgba(228, 228, 228, 0.2);
+      }
+    }
+  }
 `;
+
 
 const NavigationWrapper = styled.div`
   display: flex;
