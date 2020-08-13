@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "@emotion/styled";
 import SizeWrapper from "../elements/SizeWrapper";
 import Link from "next/link";
+import styled from 'styled-components'
+
+
 
 const Header = ({ menuLinks, siteTitle }) => {
   return (

@@ -19,7 +19,7 @@ export default class MyApp extends App {
 
         <ThemeProvider theme={theme}>
           <GlobalStyles />
-          <Header menuLinks={menuLinks} />+
+          <Header menuLinks={menuLinks} /> 
           <style>
             @import
             url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
