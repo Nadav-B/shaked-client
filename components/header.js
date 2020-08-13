@@ -1,13 +1,13 @@
-import React from "react";
-import {useState} from "react";
+import React, { useState } from 'react';
 import ToggleButton from "../elements/ToggleButton";
+import Menu from "../elements/Menu";
+
 import PropTypes from "prop-types";
 import SizeWrapper from "../elements/SizeWrapper";
 import Link from "next/link";
 import styled from "styled-components";
 
 const Header = ({ menuLinks, siteTitle }) => {
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,17 +20,13 @@ const Header = ({ menuLinks, siteTitle }) => {
             </SizeWrapper>
           </Link>
         </StyledLink>
-        <ToggleButton/>
-        <StyledNavigation >
 
-          <ul>
-            {menuLinks.map((link) => (
-              <li key={link.name}>
-                <Link href={link.link}>{link.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </StyledNavigation>
+        {open  &&
+
+                <Menu menuLinks={menuLinks} open={open} setOpen={setOpen}/>
+
+      }
+        <ToggleButton open={open} setOpen={setOpen}/>
       </NavigationWrapper>
     </HeaderWrapper>
   );

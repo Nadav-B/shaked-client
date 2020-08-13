@@ -1,19 +1,20 @@
 // Burger.styled.js
 import styled from "styled-components";
+import { bool, func } from 'prop-types';
 
-const ToggleButton = () => {
+const ToggleButton = ({ open, setOpen })  => {
   return (
-    <StyledBurger>
+    <StyledToggleButton open={open} onClick={() => setOpen(!open)}>
       <div />
       <div />
       <div />
-    </StyledBurger>
+    </StyledToggleButton>
   );
 };
 
-export const StyledBurger = styled.button`
+export const StyledToggleButton = styled.button`
   position: absolute;
-  top: 5;
+  top: 5%;
   left: 2rem;
   display: flex;
   flex-direction: column;
@@ -33,11 +34,30 @@ export const StyledBurger = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: black;
+    background: ${({ theme, open }) => open ? theme.colors.black : theme.colors.black};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
+
+    :first-child {
+      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+    }
+
+    :nth-child(2) {
+      opacity: ${({ open }) => open ? '0' : '1'};
+      transform: ${({ open }) => open ? 'translateX(20px)' : 'translateX(0)'};
+    }
+
+    :nth-child(3) {
+      transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+    }
   }
 `;
+
+
+ToggleButton.propTypes = {
+    open: bool.isRequired,
+    setOpen: func.isRequired,
+  };
 export default ToggleButton;
