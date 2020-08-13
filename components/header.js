@@ -13,13 +13,13 @@ const Header = ({ menuLinks, siteTitle }) => {
   return (
     <HeaderWrapper>
       <NavigationWrapper>
+          <Link passHref href={"/homepage"}>
         <StyledLink>
-          <Link href={"/homepage"}>
             <SizeWrapper height={120} width={120}>
               <img src="logos/favicon.svg" alt="Logo" />
             </SizeWrapper>
-          </Link>
         </StyledLink>
+          </Link>
 
         {open  &&
 

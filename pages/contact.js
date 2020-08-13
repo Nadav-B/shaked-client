@@ -30,7 +30,7 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
       address: state.address,
     };
 
-    console.log(contact)
+    console.log(contact);
     const url = "https://shakedm.co.il/api/contacts/insert";
     axios.post(url, {
       contact,
@@ -38,48 +38,51 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
   };
 
   return (
-    <StyledForm>
-      <form onSubmit={handleSubmit}>
-        <label>
-          שם מלא
-          <StyledInput
-            name="fullname"
-            value={state.fullname}
-            placeholder="שדה חובה"
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          מספר טלפון
-          <StyledInput
-            name="phonenumber"
-            placeholder="שדה חובה"
-            value={state.phonenumber}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          דוא״ל
-          <StyledInput
-            name="email"
-            type="email"
-            value={state.email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          ישוב
-          <StyledInput
-            name="address"
-            value={state.address}
-            onChange={handleChange}
-          />
-        </label>
-        <Button type="submit">שלח </Button>
-      </form>
-    </StyledForm>
+    <div>
+      <h1>צור קשר</h1>
+      <StyledForm>
+        <form onSubmit={handleSubmit}>
+          <label>
+            שם מלא
+            <StyledInput
+              name="fullname"
+              value={state.fullname}
+              placeholder="שדה חובה"
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            מספר טלפון
+            <StyledInput
+              name="phonenumber"
+              placeholder="שדה חובה"
+              value={state.phonenumber}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            דוא״ל
+            <StyledInput
+              name="email"
+              type="email"
+              value={state.email}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            ישוב
+            <StyledInput
+              name="address"
+              value={state.address}
+              onChange={handleChange}
+            />
+          </label>
+          <Button type="submit">שלח </Button>
+        </form>
+      </StyledForm>
+    </div>
   );
 };
 

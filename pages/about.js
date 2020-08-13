@@ -1,22 +1,19 @@
 import React from "react";
 import axios from "axios";
 
-const About = ({data}) => {
+const About = ({ data }) => {
   return (
     <div>
-
       {data.map((text) => (
-
         <div
-        dangerouslySetInnerHTML={{
-          __html: text.content,
-        }}
-      ></div>
-       ))}
+          dangerouslySetInnerHTML={{
+            __html: text.content,
+          }}
+        ></div>
+      ))}
     </div>
   );
 };
-
 
 export async function getServerSideProps() {
   // Fetch data from external API

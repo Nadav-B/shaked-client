@@ -1,8 +1,10 @@
 import React from "react";
-import { Global, css } from "@emotion/core";
 import { theme } from "./theme";
+import { createGlobalStyle } from "styled-components";
 
-const styles = css`
+const GlobalStyles = createGlobalStyle`
+
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
   html,
   body {
     height: 100%;
@@ -45,6 +47,5 @@ const styles = css`
   }
 `;
 
-const GlobalStyles = () => <Global styles={styles} />;
 
 export default GlobalStyles;

@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
-import { useRouter } from "next/router";
 
 const Article = ({ data }) => {
   //const image = `${process.env.API_URL}/articles/article/image/`;
@@ -13,6 +12,8 @@ const Article = ({ data }) => {
         <meta charSet="utf-8" />
         <meta name="description" content={data.introduction}></meta>
         <meta property="og:title" content={data.title} key="ogtitle" />
+        <meta property="og:image" content={image} key="ogimage" />
+
         <meta
           property="og:description"
           content={data.introduction}

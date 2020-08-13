@@ -6,6 +6,7 @@ import ArticlePreview from "../elements/ArticlePreview"
 const Articles = ({ data }) => {
   return (
     <div>
+    <h1>כתבות</h1>
 
       {data.map((article) => (
         <Link  key={article.id} passHref href="/article/[id]" as={`/article/${article.id}`}>
