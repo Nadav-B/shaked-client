@@ -14,6 +14,9 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
 
   const handleChange = (event) => {
     event.preventDefault();
+    const target = event.target
+    const value = target.value
+    const name = target.name
     setState((prevState) => ({
       ...prevState,
       [name]: value,
