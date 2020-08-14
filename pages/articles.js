@@ -11,7 +11,7 @@ const Articles = ({ data }) => {
     <h1>כתבות</h1>
     <StyledArticles>
       {data.map((article) => (
-        <Link  key={article.id} passHref href="/article/[id]" as={`/article/${article.id}`}>
+        <Link  key={article.id} passHref href="/articles/[id]" as={`/articles/${article.id}`}>
           <ArticlePreview key={article.id} article={article} />
         </Link>
       ))}

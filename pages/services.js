@@ -13,8 +13,8 @@ const Services = ({ data }) => {
           <Link
             key={service.id}
             passHref
-            href="/service/[id]"
-            as={`/service/${service.id}`}
+            href="/services/[id]"
+            as={`/services/${service.id}`}
           >
             <StyledWrapper>
               <ServicePreview index={index} key={service.id} service={service} />
