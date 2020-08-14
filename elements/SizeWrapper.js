@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components'
 
 const SizeWrapper = ({ size, width, height, children, className }) => (
   <StyledSizeWrapper
