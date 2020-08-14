@@ -2,12 +2,12 @@ const colors = {
   navyBlue: "#0a589d",
   lightGrey: "#EFF2EF",
   darkGrey: "#D9D9D9",
+  caribbeanGreen: "#158467",
 
   aliceBlue: "#E6F5FF",
   bisque: "#FFE1BE",
   black: "#000",
   blackTransparent: "#00000029",
-  caribbeanGreen: "#00be83",
   cobalt: "#054CA0",
   columbiaBlue: "#B6E3FD",
   denim: "#2266B6",

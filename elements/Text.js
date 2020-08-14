@@ -12,7 +12,6 @@ const Text = ({
   children,
   fontSize,
   margin,
-  className,
 }) => {
   return (
     <StyledText
@@ -38,7 +37,9 @@ const StyledText = styled.p`
   font-family: ${p => p.theme.fontFamily};
   width: ${p => (p.variant.includes("max-content") ? "max-content" : "")};
   color: ${p =>
-    p.variant.includes("error") ? p.theme.colors.torchRed : "currentColor"};
+    p.variant.includes("error") ? p.theme.colors.torchRed 
+   : p.variant.includes("sucess") ? p.theme.colors.caribbeanGreen
+    : "currentColor"};
 `
 
 export default Text
