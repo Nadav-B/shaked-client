@@ -3,6 +3,10 @@ const menuLinks = [
     name: "עמוד ראשי",
     link: "/homepage",
   },
+  {
+    name: "השירותים שלנו",
+    link: "/services",
+  },
 
   {
     name: "שאלונים",
