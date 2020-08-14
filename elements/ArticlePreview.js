@@ -33,6 +33,7 @@ const StyledArticlePreview = styled.div`
   *:hover {
     color: white;
     background: ${(p) => p.theme.colors.navyBlue};
+    
   }
 
   border-radius: 2%;
