@@ -14,9 +14,9 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
 
   const handleChange = (event) => {
     event.preventDefault();
-    const target = event.target
-    const value = target.value
-    const name = target.name
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
     setState((prevState) => ({
       ...prevState,
       [name]: value,
@@ -32,12 +32,13 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
       email: state.email,
       address: state.address,
     };
-
-    console.log(contact);
-    const url = "https://shakedm.co.il/api/contacts/insert";
+    const url = `${process.env.API_URL}/contacts/insert`;
+    console.log(url, contact);
+    /*
     axios.post(url, {
       contact,
     });
+    */
   };
 
   return (
