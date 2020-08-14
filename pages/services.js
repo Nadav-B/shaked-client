@@ -9,7 +9,7 @@ const Services = ({ data }) => {
     <div>
       <h1>השירותים שלנו </h1>
       <StyledService>
-        {data.map((service) => (
+        {data.map((service, index) => (
           <Link
             key={service.id}
             passHref
@@ -17,7 +17,7 @@ const Services = ({ data }) => {
             as={`/service/${service.id}`}
           >
             <StyledWrapper>
-              <ServicePreview key={service.id} service={service} />
+              <ServicePreview index={index} key={service.id} service={service} />
             </StyledWrapper>
           </Link>
         ))}
