@@ -33,7 +33,7 @@ const StyledText = styled.p`
       ? "nowrap"
       : ""};
   overflow: ${p => (p.variant.includes("ellipsis") ? "hidden" : "")};
-
+  font-size: ${p => p.fontSize || p.theme.fontSize.normal};
   font-family: ${p => p.theme.fontFamily};
   width: ${p => (p.variant.includes("max-content") ? "max-content" : "")};
   color: ${p =>

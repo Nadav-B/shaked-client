@@ -1,11 +1,10 @@
 import React from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 import Text from "../elements/Text";
-import ServicePreview from "./ServicePreview";
 const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
   return (
-    <a href={href} onClick={onClick} ref={ref}>
-      <StyledArticlePreview>
+    <StyledArticlePreview>
+      <a href={href} onClick={onClick} ref={ref}>
         <Wrapper>
           <StyledPicture>
             <img
@@ -15,19 +14,29 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
               alt=""
             />
           </StyledPicture>
-          <Text margin="4px" fontSize="19px">
+          <Text variant="large" margin="4px" fontSize="19px">
             {" "}
             {article.title}{" "}
           </Text>
           <Text margin="6px"> {article.introduction} </Text>
         </Wrapper>
-      </StyledArticlePreview>
-    </a>
+      </a>
+    </StyledArticlePreview>
   );
 });
 
 const StyledArticlePreview = styled.div`
-  display: inline-block;
+  * {
+    border-radius: 2%;
+  }
+
+  *:hover {
+    color: white;
+    background: ${(p) => p.theme.colors.navyBlue};
+  }
+
+  border-radius: 2%;
+
   margin: 10px;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -40,8 +49,6 @@ const StyledPicture = styled.picture`
   height: 200px;
   width: inherit;
   margin: auto;
-  border-top-left-radius: 1%;
-  border-top-right-radius: 1%;
 
   img {
     height: inherit;
