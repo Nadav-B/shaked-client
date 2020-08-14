@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styled from "@emotion/styled";
 import Button from "../elements/Button";
-import Input from "../elements/Input";
 import axios from "axios";
+import styled from "styled-components";
+
 
 const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
   const [state, setState] = useState({

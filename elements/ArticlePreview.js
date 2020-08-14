@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "@emotion/styled";
+import styled from 'styled-components'
 import Text from "../elements/Text";
 const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
   return (
