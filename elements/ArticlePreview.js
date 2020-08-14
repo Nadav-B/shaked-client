@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
 import Text from "../elements/Text";
+import ServicePreview from "./ServicePreview";
 const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
   return (
     <a href={href} onClick={onClick} ref={ref}>
