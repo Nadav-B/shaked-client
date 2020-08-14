@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Button from "../elements/Button";
+import Text from "../elements/Text";
 import axios from "axios";
 import styled from "styled-components";
-
 
 const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
   const [state, setState] = useState({
@@ -12,8 +12,13 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
     address: "",
   });
 
-  const url = process.env.NEXT_PUBLIC_API_URL;
-  console.log(url);
+  const [result, setResult] = useState({
+    text: "",
+    style: "",
+    status: false,
+  });
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -28,6 +33,7 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const temp = [];
 
     const contact = {
       fullname: state.fullname,
@@ -35,13 +41,29 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
       email: state.email,
       address: state.address,
     };
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
-    console.log(url, contact);
-    /*
-    axios.post(url, {
-      contact,
-    });
-    */
+
+    axios
+      .post(url, {
+        contact,
+      })
+      .then(
+        (response) => {
+          setResult((prevState) => ({
+            ...prevState,
+            text: "נשלח בהצלחה!",
+            style: "sucess",
+            status: true,
+          }));
+        },
+        (error) => {
+          setResult((prevState) => ({
+            ...prevState,
+            text: "שגיאה",
+            style: "error",
+            status: false,
+          }));
+        }
+      );
   };
 
   return (
@@ -86,7 +108,10 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
               onChange={handleChange}
             />
           </label>
-          <Button type="submit">שלח </Button>
+          <Text variant={result.style}> {result.text}</Text>
+          <Button disabled={result.status} type="submit">
+            שלח
+          </Button>
         </form>
       </StyledForm>
     </div>
@@ -114,5 +139,3 @@ const StyledInput = styled.input`
 `;
 
 export default Contact;
-
-
