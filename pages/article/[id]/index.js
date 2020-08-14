@@ -3,8 +3,7 @@ import Head from "next/head";
 import axios from "axios";
 
 const Article = ({ data }) => {
-  //const image = `${process.env.API_URL}/articles/article/image/`;
-  const image = `https://shakedm.co.il/api/articles/article/image/${data.id}`
+  const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
   return (
     <div>
       <Head>
@@ -38,7 +37,7 @@ export async function getServerSideProps({ query }) {
 
   // Fetch data from external API
 
-  const url = `${process.env.API_URL}/articles/article/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/${id}`;
   const res = await axios.get(url);
 
   const data = await res.data;

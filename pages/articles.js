@@ -21,7 +21,7 @@ const Articles = ({ data }) => {
 export async function getServerSideProps() {
   // Fetch data from external API
 
-  const url = `${process.env.API_URL}/articles`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles`;
   const res = await axios.get(url);
 
   const data = await res.data;

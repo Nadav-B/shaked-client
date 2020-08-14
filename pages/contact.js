@@ -12,6 +12,9 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
     address: "",
   });
 
+  const url = process.env.NEXT_PUBLIC_API_URL;
+  console.log(url);
+
   const handleChange = (event) => {
     event.preventDefault();
     const target = event.target;
@@ -32,7 +35,7 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
       email: state.email,
       address: state.address,
     };
-    const url = `${process.env.API_URL}/contacts/insert`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
     console.log(url, contact);
     /*
     axios.post(url, {
@@ -111,3 +114,5 @@ const StyledInput = styled.input`
 `;
 
 export default Contact;
+
+
