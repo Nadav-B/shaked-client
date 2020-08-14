@@ -20,7 +20,6 @@ const ServicePreview = React.forwardRef(
               name={service.title}
               expiry={""}
               cvc={""}
-              focused={true}
             />
             <div class="overlay">
               <div class="text">{service.introduction}</div>
