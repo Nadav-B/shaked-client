@@ -5,7 +5,7 @@ import { bool, func } from "prop-types";
 
 const Menu = ({ menuLinks, open, setOpen }) => {
   return (
-    <StyledMenu open={open} >
+    <StyledMenu open={open}>
       <ul>
         {menuLinks.map((link) => (
           <li onClick={() => setOpen(!open)} key={link.name}>
@@ -20,7 +20,7 @@ const Menu = ({ menuLinks, open, setOpen }) => {
 const StyledMenu = styled.nav`
   display: inline-block;
   height: auto;
-
+z-index:1;
   li {
     cursor: pointer;
     float: right;
