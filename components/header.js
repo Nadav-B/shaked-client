@@ -16,7 +16,7 @@ const Header = ({ menuLinks, siteTitle }) => {
         <Link passHref href={"/homepage"}>
           <StyledLink>
             <SizeWrapper height={120} width={120}>
-              <img src="logos/favicon.svg" alt="Logo" />
+              <img src="/logos/favicon.svg" alt="Logo" />
             </SizeWrapper>
           </StyledLink>
         </Link>

@@ -47,7 +47,7 @@ const Survey = ({ id }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const survey = {
       name: data.name,
       answers: parseAnswersForSubmit(),
@@ -146,9 +146,10 @@ const Survey = ({ id }) => {
       {currentStatus == 1 && (
         <div>
           {data.questions[index].question}
-          {data.questions[index].answers.map((answer) => (
+          {data.questions[index].answers.map((answer,index) => (
             <StyledAnswersWrapper>
               <Button
+                key={index}
                 onClick={(event) => {
                   handleAnswerSubmit(
                     event,

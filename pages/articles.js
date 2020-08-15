@@ -3,18 +3,23 @@ import axios from "axios";
 import Link from "next/link";
 import styled from "styled-components";
 
-import ArticlePreview from "../elements/ArticlePreview"
+import ArticlePreview from "../elements/ArticlePreview";
 
 const Articles = ({ data }) => {
   return (
     <div>
-    <h1>כתבות</h1>
-    <StyledArticles>
-      {data.map((article) => (
-        <Link  key={article.id} passHref href="/articles/[id]" as={`/articles/${article.id}`}>
-          <ArticlePreview key={article.id} article={article} />
-        </Link>
-      ))}
+      <h1>כתבות</h1>
+      <StyledArticles>
+        {data.map((article) => (
+          <Link
+            key={article.id}
+            passHref
+            href="/articles/[id]"
+            as={`/articles/${article.id}`}
+          >
+            <ArticlePreview key={article.id} article={article} />
+          </Link>
+        ))}
       </StyledArticles>
     </div>
   );
@@ -27,7 +32,6 @@ const StyledArticles = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `;
-
 
 // This gets called on every request
 export async function getServerSideProps() {

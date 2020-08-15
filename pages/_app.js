@@ -15,30 +15,29 @@ export default class MyApp extends App {
         <Head>
           <title>שקד משכנתאות</title>
           <link rel="icon" href="/logos/favicon.ico" />
-          <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"></link>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+            rel="stylesheet"
+          ></link>
         </Head>
 
         <ThemeProvider theme={theme}>
           <GlobalStyles />
-          <Header menuLinks={menuLinks} /> 
-    
+          <Header menuLinks={menuLinks} />
+
           <div
             style={{
               margin: `0 auto`,
               maxWidth: 960,
               minHeight: 470,
-
               padding: `0 1.0875rem 1.45rem`,
             }}
           >
             <main>
               <Component {...pageProps} />
             </main>
-
-
-
           </div>
-            <Footer/>
+          <Footer />
         </ThemeProvider>
       </div>
     );
