@@ -32,35 +32,25 @@ const Surveys = () => {
 };
 const StyledContainer = styled.div`
   margin: auto;
-  width: 80%;
+  width: 50%;
   padding-top: 20px;
+  
 `;
 
 const StyledButtom = styled.div`
   padding: 20px;
   cursor: pointer;
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(0, 0, 0, 0.15) 100%
-    ),
-    radial-gradient(
-        at top center,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(0, 0, 0, 0.4) 120%
-      )
-      #989898;
-  background-blend-mode: multiply, multiply;
-  background-blend-mode: multiply, multiply;
-  border-top-left-radius: 44px;
-  border-bottom-right-radius: 44px;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
   text-align: center;
   max-width: 400px;
   margin: 25px;
-  color: white;
-
 
   :hover {
-    background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);`;
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+
+  }
+`;
 
 export default Surveys;
