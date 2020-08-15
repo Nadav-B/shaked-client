@@ -11,14 +11,21 @@ const Survey = ({ id }) => {
   const Status = {
     Fillname: 0,
     Questions: 1,
-    FillContact: 2,
-    Sent: 3,
+    CompleteContact: 2,
   };
 
-  var data = [survey1, survey2];
-  data = data[id];
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
 
-  const [currentStatus, setCurrentstatus] = useState(Status.Questions);
+  const surveys = [survey1, survey2];
+  const data = surveys[id];
+
+  const [currentStatus, setCurrentstatus] = useState(Status.CompleteContact);
+
+  const [result, setResult] = useState({
+    text: "",
+    style: "",
+    status: false,
+  });
 
   const [state, setState] = useState({
     fullname: "",
@@ -38,21 +45,51 @@ const Survey = ({ id }) => {
       email: state.email,
       address: state.address,
     };
+
+    axios
+      .post(url, {
+        contact,
+      })
+      .then(
+        (response) => {
+          setResult((prevState) => ({
+            ...prevState,
+            text: "נשלח בהצלחה!",
+            style: "sucess",
+            status: true,
+          }));
+        },
+        (error) => {
+          setResult((prevState) => ({
+            ...prevState,
+            text: "שגיאה",
+            style: "error",
+            status: false,
+          }));
+        }
+      );
   };
 
   const handleAnswerSubmit = (event) => {
     event.preventDefault();
     if (index < data.questions.length - 1) setIndex(index + 1);
+    if (index == data.questions.length - 1)
+      setCurrentstatus(Status.CompleteContact);
   };
 
   const backQuestion = (event) => {
     event.preventDefault();
-    if(index>0) setIndex(index-1)
+    if (index > 0) setIndex(index - 1);
   };
 
   const fillName = (event) => {
     event.preventDefault();
     setCurrentstatus(Status.Questions);
+  };
+
+  const fillPhone = (event) => {
+    handleSubmit(event)
+
   };
 
   const handleChange = (event) => {
@@ -101,7 +138,28 @@ const Survey = ({ id }) => {
               <Button onClick={handleAnswerSubmit}>{answer}</Button>
             </StyledAnswersWrapper>
           ))}
-          <Button onClick={backQuestion} type="submit">לשאלה הקודמת</Button>
+          {index > 0 && (
+            <Button onClick={backQuestion} type="submit">
+              לשאלה הקודמת
+            </Button>
+          )}
+        </div>
+      )}
+      {currentStatus == 2 && (
+        <div>
+          <Text>השאירו טלפון ונציג שלנו ייצור עמכם קשר להשלמת הבדיקה:</Text>
+          <form onSubmit={fillPhone}>
+            <StyledInput
+              name="phonenumber"
+              value={state.phonenumber}
+              placeholder="שדה חובה"
+              onChange={handleChange}
+              type="tel"
+              required
+            />{" "}
+            <Text variant={result.style}> {result.text}</Text>
+            <Button disabled={result.status}  type="submit">שלח</Button>
+          </form>
         </div>
       )}
     </Wrapper>
