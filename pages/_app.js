@@ -25,13 +25,19 @@ export default class MyApp extends App {
             style={{
               margin: `0 auto`,
               maxWidth: 960,
+              minHeight: 470,
+
               padding: `0 1.0875rem 1.45rem`,
             }}
           >
             <main>
               <Component {...pageProps} />
             </main>
+
+
+
           </div>
+            <Footer/>
         </ThemeProvider>
       </div>
     );
