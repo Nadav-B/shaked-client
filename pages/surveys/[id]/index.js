@@ -8,9 +8,6 @@ import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
 
 const Survey = ({ id }) => {
-  var data = [survey1, survey2];
-  data = data[id];
-
   const Status = {
     Fillname: 0,
     Questions: 1,
@@ -18,16 +15,18 @@ const Survey = ({ id }) => {
     Sent: 3,
   };
 
+  var data = [survey1, survey2];
+  data = data[id];
+
+  const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
+
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",
-    email: "",
-    address: "",
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const temp = [];
 
     const contact = {
       fullname: state.fullname,
@@ -35,6 +34,12 @@ const Survey = ({ id }) => {
       email: state.email,
       address: state.address,
     };
+  };
+
+  const fillName = (event) => {
+    event.preventDefault();
+    setCurrentstatus(Status.Questions);
+    console.log(state);
   };
 
   const handleChange = (event) => {
@@ -48,7 +53,6 @@ const Survey = ({ id }) => {
     }));
   };
 
-  const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
   return (
     <Wrapper>
       <Head>
@@ -63,7 +67,7 @@ const Survey = ({ id }) => {
       {currentStatus == 0 && (
         <div>
           <Text>מלאו את שמכם והתחילו את ביצוע הבדיקה:</Text>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={fillName}>
             <StyledInput
               name="fullname"
               value={state.fullname}
@@ -76,7 +80,20 @@ const Survey = ({ id }) => {
         </div>
       )}
 
-      {currentStatus == 1 && <div></div>}
+      {currentStatus == 1 && (
+        <div>
+          {data.questions.map((entry) => (
+            <div>
+              {entry.question}
+              {entry.answers.map((answer) => (
+                <StyledAnswersWrapper>
+                  <Button>{answer}</Button>
+                </StyledAnswersWrapper>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </Wrapper>
   );
 };
@@ -86,6 +103,12 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
+const StyledAnswersWrapper = styled.div`
+  width: 50%;
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+`;
 const StyledInput = styled.input`
   width: 100%;
   padding: 12px 20px;
