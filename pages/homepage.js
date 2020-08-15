@@ -77,7 +77,7 @@ const StyledHomepage = styled.div`
  
     h1 {
       font-size: 40px;
-      color: ${p=> p.theme.colors.navyBlue};
+      color: ${(p) => p.theme.colors.navyBlue};
     }
     h2 {
       font-size: 30px;

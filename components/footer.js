@@ -36,7 +36,8 @@ const Fotter = () => (
       >
         {" "}
         <SizeWrapper width={30}>
-          <img src="icons/facebook.svg" />
+          <img src="/icons/facebook.svg" alt="Facebook"  />
+
         </SizeWrapper>
       </a>
     </div>

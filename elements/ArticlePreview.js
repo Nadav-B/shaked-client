@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Text from "../elements/Text";
 const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
+
+  const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;
+
   return (
     <StyledArticlePreview>
       <a href={href} onClick={onClick} ref={ref}>
@@ -9,7 +12,7 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
           <StyledPicture>
             <img
               src={
-                "https://shakedm.co.il/api/articles/article/image/" + article.id
+                image 
               }
               alt=""
             />
