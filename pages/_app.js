@@ -15,6 +15,7 @@ export default class MyApp extends App {
         <Head>
           <title>שקד משכנתאות</title>
           <link rel="icon" href="/logos/favicon.ico" />
+          <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"></link>
         </Head>
 
         <ThemeProvider theme={theme}>

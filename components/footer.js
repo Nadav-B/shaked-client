@@ -3,20 +3,20 @@ import styled from 'styled-components'
 import SizeWrapper from "../elements/SizeWrapper";
 const Fotter = () => (
   <StyledFooter>
-    <div class="address">
+    <div className="address">
       <span>שקד משכנתאות </span>
       <span> רמת גן </span>
       <span>ישראל </span>
     </div>
 
-    <div class="phones">
+    <div className="phones">
       <span>
         נייד:<a href="tel:+97250742491934"> 050-7424-919</a>
       </span>
       <span>פקס: 077-3179998</span>
     </div>
 
-    <div class="digital-contact">
+    <div className="digital-contact">
       <span>
         <a href="mailto:shay@shakedm.co.il?Subject=Hello" target="_top">
           shay@shakedm.co.il
@@ -28,7 +28,7 @@ const Fotter = () => (
         </a>
       </span>
     </div>
-    <div class="icons">
+    <div className="icons">
       <a
         target="_blank"
         rel="noreferrer"
