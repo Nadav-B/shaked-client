@@ -19,7 +19,7 @@ const Surveys = () => {
             href="/surveys/[id]"
             as={`/surveys/${survey.id}`}
           >
-            <StyledButtom class="home">
+            <StyledButtom>
               <Text margin={45} fontSize="large">
                 {survey.name}
               </Text>
