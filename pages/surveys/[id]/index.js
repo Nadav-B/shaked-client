@@ -18,12 +18,16 @@ const Survey = ({ id }) => {
   var data = [survey1, survey2];
   data = data[id];
 
-  const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
+  const [currentStatus, setCurrentstatus] = useState(Status.Questions);
 
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",
   });
+
+  const [index, setIndex] = useState(0);
+
+  console.log(index);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,10 +40,19 @@ const Survey = ({ id }) => {
     };
   };
 
+  const handleAnswerSubmit = (event) => {
+    event.preventDefault();
+    if (index < data.questions.length - 1) setIndex(index + 1);
+  };
+
+  const backQuestion = (event) => {
+    event.preventDefault();
+    if(index>0) setIndex(index-1)
+  };
+
   const fillName = (event) => {
     event.preventDefault();
     setCurrentstatus(Status.Questions);
-    console.log(state);
   };
 
   const handleChange = (event) => {
@@ -82,16 +95,13 @@ const Survey = ({ id }) => {
 
       {currentStatus == 1 && (
         <div>
-          {data.questions.map((entry) => (
-            <div>
-              {entry.question}
-              {entry.answers.map((answer) => (
-                <StyledAnswersWrapper>
-                  <Button>{answer}</Button>
-                </StyledAnswersWrapper>
-              ))}
-            </div>
+          {data.questions[index].question}
+          {data.questions[index].answers.map((answer) => (
+            <StyledAnswersWrapper>
+              <Button onClick={handleAnswerSubmit}>{answer}</Button>
+            </StyledAnswersWrapper>
           ))}
+          <Button onClick={backQuestion} type="submit">לשאלה הקודמת</Button>
         </div>
       )}
     </Wrapper>
