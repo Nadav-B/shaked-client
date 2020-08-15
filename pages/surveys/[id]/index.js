@@ -19,7 +19,7 @@ const Survey = ({ id }) => {
   const data = surveys[id];
 
   const [results, setResults] = useState(new Map());
-  const [currentStatus, setCurrentstatus] = useState(Status.Questions);
+  const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
   const [confirmation, setConfirmation] = useState({
     text: "",
     style: "",
