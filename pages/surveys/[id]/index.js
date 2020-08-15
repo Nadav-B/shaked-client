@@ -8,51 +8,64 @@ import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
 
 const Survey = ({ id }) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
+
   const Status = {
     Fillname: 0,
     Questions: 1,
     CompleteContact: 2,
   };
-
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
-
   const surveys = [survey1, survey2];
   const data = surveys[id];
 
-  const [currentStatus, setCurrentstatus] = useState(Status.CompleteContact);
-
-  const [result, setResult] = useState({
+  const [results, setResults] = useState(new Map());
+  const [currentStatus, setCurrentstatus] = useState(Status.Questions);
+  const [confirmation, setConfirmation] = useState({
     text: "",
     style: "",
     status: false,
   });
 
-  const [state, setState] = useState({
+  const [contact, setContact] = useState({
     fullname: "",
     phonenumber: "",
   });
 
   const [index, setIndex] = useState(0);
 
-  console.log(index);
+  const parseAnswersForSubmit = () => {
+    var tempArray = [];
+    for (let [key, value] of results) {
+      const answer = {
+        answer: key,
+        question: value,
+      };
+      tempArray.push(answer);
+    }
+    return tempArray;
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    const survey = {
+      name: data.name,
+      answers: parseAnswersForSubmit(),
+    };
 
-    const contact = {
-      fullname: state.fullname,
-      phonenumber: state.phonenumber,
-      email: state.email,
-      address: state.address,
+    const contactForm = {
+      fullname: contact.fullname,
+      phonenumber: contact.phonenumber,
+      survey: survey,
     };
 
     axios
       .post(url, {
-        contact,
+        contactForm,
       })
       .then(
         (response) => {
-          setResult((prevState) => ({
+          setConfirmation((prevState) => ({
             ...prevState,
             text: "נשלח בהצלחה!",
             style: "sucess",
@@ -60,7 +73,7 @@ const Survey = ({ id }) => {
           }));
         },
         (error) => {
-          setResult((prevState) => ({
+          setConfirmation((prevState) => ({
             ...prevState,
             text: "שגיאה",
             style: "error",
@@ -70,8 +83,9 @@ const Survey = ({ id }) => {
       );
   };
 
-  const handleAnswerSubmit = (event) => {
+  const handleAnswerSubmit = (event, answer, question) => {
     event.preventDefault();
+    results.set(answer, question);
     if (index < data.questions.length - 1) setIndex(index + 1);
     if (index == data.questions.length - 1)
       setCurrentstatus(Status.CompleteContact);
@@ -88,8 +102,7 @@ const Survey = ({ id }) => {
   };
 
   const fillPhone = (event) => {
-    handleSubmit(event)
-
+    handleSubmit(event);
   };
 
   const handleChange = (event) => {
@@ -97,7 +110,7 @@ const Survey = ({ id }) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    setState((prevState) => ({
+    setContact((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -120,7 +133,7 @@ const Survey = ({ id }) => {
           <form onSubmit={fillName}>
             <StyledInput
               name="fullname"
-              value={state.fullname}
+              value={contact.fullname}
               placeholder="שדה חובה"
               onChange={handleChange}
               required
@@ -135,7 +148,17 @@ const Survey = ({ id }) => {
           {data.questions[index].question}
           {data.questions[index].answers.map((answer) => (
             <StyledAnswersWrapper>
-              <Button onClick={handleAnswerSubmit}>{answer}</Button>
+              <Button
+                onClick={(event) => {
+                  handleAnswerSubmit(
+                    event,
+                    data.questions[index].question,
+                    answer
+                  );
+                }}
+              >
+                {answer}
+              </Button>
             </StyledAnswersWrapper>
           ))}
           {index > 0 && (
@@ -151,14 +174,16 @@ const Survey = ({ id }) => {
           <form onSubmit={fillPhone}>
             <StyledInput
               name="phonenumber"
-              value={state.phonenumber}
+              value={contact.phonenumber}
               placeholder="שדה חובה"
               onChange={handleChange}
               type="tel"
               required
             />{" "}
-            <Text variant={result.style}> {result.text}</Text>
-            <Button disabled={result.status}  type="submit">שלח</Button>
+            <Text variant={confirmation.style}> {confirmation.text}</Text>
+            <Button disabled={confirmation.status} type="submit">
+              שלח
+            </Button>
           </form>
         </div>
       )}

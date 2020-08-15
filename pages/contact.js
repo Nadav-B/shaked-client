@@ -87,6 +87,7 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
               placeholder="שדה חובה"
               value={state.phonenumber}
               onChange={handleChange}
+              type="tel"
               required
             />
           </label>
