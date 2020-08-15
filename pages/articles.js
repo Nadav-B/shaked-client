@@ -2,12 +2,21 @@ import React from "react";
 import axios from "axios";
 import Link from "next/link";
 import styled from "styled-components";
+import Head from "next/head";
 
 import ArticlePreview from "../elements/ArticlePreview";
 
 const Articles = ({ data }) => {
   return (
     <div>
+      <Head>
+        <meta name="description" content="כל הכתבות של שקד משכנתאות"></meta>
+        <meta
+          property="og:description"
+          content="כל הכתבות של שקד משכנתאות"
+          key="ogdesc"
+        />
+      </Head>
       <h1>כתבות</h1>
       <StyledArticles>
         {data.map((article) => (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
 import axios from "axios";
+import Head from "next/head";
 import styled from "styled-components";
 
 const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
@@ -67,6 +68,10 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
 
   return (
     <div>
+      <Head>
+        <meta name="description" content="צור קשר"></meta>
+        <meta property="og:description" content="צור קשר" key="ogdesc" />
+      </Head>
       <h1>צור קשר</h1>
       <StyledForm>
         <form onSubmit={handleSubmit}>

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Text from "../elements/Text";
 const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
-
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;
 
   return (
@@ -10,12 +9,7 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
       <a href={href} onClick={onClick} ref={ref}>
         <Wrapper>
           <StyledPicture>
-            <img
-              src={
-                image 
-              }
-              alt=""
-            />
+            <img src={image} alt="" />
           </StyledPicture>
           <Text variant="large" margin="4px" fontSize="19px">
             {" "}
@@ -36,7 +30,6 @@ const StyledArticlePreview = styled.div`
   *:hover {
     color: white;
     background: ${(p) => p.theme.colors.navyBlue};
-    
   }
 
   border-radius: 2%;

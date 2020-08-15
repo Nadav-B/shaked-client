@@ -3,10 +3,19 @@ import axios from "axios";
 import Link from "next/link";
 import ServicePreview from "../elements/ServicePreview";
 import styled from "styled-components";
+import Head from "next/head";
 
 const Services = ({ data }) => {
   return (
     <div>
+      <Head>
+        <meta name="description" content=" השירותים שלנו "></meta>
+        <meta
+          property="og:description"
+          content="השירותים שלנו  "
+          key="ogdesc"
+        />
+      </Head>
       <h1>השירותים שלנו </h1>
       <StyledService>
         {data.map((service, index) => (
@@ -17,7 +26,11 @@ const Services = ({ data }) => {
             as={`/services/${service.id}`}
           >
             <StyledWrapper>
-              <ServicePreview index={index} key={service.id} service={service} />
+              <ServicePreview
+                index={index}
+                key={service.id}
+                service={service}
+              />
             </StyledWrapper>
           </Link>
         ))}
@@ -35,8 +48,7 @@ const StyledService = styled.div`
 `;
 
 const StyledWrapper = styled.div`
-
-padding: 5px;
+  padding: 5px;
 `;
 // This gets called on every request
 export async function getServerSideProps() {

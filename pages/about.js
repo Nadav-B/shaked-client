@@ -1,16 +1,23 @@
 import React from "react";
 import axios from "axios";
+import Head from "next/head";
 
 const About = ({ data }) => {
   return (
     <div>
-      {data.map((text) => (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: text.content,
-          }}
-        ></div>
-      ))}
+      <Head>
+        <meta name="description" content=" אודות" />
+        <meta property="og:description" content="אודות " key="ogdesc" />
+      </Head>
+      <div>
+        {data.map((text) => (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: text.content,
+            }}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 };

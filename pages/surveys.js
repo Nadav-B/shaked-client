@@ -4,12 +4,21 @@ import survey2 from "../public/surveys/2.json";
 import Link from "next/link";
 import Text from "../elements/Text";
 import styled from "styled-components";
+import Head from "next/head";
 
 const Surveys = () => {
   const data = [survey1, survey2];
 
   return (
     <div>
+      <Head>
+        <meta name="description" content=" שאלונים לביצוע בדיקה"></meta>
+        <meta
+          property="og:description"
+          content="שאלונים לביצוע בדיקה "
+          key="ogdesc"
+        />
+      </Head>
       <h1> שאלונים לביצוע בדיקה</h1>
       <StyledContainer>
         {data.map((survey) => (
@@ -34,7 +43,6 @@ const StyledContainer = styled.div`
   margin: auto;
   width: 50%;
   padding-top: 20px;
-  
 `;
 
 const StyledButtom = styled.div`
@@ -49,7 +57,6 @@ const StyledButtom = styled.div`
 
   :hover {
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-
   }
 `;
 

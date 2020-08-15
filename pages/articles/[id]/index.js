@@ -8,8 +8,6 @@ const Article = ({ data }) => {
   return (
     <div>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
         <meta name="description" content={data.introduction}></meta>
         <meta property="og:title" content={data.title} key="ogtitle" />
         <meta property="og:image" content={image} key="ogimage" />
@@ -18,7 +16,6 @@ const Article = ({ data }) => {
           content={data.introduction}
           key="ogdesc"
         />
-        <title>{"shaked"}</title>
       </Head>
       <StyledArticle>
         <StyledImage src={image} alt="" />
