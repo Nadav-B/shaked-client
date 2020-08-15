@@ -33,7 +33,6 @@ const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const temp = [];
 
     const contact = {
       fullname: state.fullname,
