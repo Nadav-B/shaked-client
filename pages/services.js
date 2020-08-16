@@ -25,13 +25,15 @@ const Services = ({ data }) => {
             href="/services/[id]"
             as={`/services/${service.id}`}
           >
-            <StyledWrapper>
-              <ServicePreview
-                index={index}
-                key={service.id}
-                service={service}
-              />
-            </StyledWrapper>
+            <a>
+              <StyledWrapper>
+                <ServicePreview
+                  index={index}
+                  key={service.id}
+                  service={service}
+                />
+              </StyledWrapper>
+            </a>
           </Link>
         ))}
       </StyledService>
