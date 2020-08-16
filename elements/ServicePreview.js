@@ -12,9 +12,9 @@ const ServicePreview = React.forwardRef(
       "3535753443328218",
     ];
     return (
-      <StyledServicePreview>
-        <div class="container">
-          <a href={href} onClick={onClick} ref={ref}>
+      <a href={href} onClick={onClick} ref={ref}>
+        <StyledServicePreview>
+          <div class="container">
             <Card
               number={numbers[index]}
               name={service.title}
@@ -24,10 +24,9 @@ const ServicePreview = React.forwardRef(
             <div class="overlay">
               <div class="text">{service.introduction}</div>
             </div>
-          </a>
-
-        </div>
-      </StyledServicePreview>
+          </div>
+        </StyledServicePreview>
+      </a>
     );
   }
 );
@@ -47,7 +46,7 @@ const StyledServicePreview = styled.div`
     width: 100%;
     opacity: 0;
     transition: 0.5s ease;
-    background-color: ${p => p.theme.colors.navyBlue};
+    background-color: ${(p) => p.theme.colors.navyBlue};
     text-align: right;
     border-radius: 14.5px;
   }
