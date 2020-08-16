@@ -17,7 +17,7 @@ const Header = ({ menuLinks, siteTitle }) => {
           <a>
             <StyledLink>
               <SizeWrapper height={120} width={120}>
-                <img src="/logos/favicon.svg" alt="Logo" />
+                <img src="/logos/favicon.png" alt="Logo" />
               </SizeWrapper>
             </StyledLink>
           </a>
