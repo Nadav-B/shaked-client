@@ -19,22 +19,20 @@ const Services = ({ data }) => {
       <h1>השירותים שלנו </h1>
       <StyledService>
         {data.map((service, index) => (
-          <Link
-            key={service.id}
-            passHref
-            href="/services/[id]"
-            as={`/services/${service.id}`}
-          >
-            <a>
-              <StyledWrapper>
-                <ServicePreview
-                  index={index}
-                  key={service.id}
-                  service={service}
-                />
-              </StyledWrapper>
-            </a>
-          </Link>
+          <StyledWrapper>
+            <Link
+              key={service.id}
+              passHref
+              href="/services/[id]"
+              as={`/services/${service.id}`}
+            >
+              <ServicePreview
+                index={index}
+                key={service.id}
+                service={service}
+              />
+            </Link>
+          </StyledWrapper>
         ))}
       </StyledService>
     </div>
