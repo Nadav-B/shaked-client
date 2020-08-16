@@ -29,11 +29,11 @@ const Surveys = () => {
             as={`/surveys/${survey.id}`}
           >
             <a>
-              <StyledButtom>
+              <StyledButton>
                 <Text margin={45} fontSize="large">
                   {survey.name}
                 </Text>
-              </StyledButtom>
+              </StyledButton>
             </a>
           </Link>
         ))}
@@ -47,7 +47,7 @@ const StyledContainer = styled.div`
   padding-top: 20px;
 `;
 
-const StyledButtom = styled.div`
+const StyledButton = styled.div`
   padding: 20px;
   cursor: pointer;
   background: white;

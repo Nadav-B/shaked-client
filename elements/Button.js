@@ -1,10 +1,8 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Button = ({ children, onClick, focus }) => (
-  <StyledButton>
-    {children}
-  </StyledButton>
+  <StyledButton>{children}</StyledButton>
 );
 
 const StyledButton = styled.button`
@@ -13,26 +11,26 @@ const StyledButton = styled.button`
   justify-content: center;
   height: 40px;
   min-width: 172px;
+  margin: 25px;
+  max-width: 400px;
+  border: 0;
   padding: 0 10px;
-  /**
-   * background: ${p => p.theme.colors.lightGrey};
-   *   border: ${p => p.theme.colors.darkGrey};
-   */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: white;
+  text-align: center;
 
-  border-radius: 3px;
   outline: none;
-  color: ${p => p.theme.colors.navyBlue};
+  color: ${(p) => p.theme.colors.navyBlue};
   cursor: pointer;
-  transition: background-color 0.2 ease, color 0.2 ease;
 
   &:hover {
-    background-color: ${p => p.theme.colors.whiteSmoke};
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   }
 
   &:focus,
   &:active {
-    color: ${p => p.theme.colors.white};
-    background-color: ${p => p.theme.colors.torchRed};
+    color: ${(p) => p.theme.colors.white};
+    background-color: ${(p) => p.theme.colors.torchRed};
     outline: none;
   }
 
