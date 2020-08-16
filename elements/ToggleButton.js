@@ -2,9 +2,9 @@
 import styled from "styled-components";
 import { bool, func } from 'prop-types';
 
-const ToggleButton = ({ open, setOpen })  => {
+const ToggleButton = ({ open, onClick })  => {
   return (
-    <StyledToggleButton open={open} onClick={() => setOpen(!open)}>
+    <StyledToggleButton open={open} onClick={onClick}>
       <div />
       <div />
       <div />

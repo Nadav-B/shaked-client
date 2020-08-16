@@ -13,16 +13,18 @@ const Header = ({ menuLinks, siteTitle }) => {
   return (
     <HeaderWrapper>
       <NavigationWrapper>
-        <Link passHref href={"/homepage"}>
-          <StyledLink>
-            <SizeWrapper height={120} width={120}>
-              <img src="/logos/favicon.svg" alt="Logo" />
-            </SizeWrapper>
-          </StyledLink>
+        <Link href={"/homepage"}>
+          <a>
+            <StyledLink>
+              <SizeWrapper height={120} width={120}>
+                <img src="/logos/favicon.svg" alt="Logo" />
+              </SizeWrapper>
+            </StyledLink>
+          </a>
         </Link>
 
-        {open && <Menu menuLinks={menuLinks} open={open} setOpen={setOpen} />}
-        <ToggleButton open={open} setOpen={setOpen} />
+        {open && <Menu menuLinks={menuLinks} onClick={() => setOpen(!open)} />}
+        <ToggleButton open={open} onClick={() => setOpen(!open)} />
       </NavigationWrapper>
     </HeaderWrapper>
   );

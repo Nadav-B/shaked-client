@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Link from "next/link";
 import { bool, func } from "prop-types";
 
-const Menu = ({ menuLinks, open, setOpen }) => {
+const Menu = ({ menuLinks, open, onClick }) => {
   return (
     <StyledMenu open={open}>
       <ul>
         {menuLinks.map((link) => (
-          <li onClick={() => setOpen(!open)} key={link.name}>
+          <li onClick={onClick} key={link.name}>
             <Link href={link.link}>{link.name}</Link>
           </li>
         ))}
