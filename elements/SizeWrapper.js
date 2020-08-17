@@ -15,6 +15,13 @@ const SizeWrapper = ({ size, width, height, children, className }) => (
 const StyledSizeWrapper = styled.div`
   height: ${p => (p.height ? p.height : p.size)}px;
   width: ${p => (p.width ? p.width : p.size)}px;
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
 `;
 
 export default SizeWrapper;
