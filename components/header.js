@@ -7,9 +7,7 @@ import SizeWrapper from "../elements/SizeWrapper";
 import Link from "next/link";
 import styled from "styled-components";
 
-const Header = ({ menuLinks, siteTitle }) => {
-  const [open, setOpen] = useState(false);
-
+const Header = ({ menuLinks, siteTitle, open, setOpen }) => {
   return (
     <HeaderWrapper>
       <NavigationWrapper>

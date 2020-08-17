@@ -7,7 +7,10 @@ import Footer from "../components/footer";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 
+
 const App = ({ Component, pageProps }) => {
+
+  const [open, setOpen] = useState(false);
   return (
     <div>
       <Head>
@@ -21,7 +24,7 @@ const App = ({ Component, pageProps }) => {
 
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Header menuLinks={menuLinks} />
+        <Header open={open} setOpen={setOpen} menuLinks={menuLinks} />
 
         <div
           style={{
