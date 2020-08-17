@@ -9,7 +9,6 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 const App = ({ Component, pageProps }) => {
-  const [open, setOpen] = useState(false);
   return (
     <div>
       <Head>
@@ -22,7 +21,7 @@ const App = ({ Component, pageProps }) => {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Header open={open} setOpen={setOpen} menuLinks={menuLinks} />
+        <Header menuLinks={menuLinks} />
         <StyledMenu>
           <Component {...pageProps} />
         </StyledMenu>

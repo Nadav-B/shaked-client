@@ -7,12 +7,9 @@ import SizeWrapper from "../elements/SizeWrapper";
 import Link from "next/link";
 import styled from "styled-components";
 
-const Header = ({ menuLinks, siteTitle, open, setOpen }) => {
-  const handleClick = () => {
-    console.log("clicked");
-    console.log("open status", open);
-    setOpen(!open);
-  };
+const Header = ({ menuLinks, siteTitle }) => {
+
+  const [open, setOpen] = useState(false);
 
   return (
     <HeaderWrapper open={open}>
@@ -26,9 +23,8 @@ const Header = ({ menuLinks, siteTitle, open, setOpen }) => {
             </StyledLink>
           </a>
         </Link>
-
         {open && <Menu menuLinks={menuLinks} onClick={() => setOpen(!open)} />}
-        <ToggleButton open={open} onClick={handleClick} />
+        <ToggleButton open={open} onClick={() => setOpen(!open)}  />
       </NavigationWrapper>
     </HeaderWrapper>
   );
