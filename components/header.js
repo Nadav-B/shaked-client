@@ -42,7 +42,7 @@ Header.defaultProps = {
   siteTitle: ``,
 };
 
-const HeaderWrapper = (open = styled.div`
+const HeaderWrapper = styled.div`
   background: ${({ open }) => (open ? "white" : "transperent")};
   align-items: center;
   justify-content: space-between;
@@ -50,7 +50,7 @@ const HeaderWrapper = (open = styled.div`
   top: 0;
   width: 100%;
   padding-right: 42px;
-`);
+`;
 
 const NavigationWrapper = styled.div`
   display: flex;
