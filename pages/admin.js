@@ -5,10 +5,11 @@ import axios from "axios";
 import Head from "next/head";
 import styled from "styled-components";
 
+
 const Admin = () => {
   const [state, setState] = useState({
-    username: "shai",
-    password: "shai",
+    username: "",
+    password: "",
   });
 
   const [result, setResult] = useState({
@@ -17,50 +18,56 @@ const Admin = () => {
     status: false,
   });
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/admin`;
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/admin/user`;
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const loginUrl = `${url}/login`;
+    const token = Buffer.from(
+      `${state.username}:${state.password}`,
+      "utf8"
+    ).toString("base64");
 
-    const auth = {
-      username: state.username,
-      password: state.password,
-    };
+    axios
+      .post(
+        url,
+        {},
+        {
+          headers: {
+            Authorization: `Basic ${token}`,
+          },
+        }
+      )
+      .then(
+        (response) => {
+          console.log(response);
 
-    console.log(loginUrl, auth, state);
-    axios.post(loginUrl, auth).then(
-      (response) => {
-        console.log(response);
-
-        if (response.data) {
+          if (response.data) {
+            setResult((prevState) => ({
+              ...prevState,
+              text: "התחבר בהצלחה!",
+              style: "sucess",
+              status: true,
+            }));
+          } else {
+            setResult((prevState) => ({
+              ...prevState,
+              text: "שגיאה",
+              style: "error",
+              status: false,
+            }));
+          }
+        },
+        (error) => {
           setResult((prevState) => ({
             ...prevState,
-            text: "התחבר בהצלחה!",
-            style: "sucess",
-            status: true,
+            text: "שגיאה",
+            style: "error",
+            status: false,
           }));
-        } else {
-
-
-            setResult((prevState) => ({
-                ...prevState,
-                text: "שגיאה",
-                style: "error",
-                status: false,
-              }));  
         }
-      },
-      (error) => {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "שגיאה",
-          style: "error",
-          status: false,
-        }));
-      }
-    );
+      );
   };
 
   const handleChange = (event) => {
