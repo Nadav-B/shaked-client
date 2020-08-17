@@ -4,8 +4,11 @@ import Text from "../elements/Text";
 import axios from "axios";
 import Head from "next/head";
 import styled from "styled-components";
+import Cookies from 'js-cookie'
 
 const Contact = () => {
+
+
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",
