@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 import SizeWrapper from "../elements/SizeWrapper";
 const Fotter = () => (
   <StyledFooter>
@@ -36,8 +36,7 @@ const Fotter = () => (
       >
         {" "}
         <SizeWrapper width={30}>
-          <img src="/icons/facebook.svg" alt="Facebook"  />
-
+          <img src="/icons/facebook.svg" alt="Facebook" />
         </SizeWrapper>
       </a>
     </div>
@@ -46,7 +45,6 @@ const Fotter = () => (
 
 const StyledFooter = styled.footer`
 
-position: relative;
 float: right
     width: 40%;
     margin: auto;

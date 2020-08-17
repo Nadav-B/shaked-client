@@ -18,9 +18,10 @@ const Menu = ({ menuLinks, open, onClick }) => {
 };
 
 const StyledMenu = styled.nav`
-  display: inline-block;
   height: auto;
-z-index:1;
+  display: block;
+
+  z-index:1;
   li {
     cursor: pointer;
     float: right;
@@ -53,6 +54,6 @@ z-index:1;
 
 Menu.propTypes = {
   open: bool.isRequired,
-  setOpen: func.isRequired,
+  onClick: func.isRequired,
 };
 export default Menu;

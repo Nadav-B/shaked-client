@@ -6,10 +6,9 @@ import menuLinks from "../config/menuLinks";
 import Footer from "../components/footer";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
-
+import styled from "styled-components";
 
 const App = ({ Component, pageProps }) => {
-
   const [open, setOpen] = useState(false);
   return (
     <div>
@@ -25,23 +24,20 @@ const App = ({ Component, pageProps }) => {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Header open={open} setOpen={setOpen} menuLinks={menuLinks} />
-
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            minHeight: 400,
-            padding: `0 1.0875rem 1.45rem`,
-          }}
-        >
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </div>
+        <StyledMenu>
+          <Component {...pageProps} />
+        </StyledMenu>
         <Footer />
       </ThemeProvider>
     </div>
   );
 };
+
+const StyledMenu = styled.menu`
+  margin: 0 auto;
+  width: 80%;
+  padding-top: 130px;
+  min-height: 500px;
+`;
 
 export default App;

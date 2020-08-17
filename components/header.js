@@ -15,7 +15,7 @@ const Header = ({ menuLinks, siteTitle, open, setOpen }) => {
           <a>
             <StyledLink>
               <SizeWrapper height={120} width={120}>
-                <img src="/logos/favicon.png" alt="Logo" />
+                <img src="/logos/favicon.svg" alt="Logo" />
               </SizeWrapper>
             </StyledLink>
           </a>
@@ -37,18 +37,18 @@ Header.defaultProps = {
 };
 
 const HeaderWrapper = styled.div`
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
-  padding-left: 12px;
+  position: fixed;
+  top: 0;
+  width:100%;
   padding-right: 42px;
 `;
 
 const NavigationWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 const StyledLink = styled.div`
