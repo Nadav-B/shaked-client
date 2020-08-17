@@ -12,6 +12,7 @@ const About = ({ data }) => {
       <div>
         {data.map((text) => (
           <div
+          key ={text.id}
             dangerouslySetInnerHTML={{
               __html: text.content,
             }}

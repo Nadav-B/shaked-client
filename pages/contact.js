@@ -5,7 +5,7 @@ import axios from "axios";
 import Head from "next/head";
 import styled from "styled-components";
 
-const Contact = ({ onChange = () => {}, onKeyDown = () => {} }) => {
+const Contact = () => {
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",

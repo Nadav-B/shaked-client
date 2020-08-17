@@ -20,7 +20,6 @@ const App = ({ Component, pageProps }) => {
           rel="stylesheet"
         ></link>
       </Head>
-
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Header open={open} setOpen={setOpen} menuLinks={menuLinks} />
