@@ -6,11 +6,9 @@ import Head from "next/head";
 import styled from "styled-components";
 
 const Admin = () => {
-  const handleSubmit = (event) => {};
-
   const [state, setState] = useState({
-    username: "",
-    password: "",
+    username: "shai",
+    password: "shai",
   });
 
   const [result, setResult] = useState({
@@ -19,6 +17,51 @@ const Admin = () => {
     status: false,
   });
 
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/admin`;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const loginUrl = `${url}/login`;
+
+    const auth = {
+      username: state.username,
+      password: state.password,
+    };
+
+    console.log(loginUrl, auth, state);
+    axios.post(loginUrl, auth).then(
+      (response) => {
+        console.log(response);
+
+        if (response.data) {
+          setResult((prevState) => ({
+            ...prevState,
+            text: "התחבר בהצלחה!",
+            style: "sucess",
+            status: true,
+          }));
+        } else {
+
+
+            setResult((prevState) => ({
+                ...prevState,
+                text: "שגיאה",
+                style: "error",
+                status: false,
+              }));  
+        }
+      },
+      (error) => {
+        setResult((prevState) => ({
+          ...prevState,
+          text: "שגיאה",
+          style: "error",
+          status: false,
+        }));
+      }
+    );
+  };
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -36,8 +79,8 @@ const Admin = () => {
         <label>
           שם משתמש
           <StyledInput
-            name="fullname"
-            value={state.fullname}
+            name="username"
+            value={state.username}
             placeholder="שדה חובה"
             onChange={handleChange}
             required
@@ -47,16 +90,14 @@ const Admin = () => {
           סיסמא
           <StyledInput
             name="password"
-            value={state.fullname}
+            value={state.password}
             placeholder="שדה חובה"
             onChange={handleChange}
             required
           />
         </label>
         <Text variant={result.style}> {result.text}</Text>
-          <Button type="submit">
-            שלח
-          </Button>
+        <Button type="submit">שלח</Button>
       </form>
     </StyledForm>
   );
