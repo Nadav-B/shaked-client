@@ -51,6 +51,7 @@ const Contact = () => {
       })
       .then(
         (response) => {
+          console.log(response)
           setResult((prevState) => ({
             ...prevState,
             text: "נשלח בהצלחה!",

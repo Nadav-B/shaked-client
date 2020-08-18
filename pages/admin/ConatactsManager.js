@@ -7,9 +7,15 @@ import Text from "../../elements/Text";
 import Button from "../../elements/Button";
 
 const ContactManagers = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState();
 
   // if (contacts) setContacts(res);
+
+  const [result, setResult] = useState({
+    text: "",
+    style: "",
+    status: false,
+  });
 
   useEffect(() => {
     async function getRequestForm() {
@@ -17,41 +23,90 @@ const ContactManagers = () => {
         const response = await getContacts();
         setContacts(response);
       } catch {
+        setResult((prevState) => ({
+          ...prevState,
+          text: "שגיאה בחיבור לשרת",
+          style: "error",
+          status: false,
+        }));
+        setContacts([]);
         console.log("check connection to server");
       }
     }
-    if (contacts.length == 0) getRequestForm();
+    if (!contacts) getRequestForm();
   });
 
   return (
-    <div>
+    <StyledContact>
       <h1> אנשי קשר</h1>
-      {contacts.map((contact) => (
-        <StyledContact>
-          <Text>{contact.fullname} </Text>
-          <Text>{contact.phonenumber} </Text>
-          <Text>{contact.email} </Text>
-          <Text>{contact.address} </Text>
-          <Text>{contact.category} </Text>
-          {contact.survey && <Button >{contact.survey.name}</Button>}
-        </StyledContact>
-      ))}
-    </div>
+      <Text variant={result.style}>{result.text}</Text>
+      {contacts && (
+        <table>
+          <thead>
+            <tr>
+              <th> </th>
+              <th> שם מלא</th>
+              <th> טלפון</th>
+              <th> דוא״ל</th>
+              <th> כתובת</th>
+              <th> סוג השירות</th>
+              <th> שאלון </th>
+            </tr>
+          </thead>
+          {contacts.map((contact) => (
+            <tbody>
+              <tr>
+                <td>
+                  {" "}
+                  <StyledRoundedButton>X</StyledRoundedButton>{" "}
+                </td>
+                <td>{contact.fullname} </td>
+                <td> {contact.phonenumber}</td>
+                <td> {contact.email} </td>
+                <td> {contact.address} </td>
+                <td> {contact.category} </td>
+
+                <td>
+                  {contact.survey && <Button>{contact.survey.name}</Button>}
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      )}
+    </StyledContact>
   );
 };
 
-const StyledLabel = styled.label`
-color: 
-`
-
 const StyledContact = styled.div`
-  dislay: row;
+  th {
+    min-width: 100px;
+  }
+
+  td {
+    min-width: 100px;
+  }
+`;
+
+const StyledRoundedButton = styled.button`
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: white;
-  padding: 4px;
-  margin: 4px;
-  width: auto;
-  min-height: 20px;
+
+  &:hover {
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    border: 3px solid red;
+  }
+
+  &:focus,
+  &:active {
+    color: ${(p) => p.theme.colors.white};
+    background: ${(p) => p.theme.colors.torchRed};
+    outline: none;
+  }
 `;
 
 export default ContactManagers;
