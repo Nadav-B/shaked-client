@@ -21,11 +21,11 @@ const menuLinks = [
     name: "כתבות",
     link: "/articles",
   },
-
   {
     name: "צור קשר",
     link: "/contact",
   },
+
 ];
 
 export default menuLinks;

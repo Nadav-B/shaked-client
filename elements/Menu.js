@@ -2,8 +2,13 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { bool, func } from "prop-types";
+import Cookies from "js-cookie";
 
 const Menu = ({ menuLinks, open, onClick }) => {
+  const logout = () => {
+    Cookies.remove("token");
+  };
+
   return (
     <StyledMenu open={open}>
       <ul>
@@ -12,6 +17,19 @@ const Menu = ({ menuLinks, open, onClick }) => {
             <Link href={link.link}>{link.name}</Link>
           </li>
         ))}
+        {Cookies.get("token") && [
+          <li onClick={onClick}>
+            <Link href={"/admin"}>עמוד מנהל</Link>
+          </li>,
+          <li
+            onClick={() => {
+              logout();
+              onClick();
+            }}
+          >
+            התנתק
+          </li>,
+        ]}
       </ul>
     </StyledMenu>
   );
