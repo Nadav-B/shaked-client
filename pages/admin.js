@@ -9,7 +9,7 @@ const Admin = () => {
       </div>
     );
   } else {
-    return <h1> hey</h1>;
+    return <Link href={"/login"}> התחבר</Link>;
   }
 };
 

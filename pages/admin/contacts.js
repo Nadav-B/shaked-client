@@ -1,8 +1,6 @@
-import Cookies from "js-cookie";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import getContacts from "../../services/ContactService";
+import api from "../../services/api";
 import Text from "../../elements/Text";
 import Button from "../../elements/Button";
 
@@ -15,10 +13,17 @@ const ContactManagers = () => {
     status: false,
   });
 
+  const deleteContact = async (id) => {
+    const response = await api.deleteContact(id);
+    if (response.status) {
+      setContacts(contacts.filter((contact) => contact.id != id));
+    }
+  };
+
   useEffect(() => {
     async function getRequestForm() {
       try {
-        const response = await getContacts();
+        const response = await api.getContacts();
         setContacts(response.data);
       } catch {
         setResult((prevState) => ({
@@ -51,12 +56,18 @@ const ContactManagers = () => {
               <th> שאלון </th>
             </tr>
           </thead>
+          <tbody>
           {contacts.map((contact) => (
-            <tbody>
-              <tr>
+              <tr key={contact.id}>
                 <td>
                   {" "}
-                  <StyledRoundedButton>X</StyledRoundedButton>{" "}
+                  <StyledRoundedButton
+                    onClick={() => {
+                      deleteContact(contact.id);
+                    }}
+                  >
+                    X
+                  </StyledRoundedButton>{" "}
                 </td>
                 <td>{contact.fullname} </td>
                 <td> {contact.phonenumber}</td>
@@ -68,8 +79,8 @@ const ContactManagers = () => {
                   {contact.survey && <Button>{contact.survey.name}</Button>}
                 </td>
               </tr>
-            </tbody>
           ))}
+          </tbody>
         </table>
       )}
     </StyledContact>
@@ -99,8 +110,7 @@ const StyledRoundedButton = styled.button`
     border: 3px solid red;
   }
 
-  &:focus,
-  &:active {
+  &:focus {
     color: ${(p) => p.theme.colors.white};
     background: ${(p) => p.theme.colors.torchRed};
     outline: none;
