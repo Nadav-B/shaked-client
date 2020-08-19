@@ -1,17 +1,15 @@
 import Cookies from "js-cookie";
-import ContactsManager from "./admin/ConatactsManager";
-import { Router } from "next/router";
+import Link from "next/link";
 
 const Admin = () => {
-
   if (Cookies.get("token")) {
     return (
       <div>
-        <ContactsManager />
+        <Link href={"/admin/contacts"}>אנשי קשר </Link>
       </div>
     );
   } else {
-    return (<h1> </h1>)
+    return <h1> hey</h1>;
   }
 };
 

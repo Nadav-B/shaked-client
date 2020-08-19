@@ -9,8 +9,6 @@ import Button from "../../elements/Button";
 const ContactManagers = () => {
   const [contacts, setContacts] = useState();
 
-  // if (contacts) setContacts(res);
-
   const [result, setResult] = useState({
     text: "",
     style: "",
@@ -21,7 +19,7 @@ const ContactManagers = () => {
     async function getRequestForm() {
       try {
         const response = await getContacts();
-        setContacts(response);
+        setContacts(response.data);
       } catch {
         setResult((prevState) => ({
           ...prevState,
