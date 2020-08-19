@@ -22,6 +22,7 @@ const Menu = ({ menuLinks, open, onClick }) => {
             <Link href={"/admin"}>עמוד מנהל</Link>
           </li>,
           <li
+            className="admin"
             onClick={() => {
               logout();
               onClick();
@@ -47,6 +48,15 @@ const StyledMenu = styled.nav`
     color: black;
     text-align: center;
   }
+
+  .admin {
+
+    color: red;
+
+  }
+
+
+  
   @media (max-width: 768px) {
 
       position: fixed;
