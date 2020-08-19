@@ -7,6 +7,8 @@ import Button from "../../elements/Button";
 const ContactManagers = () => {
   const [contacts, setContacts] = useState();
 
+  const [survey, setSurvey] = useState();
+
   const [result, setResult] = useState({
     text: "",
     style: "",
@@ -18,6 +20,10 @@ const ContactManagers = () => {
     if (response.status) {
       setContacts(contacts.filter((contact) => contact.id != id));
     }
+  };
+
+  const showSurvey = (survey) => {
+    setSurvey(survey);
   };
 
   useEffect(() => {
@@ -57,7 +63,7 @@ const ContactManagers = () => {
             </tr>
           </thead>
           <tbody>
-          {contacts.map((contact) => (
+            {contacts.map((contact) => (
               <tr key={contact.id}>
                 <td>
                   {" "}
@@ -76,18 +82,29 @@ const ContactManagers = () => {
                 <td> {contact.category} </td>
 
                 <td>
-                  {contact.survey && <Button>{contact.survey.name}</Button>}
+                  {contact.survey && (
+                    <Button
+                      onClick={() => {
+                        showSurvey(contact.survey);
+                      }}
+                    >
+                      {contact.survey.name}
+                    </Button>
+                  )}
                 </td>
               </tr>
-          ))}
+            ))}
           </tbody>
         </table>
       )}
+      {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
     </StyledContact>
   );
 };
 
 const StyledContact = styled.div`
+  position: relative;
+
   th {
     min-width: 100px;
   }
@@ -115,6 +132,38 @@ const StyledRoundedButton = styled.button`
     background: ${(p) => p.theme.colors.torchRed};
     outline: none;
   }
+`;
+
+const SurveyModal = ({ survey, setSurvey }) => {
+  const closeModal = () => {
+    setSurvey();
+  };
+
+  return (
+    <StyledSurveyModal>
+      <h1> {survey.name}</h1>
+      {survey.answers.map((entry) => (
+        <div>
+          <Text fontSize="large"> {entry.question}</Text>
+          <Text> {entry.answer}</Text>
+        </div>
+      ))}
+      <Button onClick={closeModal}>סגור</Button>
+    </StyledSurveyModal>
+  );
+};
+
+const StyledSurveyModal = styled.div`
+  position: fixed;
+  right: 0;
+  padding: 20px;
+  margin: 20px;
+  bottom: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: white;
+
+  max-width: 400px;
+  color: black;
 `;
 
 export default ContactManagers;
