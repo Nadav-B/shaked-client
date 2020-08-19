@@ -4,16 +4,14 @@ import Text from "../elements/Text";
 import axios from "axios";
 import Head from "next/head";
 import styled from "styled-components";
-import Cookies from 'js-cookie'
 
 const Contact = () => {
-
-
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",
     email: "",
     address: "",
+    category: "כללי",
   });
 
   const [result, setResult] = useState({
@@ -22,7 +20,13 @@ const Contact = () => {
     status: false,
   });
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
+  const tags = [
+    "כללי",
+    "משכנתא חדשה",
+    "בדיקת משכנתא קיימת",
+    "מחזור משכנתא",
+    "נפרדים מהמינוס",
+  ];
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -35,39 +39,30 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
+
     event.preventDefault();
 
-    const contact = {
-      fullname: state.fullname,
-      phonenumber: state.phonenumber,
-      email: state.email,
-      address: state.address,
-    };
-
-    axios
-      .post(url, {
-        contact,
-      })
-      .then(
-        (response) => {
-          console.log(response)
-          setResult((prevState) => ({
-            ...prevState,
-            text: "נשלח בהצלחה!",
-            style: "sucess",
-            status: true,
-          }));
-        },
-        (error) => {
-          setResult((prevState) => ({
-            ...prevState,
-            text: "שגיאה",
-            style: "error",
-            status: false,
-          }));
-        }
-      );
+    const res = await axios.post(url, state).then(
+      (response) => {
+        console.log(response);
+        setResult((prevState) => ({
+          ...prevState,
+          text: "נשלח בהצלחה!",
+          style: "sucess",
+          status: true,
+        }));
+      },
+      (error) => {
+        setResult((prevState) => ({
+          ...prevState,
+          text: "שגיאה",
+          style: "error",
+          status: false,
+        }));
+      }
+    );
   };
 
   return (
@@ -117,6 +112,21 @@ const Contact = () => {
               onChange={handleChange}
             />
           </label>
+
+          <label>
+            פנייה בנושא:
+            <StyledSelect
+              name="category"
+              value={state.category}
+              onChange={handleChange}
+            >
+              {tags.map((tag) => (
+                <option key={tag} value={tag}>
+                  {tag}
+                </option>
+              ))}
+            </StyledSelect>
+          </label>
           <Text variant={result.style}> {result.text}</Text>
           <Button disabled={result.status} type="submit">
             שלח
@@ -130,6 +140,16 @@ const Contact = () => {
 const StyledForm = styled.div`
   display: flex;
   max-width: 340px;
+`;
+
+const StyledSelect = styled.select`
+  display: block;
+  width: 100%;
+  margin: auto;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 40px;
 `;
 
 const StyledInput = styled.input`
