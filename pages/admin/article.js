@@ -3,9 +3,11 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
+import api from "../../services/api";
 
 const Article = ({ data }) => {
   const [state, setState] = useState({
+    id: "0",
     title: "",
     introduction: "",
     content: "",
@@ -22,31 +24,43 @@ const Article = ({ data }) => {
   });
 
   const handleSubmit = async (event) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
-
     event.preventDefault();
+      const res = await api.postArticle(state).then(
+        (response) => {
+          console.log(response);
+          setResult((prevState) => ({
+            ...prevState,
+            text: "נשלח בהצלחה!",
+            style: "sucess",
+            status: true,
+          }));
+        },
+        (error) => {
+          console.log(error);
 
-    const res = await axios.post(url, state).then(
-      (response) => {
-        console.log(response);
-        setResult((prevState) => ({
-          ...prevState,
-          text: "נשלח בהצלחה!",
-          style: "sucess",
-          status: true,
-        }));
-      },
-      (error) => {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "שגיאה",
-          style: "error",
-          status: false,
-        }));
-      }
-    );
+          setResult((prevState) => ({
+            ...prevState,
+            text: "שגיאה",
+            style: "error",
+            status: false,
+          }));
+        }
+      );
+
   };
+
   const handleChange = (event) => {
+    event.preventDefault();
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleArticleChange = (event) => {
     event.preventDefault();
     const target = event.target;
     const id = target.value;
@@ -55,6 +69,7 @@ const Article = ({ data }) => {
       const selectedArticle = data.find((article) => article.id == id);
 
       setState({
+        id: selectedArticle.id,
         title: selectedArticle.title,
         introduction: selectedArticle.introduction,
         content: selectedArticle.content,
@@ -79,7 +94,7 @@ const Article = ({ data }) => {
   return (
     <div>
       <h1> ערוך כתבה</h1>
-      <StyledSelect name="category" onChange={handleChange}>
+      <StyledSelect name="category" onChange={handleArticleChange}>
         <option value=""> הוסף כתבה </option>
         {data.map((article) => (
           <option key={article.id} value={article.id}>
@@ -132,7 +147,7 @@ const Article = ({ data }) => {
           <label>
             כפתור צרו קשר
             <StyledInput
-              name="address"
+              name="contactButton"
               value={state.contactButton}
               onChange={handleChange}
             />
@@ -143,9 +158,7 @@ const Article = ({ data }) => {
           </label>
 
           <Text variant={result.style}> {result.text}</Text>
-          <Button disabled={result.status} type="submit">
-            שלח
-          </Button>
+          <Button type="submit">שלח</Button>
         </form>
       </StyledForm>
     </div>
