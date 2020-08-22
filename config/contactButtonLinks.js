@@ -10,8 +10,12 @@ const contactLinks = [
     link: "/surveys",
   },
   {
-    name: "לבדיקת איחוד הלוואת",
+    name: "לבדיקת איחוד הלוואות",
     link: "/surveys",
+  },
+  {
+    name: "לקבלת פרטים נוספים",
+    link: "/contact",
   },
 ];
 

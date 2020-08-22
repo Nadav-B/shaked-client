@@ -3,6 +3,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
+import { contactLinks } from "../../config/contactButtonLinks";
 import api from "../../services/api";
 
 const ServiceManager = ({ data }) => {
@@ -153,11 +154,17 @@ const ServiceManager = ({ data }) => {
           </label>
           <label>
             כפתור צרו קשר
-            <StyledInput
-              name="contactButton"
+            <StyledSelect
               value={state.contactButton}
+              name="contactButton"
               onChange={handleChange}
-            />
+            >
+              {contactLinks.map((link) => (
+                <option key={link.name} value={link.name}>
+                  {link.name}{" "}
+                </option>
+              ))}
+            </StyledSelect>
           </label>
 
           <Text variant={result.style}> {result.text}</Text>

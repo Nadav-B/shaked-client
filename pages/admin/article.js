@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../services/api";
-
+import { contactLinks } from "../../config/contactButtonLinks";
 const ArticleManager = ({ data }) => {
   const [state, setState] = useState({
     id: "",
@@ -185,11 +185,13 @@ const ArticleManager = ({ data }) => {
           </label>
           <label>
             כפתור צרו קשר
-            <StyledInput
-              name="contactButton"
-              value={state.contactButton}
-              onChange={handleChange}
-            />
+            <StyledSelect value={state.contactButton} name="contactButton" onChange={handleChange}>
+              {contactLinks.map((link) => (
+                <option key={link.name} value={link.name}>
+                  {link.name}{" "}
+                </option>
+              ))}
+            </StyledSelect>
           </label>
           <label>
             תמונה
@@ -201,8 +203,8 @@ const ArticleManager = ({ data }) => {
           <Text variant={result.style}> {result.text}</Text>
           <Button type="submit">שלח</Button>
           {state.id && (
-            <Button type="button"
-
+            <Button
+              type="button"
               onClick={() => {
                 deleteArticle();
               }}
