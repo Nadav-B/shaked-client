@@ -15,6 +15,10 @@ const ContactManagers = () => {
     status: false,
   });
 
+  const renderDate= (dateString) =>{
+    return new Date(dateString).toDateString();
+  }
+
   const deleteContact = async (id) => {
     const response = await api.deleteContact(id);
     if (response.status) {
@@ -31,6 +35,9 @@ const ContactManagers = () => {
       try {
         const response = await api.getContacts();
         setContacts(response.data);
+        const date =response.data[0].date;
+        console.log(new Date(date))
+
       } catch {
         setResult((prevState) => ({
           ...prevState,
@@ -58,6 +65,7 @@ const ContactManagers = () => {
               <th> טלפון</th>
               <th> דוא״ל</th>
               <th> כתובת</th>
+              <th> תאריך</th>
               <th> סוג השירות</th>
               <th> שאלון </th>
             </tr>
@@ -79,6 +87,7 @@ const ContactManagers = () => {
                 <td> {contact.phonenumber}</td>
                 <td> {contact.email} </td>
                 <td> {contact.address} </td>
+                <td> {renderDate(contact.date)} </td>
                 <td> {contact.category} </td>
 
                 <td>
