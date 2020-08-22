@@ -24,10 +24,10 @@ const deleteContact = async (id) => {
 const postArticle = async (article) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/post`;
   const token = Cookies.get("token");
-  console.log(article, url);
   return await axios.post(url, article, {
     headers: {
       Authorization: `Basic ${token}`,
+      Accept: "application/json",
     },
   });
 };

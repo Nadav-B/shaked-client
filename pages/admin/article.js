@@ -7,16 +7,17 @@ import api from "../../services/api";
 
 const Article = ({ data }) => {
   const [state, setState] = useState({
-    id: "0",
+    id: "",
     title: "",
     introduction: "",
     content: "",
     tag: "",
     contactButton: "",
-    image: "",
   });
 
-  const [image, setImage] = useState();
+  const [imagePreview, setImagePreview] = useState();
+
+  const [uploadImage, setUploadImage] = useState();
 
   const [result, setResult] = useState({
     text: "",
@@ -61,10 +62,7 @@ const Article = ({ data }) => {
   };
 
   const handleImage = async (event) => {
-    console.log(res);
-    setState({
-      image: res,
-    });
+    setUploadImage(event.target.files[0]);
   };
 
   const handleArticleChange = (event) => {
@@ -81,22 +79,27 @@ const Article = ({ data }) => {
         content: selectedArticle.content,
         tag: selectedArticle.tag,
         contactButton: selectedArticle.contactButton,
-        image: selectedArticle.image,
       });
-      setImage(
+      setImagePreview(
         `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${selectedArticle.id}`
       );
     } else {
       setState({
+        id: "",
         title: "",
         introduction: "",
         content: "",
         tag: "",
         contactButton: "",
-        image: "",
       });
-      setImage();
+      setImagePreview();
     }
+    setUploadImage();
+    setResult({
+      text: "",
+      style: "",
+      status: false,
+    });
   };
 
   return (
@@ -164,7 +167,7 @@ const Article = ({ data }) => {
             תמונה
             <StyledInput name="image" onChange={handleImage} type="file" />
             תצוגה מקדימה
-            <StyledImage src={image} alt="" />
+            <StyledImage src={imagePreview} alt="" />
           </label>
 
           <Text variant={result.style}> {result.text}</Text>
