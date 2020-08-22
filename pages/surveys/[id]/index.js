@@ -8,7 +8,7 @@ import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
 
 const Survey = ({ id }) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/post`;
 
   const Status = {
     Fillname: 0,
@@ -58,6 +58,8 @@ const Survey = ({ id }) => {
       phonenumber: contact.phonenumber,
       survey: survey,
     };
+
+    console.log(contactForm);
 
     axios
       .post(url, {
@@ -146,7 +148,7 @@ const Survey = ({ id }) => {
       {currentStatus == 1 && (
         <div>
           {data.questions[index].question}
-          {data.questions[index].answers.map((answer,index) => (
+          {data.questions[index].answers.map((answer, index) => (
             <StyledAnswersWrapper>
               <Button
                 key={index}

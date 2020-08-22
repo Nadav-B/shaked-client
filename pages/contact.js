@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
-import axios from "axios";
 import Head from "next/head";
 import styled from "styled-components";
+import api from "../services/api";
 
 const Contact = () => {
   const [state, setState] = useState({
@@ -40,11 +40,11 @@ const Contact = () => {
   };
 
   const handleSubmit = async (event) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/insert`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/post`;
 
     event.preventDefault();
 
-    const res = await axios.post(url, state).then(
+    await api.postContact(state).then(
       (response) => {
         console.log(response);
         setResult((prevState) => ({

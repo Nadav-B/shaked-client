@@ -11,6 +11,15 @@ const getContacts = async () => {
   });
 };
 
+const postContact = async (contact) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/post`;
+  return await axios.post(url, contact, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+};
+
 const deleteContact = async (id) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/delete/${id}`;
   const token = Cookies.get("token");
@@ -101,6 +110,7 @@ const deleteText = async (id) => {
 
 export default {
   getContacts,
+  postContact,
   deleteContact,
   postArticle,
   postArticleImage,
