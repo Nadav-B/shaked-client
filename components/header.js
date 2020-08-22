@@ -8,7 +8,6 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const Header = ({ menuLinks, siteTitle }) => {
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -24,7 +23,7 @@ const Header = ({ menuLinks, siteTitle }) => {
           </a>
         </Link>
         {open && <Menu menuLinks={menuLinks} onClick={() => setOpen(!open)} />}
-        <ToggleButton open={open} onClick={() => setOpen(!open)}  />
+        <ToggleButton open={open} onClick={() => setOpen(!open)} />
       </NavigationWrapper>
     </HeaderWrapper>
   );
@@ -42,10 +41,14 @@ const HeaderWrapper = styled.div`
   background: ${({ open }) => (open ? "white" : "transperent")};
   align-items: center;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
   width: 100%;
-  padding-right: 42px;
+
+  img {
+    position: fixed;
+    width: 130px;
+    padding-right: 32px;
+    padding-top: 15px;
+  }
 `;
 
 const NavigationWrapper = styled.div`

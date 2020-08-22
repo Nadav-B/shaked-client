@@ -34,7 +34,6 @@ const App = ({ Component, pageProps }) => {
 const StyledMenu = styled.menu`
   margin: 0 auto;
   width: 80%;
-  padding-top: 130px;
   min-height: 500px;
 `;
 
