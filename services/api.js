@@ -33,8 +33,8 @@ const postArticle = async (article) => {
 };
 
 const postArticleImage = async (id, image) => {
-  console.log(id)
-  console.log(image)
+  console.log(id);
+  console.log(image);
   const formData = new FormData();
   formData.append("image", image);
   const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/postImage/${id}`;
@@ -46,4 +46,21 @@ const postArticleImage = async (id, image) => {
     },
   });
 };
-export default { getContacts, deleteContact, postArticle, postArticleImage };
+
+const deleteArticle = async (id) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/delete/${id}`;
+  const token = Cookies.get("token");
+  return await axios.get(url, {
+    headers: {
+      Authorization: `Basic ${token}`,
+    },
+  });
+};
+
+export default {
+  getContacts,
+  deleteContact,
+  postArticle,
+  postArticleImage,
+  deleteArticle,
+};

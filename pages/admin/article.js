@@ -71,6 +71,27 @@ const Article = ({ data }) => {
     setUploadImage(event.target.files[0]);
   };
 
+  const deleteArticle = async () => {
+    await api.deleteArticle(state.id).then(
+      (response) => {
+        setResult((prevState) => ({
+          ...prevState,
+          text: "נמחק בהצלחה",
+          style: "sucess",
+          status: true,
+        }));
+      },
+      (error) => {
+        setResult((prevState) => ({
+          ...prevState,
+          text: "שגיאה",
+          style: "error",
+          status: false,
+        }));
+      }
+    );
+  };
+
   const handleArticleChange = (event) => {
     event.preventDefault();
     const target = event.target;
@@ -179,6 +200,16 @@ const Article = ({ data }) => {
 
           <Text variant={result.style}> {result.text}</Text>
           <Button type="submit">שלח</Button>
+          {state.id && (
+            <Button type="button"
+
+              onClick={() => {
+                deleteArticle();
+              }}
+            >
+              מחק כתבה
+            </Button>
+          )}
         </form>
       </StyledForm>
     </div>
