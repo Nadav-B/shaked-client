@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import axios from "axios";
 import styled from "styled-components";
 import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
 import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
+import api from "../../../services/api";
 
 const Survey = ({ id }) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/post`;
@@ -29,6 +29,7 @@ const Survey = ({ id }) => {
   const [contact, setContact] = useState({
     fullname: "",
     phonenumber: "",
+    category: "שאלון",
   });
 
   const [index, setIndex] = useState(0);
@@ -61,28 +62,24 @@ const Survey = ({ id }) => {
 
     console.log(contactForm);
 
-    axios
-      .post(url, {
-        contactForm,
-      })
-      .then(
-        (response) => {
-          setConfirmation((prevState) => ({
-            ...prevState,
-            text: "נשלח בהצלחה!",
-            style: "sucess",
-            status: true,
-          }));
-        },
-        (error) => {
-          setConfirmation((prevState) => ({
-            ...prevState,
-            text: "שגיאה",
-            style: "error",
-            status: false,
-          }));
-        }
-      );
+    api.postContact(contactForm).then(
+      (response) => {
+        setConfirmation((prevState) => ({
+          ...prevState,
+          text: "נשלח בהצלחה!",
+          style: "sucess",
+          status: true,
+        }));
+      },
+      (error) => {
+        setConfirmation((prevState) => ({
+          ...prevState,
+          text: "שגיאה",
+          style: "error",
+          status: false,
+        }));
+      }
+    );
   };
 
   const handleAnswerSubmit = (event, answer, question) => {
