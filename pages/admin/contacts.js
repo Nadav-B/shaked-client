@@ -116,10 +116,15 @@ const StyledContact = styled.div`
 
   th {
     min-width: 100px;
+    text-align: center;
+    vertical-align: middle;
   }
 
   td {
     min-width: 100px;
+    text-align: center;
+    vertical-align: middle;
+
   }
 `;
 
