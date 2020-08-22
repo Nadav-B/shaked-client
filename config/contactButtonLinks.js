@@ -3,7 +3,7 @@ import Router from "next/router";
 const contactLinks = [
   {
     name: "לביצוע בדיקה חינם",
-    link: "/surveys",
+    link: "/contact",
   },
   {
     name: "צריכים עזרה עם המשכנתא?",
@@ -11,7 +11,7 @@ const contactLinks = [
   },
   {
     name: "לבדיקת איחוד הלוואות",
-    link: "/surveys",
+    link: "/contact",
   },
   {
     name: "לקבלת פרטים נוספים",
@@ -20,7 +20,6 @@ const contactLinks = [
 ];
 
 const directByContact = (string) => {
-  console.log(string);
   const object = contactLinks.find((object) => object.name == string);
   if (object) {
     Router.push(object.link);

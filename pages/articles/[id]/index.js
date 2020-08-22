@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
-import {directByContact }from "../../../config/contactButtonLinks";
+import { directByContact } from "../../../config/contactButtonLinks";
 
 import styled from "styled-components";
 import Button from "../../../elements/Button";
@@ -29,11 +29,12 @@ const Article = ({ data }) => {
       </StyledArticle>
       <Button
         onClick={() => {
-          (data.contactButton);
+          directByContact(data.contactButton);
         }}
       >
         {data.contactButton}
-      </Button>    </div>
+      </Button>{" "}
+    </div>
   );
 };
 
