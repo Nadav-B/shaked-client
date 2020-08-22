@@ -2,11 +2,10 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { bool, func } from "prop-types";
-import Cookies from "js-cookie";
-
+import api from "../shared/api";
 const Menu = ({ menuLinks, open, onClick }) => {
   const logout = () => {
-    Cookies.remove("token");
+    api.logout();
   };
 
   return (
@@ -17,7 +16,7 @@ const Menu = ({ menuLinks, open, onClick }) => {
             <Link href={link.link}>{link.name}</Link>
           </li>
         ))}
-        {Cookies.get("token") && [
+        {api.isAuthenticated() && [
           <li onClick={onClick}>
             <Link href={"/admin"}>עמוד מנהל</Link>
           </li>,
@@ -28,7 +27,7 @@ const Menu = ({ menuLinks, open, onClick }) => {
               onClick();
             }}
           >
-            התנתק
+            <Link href={"/homepage"}> התנתק</Link>
           </li>,
         ]}
       </ul>

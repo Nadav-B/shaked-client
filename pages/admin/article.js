@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
-import api from "../../services/api";
+import api from "../../shared/api";
 import { contactLinks } from "../../config/contactButtonLinks";
 const ArticleManager = ({ data }) => {
   const [state, setState] = useState({
@@ -131,92 +131,99 @@ const ArticleManager = ({ data }) => {
   };
 
   return (
-    <div>
-      <h1> ערוך כתבה</h1>
-      <StyledSelect name="category" onChange={handleArticleChange}>
-        <option value=""> הוסף כתבה </option>
-        {data.map((article) => (
-          <option key={article.id} value={article.id}>
-            {article.title}
-          </option>
-        ))}
-      </StyledSelect>
+    api.isAuthenticated() && (
+      <div>
+        <h1> ערוך כתבה</h1>
+        <StyledSelect name="category" onChange={handleArticleChange}>
+          <option value=""> הוסף כתבה </option>
+          {data &&
+            data.map((article) => (
+              <option key={article.id} value={article.id}>
+                {article.title}
+              </option>
+            ))}
+        </StyledSelect>
 
-      <StyledForm>
-        <form onSubmit={handleSubmit}>
-          <label>
-            שם הכתבה
-            <StyledInput
-              name="title"
-              value={state.title}
-              placeholder="שדה חובה"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            הקדמה
-            <StyledInput
-              name="introduction"
-              placeholder="שדה חובה"
-              value={state.introduction}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            קטגוריה
-            <StyledInput
-              name="tag"
-              placeholder="שדה חובה"
-              value={state.tag}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            תוכן כתבה
-            <StyledInput
-              name="content"
-              placeholder="שדה חובה"
-              value={state.content}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            כפתור צרו קשר
-            <StyledSelect value={state.contactButton} name="contactButton" onChange={handleChange}>
-              {contactLinks.map((link) => (
-                <option key={link.name} value={link.name}>
-                  {link.name}{" "}
-                </option>
-              ))}
-            </StyledSelect>
-          </label>
-          <label>
-            תמונה
-            <StyledInput name="image" onChange={handleImage} type="file" />
-            תצוגה מקדימה
-            <StyledImage src={imagePreview} alt="" />
-          </label>
+        <StyledForm>
+          <form onSubmit={handleSubmit}>
+            <label>
+              שם הכתבה
+              <StyledInput
+                name="title"
+                value={state.title}
+                placeholder="שדה חובה"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              הקדמה
+              <StyledInput
+                name="introduction"
+                placeholder="שדה חובה"
+                value={state.introduction}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              קטגוריה
+              <StyledInput
+                name="tag"
+                placeholder="שדה חובה"
+                value={state.tag}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              תוכן כתבה
+              <StyledInput
+                name="content"
+                placeholder="שדה חובה"
+                value={state.content}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              כפתור צרו קשר
+              <StyledSelect
+                value={state.contactButton}
+                name="contactButton"
+                onChange={handleChange}
+              >
+                {contactLinks.map((link) => (
+                  <option key={link.name} value={link.name}>
+                    {link.name}{" "}
+                  </option>
+                ))}
+              </StyledSelect>
+            </label>
+            <label>
+              תמונה
+              <StyledInput name="image" onChange={handleImage} type="file" />
+              תצוגה מקדימה
+              <StyledImage src={imagePreview} alt="" />
+            </label>
 
-          <Text variant={result.style}> {result.text}</Text>
-          <Button disabled={result.status} type="submit">
-            שלח
-          </Button>
-          {state.id && (
-            <Button
-              type="button"
-              onClick={() => {
-                deleteArticle();
-              }}
-            >
-              מחק כתבה
+            <Text variant={result.style}> {result.text}</Text>
+            <Button disabled={result.status} type="submit">
+              שלח
             </Button>
-          )}
-        </form>
-      </StyledForm>
-    </div>
+            {state.id && (
+              <Button
+                type="button"
+                onClick={() => {
+                  deleteArticle();
+                }}
+              >
+                מחק כתבה
+              </Button>
+            )}
+          </form>
+        </StyledForm>
+      </div>
+    )
   );
 };
 

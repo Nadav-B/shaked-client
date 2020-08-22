@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
-import api from "../../services/api";
+import api from "../../shared/api";
 
 const AboutManager = ({ data }) => {
   const [state, setState] = useState({
@@ -103,56 +103,58 @@ const AboutManager = ({ data }) => {
   };
 
   return (
-    <div>
-      <h1> ערוך אודות</h1>
-      <StyledSelect name="category" onChange={handleTextChange}>
-        <option value=""> הוסף טקסט </option>
-        {data.map((text) => (
-          <option key={text.id} value={text.id}>
-            {text.tag}
-          </option>
-        ))}
-      </StyledSelect>
+    api.isAuthenticated() && (
+      <div>
+        <h1> ערוך אודות</h1>
+        <StyledSelect name="category" onChange={handleTextChange}>
+          <option value=""> הוסף טקסט </option>
+          {data.map((text) => (
+            <option key={text.id} value={text.id}>
+              {text.tag}
+            </option>
+          ))}
+        </StyledSelect>
 
-      <StyledForm>
-        <form onSubmit={handleSubmit}>
-          <label>
-            שם הטקסט. לא יופיע בעמוד
-            <StyledInput
-              name="tag"
-              value={state.tag}
-              placeholder="שדה חובה"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            תוכן כתבה
-            <StyledInput
-              name="content"
-              placeholder="שדה חובה"
-              value={state.content}
-              onChange={handleChange}
-            />
-          </label>
+        <StyledForm>
+          <form onSubmit={handleSubmit}>
+            <label>
+              שם הטקסט. לא יופיע בעמוד
+              <StyledInput
+                name="tag"
+                value={state.tag}
+                placeholder="שדה חובה"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              תוכן כתבה
+              <StyledInput
+                name="content"
+                placeholder="שדה חובה"
+                value={state.content}
+                onChange={handleChange}
+              />
+            </label>
 
-          <Text variant={result.style}> {result.text}</Text>
-          <Button disabled={result.status} type="submit">
-            שלח
-          </Button>
-          {state.id && (
-            <Button
-              type="button"
-              onClick={() => {
-                deleteArticle();
-              }}
-            >
-              מחק טקסט
+            <Text variant={result.style}> {result.text}</Text>
+            <Button disabled={result.status} type="submit">
+              שלח
             </Button>
-          )}
-        </form>
-      </StyledForm>
-    </div>
+            {state.id && (
+              <Button
+                type="button"
+                onClick={() => {
+                  deleteArticle();
+                }}
+              >
+                מחק טקסט
+              </Button>
+            )}
+          </form>
+        </StyledForm>
+      </div>
+    )
   );
 };
 

@@ -1,10 +1,10 @@
-import Cookies from "js-cookie";
 import Link from "next/link";
 import styled from "styled-components";
-import Button from "../elements/Button";
+import Button from "../../elements/Button";
+import api from "../../shared/api";
 
 const Admin = () => {
-  if (Cookies.get("token")) {
+  if (api.isAuthenticated()) {
     return (
       <StyledAdmin>
         <Link href={"/admin/contacts"}>

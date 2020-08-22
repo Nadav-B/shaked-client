@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import { contactLinks } from "../../config/contactButtonLinks";
-import api from "../../services/api";
+import api from "../../shared/api";
 
 const ServiceManager = ({ data }) => {
   const [state, setState] = useState({

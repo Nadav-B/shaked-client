@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import api from "../../services/api";
+import api from "../../shared/api";
 import Text from "../../elements/Text";
 import Button from "../../elements/Button";
 
@@ -15,9 +15,9 @@ const ContactManagers = () => {
     status: false,
   });
 
-  const renderDate= (dateString) =>{
+  const renderDate = (dateString) => {
     return new Date(dateString).toDateString();
-  }
+  };
 
   const deleteContact = async (id) => {
     const response = await api.deleteContact(id);
@@ -35,9 +35,8 @@ const ContactManagers = () => {
       try {
         const response = await api.getContacts();
         setContacts(response.data);
-        const date =response.data[0].date;
-        console.log(new Date(date))
-
+        const date = response.data[0].date;
+        console.log(new Date(date));
       } catch {
         setResult((prevState) => ({
           ...prevState,
@@ -53,61 +52,63 @@ const ContactManagers = () => {
   });
 
   return (
-    <StyledContact>
-      <h1> אנשי קשר</h1>
-      <Text variant={result.style}>{result.text}</Text>
-      {contacts && (
-        <table>
-          <thead>
-            <tr>
-              <th> </th>
-              <th> שם מלא</th>
-              <th> טלפון</th>
-              <th> דוא״ל</th>
-              <th> כתובת</th>
-              <th> תאריך</th>
-              <th> סוג השירות</th>
-              <th> שאלון </th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((contact) => (
-              <tr key={contact.id}>
-                <td>
-                  {" "}
-                  <StyledRoundedButton
-                    onClick={() => {
-                      deleteContact(contact.id);
-                    }}
-                  >
-                    X
-                  </StyledRoundedButton>{" "}
-                </td>
-                <td>{contact.fullname} </td>
-                <td> {contact.phonenumber}</td>
-                <td> {contact.email} </td>
-                <td> {contact.address} </td>
-                <td> {renderDate(contact.date)} </td>
-                <td> {contact.category} </td>
-
-                <td>
-                  {contact.survey && (
-                    <Button
+    api.isAuthenticated() && (
+      <StyledContact>
+        <h1> אנשי קשר</h1>
+        <Text variant={result.style}>{result.text}</Text>
+        {contacts && (
+          <table>
+            <thead>
+              <tr>
+                <th> </th>
+                <th> שם מלא</th>
+                <th> טלפון</th>
+                <th> דוא״ל</th>
+                <th> כתובת</th>
+                <th> תאריך</th>
+                <th> סוג השירות</th>
+                <th> שאלון </th>
+              </tr>
+            </thead>
+            <tbody>
+              {contacts.map((contact) => (
+                <tr key={contact.id}>
+                  <td>
+                    {" "}
+                    <StyledRoundedButton
                       onClick={() => {
-                        showSurvey(contact.survey);
+                        deleteContact(contact.id);
                       }}
                     >
-                      {contact.survey.name}
-                    </Button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
-    </StyledContact>
+                      X
+                    </StyledRoundedButton>{" "}
+                  </td>
+                  <td>{contact.fullname} </td>
+                  <td> {contact.phonenumber}</td>
+                  <td> {contact.email} </td>
+                  <td> {contact.address} </td>
+                  <td> {renderDate(contact.date)} </td>
+                  <td> {contact.category} </td>
+
+                  <td>
+                    {contact.survey && (
+                      <Button
+                        onClick={() => {
+                          showSurvey(contact.survey);
+                        }}
+                      >
+                        {contact.survey.name}
+                      </Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+        {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
+      </StyledContact>
+    )
   );
 };
 
@@ -124,7 +125,6 @@ const StyledContact = styled.div`
     min-width: 100px;
     text-align: center;
     vertical-align: middle;
-
   }
 `;
 

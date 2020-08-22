@@ -3,7 +3,7 @@ import Button from "../elements/Button";
 import Text from "../elements/Text";
 import Head from "next/head";
 import styled from "styled-components";
-import api from "../services/api";
+import api from "../shared/api";
 
 const Contact = () => {
   const [state, setState] = useState({

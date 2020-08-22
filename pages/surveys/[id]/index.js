@@ -5,7 +5,7 @@ import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
 import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
-import api from "../../../services/api";
+import api from "../../../shared/api";
 
 const Survey = ({ id }) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/post`;
