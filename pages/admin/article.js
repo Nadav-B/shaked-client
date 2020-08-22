@@ -13,6 +13,7 @@ const Article = ({ data }) => {
     content: "",
     tag: "",
     contactButton: "",
+    image: "",
   });
 
   const [image, setImage] = useState();
@@ -25,28 +26,27 @@ const Article = ({ data }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-      const res = await api.postArticle(state).then(
-        (response) => {
-          console.log(response);
-          setResult((prevState) => ({
-            ...prevState,
-            text: "נשלח בהצלחה!",
-            style: "sucess",
-            status: true,
-          }));
-        },
-        (error) => {
-          console.log(error);
+    const res = await api.postArticle(state).then(
+      (response) => {
+        console.log(response);
+        setResult((prevState) => ({
+          ...prevState,
+          text: "נשלח בהצלחה!",
+          style: "sucess",
+          status: true,
+        }));
+      },
+      (error) => {
+        console.log(error);
 
-          setResult((prevState) => ({
-            ...prevState,
-            text: "שגיאה",
-            style: "error",
-            status: false,
-          }));
-        }
-      );
-
+        setResult((prevState) => ({
+          ...prevState,
+          text: "שגיאה",
+          style: "error",
+          status: false,
+        }));
+      }
+    );
   };
 
   const handleChange = (event) => {
@@ -60,6 +60,13 @@ const Article = ({ data }) => {
     }));
   };
 
+  const handleImage = async (event) => {
+    console.log(res);
+    setState({
+      image: res,
+    });
+  };
+
   const handleArticleChange = (event) => {
     event.preventDefault();
     const target = event.target;
@@ -67,7 +74,6 @@ const Article = ({ data }) => {
 
     if (id) {
       const selectedArticle = data.find((article) => article.id == id);
-
       setState({
         id: selectedArticle.id,
         title: selectedArticle.title,
@@ -75,6 +81,7 @@ const Article = ({ data }) => {
         content: selectedArticle.content,
         tag: selectedArticle.tag,
         contactButton: selectedArticle.contactButton,
+        image: selectedArticle.image,
       });
       setImage(
         `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${selectedArticle.id}`
@@ -86,6 +93,7 @@ const Article = ({ data }) => {
         content: "",
         tag: "",
         contactButton: "",
+        image: "",
       });
       setImage();
     }
@@ -154,6 +162,8 @@ const Article = ({ data }) => {
           </label>
           <label>
             תמונה
+            <StyledInput name="image" onChange={handleImage} type="file" />
+            תצוגה מקדימה
             <StyledImage src={image} alt="" />
           </label>
 
