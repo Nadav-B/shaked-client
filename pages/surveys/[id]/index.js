@@ -36,6 +36,7 @@ const Survey = ({ id }) => {
 
   const parseAnswersForSubmit = () => {
     var tempArray = [];
+    console.log(results);
     for (let [key, value] of results) {
       const answer = {
         answer: key,
@@ -60,8 +61,6 @@ const Survey = ({ id }) => {
       survey: survey,
     };
 
-    console.log(contactForm);
-
     api.postContact(contactForm).then(
       (response) => {
         setConfirmation((prevState) => ({
@@ -82,9 +81,10 @@ const Survey = ({ id }) => {
     );
   };
 
-  const handleAnswerSubmit = (event, answer, question) => {
+  const handleAnswerSubmit = (event, question, answer) => {
     event.preventDefault();
     results.set(answer, question);
+
     if (index < data.questions.length - 1) setIndex(index + 1);
     if (index == data.questions.length - 1)
       setCurrentstatus(Status.CompleteContact);
