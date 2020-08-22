@@ -20,7 +20,7 @@ const AboutManager = ({ data }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(state)
+    console.log(state);
     await api.postText(state).then(
       (response) => {
         setResult((prevState) => ({
@@ -137,7 +137,9 @@ const AboutManager = ({ data }) => {
           </label>
 
           <Text variant={result.style}> {result.text}</Text>
-          <Button type="submit">שלח</Button>
+          <Button disabled={result.status} type="submit">
+            שלח
+          </Button>
           {state.id && (
             <Button
               type="button"

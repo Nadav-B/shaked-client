@@ -168,7 +168,10 @@ const ServiceManager = ({ data }) => {
           </label>
 
           <Text variant={result.style}> {result.text}</Text>
-          <Button type="submit">שלח</Button>
+          <Button disabled={result.status} type="submit">
+            שלח
+          </Button>
+
           {state.id && (
             <Button
               type="button"
