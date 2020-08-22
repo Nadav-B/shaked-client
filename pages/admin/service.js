@@ -112,7 +112,7 @@ const ServiceManager = ({ data }) => {
     <div>
       <h1> ערוך שירות</h1>
       <StyledSelect name="category" onChange={handleArticleChange}>
-        <option value=""> הוסף </option>
+        <option value=""> הוסף שירות </option>
         {data.map((service) => (
           <option key={service.id} value={service.id}>
             {service.title}

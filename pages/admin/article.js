@@ -5,7 +5,7 @@ import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../services/api";
 
-const Article = ({ data }) => {
+const ArticleManager = ({ data }) => {
   const [state, setState] = useState({
     id: "",
     title: "",
@@ -267,4 +267,4 @@ export async function getServerSideProps() {
   return { props: { data } };
 }
 
-export default Article;
+export default ArticleManager;

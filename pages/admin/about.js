@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import api from "../../services/api";
-import Text from "../../elements/Text";
+import React, { useState } from "react";
 import Button from "../../elements/Button";
+import Text from "../../elements/Text";
+import api from "../../services/api";
 
-const AboutManagers = () => {
-  const [contacts, setContacts] = useState();
-
-  const [survey, setSurvey] = useState();
+const AboutManager = ({ data }) => {
+  const [state, setState] = useState({
+    id: "",
+    tag: "",
+    content: "",
+  });
 
   const [result, setResult] = useState({
     text: "",
@@ -15,155 +18,191 @@ const AboutManagers = () => {
     status: false,
   });
 
-  const deleteContact = async (id) => {
-    const response = await api.deleteContact(id);
-    if (response.status) {
-      setContacts(contacts.filter((contact) => contact.id != id));
-    }
-  };
-
-  const showSurvey = (survey) => {
-    setSurvey(survey);
-  };
-
-  useEffect(() => {
-    async function getRequestForm() {
-      try {
-        const response = await api.getContacts();
-        setContacts(response.data);
-      } catch {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(state)
+    await api.postText(state).then(
+      (response) => {
         setResult((prevState) => ({
           ...prevState,
-          text: "שגיאה בחיבור לשרת",
+          text: "נשלח בהצלחה!",
+          style: "sucess",
+          status: true,
+        }));
+      },
+      (error) => {
+        console.log(error);
+
+        setResult((prevState) => ({
+          ...prevState,
+          text: "שגיאה",
           style: "error",
           status: false,
         }));
-        setContacts([]);
-        console.log("check connection to server");
       }
+    );
+  };
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const deleteArticle = async () => {
+    await api.deleteText(state.id).then(
+      (response) => {
+        setResult((prevState) => ({
+          ...prevState,
+          text: "נמחק בהצלחה",
+          style: "sucess",
+          status: true,
+        }));
+      },
+      (error) => {
+        setResult((prevState) => ({
+          ...prevState,
+          text: "שגיאה",
+          style: "error",
+          status: false,
+        }));
+      }
+    );
+  };
+
+  const handleTextChange = (event) => {
+    event.preventDefault();
+    const target = event.target;
+    const id = target.value;
+
+    setResult({
+      text: "",
+      style: "",
+      status: false,
+    });
+
+    if (id) {
+      const storedObject = data.find((object) => object.id == id);
+      setState({
+        id: storedObject.id,
+        tag: storedObject.tag,
+        content: storedObject.content,
+      });
+    } else {
+      setState({
+        id: "",
+        tag: "",
+        content: "",
+      });
     }
-    if (!contacts) getRequestForm();
-  });
-
-  return (
-    <StyledContact>
-      <h1> אנשי קשר</h1>
-      <Text variant={result.style}>{result.text}</Text>
-      {contacts && (
-        <table>
-          <thead>
-            <tr>
-              <th> </th>
-              <th> שם מלא</th>
-              <th> טלפון</th>
-              <th> דוא״ל</th>
-              <th> כתובת</th>
-              <th> סוג השירות</th>
-              <th> שאלון </th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((contact) => (
-              <tr key={contact.id}>
-                <td>
-                  {" "}
-                  <StyledRoundedButton
-                    onClick={() => {
-                      deleteContact(contact.id);
-                    }}
-                  >
-                    X
-                  </StyledRoundedButton>{" "}
-                </td>
-                <td>{contact.fullname} </td>
-                <td> {contact.phonenumber}</td>
-                <td> {contact.email} </td>
-                <td> {contact.address} </td>
-                <td> {contact.category} </td>
-
-                <td>
-                  {contact.survey && (
-                    <Button
-                      onClick={() => {
-                        showSurvey(contact.survey);
-                      }}
-                    >
-                      {contact.survey.name}
-                    </Button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
-    </StyledContact>
-  );
-};
-
-const StyledContact = styled.div`
-  position: relative;
-
-  th {
-    min-width: 100px;
-  }
-
-  td {
-    min-width: 100px;
-  }
-`;
-
-const StyledRoundedButton = styled.button`
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: white;
-
-  &:hover {
-    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-    border: 3px solid red;
-  }
-
-  &:focus {
-    color: ${(p) => p.theme.colors.white};
-    background: ${(p) => p.theme.colors.torchRed};
-    outline: none;
-  }
-`;
-
-const SurveyModal = ({ survey, setSurvey }) => {
-  const closeModal = () => {
-    setSurvey();
   };
 
   return (
-    <StyledSurveyModal>
-      <h1> {survey.name}</h1>
-      {survey.answers.map((entry) => (
-        <div>
-          <Text fontSize="large"> {entry.question}</Text>
-          <Text> {entry.answer}</Text>
-        </div>
-      ))}
-      <Button onClick={closeModal}>סגור</Button>
-    </StyledSurveyModal>
+    <div>
+      <h1> ערוך אודות</h1>
+      <StyledSelect name="category" onChange={handleTextChange}>
+        <option value=""> הוסף טקסט </option>
+        {data.map((text) => (
+          <option key={text.id} value={text.id}>
+            {text.tag}
+          </option>
+        ))}
+      </StyledSelect>
+
+      <StyledForm>
+        <form onSubmit={handleSubmit}>
+          <label>
+            שם הטקסט. לא יופיע בעמוד
+            <StyledInput
+              name="tag"
+              value={state.tag}
+              placeholder="שדה חובה"
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            תוכן כתבה
+            <StyledInput
+              name="content"
+              placeholder="שדה חובה"
+              value={state.content}
+              onChange={handleChange}
+            />
+          </label>
+
+          <Text variant={result.style}> {result.text}</Text>
+          <Button type="submit">שלח</Button>
+          {state.id && (
+            <Button
+              type="button"
+              onClick={() => {
+                deleteArticle();
+              }}
+            >
+              מחק טקסט
+            </Button>
+          )}
+        </form>
+      </StyledForm>
+    </div>
   );
 };
 
-const StyledSurveyModal = styled.div`
-  position: fixed;
-  right: 0;
-  padding: 20px;
-  margin: 20px;
-  bottom: 0;
+const StyledImage = styled.img`
+  margin: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: white;
-
-  max-width: 400px;
-  color: black;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 50%;
 `;
 
-export default AboutManagers;
+const StyledSelect = styled.select`
+  display: block;
+  width: 100%;
+  margin: auto;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 40px;
+`;
+
+const StyledForm = styled.div`
+  display: flex;
+  margin-top: 100px;
+`;
+
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  bacgkround: silver;
+  &::placeholder {
+    color: black;
+  }
+`;
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/texts`;
+  const res = await axios.get(url);
+
+  const data = await res.data;
+  // Pass data to the page via props
+  return { props: { data } };
+}
+
+export default AboutManager;
