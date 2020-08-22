@@ -39,7 +39,8 @@ const Menu = ({ menuLinks, open, onClick }) => {
 const StyledMenu = styled.nav`
   height: auto;
   display: block;
-
+  position:fixed;
+  right:150px;
   z-index:1;
   li {
     cursor: pointer;
@@ -50,9 +51,7 @@ const StyledMenu = styled.nav`
   }
 
   .admin {
-
     color: red;
-
   }
 
 

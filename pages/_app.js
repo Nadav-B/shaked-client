@@ -34,7 +34,7 @@ const App = ({ Component, pageProps }) => {
 const StyledMenu = styled.menu`
   margin: 0 auto;
   width: 80%;
-  min-height: 500px;
+  min-height: 400px;
 `;
 
 export default App;

@@ -38,10 +38,10 @@ Header.defaultProps = {
 };
 
 const HeaderWrapper = styled.div`
-  background: ${({ open }) => (open ? "white" : "transperent")};
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  position: relative;
 
   img {
     position: fixed;
