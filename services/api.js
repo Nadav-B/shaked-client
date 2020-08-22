@@ -31,4 +31,19 @@ const postArticle = async (article) => {
     },
   });
 };
-export default { getContacts, deleteContact, postArticle };
+
+const postArticleImage = async (id, image) => {
+  console.log(id)
+  console.log(image)
+  const formData = new FormData();
+  formData.append("image", image);
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/postImage/${id}`;
+  const token = Cookies.get("token");
+  return await axios.post(url, formData, {
+    headers: {
+      Authorization: `Basic ${token}`,
+      "content-type": "multipart/form-data",
+    },
+  });
+};
+export default { getContacts, deleteContact, postArticle, postArticleImage };

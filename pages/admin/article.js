@@ -30,6 +30,12 @@ const Article = ({ data }) => {
     const res = await api.postArticle(state).then(
       (response) => {
         console.log(response);
+        if (response.data.id && uploadImage) {
+          ("posting");
+          const imagePost = api.postArticleImage(response.data.id, uploadImage);
+          console.log(imagePost);
+        }
+
         setResult((prevState) => ({
           ...prevState,
           text: "נשלח בהצלחה!",
@@ -70,8 +76,18 @@ const Article = ({ data }) => {
     const target = event.target;
     const id = target.value;
 
+    setUploadImage();
+    setResult({
+      text: "",
+      style: "",
+      status: false,
+    });
+
     if (id) {
       const selectedArticle = data.find((article) => article.id == id);
+      setImagePreview(
+        `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${selectedArticle.id}`
+      );
       setState({
         id: selectedArticle.id,
         title: selectedArticle.title,
@@ -80,10 +96,8 @@ const Article = ({ data }) => {
         tag: selectedArticle.tag,
         contactButton: selectedArticle.contactButton,
       });
-      setImagePreview(
-        `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${selectedArticle.id}`
-      );
     } else {
+      setImagePreview();
       setState({
         id: "",
         title: "",
@@ -92,14 +106,7 @@ const Article = ({ data }) => {
         tag: "",
         contactButton: "",
       });
-      setImagePreview();
     }
-    setUploadImage();
-    setResult({
-      text: "",
-      style: "",
-      status: false,
-    });
   };
 
   return (
