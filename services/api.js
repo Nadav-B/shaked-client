@@ -57,10 +57,34 @@ const deleteArticle = async (id) => {
   });
 };
 
+const postService = async (service) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/services/post`;
+  const token = Cookies.get("token");
+  console.log(service)
+  return await axios.post(url, service, {
+    headers: {
+      Authorization: `Basic ${token}`,
+      Accept: "application/json",
+    },
+  });
+};
+
+const deleteService = async (id) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/services/delete/${id}`;
+  const token = Cookies.get("token");
+  return await axios.get(url, {
+    headers: {
+      Authorization: `Basic ${token}`,
+    },
+  });
+};
+
 export default {
   getContacts,
   deleteContact,
   postArticle,
   postArticleImage,
+  postService,
+  deleteService,
   deleteArticle,
 };

@@ -13,10 +13,10 @@ const Admin = () => {
         <Link href={"/admin/article"}>
           <Button> ערוך או הוסף כתבה</Button>
         </Link>
-        <Link href={"/admin/article"}>
+        <Link href={"/admin/service"}>
           <Button> ערוך או הוסף שירות</Button>
         </Link>
-        <Link href={"/admin/article"}>
+        <Link href={"/admin/about"}>
           <Button> ערוך או הוסף אודות</Button>
         </Link>
       </StyledAdmin>
