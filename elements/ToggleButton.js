@@ -14,7 +14,7 @@ const ToggleButton = ({ open, onClick }) => {
 
 export const StyledToggleButton = styled.button`
   position: fixed;
-  top: 5%;
+  top: 2%;
   left: 2rem;
   display: flex;
   flex-direction: column;
