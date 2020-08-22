@@ -1,7 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
-
+import Button from "../../../elements/Button";
+import directByContact from "../../../config/contactButtonLinks";
 const Service = ({ data }) => {
   return (
     <div>
@@ -24,13 +25,20 @@ const Service = ({ data }) => {
           __html: data.content,
         }}
       ></div>
+      <Button
+        onClick={() => {
+          directByContact(data.contactButton);
+        }}
+      >
+        {data.contactButton}
+      </Button>
     </div>
   );
 };
 
 // This gets called on every request
 export async function getServerSideProps({ query }) {
-  const id = query.id
+  const id = query.id;
 
   // Fetch data from external API
 

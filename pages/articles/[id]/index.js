@@ -1,8 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
-import styled from "styled-components";
+import directByContact from "../../../config/contactButtonLinks";
 
+import styled from "styled-components";
+import Button from "../../../elements/Button";
 const Article = ({ data }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
   return (
@@ -25,7 +27,13 @@ const Article = ({ data }) => {
           }}
         ></div>
       </StyledArticle>
-    </div>
+      <Button
+        onClick={() => {
+          directByContact(data.contactButton);
+        }}
+      >
+        {data.contactButton}
+      </Button>    </div>
   );
 };
 
