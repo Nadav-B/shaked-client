@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import axios from "axios";
 import Button from "../../../elements/Button";
-import directByContact from "../../../config/contactButtonLinks";
+import {directByContact} from "../../../config/contactButtonLinks";
 const Service = ({ data }) => {
   return (
     <div>
