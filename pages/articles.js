@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import Head from "next/head";
 import api from "../shared/api";
+import Title from "../elements/Title";
 
 import ArticlePreview from "../elements/ArticlePreview";
 
@@ -17,7 +18,7 @@ const Articles = ({ data }) => {
           key="ogdesc"
         />
       </Head>
-      <h1>כתבות</h1>
+      <Title>כתבות</Title>
       <StyledArticles>
         {data.map((article) => (
           <Link

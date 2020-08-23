@@ -4,6 +4,7 @@ import Text from "../elements/Text";
 import Head from "next/head";
 import styled from "styled-components";
 import api from "../shared/api";
+import Title from "../elements/Title";
 
 const Contact = () => {
   const [state, setState] = useState({
@@ -66,12 +67,13 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <Head>
         <meta name="description" content="צור קשר"></meta>
         <meta property="og:description" content="צור קשר" key="ogdesc" />
       </Head>
-      <h1>צור קשר</h1>
+      <Title>צרו קשר</Title>
+
       <StyledForm>
         <form onSubmit={handleSubmit}>
           <label>
@@ -114,7 +116,7 @@ const Contact = () => {
           </label>
 
           <label>
-            פנייה בנושא:
+            פנייה בנושא
             <StyledSelect
               name="category"
               value={state.category}
@@ -133,19 +135,26 @@ const Contact = () => {
           </Button>
         </form>
       </StyledForm>
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  margin: auto;
+  width: 100%;
+`;
 
 const StyledForm = styled.div`
   display: flex;
   max-width: 340px;
+  margin: auto;
 `;
 
 const StyledSelect = styled.select`
   display: block;
   width: 100%;
   margin: auto;
+  margin-top: 5px; 
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -161,7 +170,6 @@ const StyledInput = styled.input`
   border-radius: 4px;
   box-sizing: border-box;
   font-size: ${(p) => p.theme.fontSize.normal};
-
 
   bacgkround: silver;
   &::placeholder {

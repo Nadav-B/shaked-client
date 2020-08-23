@@ -6,6 +6,8 @@ import styled from "styled-components";
 import Head from "next/head";
 import api from "../shared/api";
 
+import Title from "../elements/Title";
+
 const Services = ({ data }) => {
   return (
     <div>
@@ -17,7 +19,8 @@ const Services = ({ data }) => {
           key="ogdesc"
         />
       </Head>
-      <h1>השירותים שלנו </h1>
+      <Title>השירותים שלנו</Title>
+
       <StyledService>
         {data.map((service, index) => (
           <StyledWrapper key={service.id}>

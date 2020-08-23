@@ -14,6 +14,8 @@ const StyledButton = styled.button`
   font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};
   font-family: ${(p) => p.theme.fontFamily};
   width: 100%;
+  margin-top: 25px;
+
   margin-bottom: 25px;
   border: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

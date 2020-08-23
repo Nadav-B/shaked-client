@@ -41,7 +41,7 @@ const StyledText = styled.p`
       ? p.theme.colors.caribbeanGreen
       : p.variant.includes("title")
       ? p.theme.colors.navyBlue
-      : p.theme.colors.navyBlue};
+      : p.theme.colors.black};
   font-weight: ${(p) => (p.variant.includes("title") ? "bold" : "normal")};
 `;
 
