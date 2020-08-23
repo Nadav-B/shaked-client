@@ -19,6 +19,7 @@ const Survey = ({ id }) => {
   const data = surveys[id];
 
   const [results, setResults] = useState(new Map());
+
   const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
   const [confirmation, setConfirmation] = useState({
     text: "",
@@ -83,7 +84,9 @@ const Survey = ({ id }) => {
 
   const handleAnswerSubmit = (event, question, answer) => {
     event.preventDefault();
-    results.set(answer, question);
+    console.log(question);
+    results.set(question, answer);
+    console.log(results);
 
     if (index < data.questions.length - 1) setIndex(index + 1);
     if (index == data.questions.length - 1)
@@ -145,10 +148,10 @@ const Survey = ({ id }) => {
       {currentStatus == 1 && (
         <div>
           {data.questions[index].question}
-          {data.questions[index].answers.map((answer, index) => (
+          {data.questions[index].answers.map((answer, counter) => (
             <StyledAnswersWrapper>
               <Button
-                key={index}
+                key={counter}
                 onClick={(event) => {
                   handleAnswerSubmit(
                     event,
