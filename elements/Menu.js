@@ -13,21 +13,28 @@ const Menu = ({ menuLinks, open, onClick }) => {
       <ul>
         {menuLinks.map((link) => (
           <li onClick={onClick} key={link.name}>
-            <Link href={link.link}>{link.name}</Link>
+            <Link href={link.link}>
+              <a>{link.name}</a>
+            </Link>
           </li>
         ))}
         {api.isAuthenticated() && [
-          <li onClick={onClick}>
-            <Link href={"/admin"}>עמוד מנהל</Link>
+          <li key="admin" onClick={onClick}>
+            <Link href={"/admin"}>
+              <a>עמוד מנהל</a>
+            </Link>
           </li>,
           <li
+            key="logout"
             className="admin"
             onClick={() => {
               logout();
               onClick();
             }}
           >
-            <Link href={"/homepage"}> התנתק</Link>
+            <Link href={"/homepage"}>
+              <a>התנתק</a>
+            </Link>
           </li>,
         ]}
       </ul>

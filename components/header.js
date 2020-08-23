@@ -22,7 +22,13 @@ const Header = ({ menuLinks, siteTitle }) => {
             </StyledLink>
           </a>
         </Link>
-        {open && <Menu menuLinks={menuLinks} onClick={() => setOpen(!open)} />}
+        {open && (
+          <Menu
+            open={open}
+            menuLinks={menuLinks}
+            onClick={() => setOpen(!open)}
+          />
+        )}
         <ToggleButton open={open} onClick={() => setOpen(!open)} />
       </NavigationWrapper>
     </HeaderWrapper>
