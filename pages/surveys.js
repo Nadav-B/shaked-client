@@ -5,6 +5,7 @@ import Link from "next/link";
 import Text from "../elements/Text";
 import styled from "styled-components";
 import Head from "next/head";
+import Title from "../elements/Title";
 
 const Surveys = () => {
   const data = [survey1, survey2];
@@ -19,7 +20,9 @@ const Surveys = () => {
           key="ogdesc"
         />
       </Head>
-      <h1> שאלונים לביצוע בדיקה</h1>
+      <Title>
+      שאלונים לביצוע בדיקה
+      </Title>
       <StyledContainer>
         {data.map((survey) => (
           <Link
