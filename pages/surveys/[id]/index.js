@@ -20,7 +20,7 @@ const Survey = ({ id }) => {
 
   const [results, setResults] = useState(new Map());
 
-  const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
+  const [currentStatus, setCurrentstatus] = useState(Status.Questions);
   const [confirmation, setConfirmation] = useState({
     text: "",
     style: "",
@@ -205,8 +205,8 @@ const Wrapper = styled.div`
 `;
 
 const StyledAnswersWrapper = styled.div`
-  width: 50%;
   display: flex;
+  width: 100%;
   margin: auto;
   margin-top: 20px;
 `;

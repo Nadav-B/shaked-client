@@ -11,13 +11,15 @@ const StyledButton = styled.button`
   justify-content: center;
   height: 40px;
   min-width: 172px;
-  margin: 25px;
-  max-width: 400px;
+  font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};
+  font-family: ${(p) => p.theme.fontFamily};
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 25px;
   border: 0;
   padding: 0 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: white;
-  text-align: center;
 
   outline: none;
   color: ${(p) => p.theme.colors.navyBlue};
@@ -27,12 +29,9 @@ const StyledButton = styled.button`
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   }
 
-
-
   &:disabled {
     cursor: not-allowed;
     background-color: ${(p) => p.theme.colors.darkGrey};
-
   }
 
   ::-moz-focus-inner {
