@@ -153,8 +153,8 @@ const Survey = ({ id }) => {
         <div>
           <Text fontSize="large"> {data.questions[index].question}</Text>
 
-          {data.questions[index].answers.map((answer, counter) => (
-            <StyledAnswersWrapper>
+          <StyledAnswersWrapper>
+            {data.questions[index].answers.map((answer, counter) => (
               <Button
                 key={counter}
                 disabled={isChoosen(data.questions[index].question, answer)}
@@ -168,14 +168,14 @@ const Survey = ({ id }) => {
               >
                 {answer}
               </Button>
-            </StyledAnswersWrapper>
-          ))}
+            ))}
+          </StyledAnswersWrapper>
           {index > 0 && (
-            <ButtonWrapper>
+            <BackButtonWrapper>
               <Button onClick={backQuestion} type="submit">
                 לשאלה הקודמת
               </Button>
-            </ButtonWrapper>
+            </BackButtonWrapper>
           )}
         </div>
       )}
@@ -207,15 +207,15 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
-const ButtonWrapper = styled.div`
+const BackButtonWrapper = styled.div`
   max-width: 200px;
-  
 `;
 const StyledAnswersWrapper = styled.div`
-  display: flex;
+  display: block;
   width: 100%;
+  max-width: 400px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 25px;
 `;
 const StyledInput = styled.input`
   width: 100%;
