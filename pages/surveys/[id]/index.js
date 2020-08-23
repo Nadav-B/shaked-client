@@ -176,7 +176,7 @@ const Survey = ({ id }) => {
             {data.questions[index].answers.map((answer, counter) => (
               <Button
                 key={counter}
-                disabled={isChoosen(data.questions[index].question, answer)}
+                active={isChoosen(data.questions[index].question, answer)}
                 onClick={(event) => {
                   handleAnswerSubmit(
                     event,

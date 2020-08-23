@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = ({ children, onClick, focus }) => (
-  <StyledButton>{children}</StyledButton>
+const Button = ({ children, onClick, focus, active }) => (
+  <StyledButton active={active}>{children}</StyledButton>
 );
 
 const StyledButton = styled.button`
@@ -15,15 +15,13 @@ const StyledButton = styled.button`
   font-family: ${(p) => p.theme.fontFamily};
   width: 100%;
   margin-top: 25px;
-
   margin-bottom: 25px;
   border: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: white;
-
-  
+  background: ${({ active }) => (active ? "#0a589d" : "white")};
   outline: none;
-  color: ${(p) => p.theme.colors.navyBlue};
+  color: ${({ active }) => (active ? "white" : "#0a589d")};
+
   cursor: pointer;
 
   &:hover {
