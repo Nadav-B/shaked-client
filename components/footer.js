@@ -15,9 +15,7 @@ const Fotter = () => (
       <a href="mailto:shay@shakedm.co.il?Subject=Hello" target="_top">
         shay@shakedm.co.il
       </a>{" "}
-      <a href="https://shakedm.co.il/" target="_top">
         www.shakedm.co.il
-      </a>
     </StyledItem>
 
     <StyledItem>
