@@ -62,6 +62,8 @@ const StyledMenu = styled.nav`
 
   a {
     display: block;
+    -height: 100%;
+    background: white;
   }
 
   @media (max-width: 768px) {
@@ -77,7 +79,7 @@ const StyledMenu = styled.nav`
       float: none;
       margin: auto;
       text-align: center;
-      padding: 20px;
+      min-height: 50px;
       border-width: 5px;
       border-top-style: solid;
       border: 1px solid rgba(228, 228, 228, 0.2);
@@ -85,7 +87,9 @@ const StyledMenu = styled.nav`
     }
 
     a {
+      padding: 15px;
       display: block;
+      height: 100%;
     }
   }
 `;
