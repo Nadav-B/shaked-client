@@ -45,9 +45,9 @@ const Menu = ({ menuLinks, open, onClick }) => {
 const StyledMenu = styled.nav`
   height: auto;
   display: block;
-  position:fixed;
-  right:150px;
-  z-index:1;
+  position: fixed;
+  right: 150px;
+  z-index: 1;
   li {
     cursor: pointer;
     float: right;
@@ -60,27 +60,28 @@ const StyledMenu = styled.nav`
     color: red;
   }
 
-
-  
   @media (max-width: 768px) {
+    position: fixed;
+    top: 120px;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: white;
 
-      position: fixed;
-      top: 120px;
-      left: 0;
-      right: 0;
-      height: 100%;
-      background: white;
-      li {
-        direction: rtl;
-        width: auto;
-        float: none;
-        margin: auto;
-        text-align: center;
-        padding: 20px;
-        border-width: 5px;
-        border-top-style: solid;
-        border: 1px solid rgba(228, 228, 228, 0.2);
-      }
+    li {
+      direction: rtl;
+      float: none;
+      margin: auto;
+      text-align: center;
+      padding: 20px;
+      border-width: 5px;
+      border-top-style: solid;
+      border: 1px solid rgba(228, 228, 228, 0.2);
+      position: relative;
+    }
+
+    a {
+      display: block;
     }
   }
 `;
