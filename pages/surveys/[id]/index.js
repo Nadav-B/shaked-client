@@ -135,7 +135,7 @@ const Survey = ({ id }) => {
       </Head>
       <h1>{data.name}</h1>
       {currentStatus == 0 && (
-        <div>
+        <ContactWrapper>
           <Text>מלאו את שמכם והתחילו את ביצוע הבדיקה:</Text>
           <form onSubmit={fillName}>
             <StyledInput
@@ -147,7 +147,7 @@ const Survey = ({ id }) => {
             />{" "}
             <Button type="submit">שלח</Button>
           </form>
-        </div>
+        </ContactWrapper>
       )}
 
       {currentStatus == 1 && (
@@ -196,7 +196,7 @@ const Survey = ({ id }) => {
         </div>
       )}
       {currentStatus == 2 && (
-        <div>
+        <ContactWrapper>
           <Text>השאירו טלפון ונציג שלנו ייצור עמכם קשר להשלמת הבדיקה:</Text>
           <form onSubmit={fillPhone}>
             <StyledInput
@@ -212,7 +212,7 @@ const Survey = ({ id }) => {
               שלח
             </Button>
           </form>
-        </div>
+        </ContactWrapper>
       )}
     </Wrapper>
   );
@@ -232,6 +232,14 @@ const StyledAnswersWrapper = styled.div`
   max-width: 400px;
   margin: auto;
   margin-top: 25px;
+`;
+
+const ContactWrapper = styled.div`
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
 `;
 
 const QuestionWrapper = styled.div`
