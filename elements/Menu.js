@@ -33,7 +33,7 @@ const Menu = ({ menuLinks, open, onClick }) => {
             }}
           >
             <Link href={"/homepage"}>
-              <a>התנתק</a>
+              <a className="admin">התנתק</a>
             </Link>
           </li>,
         ]}
@@ -58,6 +58,10 @@ const StyledMenu = styled.nav`
 
   .admin {
     color: red;
+  }
+
+  a {
+    display: block;
   }
 
   @media (max-width: 768px) {
