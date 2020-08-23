@@ -62,8 +62,7 @@ const StyledMenu = styled.nav`
 
   a {
     display: block;
-    -height: 100%;
-    background: white;
+    height: 100%;
   }
 
   @media (max-width: 768px) {
