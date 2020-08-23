@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
+import api from "../../../shared/api";
 import { directByContact } from "../../../config/contactButtonLinks";
 
 import styled from "styled-components";
@@ -60,8 +61,7 @@ export async function getServerSideProps({ query }) {
 
   // Fetch data from external API
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/${id}`;
-  const res = await axios.get(url);
+  const res = await api.getArticle(id);
 
   const data = await res.data;
   // Pass data to the page via props

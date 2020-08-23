@@ -43,6 +43,24 @@ const deleteContact = async (id) => {
   });
 };
 
+const getArticle = async (id) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/${id}`;
+  return await axios.get(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+};
+
+const getArticles = async () => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles`;
+  return await axios.get(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+};
+
 const postArticle = async (article) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/post`;
   const token = Cookies.get("token");
@@ -143,6 +161,8 @@ export default {
   getContacts,
   postContact,
   deleteContact,
+  getArticle,
+  getArticles,
   postArticle,
   postArticleImage,
   deleteArticle,

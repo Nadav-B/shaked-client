@@ -1,8 +1,8 @@
 import React from "react";
-import axios from "axios";
 import Link from "next/link";
 import styled from "styled-components";
 import Head from "next/head";
+import api from "../shared/api";
 
 import ArticlePreview from "../elements/ArticlePreview";
 
@@ -46,9 +46,7 @@ const StyledArticles = styled.div`
 export async function getServerSideProps() {
   // Fetch data from external API
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles`;
-  const res = await axios.get(url);
-
+  const res = await api.getArticles();
   const data = res.data;
   // Pass data to the page via props
   return { props: { data } };

@@ -267,13 +267,12 @@ const StyledInput = styled.input`
   }
 `;
 
+// This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles`;
-  const res = await axios.get(url);
-
-  const data = await res.data;
+  const res = await api.getArticles();
+  const data = res.data;
   // Pass data to the page via props
   return { props: { data } };
 }
