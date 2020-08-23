@@ -51,6 +51,8 @@ export const theme = {
     small: "14px",
     normal: "16px",
     large: "20px",
+    xl: "30px",
+
   },
   sizes: { sidebarWidth: "345px", gridWidth: "120px" },
   colors

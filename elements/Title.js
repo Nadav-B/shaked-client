@@ -6,7 +6,14 @@ import styled from "styled-components";
  */
 
 /** TODO: refactor */
-const Text = ({ className, as = "p", variant = "", children, fontSize, margin }) => {
+const Title = ({
+  className,
+  as = "p",
+  variant = "",
+  children,
+  fontSize,
+  margin,
+}) => {
   return (
     <StyledText as={as} variant={variant} fontSize={fontSize} margin={margin}>
       {children}
@@ -21,8 +28,10 @@ const StyledText = styled.p`
     p.variant.includes("nowrap") || p.variant.includes("ellipsis")
       ? "nowrap"
       : ""};
+  text-align: center;
+  margin-bottom: 20px;
   overflow: ${(p) => (p.variant.includes("ellipsis") ? "hidden" : "")};
-  font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};
+  font-size: ${(p) => p.fontSize || p.theme.fontSize.xl};
   font-family: ${(p) => p.theme.fontFamily};
   width: ${(p) => (p.variant.includes("max-content") ? "max-content" : "")};
   color: ${(p) =>
@@ -32,13 +41,8 @@ const StyledText = styled.p`
       ? p.theme.colors.caribbeanGreen
       : p.variant.includes("title")
       ? p.theme.colors.navyBlue
-      : "currentColor"};
+      : p.theme.colors.navyBlue};
   font-weight: ${(p) => (p.variant.includes("title") ? "bold" : "normal")};
-
-
-  .title {
-    font-size: 30px;
-  }
 `;
 
-export default Text;
+export default Title;

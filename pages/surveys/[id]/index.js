@@ -4,6 +4,8 @@ import styled from "styled-components";
 import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
 import Text from "../../../elements/Text";
+import Title from "../../../elements/Title";
+
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
@@ -133,10 +135,11 @@ const Survey = ({ id }) => {
         <meta property="og:description" content={data.name} key="ogdesc" />
         <title>{"shaked"}</title>
       </Head>
-      <h1>{data.name}</h1>
+      <Title className="title">{data.name}</Title>
+
       {currentStatus == 0 && (
         <ContactWrapper>
-          <Text>מלאו את שמכם והתחילו את ביצוע הבדיקה:</Text>
+          <Text variant="semiBold">מלאו את שמכם והתחילו את ביצוע הבדיקה:</Text>
           <form onSubmit={fillName}>
             <StyledInput
               name="fullname"
@@ -197,6 +200,7 @@ const Survey = ({ id }) => {
       )}
       {currentStatus == 2 && (
         <ContactWrapper>
+          <Progress percent={100} />
           <Text>השאירו טלפון ונציג שלנו ייצור עמכם קשר להשלמת הבדיקה:</Text>
           <form onSubmit={fillPhone}>
             <StyledInput
