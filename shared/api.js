@@ -79,6 +79,24 @@ const deleteArticle = async (id) => {
   });
 };
 
+const getService = async (id) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/services/service/${id}`;
+  return await axios.get(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+};
+
+const getServices = async () => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/services`;
+  return await axios.get(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+};
+
 const postService = async (service) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/services/post`;
   const token = Cookies.get("token");
@@ -128,6 +146,8 @@ export default {
   postArticle,
   postArticleImage,
   deleteArticle,
+  getService,
+  getServices,
   postService,
   deleteService,
   postText,

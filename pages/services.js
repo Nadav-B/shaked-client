@@ -4,6 +4,7 @@ import Link from "next/link";
 import ServicePreview from "../elements/ServicePreview";
 import styled from "styled-components";
 import Head from "next/head";
+import api from "../shared/api";
 
 const Services = ({ data }) => {
   return (
@@ -45,13 +46,11 @@ const StyledService = styled.div`
 const StyledWrapper = styled.div`
   padding: 5px;
 `;
+
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/services`;
-  const res = await axios.get(url);
-
+  const res = await api.getServices();
   const data = res.data;
   // Pass data to the page via props
   return { props: { data } };

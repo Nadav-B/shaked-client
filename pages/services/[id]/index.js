@@ -1,8 +1,9 @@
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
+import api from "../../../shared/api";
 import Button from "../../../elements/Button";
-import {directByContact} from "../../../config/contactButtonLinks";
+import { directByContact } from "../../../config/contactButtonLinks";
 const Service = ({ data }) => {
   return (
     <div>
@@ -42,9 +43,7 @@ export async function getServerSideProps({ query }) {
 
   // Fetch data from external API
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/services/service/${id}`;
-  const res = await axios.get(url);
-
+  const res = await api.getService(id);
   const data = await res.data;
   // Pass data to the page via props
   return { props: { data } };
