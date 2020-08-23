@@ -151,7 +151,8 @@ const Survey = ({ id }) => {
 
       {currentStatus == 1 && (
         <div>
-          {data.questions[index].question}
+          <Text fontSize="large"> {data.questions[index].question}</Text>
+
           {data.questions[index].answers.map((answer, counter) => (
             <StyledAnswersWrapper>
               <Button
