@@ -22,18 +22,19 @@ const App = ({ Component, pageProps }) => {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Header menuLinks={menuLinks} />
-        <StyledMenu>
+        <StyledBody>
           <Component {...pageProps} />
-        </StyledMenu>
+        </StyledBody>
         <Footer />
       </ThemeProvider>
     </div>
   );
 };
 
-const StyledMenu = styled.menu`
-  margin: 0 auto;
-  width: 80%;
+const StyledBody = styled.menu`
+  margin: auto;
+  width: 90%;
+  padding: 0;
   min-height: 400px;
 `;
 
