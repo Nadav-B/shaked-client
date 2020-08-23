@@ -34,6 +34,12 @@ const StyledButton = styled.button`
     outline: none;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${(p) => p.theme.colors.darkGrey};
+
+  }
+
   ::-moz-focus-inner {
     border: 0;
   }
