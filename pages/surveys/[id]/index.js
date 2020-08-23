@@ -219,8 +219,8 @@ const Survey = ({ id }) => {
 };
 
 const Wrapper = styled.div`
-  width: 80%;
   margin: auto;
+  width: 100%;
 `;
 
 const BackButtonWrapper = styled.div`
