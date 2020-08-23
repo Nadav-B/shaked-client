@@ -37,11 +37,10 @@ const Survey = ({ id }) => {
 
   const parseAnswersForSubmit = () => {
     var tempArray = [];
-    console.log(results);
     for (let [key, value] of results) {
       const answer = {
-        answer: key,
-        question: value,
+        question: key,
+        answer: value,
       };
       tempArray.push(answer);
     }
@@ -84,9 +83,7 @@ const Survey = ({ id }) => {
 
   const handleAnswerSubmit = (event, question, answer) => {
     event.preventDefault();
-    console.log(question);
     results.set(question, answer);
-    console.log(results);
 
     if (index < data.questions.length - 1) setIndex(index + 1);
     if (index == data.questions.length - 1)
