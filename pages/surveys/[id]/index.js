@@ -6,6 +6,7 @@ import survey2 from "../../../public/surveys/2.json";
 import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
+import { Progress } from "react-sweet-progress";
 
 const Survey = ({ id }) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/post`;
@@ -20,7 +21,7 @@ const Survey = ({ id }) => {
 
   const [results, setResults] = useState(new Map());
 
-  const [currentStatus, setCurrentstatus] = useState(Status.Questions);
+  const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
   const [confirmation, setConfirmation] = useState({
     text: "",
     style: "",
@@ -151,7 +152,22 @@ const Survey = ({ id }) => {
 
       {currentStatus == 1 && (
         <div>
-          <Text fontSize="large"> {data.questions[index].question}</Text>
+          <QuestionWrapper>
+            <Text fontSize="large">
+              שאלה {index} מתוך {data.questions.length}
+            </Text>
+
+            <Progress
+              theme={{
+                active: {
+                  symbol: "‍",
+                  color: "#0a589d",
+                },
+              }}
+              percent={(index / data.questions.length) * 100}
+            />
+            <Text fontSize="large"> {data.questions[index].question}</Text>
+          </QuestionWrapper>
 
           <StyledAnswersWrapper>
             {data.questions[index].answers.map((answer, counter) => (
@@ -216,6 +232,14 @@ const StyledAnswersWrapper = styled.div`
   max-width: 400px;
   margin: auto;
   margin-top: 25px;
+`;
+
+const QuestionWrapper = styled.div`
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
 `;
 const StyledInput = styled.input`
   width: 100%;
