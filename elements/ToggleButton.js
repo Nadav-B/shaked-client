@@ -27,7 +27,7 @@ export const StyledToggleButton = styled.button`
   margin-left: 30px;
 
   cursor: pointer;
-  z-index: 10;
+  z-index: 10-;
 
   &:focus {
     outline: none;

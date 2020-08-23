@@ -54,6 +54,7 @@ const HeaderWrapper = styled.div`
     width: 130px;
     padding-right: 32px;
     padding-top: 15px;
+    z-index: 100;
   }
 `;
 
