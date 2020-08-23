@@ -82,7 +82,6 @@ const Survey = ({ id }) => {
   };
 
   const isChoosen = (question, answer) => {
-
     for (let [key, value] of results) {
       if (key == question && value === answer) return true;
     }
@@ -216,6 +215,8 @@ const StyledInput = styled.input`
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
+  font-size: ${(p) => p.theme.fontSize.normal};
+
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;

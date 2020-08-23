@@ -190,6 +190,8 @@ const StyledInput = styled.input`
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: ${(p) => p.theme.fontSize.normal};
+
   box-sizing: border-box;
 
   bacgkround: silver;
