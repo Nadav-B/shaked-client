@@ -9,8 +9,8 @@ import Router from "next/router";
 
 const Login = () => {
   const [state, setState] = useState({
-    username: "shai",
-    password: "shai",
+    username: "",
+    password: "",
   });
 
   const [result, setResult] = useState({

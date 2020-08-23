@@ -14,15 +14,15 @@ const ServicePreview = React.forwardRef(
     return (
       <a href={href} onClick={onClick} ref={ref}>
         <StyledServicePreview>
-          <div class="container">
+          <div className="container">
             <Card
               number={numbers[index]}
               name={service.title}
               expiry={""}
               cvc={"445"}
             />
-            <div class="overlay">
-              <div class="text">{service.introduction}</div>
+            <div className="overlay">
+              <div className="text">{service.introduction}</div>
             </div>
           </div>
         </StyledServicePreview>

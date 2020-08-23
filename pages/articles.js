@@ -49,7 +49,7 @@ export async function getServerSideProps() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/articles`;
   const res = await axios.get(url);
 
-  const data = await res.data;
+  const data = res.data;
   // Pass data to the page via props
   return { props: { data } };
 }

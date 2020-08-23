@@ -19,13 +19,8 @@ const Services = ({ data }) => {
       <h1>השירותים שלנו </h1>
       <StyledService>
         {data.map((service, index) => (
-          <StyledWrapper>
-            <Link
-              key={service.id}
-              passHref
-              href="/services/[id]"
-              as={`/services/${service.id}`}
-            >
+          <StyledWrapper key={service.id}>
+            <Link passHref href="/services/[id]" as={`/services/${service.id}`}>
               <ServicePreview
                 index={index}
                 key={service.id}
@@ -57,7 +52,7 @@ export async function getServerSideProps() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/services`;
   const res = await axios.get(url);
 
-  const data = await res.data;
+  const data = res.data;
   // Pass data to the page via props
   return { props: { data } };
 }
