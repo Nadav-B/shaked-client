@@ -27,12 +27,7 @@ const StyledButton = styled.button`
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   }
 
-  &:focus,
-  &:active {
-    color: ${(p) => p.theme.colors.white};
-    background-color: ${(p) => p.theme.colors.torchRed};
-    outline: none;
-  }
+
 
   &:disabled {
     cursor: not-allowed;

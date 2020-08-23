@@ -81,6 +81,14 @@ const Survey = ({ id }) => {
     );
   };
 
+  const isChoosen = (question, answer) => {
+
+    for (let [key, value] of results) {
+      if (key == question && value === answer) return true;
+    }
+    return false;
+  };
+
   const handleAnswerSubmit = (event, question, answer) => {
     event.preventDefault();
     results.set(question, answer);
@@ -149,6 +157,7 @@ const Survey = ({ id }) => {
             <StyledAnswersWrapper>
               <Button
                 key={counter}
+                disabled={isChoosen(data.questions[index].question, answer)}
                 onClick={(event) => {
                   handleAnswerSubmit(
                     event,
