@@ -171,9 +171,11 @@ const Survey = ({ id }) => {
             </StyledAnswersWrapper>
           ))}
           {index > 0 && (
-            <Button onClick={backQuestion} type="submit">
-              לשאלה הקודמת
-            </Button>
+            <ButtonWrapper>
+              <Button onClick={backQuestion} type="submit">
+                לשאלה הקודמת
+              </Button>
+            </ButtonWrapper>
           )}
         </div>
       )}
@@ -205,6 +207,10 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
+const ButtonWrapper = styled.div`
+  max-width: 200px;
+  
+`;
 const StyledAnswersWrapper = styled.div`
   display: flex;
   width: 100%;
