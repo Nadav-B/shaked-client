@@ -13,7 +13,7 @@ export default () => (
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '908529556229314');
-      fbq('track', 'ContactSent');`,
+      fbq('track', 'Contact');`,
       }}
     />
     <noscript
