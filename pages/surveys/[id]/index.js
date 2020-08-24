@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import survey1 from "../../../public/surveys/1.json";
@@ -34,6 +34,19 @@ const Survey = ({ id }) => {
     fullname: "",
     phonenumber: "",
     category: "שאלון",
+  });
+
+  useEffect(function mount() {
+    // cancel back button. 
+    if (Status.Questions === currentStatus) {
+      history.pushState(null, document.title, location.href);
+      window.addEventListener("popstate", function (event) {
+        if (currentStatus === Status.Questions) {
+          history.pushState(null, document.title, location.href);
+          backQuestion();
+        }
+      });
+    }
   });
 
   const [index, setIndex] = useState(0);
@@ -100,8 +113,8 @@ const Survey = ({ id }) => {
       setCurrentstatus(Status.CompleteContact);
   };
 
-  const backQuestion = (event) => {
-    event.preventDefault();
+  const backQuestion = () => {
+    //event.preventDefault();
     if (index > 0) setIndex(index - 1);
   };
 
