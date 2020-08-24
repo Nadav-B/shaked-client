@@ -4,6 +4,7 @@ import Text from "../elements/Text";
 import Head from "next/head";
 import styled from "styled-components";
 import api from "../shared/api";
+import Pixel from "./facebook";
 import Title from "../elements/Title";
 
 const Contact = () => {
@@ -14,6 +15,8 @@ const Contact = () => {
     address: "",
     category: "כללי",
   });
+
+  const [pixel, setPixel] = useState(false);
 
   const [result, setResult] = useState({
     text: "",
@@ -64,6 +67,7 @@ const Contact = () => {
         }));
       }
     );
+    setPixel(true);
   };
 
   return (
@@ -134,6 +138,7 @@ const Contact = () => {
             שלח
           </Button>
         </form>
+        {pixel && <Pixel name="FACEBOOK_CONTACT_SENT_PIXEL" />}
       </StyledForm>
     </Wrapper>
   );
@@ -154,7 +159,7 @@ const StyledSelect = styled.select`
   display: block;
   width: 100%;
   margin: auto;
-  margin-top: 5px; 
+  margin-top: 5px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;

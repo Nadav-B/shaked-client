@@ -5,7 +5,7 @@ import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
 import Text from "../../../elements/Text";
 import Title from "../../../elements/Title";
-
+import Pixel from "../../facebook";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
@@ -23,6 +23,8 @@ const Survey = ({ id }) => {
 
   const [results, setResults] = useState(new Map());
 
+  const [pixel, setPixel] = useState(false);
+
   const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
   const [confirmation, setConfirmation] = useState({
     text: "",
@@ -37,7 +39,7 @@ const Survey = ({ id }) => {
   });
 
   useEffect(function mount() {
-    // cancel back button. 
+    // cancel back button.
     if (Status.Questions === currentStatus) {
       history.pushState(null, document.title, location.href);
       window.addEventListener("popstate", function (event) {
@@ -95,6 +97,7 @@ const Survey = ({ id }) => {
         }));
       }
     );
+    setPixel(true);
   };
 
   const isChoosen = (question, answer) => {
@@ -229,6 +232,7 @@ const Survey = ({ id }) => {
               שלח
             </Button>
           </form>
+          {pixel && <Pixel name="FACEBOOK_SURVEY_SENT_PIXEL" />}
         </ContactWrapper>
       )}
     </Wrapper>
