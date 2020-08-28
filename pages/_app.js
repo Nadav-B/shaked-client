@@ -7,8 +7,8 @@ import Footer from "../components/footer";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
+import Facebook from "./facebook"
 import "react-sweet-progress/lib/style.css";
-
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -20,6 +20,7 @@ const App = ({ Component, pageProps }) => {
           href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
           rel="stylesheet"
         ></link>
+        <Facebook event="SubmitApplication"/>
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
