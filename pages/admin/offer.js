@@ -15,6 +15,7 @@ const OfferManager = () => {
     introduction: "",
     content: "",
     contactButton: "",
+    path: "",
   });
 
   const [result, setResult] = useState({
@@ -27,7 +28,6 @@ const OfferManager = () => {
     async function getRequestForm() {
       try {
         const response = await api.getOffers();
-        console.log(response, "data");
         setData(response.data);
       } catch {
         setResult((prevState) => ({
@@ -45,7 +45,7 @@ const OfferManager = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await api.postService(state).then(
+    const res = await api.postOffer(state).then(
       (response) => {
         setResult((prevState) => ({
           ...prevState,
@@ -78,8 +78,8 @@ const OfferManager = () => {
     }));
   };
 
-  const deleteArticle = async () => {
-    await api.deleteService(state.id).then(
+  const deleteObject = async () => {
+    await api.deleteOffer(state.id).then(
       (response) => {
         setResult((prevState) => ({
           ...prevState,
@@ -119,6 +119,7 @@ const OfferManager = () => {
         introduction: storedObject.introduction,
         content: storedObject.content,
         contactButton: storedObject.contactButton,
+        path: storedObject.path,
       });
     } else {
       setState({
@@ -137,15 +138,26 @@ const OfferManager = () => {
         <h1> ערוך הצעה</h1>
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף הצעה </option>
-          {data && data.map((service) => (
-            <option key={service.id} value={service.id}>
-              {service.title}
-            </option>
-          ))}
+          {data &&
+            data.map((service) => (
+              <option key={service.id} value={service.id}>
+                {service.title}
+              </option>
+            ))}
         </StyledSelect>
 
         <StyledForm>
           <form onSubmit={handleSubmit}>
+            <label>
+              שם ההצעה באנגלית
+              <StyledInput
+                name="path"
+                value={state.path}
+                placeholder="שדה חובה"
+                onChange={handleChange}
+                required
+              />
+            </label>
             <label>
               שם ההצעה
               <StyledInput
@@ -167,7 +179,7 @@ const OfferManager = () => {
               />
             </label>
             <label>
-              תוכן כתבה
+              תוכן ההצעה
               <StyledInput
                 name="content"
                 placeholder="שדה חובה"
@@ -199,7 +211,7 @@ const OfferManager = () => {
               <Button
                 type="button"
                 onClick={() => {
-                  deleteArticle();
+                  deleteObject();
                 }}
               >
                 מחק כתבה

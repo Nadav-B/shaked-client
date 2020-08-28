@@ -73,8 +73,6 @@ const postArticle = async (article) => {
 };
 
 const postArticleImage = async (id, image) => {
-  console.log(id);
-  console.log(image);
   const formData = new FormData();
   formData.append("image", image);
   const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/postImage/${id}`;
@@ -106,14 +104,32 @@ const getOffer = async (id) => {
   });
 };
 
+const getOfferByPath = async (path) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/offer/path/${path}`;
+  return await axios.get(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+};
+
 const getOffers = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/offers`;
   const token = Cookies.get("token");
-  console.log(token, "toki");
   return await axios.get(url, {
     headers: {
       Authorization: `Basic ${token}`,
       Accept: "application/json",
+    },
+  });
+};
+
+const deleteOffer = async (id) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/delete/${id}`;
+  const token = Cookies.get("token");
+  return await axios.get(url, {
+    headers: {
+      Authorization: `Basic ${token}`,
     },
   });
 };
@@ -203,7 +219,9 @@ export default {
   postService,
   deleteService,
   getOffer,
+  getOfferByPath,
   getOffers,
+  deleteOffer,
   postOffer,
   postText,
   deleteText,

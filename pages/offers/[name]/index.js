@@ -1,11 +1,12 @@
 import React from "react";
 import Head from "next/head";
-import axios from "axios";
 import api from "../../../shared/api";
 import Button from "../../../elements/Button";
 import { directByContact } from "../../../config/contactButtonLinks";
-const Service = ({ data }) => {
+const Offer = ({ data }) => {
+
   return (
+    
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,10 +44,10 @@ export async function getServerSideProps({ query }) {
 
   // Fetch data from external API
 
-  const res = await api.getService(13);
+  const res = await api.getOfferByPath(name);
   const data = await res.data;
   // Pass data to the page via props
   return { props: { data } };
 }
 
-export default Service;
+export default Offer;

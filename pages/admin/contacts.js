@@ -35,8 +35,6 @@ const ContactManagers = () => {
       try {
         const response = await api.getContacts();
         setContacts(response.data);
-        const date = response.data[0].date;
-        console.log(new Date(date));
       } catch {
         setResult((prevState) => ({
           ...prevState,

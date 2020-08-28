@@ -13,7 +13,6 @@ const FacebookScript = (event) => (
         s.parentNode.insertBefore(t,s)}(window,document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
          fbq('init', '908529556229314'); 
-         console.log("נשלח");
          fbq('track', '${event}');`,
       }}
     />
@@ -26,6 +25,5 @@ const FacebookScript = (event) => (
     />
   </React.Fragment>
 );
-
 
 export default FacebookScript;
