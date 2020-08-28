@@ -1,11 +1,11 @@
 import React from "react";
-import survey1 from "../public/surveys/1.json";
-import survey2 from "../public/surveys/2.json";
+import survey1 from "../../public/surveys/1.json";
+import survey2 from "../../public/surveys/2.json";
 import Link from "next/link";
-import Text from "../elements/Text";
+import Text from "../../elements/Text";
 import styled from "styled-components";
 import Head from "next/head";
-import Title from "../elements/Title";
+import Title from "../../elements/Title";
 
 const Surveys = () => {
   const data = [survey1, survey2];
@@ -20,9 +20,7 @@ const Surveys = () => {
           key="ogdesc"
         />
       </Head>
-      <Title>
-      שאלונים לביצוע בדיקה
-      </Title>
+      <Title>שאלונים לביצוע בדיקה</Title>
       <StyledContainer>
         {data.map((survey) => (
           <Link

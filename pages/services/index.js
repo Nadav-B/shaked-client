@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
-import ServicePreview from "../elements/ServicePreview";
+import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
 import Head from "next/head";
-import api from "../shared/api";
+import api from "../../shared/api";
 
-import Title from "../elements/Title";
+import Title from "../../elements/Title";
 
 const Services = ({ data }) => {
   return (

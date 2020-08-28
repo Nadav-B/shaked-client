@@ -2,10 +2,10 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import Head from "next/head";
-import api from "../shared/api";
-import Title from "../elements/Title";
+import api from "../../shared/api";
+import Title from "../../elements/Title";
 
-import ArticlePreview from "../elements/ArticlePreview";
+import ArticlePreview from "../../elements/ArticlePreview";
 
 const Articles = ({ data }) => {
   return (
