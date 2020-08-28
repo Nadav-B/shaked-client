@@ -19,6 +19,9 @@ const Admin = () => {
         <Link href={"/admin/about"}>
           <Button> ערוך או הוסף אודות</Button>
         </Link>
+        <Link href={"/admin/offer"}>
+          <Button> ערוך או הוסף הצעות</Button>
+        </Link>
       </StyledAdmin>
     );
   } else {

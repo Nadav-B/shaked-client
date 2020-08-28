@@ -97,6 +97,38 @@ const deleteArticle = async (id) => {
   });
 };
 
+const getOffer = async (id) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/offer/${id}`;
+  return await axios.get(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+};
+
+const getOffers = async () => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers`;
+  const token = Cookies.get("token");
+  console.log(token, "toki");
+  return await axios.get(url, {
+    headers: {
+      Authorization: `Basic ${token}`,
+      Accept: "application/json",
+    },
+  });
+};
+
+const postOffer = async (offer) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/post`;
+  const token = Cookies.get("token");
+  return await axios.post(url, offer, {
+    headers: {
+      Authorization: `Basic ${token}`,
+      Accept: "application/json",
+    },
+  });
+};
+
 const getService = async (id) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/services/service/${id}`;
   return await axios.get(url, {
@@ -170,6 +202,9 @@ export default {
   getServices,
   postService,
   deleteService,
+  getOffer,
+  getOffers,
+  postOffer,
   postText,
   deleteText,
   isAuthenticated,
