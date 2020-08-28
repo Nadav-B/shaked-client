@@ -1,6 +1,6 @@
 import React from "react";
 
-const FacebookScript = (event) => (
+const PixelPageview = () => (
   <React.Fragment>
     <script
       dangerouslySetInnerHTML={{
@@ -30,4 +30,4 @@ const FacebookScript = (event) => (
   </React.Fragment>
 );
 
-export default FacebookScript;
+export default PixelPageview;

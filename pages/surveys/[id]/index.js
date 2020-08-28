@@ -5,7 +5,7 @@ import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
 import Text from "../../../elements/Text";
 import Title from "../../../elements/Title";
-import Pixel from "../../facebook";
+import PixelSubmitApplication from "../../facebook/PixelSubmitApplication";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
@@ -232,7 +232,7 @@ const Survey = ({ id }) => {
               שלח
             </Button>
           </form>
-          {pixel && <Pixel event="SubmitApplication" />}
+          {pixel && <PixelSubmitApplication />}
         </ContactWrapper>
       )}
     </Wrapper>

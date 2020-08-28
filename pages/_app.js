@@ -7,7 +7,9 @@ import Footer from "../components/footer";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import Facebook from "./facebook"
+import PixelPageview from "./facebook/PixelPageview";
+import PixelSubmitApplication from "./facebook/PixelSubmitApplication";
+
 import "react-sweet-progress/lib/style.css";
 
 const App = ({ Component, pageProps }) => {
@@ -20,7 +22,7 @@ const App = ({ Component, pageProps }) => {
           href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
           rel="stylesheet"
         ></link>
-        <Facebook event="SubmitApplication"/>
+        <PixelPageview />
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyles />

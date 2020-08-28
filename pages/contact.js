@@ -4,7 +4,7 @@ import Text from "../elements/Text";
 import Head from "next/head";
 import styled from "styled-components";
 import api from "../shared/api";
-import Pixel from "./facebook";
+import PixelContact from "./facebook/PixelContact";
 import Title from "../elements/Title";
 
 const Contact = () => {
@@ -16,7 +16,7 @@ const Contact = () => {
     category: "כללי",
   });
 
-  const [pixel, setPixel] = useState(false);
+  const [pixel, setPixel] = useState();
 
   const [result, setResult] = useState({
     text: "",
@@ -44,10 +44,8 @@ const Contact = () => {
   };
 
   const handleSubmit = async (event) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/post`;
-
     event.preventDefault();
-
+    setPixel(true);
     await api.postContact(state).then(
       (response) => {
         console.log(response);
@@ -67,7 +65,6 @@ const Contact = () => {
         }));
       }
     );
-    setPixel(true);
   };
 
   return (
@@ -138,7 +135,7 @@ const Contact = () => {
             שלח
           </Button>
         </form>
-        {pixel && <Pixel event="Contact" />}
+        {pixel && PixelContact}
       </StyledForm>
     </Wrapper>
   );
