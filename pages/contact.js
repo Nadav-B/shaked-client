@@ -138,7 +138,7 @@ const Contact = () => {
             שלח
           </Button>
         </form>
-        {pixel && <Pixel name="FACEBOOK_CONTACT_SENT_PIXEL" />}
+        {pixel && <Pixel event="Contact" />}
       </StyledForm>
     </Wrapper>
   );

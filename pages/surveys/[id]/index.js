@@ -232,7 +232,7 @@ const Survey = ({ id }) => {
               שלח
             </Button>
           </form>
-          {pixel && <Pixel name="FACEBOOK_SURVEY_SENT_PIXEL" />}
+          {pixel && <Pixel event="SubmitApplication" />}
         </ContactWrapper>
       )}
     </Wrapper>

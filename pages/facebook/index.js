@@ -1,17 +1,15 @@
 import React from "react";
 import Head from "next/head";
 
-import FACEBOOK_SURVEY_SENT_PIXEL from "./survey_pixel";
-import FACEBOOK_CONTACT_SENT_PIXEL from "./contact_sent_pixel";
+import Facebook_Script from "./facebook_script";
 
-export default ({ name }) => {
-  console.log(name);
+const Pixel = ({ event }) => {
+  console.log(event);
   return (
     <Head>
-      {name === "FACEBOOK_SURVEY_SENT_PIXEL" && <FACEBOOK_SURVEY_SENT_PIXEL />}
-      {name === "FACEBOOK_CONTACT_SENT_PIXEL" && (
-        <FACEBOOK_CONTACT_SENT_PIXEL />
-      )}
+      <Facebook_Script event={event} />
     </Head>
   );
 };
+
+export default Pixel;
