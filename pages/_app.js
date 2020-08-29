@@ -7,20 +7,20 @@ import Footer from "../components/footer";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import PixelPageview from "../socialNetwork/PixelPageview";
+import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
 
 const App = ({ Component, pageProps }) => {
   return (
     <div>
       <Head>
+        <GoogleTagManager />
         <title>שקד משכנתאות</title>
         <link rel="icon" href="/logos/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
           rel="stylesheet"
         ></link>
-        <PixelPageview />
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyles />

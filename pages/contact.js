@@ -4,7 +4,6 @@ import Text from "../elements/Text";
 import Head from "next/head";
 import styled from "styled-components";
 import api from "../shared/api";
-import PixelContact from "../socialNetwork/PixelContact";
 import Title from "../elements/Title";
 
 const Contact = () => {
@@ -15,8 +14,6 @@ const Contact = () => {
     address: "",
     category: "כללי",
   });
-
-  const [pixel, setPixel] = useState();
 
   const [result, setResult] = useState({
     text: "",
@@ -45,7 +42,6 @@ const Contact = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setPixel(true);
     await api.postContact(state).then(
       (response) => {
         console.log(response);
@@ -135,7 +131,6 @@ const Contact = () => {
             שלח
           </Button>
         </form>
-        {pixel && PixelContact}
       </StyledForm>
     </Wrapper>
   );
