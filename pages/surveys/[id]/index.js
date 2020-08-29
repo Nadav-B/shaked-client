@@ -161,7 +161,9 @@ const Survey = ({ id }) => {
               onChange={handleChange}
               required
             />{" "}
-            <Button type="submit">שלח</Button>
+            <Button id="SurveysStarted" type="submit">
+              התחל
+            </Button>
           </form>
         </ContactWrapper>
       )}
@@ -225,7 +227,11 @@ const Survey = ({ id }) => {
               required
             />{" "}
             <Text variant={confirmation.style}> {confirmation.text}</Text>
-            <Button disabled={confirmation.status} type="submit">
+            <Button
+              id="submitSurvey"
+              disabled={confirmation.status}
+              type="submit"
+            >
               שלח
             </Button>
           </form>

@@ -127,7 +127,7 @@ const Contact = () => {
             </StyledSelect>
           </label>
           <Text variant={result.style}> {result.text}</Text>
-          <Button disabled={result.status} type="submit">
+          <Button id="submitContact" disabled={result.status} type="submit">
             שלח
           </Button>
         </form>

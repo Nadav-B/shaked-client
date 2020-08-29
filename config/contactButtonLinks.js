@@ -3,7 +3,7 @@ import Router from "next/router";
 const contactLinks = [
   {
     name: "לביצוע בדיקה חינם",
-    link: "/contact",
+    link: "/surveys",
   },
   {
     name: "צריכים עזרה עם המשכנתא?",
