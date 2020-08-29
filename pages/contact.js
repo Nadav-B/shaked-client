@@ -72,7 +72,7 @@ const Contact = () => {
       <Title>צרו קשר</Title>
 
       <StyledForm>
-        <form id="submitContactForm"  onSubmit={handleSubmit}>
+        <form id="submitContactForm" onSubmit={handleSubmit}>
           <label>
             שם מלא
             <StyledInput

@@ -94,7 +94,6 @@ const Survey = ({ id }) => {
         }));
       }
     );
-    setPixel(true);
   };
 
   const isChoosen = (question, answer) => {
