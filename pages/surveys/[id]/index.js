@@ -217,7 +217,7 @@ const Survey = ({ id }) => {
         <ContactWrapper>
           <Progress percent={100} />
           <Text>השאירו טלפון ונציג שלנו ייצור עמכם קשר להשלמת הבדיקה:</Text>
-          <form onSubmit={fillPhone}>
+          <form id="submitSurveyForm" onSubmit={fillPhone}>
             <StyledInput
               name="phonenumber"
               value={contact.phonenumber}
