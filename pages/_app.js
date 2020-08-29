@@ -7,9 +7,7 @@ import Footer from "../components/footer";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import PixelPageview from "./facebook/PixelPageview";
-import PixelSubmitApplication from "./facebook/PixelSubmitApplication";
-
+import PixelPageview from "../socialNetwork/PixelPageview";
 import "react-sweet-progress/lib/style.css";
 
 const App = ({ Component, pageProps }) => {
