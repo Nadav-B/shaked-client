@@ -26,6 +26,7 @@ const getContacts = async () => {
 
 const postContact = async (contact) => {
   const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/contacts/post`;
+  console.log(url);
   return await axios.post(url, contact, {
     headers: {
       Accept: "application/json",
