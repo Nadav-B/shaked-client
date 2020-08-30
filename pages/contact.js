@@ -4,7 +4,6 @@ import Text from "../elements/Text";
 import Head from "next/head";
 import styled from "styled-components";
 import api from "../shared/api";
-import Pixel from "./facebook";
 import Title from "../elements/Title";
 
 const Contact = () => {
