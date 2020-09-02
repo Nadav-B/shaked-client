@@ -73,6 +73,7 @@ const Survey = ({ id }) => {
     const contactForm = {
       fullname: contact.fullname,
       phonenumber: contact.phonenumber,
+      category: contact.category,
       survey: survey,
     };
 
