@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
 import Head from "next/head";
+import styled from "styled-components";
 
 const About = ({ data }) => {
   return (
-    <div>
+    <Wrapper>
       <Head>
         <meta name="description" content=" אודות" />
         <meta property="og:description" content="אודות " key="ogdesc" />
@@ -12,16 +13,21 @@ const About = ({ data }) => {
       <div>
         {data.map((text) => (
           <div
-          key ={text.id}
+            key={text.id}
             dangerouslySetInnerHTML={{
               __html: text.content,
             }}
           ></div>
         ))}
       </div>
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  max-width: 700px;
+  margin: auto;
+`;
 
 export async function getServerSideProps() {
   // Fetch data from external API
