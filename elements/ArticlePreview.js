@@ -56,6 +56,6 @@ const Wrapper = styled.div`
   display: block;
   
   height: 100%;
-  width: 400px;
+  max-width: 400px;
 `;
 export default ArticlePreview;
