@@ -46,7 +46,11 @@ const StyledMenu = styled.nav`
   height: auto;
   display: block;
   position: fixed;
-  right: 150px;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 120px;
+  background: white;
   z-index: 1;
   li {
     cursor: pointer;
@@ -60,14 +64,18 @@ const StyledMenu = styled.nav`
     color: red;
   }
 
+  ul {
+    position: relative;
+    top: 50px;
+    right: 150px;
+  }
   a {
     display: block;
-    height: 100%;
+    margin-top: 15px;
   }
 
   @media (max-width: 768px) {
     position: fixed;
-    top: 120px;
     left: 0;
     right: 0;
     height: 100%;
@@ -85,8 +93,12 @@ const StyledMenu = styled.nav`
       position: relative;
     }
 
+    ul {
+      position: relative;
+      top: 150px;
+      right: 0;
+    }
     a {
-      padding: 15px;
       display: block;
       height: 100%;
     }
