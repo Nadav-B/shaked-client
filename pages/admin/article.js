@@ -74,7 +74,6 @@ const ArticleManager = ({ data }) => {
   };
 
   const handleText = async (event) => {
-
     const fileReader = new FileReader();
 
     fileReader.onloadend = function (e) {
@@ -86,7 +85,6 @@ const ArticleManager = ({ data }) => {
     };
     fileReader.readAsText(event.target.files[0]);
     event.target.value = null;
-
   };
 
   const deleteArticle = async () => {
@@ -163,7 +161,7 @@ const ArticleManager = ({ data }) => {
         </StyledSelect>
 
         <StyledForm>
-          <form  onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <label>
               שם הכתבה
               <StyledInput
@@ -195,8 +193,7 @@ const ArticleManager = ({ data }) => {
               />
             </label>
             <label>
-העלה מסמך html או העתק תוכן כתבה
-
+              העלה מסמך html או העתק תוכן כתבה
               <StyledInput
                 name="content"
                 placeholder="שדה חובה"
@@ -207,8 +204,8 @@ const ArticleManager = ({ data }) => {
                 name="content"
                 placeholder="שדה חובה"
                 type="file"
+                accept=".html"
                 onChange={handleText}
-                
               />
             </label>
             <label>
@@ -227,7 +224,9 @@ const ArticleManager = ({ data }) => {
             </label>
             <label>
               תמונה
-              <StyledInput name="image" onChange={handleImage} type="file" />
+              <StyledInput name="image"
+              accept="image/*"
+              onChange={handleImage} type="file" />
               תצוגה מקדימה
               <StyledImage src={imagePreview} alt="" />
             </label>
