@@ -23,22 +23,21 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
 });
 
 const StyledArticlePreview = styled.div`
-  * {
-    border-radius: 2%;
-  }
-
-  *:hover {
-    color: white;
-    background: ${(p) => p.theme.colors.navyBlue};
-  }
-
-  border-radius: 2%;
-
+  display: flex;
   margin: 10px;
+  width: auto;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 400px;
   min-height: 300px;
+
+  *:hover {
+    background: ${(p) => p.theme.colors.lightGrey};
+    color: ${(p) => p.theme.colors.navyBlue};
+    -webkit-transition: background-color 2s ease-out;
+    -moz-transition: background-color 2s ease-out;
+    -o-transition: background-color 2s ease-out;
+    transition: background-color 2s ease-out;
+  }
 `;
 
 const StyledPicture = styled.picture`
@@ -55,6 +54,8 @@ const StyledPicture = styled.picture`
 const Wrapper = styled.div`
   margin: auto;
   display: block;
+  
   height: 100%;
+  width: 400px;
 `;
 export default ArticlePreview;
