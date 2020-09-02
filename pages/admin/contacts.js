@@ -3,11 +3,16 @@ import styled from "styled-components";
 import api from "../../shared/api";
 import Text from "../../elements/Text";
 import Button from "../../elements/Button";
+import Modal from "../../elements/Modal";
 
 const ContactManagers = () => {
   const [contacts, setContacts] = useState();
 
+  const [selectedContact, setSelectedContact] = useState();
+
   const [survey, setSurvey] = useState();
+
+  const [open, setOpen] = useState(false);
 
   const [result, setResult] = useState({
     text: "",
@@ -17,6 +22,11 @@ const ContactManagers = () => {
 
   const renderDate = (dateString) => {
     return new Date(dateString).toDateString();
+  };
+
+  const contactToDelete = (contact) => {
+    setSelectedContact(contact);
+    setOpen(true);
   };
 
   const deleteContact = async (id) => {
@@ -55,54 +65,63 @@ const ContactManagers = () => {
         <h1> אנשי קשר</h1>
         <Text variant={result.style}>{result.text}</Text>
         {contacts && (
-          <table>
-            <thead>
-              <tr>
-                <th> </th>
-                <th> שם מלא</th>
-                <th> טלפון</th>
-                <th> דוא״ל</th>
-                <th> כתובת</th>
-                <th> תאריך</th>
-                <th> סוג השירות</th>
-                <th> שאלון </th>
-              </tr>
-            </thead>
-            <tbody>
-              {contacts.map((contact) => (
-                <tr key={contact.id}>
-                  <td>
-                    {" "}
-                    <StyledRoundedButton
-                      onClick={() => {
-                        deleteContact(contact.id);
-                      }}
-                    >
-                      X
-                    </StyledRoundedButton>{" "}
-                  </td>
-                  <td>{contact.fullname} </td>
-                  <td> {contact.phonenumber}</td>
-                  <td> {contact.email} </td>
-                  <td> {contact.address} </td>
-                  <td> {renderDate(contact.date)} </td>
-                  <td> {contact.category} </td>
-
-                  <td>
-                    {contact.survey && (
-                      <Button
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th> שם מלא</th>
+                  <th> טלפון</th>
+                  <th> דוא״ל</th>
+                  <th> כתובת</th>
+                  <th> תאריך</th>
+                  <th> סוג השירות</th>
+                  <th> שאלון </th>
+                </tr>
+              </thead>
+              <tbody>
+                {contacts.map((contact) => (
+                  <tr key={contact.id}>
+                    <td>
+                      {" "}
+                      <StyledRoundedButton
                         onClick={() => {
-                          showSurvey(contact.survey);
+                          contactToDelete(contact);
                         }}
                       >
-                        {contact.survey.name}
-                      </Button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                        X
+                      </StyledRoundedButton>{" "}
+                    </td>
+                    <td>{contact.fullname} </td>
+                    <td> {contact.phonenumber}</td>
+                    <td> {contact.email} </td>
+                    <td> {contact.address} </td>
+                    <td> {renderDate(contact.date)} </td>
+                    <td> {contact.category} </td>
+
+                    <td>
+                      {contact.survey && (
+                        <Button
+                          onClick={() => {
+                            showSurvey(contact.survey);
+                          }}
+                        >
+                          {contact.survey.name}
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {open && (
+          <Modal
+            deleteObject={deleteContact}
+            object={selectedContact}
+            setOpen={setOpen}
+          ></Modal>
         )}
         {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
       </StyledContact>
