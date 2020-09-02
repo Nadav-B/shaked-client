@@ -90,6 +90,8 @@ const Login = () => {
             value={state.username}
             placeholder="שדה חובה"
             onChange={handleChange}
+            type="text"
+            id="username"
             required
           />
         </label>
@@ -97,9 +99,11 @@ const Login = () => {
           סיסמא
           <StyledInput
             name="password"
+            id="password"
             value={state.password}
             placeholder="שדה חובה"
             onChange={handleChange}
+            type="password"
             required
           />
         </label>
