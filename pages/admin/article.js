@@ -1,10 +1,10 @@
-import axios from "axios";
 import styled from "styled-components";
 import React, { useState } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../shared/api";
 import { contactLinks } from "../../config/contactButtonLinks";
+import TextUploader from "../../elements/TextUploader";
 const ArticleManager = ({ data }) => {
   const [state, setState] = useState({
     id: "",
@@ -14,8 +14,6 @@ const ArticleManager = ({ data }) => {
     tag: "",
     contactButton: "",
   });
-
-  let fileReader;
 
   const [imagePreview, setImagePreview] = useState();
 
@@ -71,20 +69,6 @@ const ArticleManager = ({ data }) => {
 
   const handleImage = async (event) => {
     setUploadImage(event.target.files[0]);
-  };
-
-  const handleText = async (event) => {
-    const fileReader = new FileReader();
-
-    fileReader.onloadend = function (e) {
-      console.log(e.target.result);
-      setState((prevState) => ({
-        ...prevState,
-        content: e.target.result,
-      }));
-    };
-    fileReader.readAsText(event.target.files[0]);
-    event.target.value = null;
   };
 
   const deleteArticle = async () => {
@@ -193,21 +177,15 @@ const ArticleManager = ({ data }) => {
               />
             </label>
             <label>
-              העלה מסמך html או העתק תוכן כתבה
+              תוכן כתבה
               <StyledInput
                 name="content"
                 placeholder="שדה חובה"
                 value={state.content}
                 onChange={handleChange}
               />
-              <StyledInput
-                name="content"
-                placeholder="שדה חובה"
-                type="file"
-                accept=".html"
-                onChange={handleText}
-              />
             </label>
+            <TextUploader setState={setState} />
             <label>
               כפתור צרו קשר
               <StyledSelect
@@ -224,9 +202,12 @@ const ArticleManager = ({ data }) => {
             </label>
             <label>
               תמונה
-              <StyledInput name="image"
-              accept="image/*"
-              onChange={handleImage} type="file" />
+              <StyledInput
+                name="image"
+                accept="image/*"
+                onChange={handleImage}
+                type="file"
+              />
               תצוגה מקדימה
               <StyledImage src={imagePreview} alt="" />
             </label>

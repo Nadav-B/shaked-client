@@ -1,10 +1,10 @@
-import axios from "axios";
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import { contactLinks } from "../../config/contactButtonLinks";
 import api from "../../shared/api";
+import TextUploader from "../../elements/TextUploader";
 
 const OfferManager = () => {
   const [data, setData] = useState();
@@ -187,6 +187,7 @@ const OfferManager = () => {
                 onChange={handleChange}
               />
             </label>
+            <TextUploader setState={setState} />
             <label>
               כפתור צרו קשר
               <StyledSelect

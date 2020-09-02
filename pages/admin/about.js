@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../shared/api";
+import TextUploader from "../../elements/TextUploader";
+
 
 const AboutManager = ({ data }) => {
   const [state, setState] = useState({
@@ -136,6 +138,7 @@ const AboutManager = ({ data }) => {
                 onChange={handleChange}
               />
             </label>
+            <TextUploader setState={setState} />
 
             <Text variant={result.style}> {result.text}</Text>
             <Button disabled={result.status} type="submit">
@@ -157,16 +160,6 @@ const AboutManager = ({ data }) => {
     )
   );
 };
-
-const StyledImage = styled.img`
-  margin: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  width: 50%;
-`;
 
 const StyledSelect = styled.select`
   display: block;
