@@ -15,7 +15,6 @@ const Homepage = () => {
 };
 
 const StyledText = styled.div`
-
     position: absolute;
     top: 1vw;
     right: 0;

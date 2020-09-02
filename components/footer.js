@@ -4,20 +4,15 @@ import SizeWrapper from "../elements/SizeWrapper";
 const Fotter = () => (
   <StyledFooter>
     <StyledItem>שקד משכנתאות</StyledItem>
-
-    <StyledItem>רמת גן, ישראל</StyledItem>
-
     <StyledItem>
       נייד:<a href="tel:+97250742491934"> 050-7424-919</a> פקס: 077-3179998
     </StyledItem>
-
     <StyledItem>
       <a href="mailto:shay@shakedm.co.il?Subject=Hello" target="_top">
         shay@shakedm.co.il
       </a>{" "}
-        www.shakedm.co.il
+      www.shakedm.co.il
     </StyledItem>
-
     <StyledItem>
       <a
         target="_blank"
@@ -28,6 +23,11 @@ const Fotter = () => (
           <img className="center" src="/icons/facebook.svg" alt="Facebook" />
         </SizeWrapper>
       </a>
+      <a target="_blank" rel="noreferrer" href="https://wa.me/972507424919">
+        <SizeWrapper className="center" width={50}>
+          <img className="center" src="/icons/whatsapp.svg" alt="Whatsapp" />
+        </SizeWrapper>
+      </a>
     </StyledItem>
   </StyledFooter>
 );
@@ -35,14 +35,17 @@ const Fotter = () => (
 const StyledFooter = styled.footer`
   display: column;
   margin: auto;
+  width: 100%;
   text-align: center;
   justify-content: space-between;
   align-items: center;
 
   .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: inline;
+    height: 25px;
+    width: auto;
+    margin-right: 3px;
+    margin-left: 3px;
   }
 
   @media screen and (max-width: 700px) {
@@ -51,7 +54,7 @@ const StyledFooter = styled.footer`
 
 const StyledItem = styled.div`
   display: item;
-  padding: 4px;
+  padding-top: 4px;
 `;
 
 export default Fotter;

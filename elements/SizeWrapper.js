@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const SizeWrapper = ({ size, width, height, children, className }) => (
   <StyledSizeWrapper
@@ -13,15 +13,8 @@ const SizeWrapper = ({ size, width, height, children, className }) => (
 );
 
 const StyledSizeWrapper = styled.div`
-  height: ${p => (p.height ? p.height : p.size)}px;
-  width: ${p => (p.width ? p.width : p.size)}px;
-
-  .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
+  height: ${(p) => (p.height ? p.height : p.size)}px;
+  width: ${(p) => (p.width ? p.width : p.size)}px;
 `;
 
 export default SizeWrapper;
