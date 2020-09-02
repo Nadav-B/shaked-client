@@ -9,18 +9,26 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
-
+import { default as data } from "../config/seo";
 const App = ({ Component, pageProps }) => {
   return (
     <div>
       <Head>
         <GoogleTagManager />
-        <title>שקד משכנתאות</title>
+        <title> {data.title}</title>
         <link rel="icon" href="/logos/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
           rel="stylesheet"
         ></link>
+        <meta name="description" content={data.description}></meta>
+        <meta property="og:title" content={data.title} key="ogtitle" />
+        <meta property="og:image" content={data.image} key="ogimage" />
+        <meta
+          property="og:description"
+          content={data.description}
+          key="ogdesc"
+        />
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
