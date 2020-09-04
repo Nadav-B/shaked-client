@@ -1,14 +1,11 @@
 import styled from "styled-components";
 const DocumentViewer = ({ src }) => {
+  const file_src = `https://shakedm.co.il/documents/balance/${src}.pdf`;
 
-
-  const file_src=`https://shakedm.co.il/documents/balance/${src}.pdf`
-
-
-  const url = "https://shakedm.co.il/documents/balance/mizrahi-tefahot.pdf";
+  console.log(src)
   return (
     <StyledFrame
-      src={`https://docs.google.com/viewer?url=${url}&embedded=true`}
+      src={`https://docs.google.com/viewer?url=${file_src}&embedded=true`}
       width="100%"
       height="500px"
     />
