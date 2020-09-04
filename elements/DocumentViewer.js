@@ -1,5 +1,3 @@
-// Create Document Component
-
 import styled from "styled-components";
 const MyDocument = ({ src }) => {
   return (
