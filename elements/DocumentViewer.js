@@ -1,10 +1,18 @@
 import styled from "styled-components";
-const MyDocument = ({ src }) => {
+const DocumentViewer = ({ src }) => {
+
+  console.log(src)
+
+  const file_src=`https://shakedm.co.il/documents/balance/${src}.pdf`
+
+
+  const url = "https://shakedm.co.il/documents/balance/mizrahi-tefahot.pdf";
   return (
-    <div>
-      {src}
-      <StyledFrame src={src} width="100%" height="500px" />
-    </div>
+    <StyledFrame
+      src={`http://docs.google.com/viewer?url=${url}&embedded=true`}
+      width="100%"
+      height="500px"
+    />
   );
 };
 
@@ -16,4 +24,4 @@ const StyledFrame = styled.iframe`
   z-index: 100;
 `;
 
-export default MyDocument;
+export default DocumentViewer;
