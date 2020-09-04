@@ -7,7 +7,7 @@ const Document = ({ data }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta name="description" content={data.introduction}></meta>
+        <meta name="description" content={data.description}></meta>
         <meta property="og:title" content={data.title} key="ogtitle" />
 
         <meta
