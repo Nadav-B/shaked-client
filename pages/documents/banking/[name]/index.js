@@ -12,7 +12,7 @@ const Document = ({ data }) => {
 
         <meta
           property="og:description"
-          content={data.introduction}
+          content={data.description}
           key="ogdesc"
         />
         <title>{"shaked"}</title>
