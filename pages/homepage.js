@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import Text from "../elements/Text";
+import { Document, pdfjs, Page } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = "./pdf.worker.js";
 
 const Homepage = () => {
   return (
-    <StyledHomepage>
-      <StyledBackground />
-      <StyledText>
-        <h1> שקד משכנתאות</h1>
-        <Text> יעוץ משכנתאות וכלכלת המשפחה</Text>
-      </StyledText>
-    </StyledHomepage>
+    <div>
+      <Document file="example.pdf">
+        <Page pageNumber={0} />
+      </Document>
+    </div>
   );
 };
 
