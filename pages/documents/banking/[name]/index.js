@@ -9,13 +9,11 @@ const Document = ({ data }) => {
         <meta charSet="utf-8" />
         <meta name="description" content={data.description}></meta>
         <meta property="og:title" content={data.title} key="ogtitle" />
-
         <meta
           property="og:description"
           content={data.description}
           key="ogdesc"
         />
-        <title>{"shaked"}</title>
       </Head>
 
       <DocumentViewer src={data.src}></DocumentViewer>
