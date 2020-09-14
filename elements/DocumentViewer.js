@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export default class DocumentViewer extends Component {
   state = { numPages: null, pageNumber: 1 };
@@ -13,52 +12,51 @@ export default class DocumentViewer extends Component {
   };
 
   goToPrevPage = () =>
-    this.setState(state => ({ pageNumber: state.pageNumber - 1 }));
+    this.setState((state) => ({ pageNumber: state.pageNumber - 1 }));
   goToNextPage = () =>
-    this.setState(state => ({ pageNumber: state.pageNumber + 1 }));
+    this.setState((state) => ({ pageNumber: state.pageNumber + 1 }));
 
   render() {
     const { pageNumber, numPages } = this.state;
 
     return (
-      <StyledDiv style={{ width: 600 }}>
-      <nav>
-          <button onClick={this.goToPrevPage}>Prev</button>
-          <button onClick={this.goToNextPage}>Next</button>
-        </nav>
+      <div>
 
-        <div style={{ width: 1200 }}>
-          <Document
-      options={{
-        cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
-        cMapPacked: true,
-        disableFontFace:true,
-      }}
-            file="/example.pdf"
-            onLoadSuccess={this.onDocumentLoadSuccess}
-          >
-            <Page pageNumber={pageNumber} width={600} />
-          </Document>
-        </div>
 
-        <p>
-          Page {pageNumber} of {numPages}
+
+      <button onClick={this.goToPrevPage}>הקודם</button>
+      <button onClick={this.goToNextPage}>הבא</button>
+
+      <p>
+          עמוד {pageNumber} מתוך {numPages}
         </p>
+      <StyledDiv>
+
+    
+        <Document
+        externalLinkTarget="_parent"
+          options={{
+            cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+            cMapPacked: true,
+            disableFontFace: true,
+          }}
+          file="/example.pdf"
+          onLoadSuccess={this.onDocumentLoadSuccess}
+        >
+          <Page
+
+          renderTextLayer={true}
+          pageNumber={pageNumber}  />
+        </Document>
+
       </StyledDiv>
+      </div>
     );
   }
 }
 
 const StyledDiv = styled.div`
+position: relative;
+pointer-events: none;
 
-.test {
-
-  background: red;
-  font-family: david;
-  font-size: 24px;
-}
-
-  height: ${(p) => (p.height ? p.height : p.size)}px;
-  width: ${(p) => (p.width ? p.width : p.size)}px;
 `;
-
