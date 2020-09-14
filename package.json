@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "js-cookie": "^2.2.1",
+    "lodash.throttle": "^4.1.1",
     "next": "9.5.2",
     "react": "16.13.1",
     "react-credit-cards": "^0.8.3",

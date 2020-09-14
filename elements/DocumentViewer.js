@@ -1,15 +1,61 @@
-import React, { Component } from "react";
+import React, { PureComponent, Component } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import throttle from "lodash.throttle";
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-import styled from "styled-components";
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = { width: null };
+    this.throttledSetDivSize = throttle(this.setDivSize, 500);
+  }
 
-export default class DocumentViewer extends Component {
-  state = { numPages: null, pageNumber: 1 };
+  componentDidMount() {
+    this.setDivSize();
+    window.addEventListener("resize", this.throttledSetDivSize);
+  }
 
-  onDocumentLoadSuccess = ({ numPages }) => {
-    this.setState({ numPages });
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.throttledSetDivSize);
+  }
+
+  setDivSize = () => {
+    this.setState({ width: this.pdfWrapper.getBoundingClientRect().width });
   };
+
+  render() {
+    return (
+      <div
+        id="row"
+        style={{
+          height: "100%",
+          display: "flex",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          id="placeholderWrapper"
+          style={{ width: "10vw", height: "100vh" }}
+        />
+        <div
+          id="pdfWrapper"
+          style={{ width: "90vw" }}
+          ref={(ref) => (this.pdfWrapper = ref)}
+        >
+          <PdfComponent wrapperDivSize={this.state.width} />
+        </div>
+      </div>
+    );
+  }
+}
+
+class PdfComponent extends PureComponent {
+
+
+  constructor(props) {
+    super(props);
+    this.state = { numPages: null, pageNumber: 1 };
+  }
 
   goToPrevPage = () =>
     this.setState((state) => ({ pageNumber: state.pageNumber - 1 }));
@@ -17,46 +63,25 @@ export default class DocumentViewer extends Component {
     this.setState((state) => ({ pageNumber: state.pageNumber + 1 }));
 
   render() {
-    const { pageNumber, numPages } = this.state;
-
     return (
       <div>
+        <button onClick={this.goToPrevPage}>הקודם</button>
+        <button onClick={this.goToNextPage}>הבא</button>
 
-
-
-      <button onClick={this.goToPrevPage}>הקודם</button>
-      <button onClick={this.goToNextPage}>הבא</button>
-
-      <p>
-          עמוד {pageNumber} מתוך {numPages}
-        </p>
-      <StyledDiv>
-
-    
         <Document
-        externalLinkTarget="_parent"
+          externalLinkTarget="_parent"
           options={{
             cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
             cMapPacked: true,
             disableFontFace: true,
           }}
           file="/example.pdf"
-          onLoadSuccess={this.onDocumentLoadSuccess}
         >
-          <Page
-
-          renderTextLayer={true}
-          pageNumber={pageNumber}  />
+          <Page pageIndex={this.state.pageNumber} width={this.props.wrapperDivSize} />
         </Document>
-
-      </StyledDiv>
       </div>
     );
   }
 }
 
-const StyledDiv = styled.div`
-position: relative;
-pointer-events: none;
-
-`;
+export default App;
