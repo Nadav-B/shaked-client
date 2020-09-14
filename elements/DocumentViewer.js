@@ -50,25 +50,31 @@ class App extends PureComponent {
 }
 
 class PdfComponent extends PureComponent {
-
-
   constructor(props) {
     super(props);
     this.state = { numPages: null, pageNumber: 1 };
   }
 
-  goToPrevPage = () =>
-    this.setState((state) => ({ pageNumber: state.pageNumber - 1 }));
-  goToNextPage = () =>
-    this.setState((state) => ({ pageNumber: state.pageNumber + 1 }));
+  onDocumentLoadSuccess = ({ numPages }) => {
+    console.log("hey", numPages);
+    this.setState({ numPages: numPages });
+  };
+
+  goToPrevPage = () => {
+    if (this.state.pageNumber > 0)
+      this.setState((state) => ({ pageNumber: state.pageNumber - 1 }));
+  };
+  goToNextPage = () => {
+    console.log(this.state.pageNumber, this.state.numPages);
+    if (this.state.pageNumber < this.state.numPages - 1)
+      this.setState((state) => ({ pageNumber: state.pageNumber + 1 }));
+  };
 
   render() {
     return (
       <div>
-        <button onClick={this.goToPrevPage}>הקודם</button>
-        <button onClick={this.goToNextPage}>הבא</button>
-
         <Document
+          onLoadSuccess={this.onDocumentLoadSuccess}
           externalLinkTarget="_parent"
           options={{
             cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
@@ -77,7 +83,9 @@ class PdfComponent extends PureComponent {
           }}
           file="/example.pdf"
         >
-          <Page pageIndex={this.state.pageNumber} width={this.props.wrapperDivSize} />
+          {Array.from(Array(this.state.numPages).keys()).map((index) => (
+            <Page pageIndex={index} width={this.props.wrapperDivSize} />
+          ))}
         </Document>
       </div>
     );
