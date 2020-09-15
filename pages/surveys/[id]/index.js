@@ -172,7 +172,7 @@ const Survey = ({ id }) => {
         <div>
           <QuestionWrapper>
             <Text fontSize="large">
-              שאלה {index} מתוך {data.questions.length}
+              שאלה {index +1} מתוך {data.questions.length}
             </Text>
 
             <Progress
