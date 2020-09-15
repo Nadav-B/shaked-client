@@ -26,7 +26,7 @@ const Document = ({ data }) => {
 // This gets called on every request
 export async function getServerSideProps({ query }) {
   const fileName = query.name;
-  const src = `./documents/balance/${fileName}.pdf`;
+  const src = `/documents/balance/${fileName}.pdf`;
   
   // Fetch data from external API
   const data = {

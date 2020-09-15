@@ -53,7 +53,7 @@ class PdfComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { numPages: null, pageNumber: 1 };
-    console.log(props)
+    console.log(props.src)
   }
 
   onDocumentLoadSuccess = ({ numPages }) => {
