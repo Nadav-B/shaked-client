@@ -25,13 +25,14 @@ const Document = ({ data }) => {
 
 // This gets called on every request
 export async function getServerSideProps({ query }) {
-  const file = query.name;
-
+  const fileName = query.name;
+  const src = `./documents/balance/${fileName}.pdf`;
+  
   // Fetch data from external API
   const data = {
     title: "מסמכים",
     description: "הנחיות להוצאת יתרות מהבנקים",
-    src: file,
+    src: src,
   };
   // Pass data to the page via props
   return { props: { data } };

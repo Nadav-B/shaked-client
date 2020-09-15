@@ -42,7 +42,7 @@ class App extends PureComponent {
           style={{ width: "90vw" }}
           ref={(ref) => (this.pdfWrapper = ref)}
         >
-          <PdfComponent wrapperDivSize={this.state.width} />
+          <PdfComponent src={this.props.src} wrapperDivSize={this.state.width} />
         </div>
       </div>
     );
@@ -53,10 +53,10 @@ class PdfComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { numPages: null, pageNumber: 1 };
+    console.log(props)
   }
 
   onDocumentLoadSuccess = ({ numPages }) => {
-    console.log("hey", numPages);
     this.setState({ numPages: numPages });
   };
 
@@ -81,7 +81,7 @@ class PdfComponent extends PureComponent {
             cMapPacked: true,
             disableFontFace: true,
           }}
-          file="/example.pdf"
+          file={this.props.src}
         >
           {Array.from(Array(this.state.numPages).keys()).map((index) => (
             <Page pageIndex={index} width={this.props.wrapperDivSize} />
