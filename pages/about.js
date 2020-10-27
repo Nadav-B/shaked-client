@@ -2,8 +2,15 @@ import React from "react";
 import axios from "axios";
 import Head from "next/head";
 import styled from "styled-components";
+import { useQuery } from "@apollo/react-hooks";
+import TEXTS_QUERY from '../graphql/texts.query';
 
-const About = ({ data }) => {
+const About = () => {
+
+  const { data, loading, error } = useQuery(TEXTS_QUERY);
+  if (loading) return <p>טוען... </p>;
+  if (error) return <p>קימת שגיאה בשרת ... </p>;
+
   return (
     <Wrapper>
       <Head>
@@ -11,7 +18,7 @@ const About = ({ data }) => {
         <meta property="og:description" content="אודות " key="ogdesc" />
       </Head>
       <div>
-        {data.map((text) => (
+        {data.getTexts.map((text) => (
           <div
             key={text.id}
             dangerouslySetInnerHTML={{
@@ -28,16 +35,5 @@ const Wrapper = styled.div`
   max-width: 700px;
   margin: auto;
 `;
-
-export async function getServerSideProps() {
-  // Fetch data from external API
-
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/texts`;
-  const res = await axios.get(url);
-
-  const data = await res.data;
-  // Pass data to the page via props
-  return { props: { data } };
-}
 
 export default About;

@@ -1,22 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 import Text from "../elements/Text";
-
+import Articles from "./articles";
+import Contact from "./contact";
+import Surveys from "./surveys";
+import About from "./about";
+import Services from "./services";
 
 const Homepage = () => {
-
-
- 
   return (
-    <StyledHomepage>
-      <StyledBackground />
-      <StyledText>
-        <h1> שקד משכנתאות</h1>
-        <Text> יעוץ משכנתאות וכלכלת המשפחה</Text>
-      </StyledText>
-    </StyledHomepage>
+    <Wrapper>
+      <StyledLandingPage>
+        <StyledBackground />
+        <StyledText>
+          <h1> שקד משכנתאות</h1>
+          <Text> יעוץ משכנתאות וכלכלת המשפחה</Text>
+        </StyledText>
+      </StyledLandingPage>
+      <Articles/>
+      <About/>
+      <Surveys/>
+      <Services/> 
+      <Contact/>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+
+  `;
+
 
 const StyledText = styled.div`
     position: absolute;
@@ -37,7 +50,7 @@ const StyledText = styled.div`
 const StyledBackground = styled.div`
   position: fixed;
   width: 150%;
-  height: 500px;
+  height: 560px;
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 1) 0%,
@@ -69,7 +82,7 @@ const StyledBackground = styled.div`
   }
 `;
 
-const StyledHomepage = styled.div`
+const StyledLandingPage = styled.div`
 
     position: relative;
     width: auto;

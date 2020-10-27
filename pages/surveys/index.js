@@ -44,7 +44,6 @@ const Surveys = () => {
 };
 const StyledContainer = styled.div`
   margin: auto;
-  padding-top: 20px;
 `;
 
 const StyledButton = styled.div`

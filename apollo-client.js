@@ -6,7 +6,6 @@ import fetch from 'isomorphic-unfetch';
 
 // Update the GraphQL endpoint to any instance of GraphQL that you like
 const GRAPHQL_URL = `https://shakedm.co.il/api/graphql`;
-console.log(GRAPHQL_URL)
 const link = createHttpLink({
   fetch, // Switches between unfetch & node-fetch for client & server.
   uri: GRAPHQL_URL
