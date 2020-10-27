@@ -10,8 +10,14 @@ import styled from "styled-components";
 import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
 import { default as data } from "../config/seo";
-const App = ({ Component, pageProps }) => {
+import { ApolloProvider } from '@apollo/react-hooks';
+import withData from '../apollo-client';
+
+const App = ({ Component, pageProps,apollo }) => {
+
+
   return (
+    <ApolloProvider client={apollo}>
     <div>
       <Head>
         <GoogleTagManager />
@@ -39,6 +45,7 @@ const App = ({ Component, pageProps }) => {
         <Footer />
       </ThemeProvider>
     </div>
+    </ApolloProvider>
   );
 };
 
@@ -49,4 +56,5 @@ const StyledBody = styled.menu`
   min-height: 400px;
 `;
 
-export default App;
+
+export default withData(App);

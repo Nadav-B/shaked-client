@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useState}from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import Head from "next/head";
 import api from "../../shared/api";
 import Title from "../../elements/Title";
+import ARTICLES_QUERY from '../../graphql/articles.query';
 
 import ArticlePreview from "../../elements/ArticlePreview";
+import { useQuery } from "@apollo/react-hooks";
 
-const Articles = ({ data }) => {
+const Articles = () => {
+
+  const { data, loading, error } = useQuery(ARTICLES_QUERY);
+  if (loading) return <p>טוען כתבות... </p>;
+  if (error) return <p>קימת שגיאה בטעינת הכתבות... </p>;
   return (
     <div>
       <Head>
@@ -19,8 +25,8 @@ const Articles = ({ data }) => {
         />
       </Head>
       <Title>כתבות</Title>
-      <StyledArticles>
-        {data.map((article) => (
+    <StyledArticles>
+        { data.getArticles.map((article) => (
           <Link
             key={article.id}
             passHref
@@ -43,13 +49,4 @@ const StyledArticles = styled.div`
   justify-content: center;
 `;
 
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-
-  const res = await api.getArticles();
-  const data = res.data;
-  // Pass data to the page via props
-  return { props: { data } };
-}
 export default Articles;
