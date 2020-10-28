@@ -11,7 +11,6 @@ import Services from "./services";
 const Homepage = () => {
   return (
     <Wrapper>
-
       <StyledLandingPage>
         <StyledBackground />
         <StyledText>
@@ -19,16 +18,23 @@ const Homepage = () => {
           <Text> יעוץ משכנתאות וכלכלת המשפחה</Text>
         </StyledText>
       </StyledLandingPage>
+      <ContentBackground>
       <Articles/>
       <About/>
       <Surveys/>
       <Services/> 
       <Contact/>
+      </ContentBackground>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+
+  `;
+
+  const ContentBackground = styled.div`
+  background: white;
 
   `;
 
