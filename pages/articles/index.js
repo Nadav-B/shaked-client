@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import Head from "next/head";
 import Title from "../../elements/Title";
+import Loading from "../../elements/Loading";
 import ARTICLES_QUERY from '../../graphql/articles.query';
 
 import ArticlePreview from "../../elements/ArticlePreview";
@@ -11,7 +12,7 @@ import { useQuery } from "@apollo/react-hooks";
 const Articles = () => {
 
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
-  if (loading) return <p>טוען כתבות... </p>;
+  if (loading) return <Loading/>
   if (error) return <p>קימת שגיאה בטעינת הכתבות... </p>;
   return (
     <div>

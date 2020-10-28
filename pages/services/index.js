@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import Link from "next/link";
 import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
@@ -7,13 +6,15 @@ import Head from "next/head";
 import SERVICES_QUERY from '../../graphql/services.query';
 import { useQuery } from "@apollo/react-hooks";
 import Title from "../../elements/Title";
+import Loading from "../../elements/Loading";
 
 const Services = () => {
 
   const { data, loading, error } = useQuery(SERVICES_QUERY);
-  if (loading) return <p>טוען ... </p>;
+  if (loading) return <Loading/>
   if (error) return <p>קימת שגיאה בטעינת שירותי המשרד ... </p>;
   return (
+    
     <div>
       <Head>
         <meta name="description" content=" השירותים שלנו "></meta>
@@ -24,7 +25,6 @@ const Services = () => {
         />
       </Head>
       <Title>השירותים שלנו</Title>
-
       <StyledService>
         {data.getServices.map((service, index) => (
           <StyledWrapper key={service.id}>

@@ -12,6 +12,7 @@ const Surveys = () => {
 
   return (
     <div>
+    
       <Head>
         <meta name="description" content=" שאלונים לביצוע בדיקה"></meta>
         <meta

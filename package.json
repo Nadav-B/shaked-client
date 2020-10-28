@@ -22,6 +22,7 @@
     "react": "16.13.1",
     "react-credit-cards": "^0.8.3",
     "react-dom": "16.13.1",
+    "react-loadingg": "^1.7.2",
     "react-pdf": "^5.0.0",
     "react-sweet-progress": "^1.1.2",
     "styled-components": "^5.0.0"
