@@ -52,6 +52,7 @@ const App = ({ Component, pageProps,apollo }) => {
 const StyledBody = styled.menu`
   margin: auto;
   padding: 0;
+  
   min-height: 400px;
 `;
 

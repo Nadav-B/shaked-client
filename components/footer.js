@@ -47,6 +47,7 @@ const Fotter = () => (
 
 const StyledFooter = styled.footer`
   display: column;
+  background: white;
   margin: auto;
   width: 100%;
   text-align: center;
@@ -60,7 +61,6 @@ const StyledFooter = styled.footer`
     margin-right: 3px;
     margin-left: 3px;
   }
-
   @media screen and (max-width: 700px) {
   }
 `;
