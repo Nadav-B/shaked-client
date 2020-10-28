@@ -9,8 +9,7 @@ const About = () => {
 
   const { data, loading, error } = useQuery(TEXTS_QUERY);
   if (loading) return <Loading/>
-
-  if (error) return <p>קימת שגיאה בשרת ... </p>;
+  if (error) return <span></span>;
 
   return (
     <Wrapper>
