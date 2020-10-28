@@ -4,11 +4,15 @@ import Link from "next/link";
 import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
 import Head from "next/head";
-import api from "../../shared/api";
-
+import SERVICES_QUERY from '../../graphql/services.query';
+import { useQuery } from "@apollo/react-hooks";
 import Title from "../../elements/Title";
 
-const Services = ({ data }) => {
+const Services = () => {
+
+  const { data, loading, error } = useQuery(SERVICES_QUERY);
+  if (loading) return <p>טוען ... </p>;
+  if (error) return <p>קימת שגיאה בטעינת שירותי המשרד ... </p>;
   return (
     <div>
       <Head>
@@ -22,7 +26,7 @@ const Services = ({ data }) => {
       <Title>השירותים שלנו</Title>
 
       <StyledService>
-        {data.map((service, index) => (
+        {data.getServices.map((service, index) => (
           <StyledWrapper key={service.id}>
             <Link passHref href="/services/[id]" as={`/services/${service.id}`}>
               <ServicePreview
@@ -50,12 +54,5 @@ const StyledWrapper = styled.div`
   padding: 5px;
 `;
 
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await api.getServices();
-  const data = res.data;
-  // Pass data to the page via props
-  return { props: { data } };
-}
+
 export default Services;
