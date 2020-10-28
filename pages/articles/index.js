@@ -13,7 +13,8 @@ const Articles = () => {
 
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
   if (loading) return <Loading/>
-  if (error) return <p>קימת שגיאה בטעינת הכתבות... </p>;
+  if (error) return <span></span>;
+
   return (
     <div>
       <Head>

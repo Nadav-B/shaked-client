@@ -12,7 +12,7 @@ const Services = () => {
 
   const { data, loading, error } = useQuery(SERVICES_QUERY);
   if (loading) return <Loading/>
-  if (error) return <p>קימת שגיאה בטעינת שירותי המשרד ... </p>;
+  if (error) return <span></span>;
   return (
     
     <div>
