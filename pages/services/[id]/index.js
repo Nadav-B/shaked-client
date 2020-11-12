@@ -3,7 +3,9 @@ import Head from "next/head";
 import axios from "axios";
 import api from "../../../shared/api";
 import Button from "../../../elements/Button";
+
 import { directByContact } from "../../../config/contactButtonLinks";
+import TextWrapper from "../../../elements/TextWrapper";
 const Service = ({ data }) => {
   return (
     <div>
@@ -21,11 +23,11 @@ const Service = ({ data }) => {
         <title>{"shaked"}</title>
       </Head>
 
-      <div
+      <TextWrapper
         dangerouslySetInnerHTML={{
           __html: data.content,
         }}
-      ></div>
+      ></TextWrapper>
       <Button
         onClick={() => {
           directByContact(data.contactButton);

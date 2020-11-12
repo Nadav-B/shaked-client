@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import api from "../../../shared/api";
 import Button from "../../../elements/Button";
+import TextWrapper from "../../../elements/TextWrapper";
+
 import { directByContact } from "../../../config/contactButtonLinks";
 const Offer = ({ data }) => {
 
@@ -22,11 +24,11 @@ const Offer = ({ data }) => {
         <title>{"shaked"}</title>
       </Head>
 
-      <div
+            <TextWrapper
         dangerouslySetInnerHTML={{
           __html: data.content,
         }}
-      ></div>
+      ></TextWrapper>
       <Button
         onClick={() => {
           directByContact(data.contactButton);

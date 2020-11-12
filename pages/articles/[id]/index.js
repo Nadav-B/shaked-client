@@ -1,11 +1,11 @@
 import React from "react";
 import Head from "next/head";
-import axios from "axios";
 import api from "../../../shared/api";
 import { directByContact } from "../../../config/contactButtonLinks";
-
 import styled from "styled-components";
 import Button from "../../../elements/Button";
+import TextWrapper from "../../../elements/TextWrapper";
+
 const Article = ({ data }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
   return (
@@ -22,11 +22,11 @@ const Article = ({ data }) => {
       </Head>
       <StyledArticle>
         <StyledImage src={image} alt="" />
-        <div
+        <TextWrapper
           dangerouslySetInnerHTML={{
             __html: data.content,
           }}
-        ></div>
+        ></TextWrapper>
       </StyledArticle>
       <Button
         onClick={() => {

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
 import TEXTS_QUERY from '../graphql/texts.query';
 import Loading from "../elements/Loading";
+import TextWrapper from "../elements/TextWrapper";
 
 const About = () => {
 
@@ -17,7 +18,7 @@ const About = () => {
         <meta name="description" content=" אודות" />
         <meta property="og:description" content="אודות " key="ogdesc" />
       </Head>
-      <div>
+      <TextWrapper>
         {data.getTexts.map((text) => (
           <div
             key={text.id}
@@ -26,7 +27,7 @@ const About = () => {
             }}
           ></div>
         ))}
-      </div>
+      </TextWrapper>
     </Wrapper>
   );
 };
@@ -35,5 +36,8 @@ const Wrapper = styled.div`
   max-width: 700px;
   margin: auto;
 `;
+
+
+
 
 export default About;
