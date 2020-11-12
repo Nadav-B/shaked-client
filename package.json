@@ -24,6 +24,7 @@
     "react-dom": "16.13.1",
     "react-loadingg": "^1.7.2",
     "react-pdf": "^5.0.0",
+    "react-super-responsive-table": "^5.1.4",
     "react-sweet-progress": "^1.1.2",
     "react-wavify": "^1.4.0",
     "styled-components": "^5.0.0"

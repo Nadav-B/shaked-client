@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import api from "../../shared/api";
 import Text from "../../elements/Text";
 import Button from "../../elements/Button";
+import Loading from "../../elements/Loading";
+
 import Modal from "../../elements/Modal";
 import TextWrapper from "../../elements/TextWrapper";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 
 const ContactManagers = () => {
   const [contacts, setContacts] = useState();
@@ -15,14 +18,16 @@ const ContactManagers = () => {
 
   const [open, setOpen] = useState(false);
 
-  const [result, setResult] = useState({
-    text: "",
-    style: "",
-    status: false,
-  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const renderDate = (dateString) => {
     return new Date(dateString).toDateString();
+  };
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const contactToDelete = (contact) => {
@@ -46,112 +51,99 @@ const ContactManagers = () => {
       try {
         const response = await api.getContacts();
         setContacts(response.data);
+        setLoading(false);
+        scrollToBottom();
       } catch {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "שגיאה בחיבור לשרת",
-          style: "error",
-          status: false,
-        }));
-        setContacts([]);
+        setError(true);
         console.log("check connection to server");
       }
     }
     if (!contacts) getRequestForm();
   });
-
+  if (loading) return <Loading />;
+  if (error) return <span></span>;
   return (
     api.isAuthenticated() && (
       <TextWrapper>
-      <StyledContact>
-        <h1> אנשי קשר</h1>
-        <Text variant={result.style}>{result.text}</Text>
-        {contacts && (
-          <div>
-            <table   >
-              <thead>
-                <tr>
-                  <th> </th>
-                  <th> שם מלא</th>
-                  <th> טלפון</th>
-                  <th> דוא״ל</th>
-                  <th> כתובת</th>
-                  <th> תאריך</th>
-                  <th> סוג השירות</th>
-                  <th> שאלון </th>
-                </tr>
-              </thead>
-              <tbody>
-                {contacts.map((contact) => (
-                  <tr key={contact.id}>
-                    <td>
-                      {" "}
-                      <StyledRoundedButton
-                        onClick={() => {
-                          contactToDelete(contact);
-                        }}
-                      >
-                        X
-                      </StyledRoundedButton>{" "}
-                    </td>
-                    <td>{contact.fullname} </td>
-                    <td> {contact.phonenumber}</td>
-                    <td> {contact.email} </td>
-                    <td> {contact.address} </td>
-                    <td> {renderDate(contact.date)} </td>
-                    <td> {contact.category} </td>
-
-                    <td>
-                      {contact.survey && (
-                        <Button
+        <StyledContact>
+          <h1> אנשי קשר</h1>
+          {contacts && (
+            <div>
+              <Table>
+                <Thead>
+                  <Tr>
+                    <Th> </Th>
+                    <Th> שם מלא</Th>
+                    <Th> טלפון</Th>
+                    <Th> דוא״ל</Th>
+                    <Th> כתובת</Th>
+                    <Th> תאריך</Th>
+                    <Th> סוג השירות</Th>
+                    <Th> שאלון </Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {contacts.map((contact) => (
+                    <Tr key={contact.id}>
+                      <Td>
+                        {" "}
+                        <StyledRoundedButton
                           onClick={() => {
-                            showSurvey(contact.survey);
+                            contactToDelete(contact);
                           }}
                         >
-                          {contact.survey.name}
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        {open && (
-          <Modal
-            deleteObject={deleteContact}
-            object={selectedContact}
-            setOpen={setOpen}
-          ></Modal>
-        )}
-        {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
-      </StyledContact>
-      </TextWrapper>
+                          X
+                        </StyledRoundedButton>{" "}
+                      </Td>
+                      <Td>{contact.fullname} </Td>
+                      <Td> {contact.phonenumber}</Td>
+                      <Td> {contact.email} </Td>
+                      <Td> {contact.address} </Td>
+                      <Td> {renderDate(contact.date)} </Td>
+                      <Td> {contact.category} </Td>
 
+                      <Td>
+                        {contact.survey && (
+                          <Button
+                            onClick={() => {
+                              showSurvey(contact.survey);
+                            }}
+                          >
+                            {contact.survey.name}
+                          </Button>
+                        )}
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+              <div ref={messagesEndRef} />
+            </div>
+          )}
+          {open && (
+            <Modal
+              deleteObject={deleteContact}
+              object={selectedContact}
+              setOpen={setOpen}
+            ></Modal>
+          )}
+          {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
+        </StyledContact>
+      </TextWrapper>
     )
   );
 };
 
 const StyledContact = styled.div`
-position: relative;
-
-  th {
-    min-width: 100px;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  td {
-    min-width: 100px;
-    text-align: center;
-    vertical-align: middle;
-  }
+  width: auto;
 `;
+
+
 
 const StyledRoundedButton = styled.button`
   height: 30px;
   width: 30px;
+  margin: 10px;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -185,7 +177,6 @@ const SurveyModal = ({ survey, setSurvey }) => {
       ))}
       <Button onClick={closeModal}>סגור</Button>
     </StyledSurveyModal>
-
   );
 };
 
@@ -197,7 +188,6 @@ const StyledSurveyModal = styled.div`
   bottom: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: white;
-
   max-width: 400px;
   color: black;
 `;

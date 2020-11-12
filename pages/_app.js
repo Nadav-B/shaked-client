@@ -12,6 +12,7 @@ import "react-sweet-progress/lib/style.css";
 import { default as data } from "../config/seo";
 import { ApolloProvider } from '@apollo/react-hooks';
 import withData from '../apollo-client';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const App = ({ Component, pageProps,apollo }) => {
 
@@ -52,7 +53,7 @@ const App = ({ Component, pageProps,apollo }) => {
 const StyledBody = styled.menu`
   margin: auto;
   padding: 0;
-  min-height: 400px;
+  min-height: 550px;
 `;
 
 
