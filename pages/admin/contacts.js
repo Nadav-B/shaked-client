@@ -4,19 +4,36 @@ import api from "../../shared/api";
 import Text from "../../elements/Text";
 import Button from "../../elements/Button";
 import Loading from "../../elements/Loading";
-
 import Modal from "../../elements/Modal";
 import TextWrapper from "../../elements/TextWrapper";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import Chartkick,{ ColumnChart, PieChart } from "react-chartkick";
+import "chart.js";
 
 const ContactManagers = () => {
+  Chartkick.options = {
+    colors: ["#F77F00", "#FCBF49"]
+  }
   const [contacts, setContacts] = useState();
 
   const [selectedContact, setSelectedContact] = useState();
 
   const [survey, setSurvey] = useState();
 
+  function groupBy(objectArray, property) {
+    return objectArray.reduce((acc, obj) => {
+      const key = obj[property];
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      // Add object to list for given key's value
+      acc[key].push(obj);
+      return acc;
+    }, {});
+  }
   const [open, setOpen] = useState(false);
+
+  const [datesData, setdatesForStatistic] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -45,6 +62,24 @@ const ContactManagers = () => {
   const showSurvey = (survey) => {
     setSurvey(survey);
   };
+
+  useEffect(() => {
+    if (contacts && !datesData) {
+      const dates = contacts
+        .map((contact) => {
+          return renderDate(contact.date);
+        })
+        .reduce((acc, value) => {
+          if (!acc[value]) {
+            acc[value] = 1;
+          } else {
+            acc[value]++;
+          }
+          return acc;
+        }, {});
+      setdatesForStatistic(dates);
+    }
+  }, contacts);
 
   useEffect(() => {
     async function getRequestForm() {
@@ -131,6 +166,7 @@ const ContactManagers = () => {
             ></Modal>
           )}
           {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
+          <ColumnChart data={datesData} />
         </StyledContact>
       </TextWrapper>
     )
