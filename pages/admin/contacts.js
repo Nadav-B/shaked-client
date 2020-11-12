@@ -95,13 +95,12 @@ const ContactManagers = () => {
                           X
                         </StyledRoundedButton>{" "}
                       </Td>
-                      <Td>{contact.fullname} </Td>
+                      <Td> {contact.fullname} </Td>
                       <Td> {contact.phonenumber}</Td>
                       <Td> {contact.email} </Td>
                       <Td> {contact.address} </Td>
                       <Td> {renderDate(contact.date)} </Td>
                       <Td> {contact.category} </Td>
-
                       <Td>
                         {contact.survey && (
                           <Button
@@ -134,11 +133,7 @@ const ContactManagers = () => {
   );
 };
 
-const StyledContact = styled.div`
-  width: auto;
-`;
-
-
+const StyledContact = styled.div``;
 
 const StyledRoundedButton = styled.button`
   height: 30px;
