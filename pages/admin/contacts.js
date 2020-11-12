@@ -96,7 +96,11 @@ const ContactManagers = () => {
                         </StyledRoundedButton>{" "}
                       </Td>
                       <Td> {contact.fullname} </Td>
-                      <Td> {contact.phonenumber}</Td>
+                      <Td>
+                        <a href={`tel:${contact.phonenumber}`}>
+                          {contact.phonenumber}
+                        </a>
+                      </Td>
                       <Td> {contact.email} </Td>
                       <Td> {contact.address} </Td>
                       <Td> {renderDate(contact.date)} </Td>
@@ -133,7 +137,11 @@ const ContactManagers = () => {
   );
 };
 
-const StyledContact = styled.div``;
+const StyledContact = styled.div`
+  a:hover {
+    color: blue;
+  }
+`;
 
 const StyledRoundedButton = styled.button`
   height: 30px;
