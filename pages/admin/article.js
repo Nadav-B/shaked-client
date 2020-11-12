@@ -5,6 +5,8 @@ import Text from "../../elements/Text";
 import api from "../../shared/api";
 import { contactLinks } from "../../config/contactButtonLinks";
 import TextUploader from "../../elements/TextUploader";
+import TextWrapper from "../../elements/TextWrapper";
+
 const ArticleManager = ({ data }) => {
   const [state, setState] = useState({
     id: "",
@@ -12,7 +14,8 @@ const ArticleManager = ({ data }) => {
     introduction: "",
     content: "",
     tag: "",
-    contactButton: "",
+    contactButton: contactLinks[0],
+
   });
 
   const [imagePreview, setImagePreview] = useState();
@@ -125,14 +128,15 @@ const ArticleManager = ({ data }) => {
         introduction: "",
         content: "",
         tag: "",
-        contactButton: "",
+        contactButton: contactLinks[0],
+
       });
     }
   };
 
   return (
     api.isAuthenticated() && (
-      <div>
+      <TextWrapper>
         <h1> ערוך כתבה</h1>
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף כתבה </option>
@@ -194,7 +198,7 @@ const ArticleManager = ({ data }) => {
                 onChange={handleChange}
               >
                 {contactLinks.map((link) => (
-                  <option key={link.name} value={link.name}>
+                  <option  selected={state.contactButton == link.name} key={link.name} value={link.name}>
                     {link.name}{" "}
                   </option>
                 ))}
@@ -228,7 +232,7 @@ const ArticleManager = ({ data }) => {
             )}
           </form>
         </StyledForm>
-      </div>
+      </TextWrapper>
     )
   );
 };

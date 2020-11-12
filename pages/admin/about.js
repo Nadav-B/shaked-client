@@ -5,6 +5,8 @@ import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
+TextWrapper
+import TextWrapper from "../../elements/TextWrapper";
 
 
 const AboutManager = ({ data }) => {
@@ -106,7 +108,7 @@ const AboutManager = ({ data }) => {
 
   return (
     api.isAuthenticated() && (
-      <div>
+      <TextWrapper>
         <h1> ערוך אודות</h1>
         <StyledSelect name="category" onChange={handleTextChange}>
           <option value=""> הוסף טקסט </option>
@@ -156,7 +158,7 @@ const AboutManager = ({ data }) => {
             )}
           </form>
         </StyledForm>
-      </div>
+      </TextWrapper>
     )
   );
 };

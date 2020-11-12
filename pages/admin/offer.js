@@ -5,8 +5,12 @@ import Text from "../../elements/Text";
 import { contactLinks } from "../../config/contactButtonLinks";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
+import TextWrapper from "../../elements/TextWrapper";
 
 const OfferManager = () => {
+
+  const offers_path =   `https://shakedm.co.il/offers/`;
+
   const [data, setData] = useState();
 
   const [state, setState] = useState({
@@ -14,7 +18,7 @@ const OfferManager = () => {
     title: "",
     introduction: "",
     content: "",
-    contactButton: "",
+    contactButton: contactLinks[0],
     path: "",
   });
 
@@ -24,6 +28,9 @@ const OfferManager = () => {
     status: false,
   });
 
+  const copyToClipBoard = async (text)  => {
+      await navigator.clipboard.writeText(text);
+  };
   useEffect(() => {
     async function getRequestForm() {
       try {
@@ -127,14 +134,16 @@ const OfferManager = () => {
         title: "",
         introduction: "",
         content: "",
-        contactButton: "",
+        contactButton: contactLinks[0],
+        path: ""
+
       });
     }
   };
 
   return (
     api.isAuthenticated() && (
-      <div>
+      <TextWrapper>
         <h1> ערוך הצעה</h1>
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף הצעה </option>
@@ -157,6 +166,15 @@ const OfferManager = () => {
                 onChange={handleChange}
                 required
               />
+
+{ state.path !=='' &&
+
+<Button onClick={() => copyToClipBoard(offers_path+state.path)}>
+העתק קישור
+(זמין רק לאחר שמירה)</Button>
+}
+
+
             </label>
             <label>
               שם ההצעה
@@ -195,8 +213,9 @@ const OfferManager = () => {
                 name="contactButton"
                 onChange={handleChange}
               >
+
                 {contactLinks.map((link) => (
-                  <option key={link.name} value={link.name}>
+                  <option  selected={state.contactButton == link.name} key={link.name} value={link.name}>
                     {link.name}{" "}
                   </option>
                 ))}
@@ -220,7 +239,7 @@ const OfferManager = () => {
             )}
           </form>
         </StyledForm>
-      </div>
+      </TextWrapper>
     )
   );
 };

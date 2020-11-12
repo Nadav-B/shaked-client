@@ -4,6 +4,7 @@ import api from "../../shared/api";
 import Text from "../../elements/Text";
 import Button from "../../elements/Button";
 import Modal from "../../elements/Modal";
+import TextWrapper from "../../elements/TextWrapper";
 
 const ContactManagers = () => {
   const [contacts, setContacts] = useState();
@@ -61,12 +62,13 @@ const ContactManagers = () => {
 
   return (
     api.isAuthenticated() && (
+      <TextWrapper>
       <StyledContact>
         <h1> אנשי קשר</h1>
         <Text variant={result.style}>{result.text}</Text>
         {contacts && (
           <div>
-            <table>
+            <table   >
               <thead>
                 <tr>
                   <th> </th>
@@ -125,12 +127,14 @@ const ContactManagers = () => {
         )}
         {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
       </StyledContact>
+      </TextWrapper>
+
     )
   );
 };
 
 const StyledContact = styled.div`
-  position: relative;
+position: relative;
 
   th {
     min-width: 100px;
@@ -181,6 +185,7 @@ const SurveyModal = ({ survey, setSurvey }) => {
       ))}
       <Button onClick={closeModal}>סגור</Button>
     </StyledSurveyModal>
+
   );
 };
 

@@ -6,6 +6,7 @@ import Text from "../../elements/Text";
 import { contactLinks } from "../../config/contactButtonLinks";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
+import TextWrapper from "../../elements/TextWrapper";
 
 const ServiceManager = ({ data }) => {
   const [state, setState] = useState({
@@ -13,7 +14,7 @@ const ServiceManager = ({ data }) => {
     title: "",
     introduction: "",
     content: "",
-    contactButton: "",
+    contactButton: contactLinks[0],
   });
 
   const [result, setResult] = useState({
@@ -105,13 +106,13 @@ const ServiceManager = ({ data }) => {
         title: "",
         introduction: "",
         content: "",
-        contactButton: "",
+        contactButton: contactLinks[0],
       });
     }
   };
 
   return (
-    <div>
+    <TextWrapper>
       <h1> ערוך שירות</h1>
       <StyledSelect name="category" onChange={handleArticleChange}>
         <option value=""> הוסף שירות </option>
@@ -163,7 +164,7 @@ const ServiceManager = ({ data }) => {
               onChange={handleChange}
             >
               {contactLinks.map((link) => (
-                <option key={link.name} value={link.name}>
+                  <option  selected={state.contactButton == link.name} key={link.name} value={link.name}>
                   {link.name}{" "}
                 </option>
               ))}
@@ -187,7 +188,7 @@ const ServiceManager = ({ data }) => {
           )}
         </form>
       </StyledForm>
-    </div>
+    </TextWrapper>
   );
 };
 
