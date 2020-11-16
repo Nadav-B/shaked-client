@@ -33,7 +33,7 @@ const postContact = async (contact) => {
 };
 
 const deleteContact = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/delete/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/contacts/delete/${id}`;
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
@@ -113,7 +113,7 @@ const getOfferByPath = async (path) => {
 };
 
 const getOffers = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/offers`;
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
