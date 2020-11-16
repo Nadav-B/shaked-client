@@ -14,7 +14,7 @@ const logout = () => {
 };
 
 const getContacts = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/contacts`;
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
