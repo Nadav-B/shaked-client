@@ -45,7 +45,6 @@ const Contact = () => {
 
     await api.postContact(state).then(
       (response) => {
-        console.log(response);
         setResult((prevState) => ({
           ...prevState,
           text: "נשלח בהצלחה!",

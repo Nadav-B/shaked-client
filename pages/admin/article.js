@@ -15,10 +15,7 @@ const ArticleManager = ({ data }) => {
     content: "",
     tag: "",
     contactButton: contactLinks[0].name,
-
   });
-
-  console.log(state)
 
   const [imagePreview, setImagePreview] = useState();
 
@@ -32,13 +29,10 @@ const ArticleManager = ({ data }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await api.postArticle(state).then(
+    await api.postArticle(state).then(
       (response) => {
-        console.log(response);
         if (response.data.id && uploadImage) {
-          ("posting");
-          const imagePost = api.postArticleImage(response.data.id, uploadImage);
-          console.log(imagePost);
+          api.postArticleImage(response.data.id, uploadImage);
         }
 
         setResult((prevState) => ({
@@ -50,7 +44,6 @@ const ArticleManager = ({ data }) => {
       },
       (error) => {
         console.log(error);
-
         setResult((prevState) => ({
           ...prevState,
           text: "שגיאה",
@@ -131,7 +124,6 @@ const ArticleManager = ({ data }) => {
         content: "",
         tag: "",
         contactButton: contactLinks[0].name,
-
       });
     }
   };
@@ -199,10 +191,9 @@ const ArticleManager = ({ data }) => {
                 name="contactButton"
                 onChange={handleChange}
                 value={state.contactButton}
-
               >
                 {contactLinks.map((link) => (
-                  <option  key={link.name} value={link.name}>
+                  <option key={link.name} value={link.name}>
                     {link.name}{" "}
                   </option>
                 ))}

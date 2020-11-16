@@ -24,7 +24,6 @@ const AboutManager = ({ data }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(state);
     await api.postText(state).then(
       (response) => {
         setResult((prevState) => ({

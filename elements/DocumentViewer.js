@@ -53,7 +53,6 @@ class PdfComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { numPages: null, pageNumber: 1 };
-    console.log(props.src)
   }
 
   onDocumentLoadSuccess = ({ numPages }) => {
@@ -65,7 +64,6 @@ class PdfComponent extends PureComponent {
       this.setState((state) => ({ pageNumber: state.pageNumber - 1 }));
   };
   goToNextPage = () => {
-    console.log(this.state.pageNumber, this.state.numPages);
     if (this.state.pageNumber < this.state.numPages - 1)
       this.setState((state) => ({ pageNumber: state.pageNumber + 1 }));
   };
