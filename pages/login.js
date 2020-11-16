@@ -18,7 +18,7 @@ const Login = () => {
     status: false,
   });
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/admin/user`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/admin/user`;
 
   const handleSubmit = (event) => {
     event.preventDefault();
