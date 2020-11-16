@@ -90,7 +90,6 @@ const ContactManagers = () => {
         scrollToBottom();
       } catch {
         setError(true);
-        console.log("check connection to server");
       }
     }
     if (!contacts) getRequestForm();

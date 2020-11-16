@@ -14,7 +14,7 @@ const ServiceManager = ({ data }) => {
     title: "",
     introduction: "",
     content: "",
-    contactButton: contactLinks[0],
+    contactButton: contactLinks[0].name,
   });
 
   const [result, setResult] = useState({
@@ -106,7 +106,7 @@ const ServiceManager = ({ data }) => {
         title: "",
         introduction: "",
         content: "",
-        contactButton: contactLinks[0],
+        contactButton: contactLinks[0].name,
       });
     }
   };
@@ -162,9 +162,10 @@ const ServiceManager = ({ data }) => {
               value={state.contactButton}
               name="contactButton"
               onChange={handleChange}
+              value={state.contactButton}
             >
               {contactLinks.map((link) => (
-                  <option  selected={state.contactButton == link.name} key={link.name} value={link.name}>
+                  <option  key={link.name} value={link.name}>
                   {link.name}{" "}
                 </option>
               ))}

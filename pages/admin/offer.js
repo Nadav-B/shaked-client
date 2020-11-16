@@ -18,7 +18,7 @@ const OfferManager = () => {
     title: "",
     introduction: "",
     content: "",
-    contactButton: contactLinks[0],
+    contactButton: contactLinks[0].name,
     path: "",
   });
 
@@ -44,7 +44,6 @@ const OfferManager = () => {
           status: false,
         }));
         setData([]);
-        console.log("check connection to server");
       }
     }
     if (!data) getRequestForm();
@@ -134,7 +133,7 @@ const OfferManager = () => {
         title: "",
         introduction: "",
         content: "",
-        contactButton: contactLinks[0],
+        contactButton: contactLinks[0].name,
         path: ""
 
       });
@@ -212,10 +211,11 @@ const OfferManager = () => {
                 value={state.contactButton}
                 name="contactButton"
                 onChange={handleChange}
-              >
+                value={state.contactButton}
 
+              >
                 {contactLinks.map((link) => (
-                  <option  selected={state.contactButton == link.name} key={link.name} value={link.name}>
+                  <option key={link.name} value={link.name}>
                     {link.name}{" "}
                   </option>
                 ))}
