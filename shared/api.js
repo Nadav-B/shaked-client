@@ -1,6 +1,5 @@
 import Cookies from "js-cookie";
 import axios from "axios";
-import Router from "next/router";
 
 const isAuthenticated = () => {
   var connected = false;
@@ -62,7 +61,7 @@ const getArticles = async () => {
 };
 
 const postArticle = async (article) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/post`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles/post`;
   const token = Cookies.get("token");
   return await axios.post(url, article, {
     headers: {
@@ -75,7 +74,7 @@ const postArticle = async (article) => {
 const postArticleImage = async (id, image) => {
   const formData = new FormData();
   formData.append("image", image);
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/postImage/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles/postImage/${id}`;
   const token = Cookies.get("token");
   return await axios.post(url, formData, {
     headers: {
@@ -86,7 +85,7 @@ const postArticleImage = async (id, image) => {
 };
 
 const deleteArticle = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/delete/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles/delete/${id}`;
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
@@ -125,7 +124,7 @@ const getOffers = async () => {
 };
 
 const deleteOffer = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/delete/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/offers/delete/${id}`;
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
@@ -135,7 +134,7 @@ const deleteOffer = async (id) => {
 };
 
 const postOffer = async (offer) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/post`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/offers/post`;
   const token = Cookies.get("token");
   return await axios.post(url, offer, {
     headers: {
@@ -164,7 +163,7 @@ const getServices = async () => {
 };
 
 const postService = async (service) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/services/post`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/services/post`;
   const token = Cookies.get("token");
   return await axios.post(url, service, {
     headers: {
@@ -175,7 +174,7 @@ const postService = async (service) => {
 };
 
 const deleteService = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/services/delete/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/services/delete/${id}`;
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
@@ -185,7 +184,7 @@ const deleteService = async (id) => {
 };
 
 const postText = async (text) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/texts/post`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/texts/post`;
   const token = Cookies.get("token");
   return await axios.post(url, text, {
     headers: {
@@ -196,7 +195,7 @@ const postText = async (text) => {
 };
 
 const deleteText = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/texts/delete/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/texts/delete/${id}`;
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
