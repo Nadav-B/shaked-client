@@ -43,7 +43,7 @@ const deleteContact = async (id) => {
 };
 
 const getTexts = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/texts`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/texts`;
   return await axios.get(url, {
     headers: {
       Accept: "application/json",
