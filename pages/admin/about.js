@@ -1,4 +1,3 @@
-import axios from "axios";
 import styled from "styled-components";
 import React, { useState } from "react";
 import Button from "../../elements/Button";
@@ -196,10 +195,7 @@ const StyledInput = styled.input`
 
 export async function getServerSideProps() {
   // Fetch data from external API
-
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/texts`;
-  const res = await axios.get(url);
-
+  const res = await api.getTexts();
   const data = await res.data;
   // Pass data to the page via props
   return { props: { data } };
