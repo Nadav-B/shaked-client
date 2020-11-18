@@ -3,10 +3,20 @@ import Link from "next/link";
 import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
 import Head from "next/head";
-import SERVICES_QUERY from '../../graphql/services.query';
 import { useQuery } from "@apollo/react-hooks";
 import Title from "../../elements/Title";
 import Loading from "../../elements/Loading";
+import { gql } from "@apollo/client";
+
+const SERVICES_QUERY = gql`
+  {
+    getServices {
+      id
+      title
+      introduction
+    }
+  }
+`;
 
 const Services = () => {
 
@@ -14,7 +24,6 @@ const Services = () => {
   if (loading) return <Loading/>
   if (error) return <span></span>;
   return (
-    
     <div>
       <Head>
         <meta name="description" content=" השירותים שלנו "></meta>
