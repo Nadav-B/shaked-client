@@ -105,7 +105,7 @@ const ArticleManager = ({ data }) => {
     if (id) {
       const selectedArticle = data.find((article) => article.id == id);
       setImagePreview(
-        `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${selectedArticle.id}`
+        `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles/article/image/${selectedArticle.id}`
       );
       setState({
         id: selectedArticle.id,
