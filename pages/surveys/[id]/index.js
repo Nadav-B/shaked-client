@@ -10,7 +10,6 @@ import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
 
 const Survey = ({ id }) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/contacts/post`;
 
   const Status = {
     Fillname: 0,
