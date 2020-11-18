@@ -1,50 +1,23 @@
 import React from "react";
 import Head from "next/head";
+import api from "../../../shared/api";
 import Button from "../../../elements/Button";
-import Loading from "../../../elements/Loading";
-import { useRouter } from 'next/router'
-import { gql } from "@apollo/client";
-import { useQuery } from "@apollo/react-hooks";
-import { directByContact } from "../../../config/contactButtonLinks";
-import TextWrapper from "../../../elements/TextWrapper";
 import styled from "styled-components";
 
-const SERVICE_QUERY = gql`
-  query Service($id: ID!){
-    getService(id: $id) {
-      id
-      introduction
-      content
-      contactButton
-    }
-  }
-`;
-const Service = () => {
-  const router = useRouter()
-  const id  = router.query.id
-  const { data, loading, error } = useQuery(SERVICE_QUERY, {
-    variables: {
-      id: id
-    },
-  });
-
-  if (loading) return <Loading />;
-  if (error) return <span></span>;
+import { directByContact } from "../../../config/contactButtonLinks";
+import TextWrapper from "../../../elements/TextWrapper";
+const Service = ({ data }) => {
   return (
     <StyledWrapper>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta name="description" content={data.getService.introduction}></meta>
-        <meta
-          property="og:title"
-          content={data.getService.title}
-          key="ogtitle"
-        />
+        <meta name="description" content={data.introduction}></meta>
+        <meta property="og:title" content={data.title} key="ogtitle" />
 
         <meta
           property="og:description"
-          content={data.getService.introduction}
+          content={data.introduction}
           key="ogdesc"
         />
         <title>{"shaked"}</title>
@@ -52,23 +25,33 @@ const Service = () => {
 
       <TextWrapper
         dangerouslySetInnerHTML={{
-          __html: data.getService.content,
+          __html: data.content,
         }}
       ></TextWrapper>
       <Button
         onClick={() => {
-          directByContact(data.getService.contactButton);
+          directByContact(data.contactButton);
         }}
       >
-        {data.getService.contactButton}
+        {data.contactButton}
       </Button>
     </StyledWrapper>
   );
 };
 
 const StyledWrapper = styled.div`
-  max-width: 1000px;
+  max-width: 700px;
   margin: auto;
 `;
+
+// This gets called on every request
+export async function getServerSideProps({ query }) {
+  const id = query.id;
+  // Fetch data from external API
+  const res = await api.getService(id);
+  const data = await res.data;
+  // Pass data to the page via props
+  return { props: { data } };
+}
 
 export default Service;
