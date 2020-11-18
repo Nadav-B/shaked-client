@@ -43,7 +43,7 @@ const deleteContact = async (id) => {
 };
 
 const getTexts = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/texts`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/texts`;
   return await axios.get(url, {
     headers: {
       Accept: "application/json",
@@ -53,7 +53,7 @@ const getTexts = async () => {
 
 
 const getArticle = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles/article/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/${id}`;
   return await axios.get(url, {
     headers: {
       Accept: "application/json",
@@ -62,7 +62,7 @@ const getArticle = async (id) => {
 };
 
 const getArticles = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles`;
   return await axios.get(url, {
     headers: {
       Accept: "application/json",
@@ -105,7 +105,7 @@ const deleteArticle = async (id) => {
 };
 
 const getOffer = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/offers/offer/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/offer/${id}`;
   return await axios.get(url, {
     headers: {
       Accept: "application/json",
@@ -114,7 +114,7 @@ const getOffer = async (id) => {
 };
 
 const getOfferByPath = async (path) => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/offers/offer/path/${path}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/offer/path/${path}`;
   return await axios.get(url, {
     headers: {
       Accept: "application/json",
@@ -164,7 +164,7 @@ const getService = async (id) => {
 };
 
 const getServices = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/services`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/services`;
   return await axios.get(url, {
     headers: {
       Accept: "application/json",
