@@ -11,14 +11,15 @@ import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
 import { default as data } from "../config/seo";
 import { ApolloProvider } from '@apollo/react-hooks';
-import withData from '../apollo-client';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import { useApollo } from '../apollo-client'
 
-const App = ({ Component, pageProps,apollo }) => {
+const App = ({ Component, pageProps }) => {
 
+  const apolloClient = useApollo(pageProps)
 
   return (
-    <ApolloProvider client={apollo}>
+    <ApolloProvider client={apolloClient}>
     <div>
       <Head>
         <GoogleTagManager />
@@ -57,4 +58,4 @@ const StyledBody = styled.menu`
 `;
 
 
-export default withData(App);
+export default App
