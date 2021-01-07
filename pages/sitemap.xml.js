@@ -1,5 +1,5 @@
 const toUrl = (host, route) =>
-  `<url><loc>http://www.${host}${route}</loc></url>`;
+  `<url><loc>http://${host}${route}</loc></url>`;
 
 const createSitemap = (host, routes) =>
   `<?xml version="1.0" encoding="UTF-8"?>
