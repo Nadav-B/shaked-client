@@ -1,17 +1,7 @@
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const isAuthenticated = () => {
-  var connected = false;
-  if (Cookies.get("token")) {
-    connected = true;
-  }
-  return connected;
-};
 
-const logout = () => {
-  Cookies.remove("token");
-};
 
 const getContacts = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/contacts`;
@@ -241,6 +231,4 @@ export default {
   getTexts,
   postText,
   deleteText,
-  isAuthenticated,
-  logout,
 };

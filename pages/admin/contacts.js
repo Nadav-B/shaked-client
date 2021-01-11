@@ -97,7 +97,6 @@ const ContactManagers = () => {
   if (loading) return <Loading />;
   if (error) return <span></span>;
   return (
-    api.isAuthenticated() && (
       <TextWrapper>
         <StyledContact>
           <h1> אנשי קשר</h1>
@@ -168,7 +167,7 @@ const ContactManagers = () => {
           <ColumnChart data={datesData} />
         </StyledContact>
       </TextWrapper>
-    )
+    
   );
 };
 

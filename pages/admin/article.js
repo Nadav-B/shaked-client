@@ -149,7 +149,6 @@ const ArticleManager = () => {
   if (error) return <span></span>;
 
   return (
-    api.isAuthenticated() && (
       <TextWrapper>
         <h1> ערוך כתבה</h1>
         <StyledSelect name="category" onChange={handleArticleChange}>
@@ -248,7 +247,7 @@ const ArticleManager = () => {
           </form>
         </StyledForm>
       </TextWrapper>
-    )
+    
   );
 };
 

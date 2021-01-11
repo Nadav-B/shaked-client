@@ -1,11 +1,11 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Button from "../../elements/Button";
-import api from "../../shared/api";
+import { ProtectRoute } from "../../shared/protected_route";
 
-const Admin = () => {
-  if (api.isAuthenticated()) {
+  function Admin() {
     return (
+      <ProtectRoute>
       <StyledAdmin>
         <Link href={"/admin/contacts"}>
           <Button>הצג אנשי קשר</Button>
@@ -23,10 +23,10 @@ const Admin = () => {
           <Button> ערוך או הוסף הצעות</Button>
         </Link>
       </StyledAdmin>
+      </ProtectRoute>
+
     );
-  } else {
-    return <Link href={"/login"}> התחבר</Link>;
-  }
+  
 };
 
 const StyledAdmin = styled.div`

@@ -141,7 +141,6 @@ const OfferManager = () => {
   };
 
   return (
-    api.isAuthenticated() && (
       <TextWrapper>
         <h1> ערוך הצעה</h1>
         <StyledSelect name="category" onChange={handleArticleChange}>
@@ -240,19 +239,10 @@ const OfferManager = () => {
           </form>
         </StyledForm>
       </TextWrapper>
-    )
   );
 };
 
-const StyledImage = styled.img`
-  margin: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  width: 50%;
-`;
+
 
 const StyledSelect = styled.select`
   display: block;

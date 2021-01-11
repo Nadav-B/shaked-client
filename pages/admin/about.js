@@ -121,7 +121,6 @@ const AboutManager = () => {
   };
 
   return (
-    api.isAuthenticated() && (
       <TextWrapper>
         <h1> ערוך אודות</h1>
         <StyledSelect name="category" onChange={handleTextChange}>
@@ -173,8 +172,8 @@ const AboutManager = () => {
           </form>
         </StyledForm>
       </TextWrapper>
-    )
-  );
+    
+);
 };
 
 const StyledSelect = styled.select`
