@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "../../elements/Button";
 import { ProtectRoute } from "../../shared/protected_route";
 
-  function Admin() {
+  const Admin =()=> {
     return (
       <ProtectRoute>
       <StyledAdmin>
@@ -24,7 +24,6 @@ import { ProtectRoute } from "../../shared/protected_route";
         </Link>
       </StyledAdmin>
       </ProtectRoute>
-
     );
   
 };

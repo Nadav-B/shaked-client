@@ -54,7 +54,7 @@ const StyledPicture = styled.picture`
 const Wrapper = styled.div`
   margin: auto;
   display: block;
-  
+  background: white;
   height: 100%;
   max-width: 400px;
 `;

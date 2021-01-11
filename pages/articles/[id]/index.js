@@ -42,7 +42,9 @@ const Article = ({ data }) => {
 const StyledArticle = styled.div`
   display: block;
   width: 100%;
-  margin: 0;
+  margin: auto;
+  max-width: 1200px;
+  
 `;
 
 const StyledImage = styled.img`

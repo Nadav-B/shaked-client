@@ -54,6 +54,8 @@ const Services = () => {
 const StyledService = styled.div`
   display: flex;
   width: 100%;
+  max-width: 1000px;
+margin: auto;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
