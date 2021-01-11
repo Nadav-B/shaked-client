@@ -7,12 +7,11 @@ import api from "../../shared/api";
 import { contactLinks } from "../../config/contactButtonLinks";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
+import { ProtectRoute } from "../../shared/protected_route";
 
 const ArticleManager = () => {
-
   const [data, setData] = useState();
   const [error, setError] = useState(false);
-
 
   const [state, setState] = useState({
     id: "",
@@ -32,7 +31,6 @@ const ArticleManager = () => {
     style: "",
     status: false,
   });
-
 
   useEffect(() => {
     async function getRequestForm() {
@@ -146,9 +144,8 @@ const ArticleManager = () => {
     }
   };
 
-  if (error) return <span></span>;
-
   return (
+    <ProtectRoute>
       <TextWrapper>
         <h1> ערוך כתבה</h1>
         <StyledSelect name="category" onChange={handleArticleChange}>
@@ -247,7 +244,7 @@ const ArticleManager = () => {
           </form>
         </StyledForm>
       </TextWrapper>
-    
+    </ProtectRoute>
   );
 };
 
@@ -292,7 +289,5 @@ const StyledInput = styled.input`
     color: black;
   }
 `;
-
-
 
 export default ArticleManager;

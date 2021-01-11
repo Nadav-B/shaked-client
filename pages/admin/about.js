@@ -4,14 +4,12 @@ import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
-TextWrapper
 import TextWrapper from "../../elements/TextWrapper";
+import { ProtectRoute } from "../../shared/protected_route";
 
-
-const AboutManager = () => {
+function AboutManager() {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
-
 
   const [state, setState] = useState({
     id: "",
@@ -24,7 +22,6 @@ const AboutManager = () => {
     style: "",
     status: false,
   });
-
 
   useEffect(() => {
     async function getRequestForm() {
@@ -50,7 +47,6 @@ const AboutManager = () => {
         }));
       },
       (error) => {
-
         setResult((prevState) => ({
           ...prevState,
           text: "שגיאה",
@@ -121,15 +117,17 @@ const AboutManager = () => {
   };
 
   return (
+    <ProtectRoute>
       <TextWrapper>
         <h1> ערוך אודות</h1>
         <StyledSelect name="category" onChange={handleTextChange}>
           <option value=""> הוסף טקסט </option>
-          {data && data.map((text) => (
-            <option key={text.id} value={text.id}>
-              {text.tag}
-            </option>
-          ))}
+          {data &&
+            data.map((text) => (
+              <option key={text.id} value={text.id}>
+                {text.tag}
+              </option>
+            ))}
         </StyledSelect>
 
         <StyledForm>
@@ -172,9 +170,9 @@ const AboutManager = () => {
           </form>
         </StyledForm>
       </TextWrapper>
-    
-);
-};
+    </ProtectRoute>
+  );
+}
 
 const StyledSelect = styled.select`
   display: block;
@@ -207,6 +205,5 @@ const StyledInput = styled.input`
     color: black;
   }
 `;
-
 
 export default AboutManager;

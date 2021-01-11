@@ -6,6 +6,7 @@ import { contactLinks } from "../../config/contactButtonLinks";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
+import { ProtectRoute } from "../../shared/protected_route";
 
 const OfferManager = () => {
 
@@ -141,6 +142,8 @@ const OfferManager = () => {
   };
 
   return (
+    <ProtectRoute>
+
       <TextWrapper>
         <h1> ערוך הצעה</h1>
         <StyledSelect name="category" onChange={handleArticleChange}>
@@ -239,6 +242,8 @@ const OfferManager = () => {
           </form>
         </StyledForm>
       </TextWrapper>
+      </ProtectRoute>
+
   );
 };
 

@@ -9,6 +9,8 @@ import TextWrapper from "../../elements/TextWrapper";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import Chartkick,{ ColumnChart, PieChart } from "react-chartkick";
 import "chart.js";
+import { ProtectRoute } from "../../shared/protected_route";
+
 
 const ContactManagers = () => {
   Chartkick.options = {
@@ -94,9 +96,8 @@ const ContactManagers = () => {
     }
     if (!contacts) getRequestForm();
   });
-  if (loading) return <Loading />;
-  if (error) return <span></span>;
   return (
+    <ProtectRoute>
       <TextWrapper>
         <StyledContact>
           <h1> אנשי קשר</h1>
@@ -167,6 +168,7 @@ const ContactManagers = () => {
           <ColumnChart data={datesData} />
         </StyledContact>
       </TextWrapper>
+      </ProtectRoute>
     
   );
 };

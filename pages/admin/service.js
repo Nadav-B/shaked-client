@@ -6,6 +6,7 @@ import { contactLinks } from "../../config/contactButtonLinks";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
+import { ProtectRoute } from "../../shared/protected_route";
 
 const ServiceManager = () => {
   const [data, setData] = useState();
@@ -129,9 +130,9 @@ const ServiceManager = () => {
   };
 
 
-    if (error) return <span></span>;
-
   return (
+    <ProtectRoute>
+
     <TextWrapper>
       <h1> ערוך שירות</h1>
       <StyledSelect name="category" onChange={handleArticleChange}>
@@ -210,6 +211,8 @@ const ServiceManager = () => {
         </form>
       </StyledForm>
     </TextWrapper>
+    </ProtectRoute>
+
   );
 };
 
