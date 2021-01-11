@@ -6,6 +6,7 @@ import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
+import Title from "../../elements/Title";
 
 function AboutManager() {
   const [data, setData] = useState();
@@ -115,11 +116,14 @@ function AboutManager() {
       });
     }
   };
+  
+  if(error) return <Login login={login} />;
+
 
   return (
     <ProtectRoute>
       <TextWrapper>
-        <h1> ערוך אודות</h1>
+        <Title>ערוך אודות</Title>
         <StyledSelect name="category" onChange={handleTextChange}>
           <option value=""> הוסף טקסט </option>
           {data &&
@@ -130,7 +134,6 @@ function AboutManager() {
             ))}
         </StyledSelect>
 
-        <StyledForm>
           <form onSubmit={handleSubmit}>
             <label>
               שם הטקסט. לא יופיע בעמוד
@@ -168,7 +171,6 @@ function AboutManager() {
               </Button>
             )}
           </form>
-        </StyledForm>
       </TextWrapper>
     </ProtectRoute>
   );
@@ -184,10 +186,6 @@ const StyledSelect = styled.select`
   height: 40px;
 `;
 
-const StyledForm = styled.div`
-  display: flex;
-  margin-top: 100px;
-`;
 
 const StyledInput = styled.input`
   width: 100%;

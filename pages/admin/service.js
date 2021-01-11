@@ -7,6 +7,7 @@ import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
+import Title from "../../elements/Title";
 
 const ServiceManager = () => {
   const [data, setData] = useState();
@@ -26,7 +27,6 @@ const ServiceManager = () => {
     status: false,
   });
 
-
   useEffect(() => {
     async function getRequestForm() {
       try {
@@ -38,7 +38,7 @@ const ServiceManager = () => {
     }
     if (!data) getRequestForm();
   });
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const res = await api.postService(state).then(
@@ -63,8 +63,6 @@ const ServiceManager = () => {
     );
   };
 
-
-  
   const handleChange = (event) => {
     event.preventDefault();
     const target = event.target;
@@ -128,21 +126,22 @@ const ServiceManager = () => {
       });
     }
   };
-
+  if (error) return <Login login={login} />;
 
   return (
     <ProtectRoute>
+      <TextWrapper>
+        <Title> ערוך שירותים</Title>
 
-    <TextWrapper>
-      <h1> ערוך שירות</h1>
-      <StyledSelect name="category" onChange={handleArticleChange}>
-        <option value=""> הוסף שירות </option>
-        {data && data.map((service) => (
-          <option key={service.id} value={service.id}>
-            {service.title}
-          </option>
-        ))}
-      </StyledSelect>
+        <StyledSelect name="category" onChange={handleArticleChange}>
+          <option value=""> הוסף שירות </option>
+          {data &&
+            data.map((service) => (
+              <option key={service.id} value={service.id}>
+                {service.title}
+              </option>
+            ))}
+        </StyledSelect>
 
         <form onSubmit={handleSubmit}>
           <label>
@@ -174,7 +173,7 @@ const ServiceManager = () => {
               onChange={handleChange}
             />
           </label>
-          <TextUploader setState={setState}/> 
+          <TextUploader setState={setState} />
 
           <label>
             כפתור צרו קשר
@@ -185,7 +184,7 @@ const ServiceManager = () => {
               value={state.contactButton}
             >
               {contactLinks.map((link) => (
-                  <option  key={link.name} value={link.name}>
+                <option key={link.name} value={link.name}>
                   {link.name}{" "}
                 </option>
               ))}
@@ -208,9 +207,8 @@ const ServiceManager = () => {
             </Button>
           )}
         </form>
-    </TextWrapper>
+      </TextWrapper>
     </ProtectRoute>
-
   );
 };
 
@@ -254,7 +252,5 @@ const StyledInput = styled.input`
     color: black;
   }
 `;
-
-
 
 export default ServiceManager;

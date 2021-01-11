@@ -44,6 +44,8 @@ const GlobalStyles = createGlobalStyle`
   a:hover {
     color: #0a589d;
   }
+
+
 `;
 
 

@@ -7,10 +7,13 @@ import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
+import Title from "../../elements/Title";
 
 const OfferManager = () => {
 
   const offers_path =   `https://shakedm.co.il/offers/`;
+
+  const [error, setError] = useState(false);
 
   const [data, setData] = useState();
 
@@ -44,6 +47,7 @@ const OfferManager = () => {
           style: "error",
           status: false,
         }));
+        setError(true)
         setData([]);
       }
     }
@@ -140,12 +144,13 @@ const OfferManager = () => {
       });
     }
   };
+  if(error) return <Login login={login} />;
 
   return (
     <ProtectRoute>
 
       <TextWrapper>
-        <h1> ערוך הצעה</h1>
+        <Title> ערוך הצעות</Title>
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף הצעה </option>
           {data &&

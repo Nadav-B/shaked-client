@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import Title from "../../elements/Title";
 
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
@@ -143,11 +144,12 @@ const ArticleManager = () => {
       });
     }
   };
+  if(error) return <Login login={login} />;
 
   return (
     <ProtectRoute>
       <TextWrapper>
-        <h1> ערוך כתבה</h1>
+        <Title> ערוך כתבות</Title>
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף כתבה </option>
           {data &&
