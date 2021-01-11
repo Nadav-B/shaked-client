@@ -49,12 +49,10 @@ const getTexts = async () => {
   return await axios.get(url, {
     headers: {
       Authorization: `${token}`,
-
       Accept: "application/json",
     },
   });
 };
-
 
 const getArticle = async (id) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/${id}`;
