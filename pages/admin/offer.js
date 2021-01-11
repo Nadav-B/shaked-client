@@ -156,7 +156,6 @@ const OfferManager = () => {
             ))}
         </StyledSelect>
 
-        <StyledForm>
           <form onSubmit={handleSubmit}>
             <label>
               שם ההצעה באנגלית
@@ -240,7 +239,6 @@ const OfferManager = () => {
               </Button>
             )}
           </form>
-        </StyledForm>
       </TextWrapper>
       </ProtectRoute>
 

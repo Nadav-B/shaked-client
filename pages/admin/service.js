@@ -144,7 +144,6 @@ const ServiceManager = () => {
         ))}
       </StyledSelect>
 
-      <StyledForm>
         <form onSubmit={handleSubmit}>
           <label>
             שם השירות
@@ -209,7 +208,6 @@ const ServiceManager = () => {
             </Button>
           )}
         </form>
-      </StyledForm>
     </TextWrapper>
     </ProtectRoute>
 

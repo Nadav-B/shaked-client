@@ -158,7 +158,6 @@ const ArticleManager = () => {
             ))}
         </StyledSelect>
 
-        <StyledForm>
           <form onSubmit={handleSubmit}>
             <label>
               שם הכתבה
@@ -242,7 +241,6 @@ const ArticleManager = () => {
               </Button>
             )}
           </form>
-        </StyledForm>
       </TextWrapper>
     </ProtectRoute>
   );
@@ -268,7 +266,7 @@ const StyledSelect = styled.select`
   height: 40px;
 `;
 
-const StyledForm = styled.div`
+const StyledForm = styled.form`
   display: flex;
   margin-top: 100px;
 `;
@@ -277,6 +275,7 @@ const StyledInput = styled.input`
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
+  
   display: inline-block;
   font-size: ${(p) => p.theme.fontSize.normal};
 
