@@ -18,7 +18,7 @@ const getContacts = async () => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
     },
   });
 };
@@ -37,15 +37,19 @@ const deleteContact = async (id) => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
     },
   });
 };
 
 const getTexts = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/texts`;
+  const token = Cookies.get("token");
+
   return await axios.get(url, {
     headers: {
+      Authorization: `${token}`,
+
       Accept: "application/json",
     },
   });
@@ -63,8 +67,10 @@ const getArticle = async (id) => {
 
 const getArticles = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/articles`;
+  const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
+      Authorization: `${token}`,
       Accept: "application/json",
     },
   });
@@ -75,7 +81,7 @@ const postArticle = async (article) => {
   const token = Cookies.get("token");
   return await axios.post(url, article, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
       Accept: "application/json",
     },
   });
@@ -88,7 +94,7 @@ const postArticleImage = async (id, image) => {
   const token = Cookies.get("token");
   return await axios.post(url, formData, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
       "content-type": "multipart/form-data",
     },
   });
@@ -99,7 +105,7 @@ const deleteArticle = async (id) => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
     },
   });
 };
@@ -127,7 +133,7 @@ const getOffers = async () => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
       Accept: "application/json",
     },
   });
@@ -138,7 +144,7 @@ const deleteOffer = async (id) => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
     },
   });
 };
@@ -148,7 +154,7 @@ const postOffer = async (offer) => {
   const token = Cookies.get("token");
   return await axios.post(url, offer, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
       Accept: "application/json",
     },
   });
@@ -165,8 +171,10 @@ const getService = async (id) => {
 
 const getServices = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/services`;
+  const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
+      Authorization: `${token}`,
       Accept: "application/json",
     },
   });
@@ -177,7 +185,7 @@ const postService = async (service) => {
   const token = Cookies.get("token");
   return await axios.post(url, service, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
       Accept: "application/json",
     },
   });
@@ -188,7 +196,7 @@ const deleteService = async (id) => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
     },
   });
 };
@@ -198,7 +206,7 @@ const postText = async (text) => {
   const token = Cookies.get("token");
   return await axios.post(url, text, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
       Accept: "application/json",
     },
   });
@@ -209,7 +217,7 @@ const deleteText = async (id) => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: `Basic ${token}`,
+      Authorization: `${token}`,
     },
   });
 };

@@ -1,6 +1,5 @@
-import axios from "axios";
 import styled from "styled-components";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import { contactLinks } from "../../config/contactButtonLinks";
@@ -8,7 +7,10 @@ import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 
-const ServiceManager = ({ data }) => {
+const ServiceManager = () => {
+  const [data, setData] = useState();
+  const [error, setError] = useState(false);
+
   const [state, setState] = useState({
     id: "",
     title: "",
@@ -23,6 +25,19 @@ const ServiceManager = ({ data }) => {
     status: false,
   });
 
+
+  useEffect(() => {
+    async function getRequestForm() {
+      try {
+        const response = await api.getServices();
+        setData(response.data);
+      } catch {
+        setError(true);
+      }
+    }
+    if (!data) getRequestForm();
+  });
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const res = await api.postService(state).then(
@@ -47,6 +62,8 @@ const ServiceManager = ({ data }) => {
     );
   };
 
+
+  
   const handleChange = (event) => {
     event.preventDefault();
     const target = event.target;
@@ -58,7 +75,7 @@ const ServiceManager = ({ data }) => {
     }));
   };
 
-  const deleteArticle = async () => {
+  const deleteService = async () => {
     await api.deleteService(state.id).then(
       (response) => {
         setResult((prevState) => ({
@@ -111,12 +128,15 @@ const ServiceManager = ({ data }) => {
     }
   };
 
+
+    if (error) return <span></span>;
+
   return (
     <TextWrapper>
       <h1> ערוך שירות</h1>
       <StyledSelect name="category" onChange={handleArticleChange}>
         <option value=""> הוסף שירות </option>
-        {data.map((service) => (
+        {data && data.map((service) => (
           <option key={service.id} value={service.id}>
             {service.title}
           </option>
@@ -181,7 +201,7 @@ const ServiceManager = ({ data }) => {
             <Button
               type="button"
               onClick={() => {
-                deleteArticle();
+                deleteService();
               }}
             >
               מחק כתבה
@@ -234,13 +254,6 @@ const StyledInput = styled.input`
   }
 `;
 
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await api.getServices();
-  const data = res.data;
-  // Pass data to the page via props
-  return { props: { data } };
-}
+
 
 export default ServiceManager;

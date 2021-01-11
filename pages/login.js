@@ -18,30 +18,18 @@ const Login = () => {
     status: false,
   });
 
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/admin/user`;
+  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/login`;
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const token = Buffer.from(
-      `${state.username}:${state.password}`,
-      "utf8"
-    ).toString("base64");
-
-    axios
-      .post(
-        url,
-        {},
-        {
-          headers: {
-            Authorization: `Basic ${token}`,
-          },
-        }
-      )
-      .then(
+    axios.post(url, {
+      username: state.username,
+      password: state.password
+    }).then(
         (response) => {
-          if (response.data) {
-            Cookies.set("token", token);
+          if (response) {
+           Cookies.set("token", response.headers.token);
 
             setResult((prevState) => ({
               ...prevState,

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../shared/api";
@@ -8,7 +8,11 @@ TextWrapper
 import TextWrapper from "../../elements/TextWrapper";
 
 
-const AboutManager = ({ data }) => {
+const AboutManager = () => {
+  const [data, setData] = useState();
+  const [error, setError] = useState(false);
+
+
   const [state, setState] = useState({
     id: "",
     tag: "",
@@ -19,6 +23,19 @@ const AboutManager = ({ data }) => {
     text: "",
     style: "",
     status: false,
+  });
+
+
+  useEffect(() => {
+    async function getRequestForm() {
+      try {
+        const response = await api.getTexts();
+        setData(response.data);
+      } catch {
+        setError(true);
+      }
+    }
+    if (!data) getRequestForm();
   });
 
   const handleSubmit = async (event) => {
@@ -33,7 +50,6 @@ const AboutManager = ({ data }) => {
         }));
       },
       (error) => {
-        console.log(error);
 
         setResult((prevState) => ({
           ...prevState,
@@ -110,7 +126,7 @@ const AboutManager = ({ data }) => {
         <h1> ערוך אודות</h1>
         <StyledSelect name="category" onChange={handleTextChange}>
           <option value=""> הוסף טקסט </option>
-          {data.map((text) => (
+          {data && data.map((text) => (
             <option key={text.id} value={text.id}>
               {text.tag}
             </option>
@@ -193,12 +209,5 @@ const StyledInput = styled.input`
   }
 `;
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await api.getTexts();
-  const data = await res.data;
-  // Pass data to the page via props
-  return { props: { data } };
-}
 
 export default AboutManager;
