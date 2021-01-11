@@ -32,7 +32,8 @@ import { ProtectRoute } from "../../shared/protected_route";
 const StyledAdmin = styled.div`
   display: block;
   padding: 4px;
-  margin: 4px;
+  width: 80%;
+  margin: auto;
   height: 100%;
 `;
 
