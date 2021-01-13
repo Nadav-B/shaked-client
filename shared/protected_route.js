@@ -1,4 +1,4 @@
-import Login from "../elements/login";
+import Login from "../elements/Login";
 import { useAuth } from "../shared/auth";
 
 export const ProtectRoute = ({ children }) => {
