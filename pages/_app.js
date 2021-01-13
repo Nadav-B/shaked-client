@@ -23,12 +23,14 @@ const App = ({ Component, pageProps }) => {
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
           <Head>
-            <title>שקד משכנתאות</title>
+            <meta charset="utf-8" />
+            <title>שקד משכנתאות | יעוץ משכנתאות וכלכלת המשפחה
+
+</title>
             <link
               href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
               rel="stylesheet"
             ></link>
-            <meta charset="utf-8" />
             <SEO></SEO>
             <GoogleTagManager />
           </Head>

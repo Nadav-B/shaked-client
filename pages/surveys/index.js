@@ -12,6 +12,7 @@ const Surveys = () => {
   const data = [survey1, survey2];
 
   const seo = {
+    title: "שאלונים",
     description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
   };
   return (
