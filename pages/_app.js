@@ -24,13 +24,31 @@ const App = ({ Component, pageProps }) => {
         <ApolloProvider client={apolloClient}>
           <Head>
             <meta charset="utf-8" />
-            <title>שקד משכנתאות | יעוץ משכנתאות וכלכלת המשפחה
-
-</title>
+            <title>שקד משכנתאות | יעוץ משכנתאות וכלכלת המשפחה</title>
             <link
               href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
               rel="stylesheet"
             ></link>
+
+            <link
+              rel="apple-touch-icon"
+              sizes="180x180"
+              href="logos/apple-touch-icon.png"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="logos/favicon-32x32.png"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="logos/favicon-16x16.png"
+            />
+            <meta name="theme-color" content="#ffffff" />
+
             <SEO></SEO>
             <GoogleTagManager />
           </Head>
