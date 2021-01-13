@@ -1,12 +1,15 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Button from "../../elements/Button";
-import api from "../../shared/api";
+import { ProtectRoute } from "../../shared/protected_route";
+import Title from "../../elements/Title";
 
-const Admin = () => {
-  if (api.isAuthenticated()) {
+  const Admin =()=> {
     return (
+      <ProtectRoute>
       <StyledAdmin>
+      <Title>עמוד ניהול</Title>
+
         <Link href={"/admin/contacts"}>
           <Button>הצג אנשי קשר</Button>
         </Link>
@@ -23,16 +26,16 @@ const Admin = () => {
           <Button> ערוך או הוסף הצעות</Button>
         </Link>
       </StyledAdmin>
+      </ProtectRoute>
     );
-  } else {
-    return <Link href={"/login"}> התחבר</Link>;
-  }
+  
 };
 
 const StyledAdmin = styled.div`
   display: block;
   padding: 4px;
-  margin: 4px;
+  width: 80%;
+  margin: auto;
   height: 100%;
 `;
 

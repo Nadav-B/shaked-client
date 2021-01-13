@@ -6,10 +6,15 @@ import { contactLinks } from "../../config/contactButtonLinks";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
+import { ProtectRoute } from "../../shared/protected_route";
+import Title from "../../elements/Title";
+import Error from "../../elements/Error";
 
 const OfferManager = () => {
 
   const offers_path =   `https://shakedm.co.il/offers/`;
+
+  const [error, setError] = useState(false);
 
   const [data, setData] = useState();
 
@@ -43,6 +48,7 @@ const OfferManager = () => {
           style: "error",
           status: false,
         }));
+        setError(true)
         setData([]);
       }
     }
@@ -139,11 +145,13 @@ const OfferManager = () => {
       });
     }
   };
+  if(error) return <Error />;
 
   return (
-    api.isAuthenticated() && (
+    <ProtectRoute>
+
       <TextWrapper>
-        <h1> ערוך הצעה</h1>
+        <Title> ערוך הצעות</Title>
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף הצעה </option>
           {data &&
@@ -154,7 +162,6 @@ const OfferManager = () => {
             ))}
         </StyledSelect>
 
-        <StyledForm>
           <form onSubmit={handleSubmit}>
             <label>
               שם ההצעה באנגלית
@@ -238,21 +245,13 @@ const OfferManager = () => {
               </Button>
             )}
           </form>
-        </StyledForm>
       </TextWrapper>
-    )
+      </ProtectRoute>
+
   );
 };
 
-const StyledImage = styled.img`
-  margin: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  width: 50%;
-`;
+
 
 const StyledSelect = styled.select`
   display: block;

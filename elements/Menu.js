@@ -2,11 +2,11 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { bool, func } from "prop-types";
-import api from "../shared/api";
-const Menu = ({ menuLinks, open, onClick }) => {
-  const logout = () => {
-    api.logout();
-  };
+import { useAuth } from "../shared/auth";
+
+const Menu = ({  menuLinks, open, onClick }) => {
+
+  const { isAuthenticated,logout } = useAuth();
 
   return (
     <StyledMenu open={open}>
@@ -18,7 +18,7 @@ const Menu = ({ menuLinks, open, onClick }) => {
             </Link>
           </li>
         ))}
-        {api.isAuthenticated() && [
+        {isAuthenticated && [
           <li key="admin" onClick={onClick}>
             <Link href={"/admin"}>
               <a>עמוד מנהל</a>

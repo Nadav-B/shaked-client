@@ -6,21 +6,24 @@ const Button = ({ children, onClick, focus, active }) => (
 );
 
 const StyledButton = styled.button`
-  display: inline-flex;
+  display: block;
   align-items: center;
   justify-content: center;
   height: 40px;
-  min-width: 172px;
+  width: 70%;
+
+
   font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};
   font-family: ${(p) => p.theme.fontFamily};
-  width: 100%;
-  margin-top: 25px;
-  margin-bottom: 25px;
   border: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: ${({ active }) => (active ? "#0a589d" : "white")};
   outline: none;
   color: ${({ active }) => (active ? "white" : "#0a589d")};
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
 
   cursor: pointer;
 

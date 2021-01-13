@@ -2,13 +2,18 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import api from "../../shared/api";
 import Text from "../../elements/Text";
+import Title from "../../elements/Title";
+
 import Button from "../../elements/Button";
-import Loading from "../../elements/Loading";
+import Error from "../../elements/Error";
+
 import Modal from "../../elements/Modal";
 import TextWrapper from "../../elements/TextWrapper";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import Chartkick,{ ColumnChart, PieChart } from "react-chartkick";
 import "chart.js";
+import { ProtectRoute } from "../../shared/protected_route";
+
 
 const ContactManagers = () => {
   Chartkick.options = {
@@ -20,17 +25,6 @@ const ContactManagers = () => {
 
   const [survey, setSurvey] = useState();
 
-  function groupBy(objectArray, property) {
-    return objectArray.reduce((acc, obj) => {
-      const key = obj[property];
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-      // Add object to list for given key's value
-      acc[key].push(obj);
-      return acc;
-    }, {});
-  }
   const [open, setOpen] = useState(false);
 
   const [datesData, setdatesForStatistic] = useState(null);
@@ -94,13 +88,15 @@ const ContactManagers = () => {
     }
     if (!contacts) getRequestForm();
   });
-  if (loading) return <Loading />;
-  if (error) return <span></span>;
+  
+
+  if(error) return <Error />;
   return (
-    api.isAuthenticated() && (
+    <ProtectRoute>
       <TextWrapper>
         <StyledContact>
-          <h1> אנשי קשר</h1>
+          <Title>אנשי קשר</Title>
+
           {contacts && (
             <div>
               <Table>
@@ -168,7 +164,8 @@ const ContactManagers = () => {
           <ColumnChart data={datesData} />
         </StyledContact>
       </TextWrapper>
-    )
+      </ProtectRoute>
+  
   );
 };
 

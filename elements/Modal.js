@@ -37,13 +37,12 @@ const Modal = ({ object, deleteObject, setOpen }) => {
 };
 
 const Wrapper = styled.div`
-  width: 80%;
-  margin: 24px;
+  width: auto;
+  margin: auto;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
   color: ${(p) => p.theme.colors.navyBlue};
 `;
 

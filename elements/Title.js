@@ -29,7 +29,7 @@ const StyledText = styled.p`
       ? "nowrap"
       : ""};
   text-align: center;
-  margin-top: 40px;
+  padding-top: 40px;
   margin-bottom: 30px;
 
   overflow: ${(p) => (p.variant.includes("ellipsis") ? "hidden" : "")};

@@ -35,6 +35,8 @@ const About = () => {
 const Wrapper = styled.div`
   max-width: 700px;
   margin: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
 `;
 
 

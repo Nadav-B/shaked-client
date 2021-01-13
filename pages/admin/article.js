@@ -1,13 +1,20 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import Title from "../../elements/Title";
+import Error from "../../elements/Error";
+
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../shared/api";
 import { contactLinks } from "../../config/contactButtonLinks";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
+import { ProtectRoute } from "../../shared/protected_route";
 
-const ArticleManager = ({ data }) => {
+const ArticleManager = () => {
+  const [data, setData] = useState();
+  const [error, setError] = useState(false);
+
   const [state, setState] = useState({
     id: "",
     title: "",
@@ -27,6 +34,17 @@ const ArticleManager = ({ data }) => {
     status: false,
   });
 
+  useEffect(() => {
+    async function getRequestForm() {
+      try {
+        const response = await api.getArticles();
+        setData(response.data);
+      } catch {
+        setError(true);
+      }
+    }
+    if (!data) getRequestForm();
+  });
   const handleSubmit = async (event) => {
     event.preventDefault();
     await api.postArticle(state).then(
@@ -127,11 +145,12 @@ const ArticleManager = ({ data }) => {
       });
     }
   };
+  if(error) return <Error />;
 
   return (
-    api.isAuthenticated() && (
+    <ProtectRoute>
       <TextWrapper>
-        <h1> ערוך כתבה</h1>
+        <Title> ערוך כתבות</Title>
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף כתבה </option>
           {data &&
@@ -142,7 +161,6 @@ const ArticleManager = ({ data }) => {
             ))}
         </StyledSelect>
 
-        <StyledForm>
           <form onSubmit={handleSubmit}>
             <label>
               שם הכתבה
@@ -226,9 +244,8 @@ const ArticleManager = ({ data }) => {
               </Button>
             )}
           </form>
-        </StyledForm>
       </TextWrapper>
-    )
+    </ProtectRoute>
   );
 };
 
@@ -252,7 +269,7 @@ const StyledSelect = styled.select`
   height: 40px;
 `;
 
-const StyledForm = styled.div`
+const StyledForm = styled.form`
   display: flex;
   margin-top: 100px;
 `;
@@ -261,6 +278,7 @@ const StyledInput = styled.input`
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
+  
   display: inline-block;
   font-size: ${(p) => p.theme.fontSize.normal};
 
@@ -273,15 +291,5 @@ const StyledInput = styled.input`
     color: black;
   }
 `;
-
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-
-  const res = await api.getArticles();
-  const data = res.data;
-  // Pass data to the page via props
-  return { props: { data } };
-}
 
 export default ArticleManager;

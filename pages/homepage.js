@@ -7,7 +7,6 @@ import Surveys from "./surveys";
 import About from "./about";
 import Services from "./services";
 
-
 const Homepage = () => {
   return (
     <Wrapper>
@@ -19,25 +18,35 @@ const Homepage = () => {
         </StyledText>
       </StyledLandingPage>
       <ContentBackground>
-      <Articles/>
-      <About/>
-      <Surveys/>
-      <Services/> 
-      <Contact/>
+        <About />
+      </ContentBackground>
+      <CustomBackground>
+        <Surveys />
+      </CustomBackground>
+      <ContentBackground>
+        <CustomBackground2>
+          <Articles />
+        </CustomBackground2>
+        <Services />
+        <Contact />
       </ContentBackground>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div``;
 
-  `;
-
-  const ContentBackground = styled.div`
+const ContentBackground = styled.div`
   background: white;
+`;
 
-  `;
+const CustomBackground = styled.div`
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+`;
 
+const CustomBackground2 = styled.div`
+  background-image: linear-gradient(to bottom, #dfe9f3 0%, white 100%);
+`;
 
 const StyledText = styled.div`
     position: absolute;

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Button from "../elements/Button";
-import Text from "../elements/Text";
-import axios from "axios";
+import Button from "./Button";
+import Text from "./Text";
 import styled from "styled-components";
-import Cookies from "js-cookie";
 import Router from "next/router";
 
-const Login = () => {
+const Login = ({login}) => {
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -18,31 +16,14 @@ const Login = () => {
     status: false,
   });
 
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/admin/user`;
-
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const token = Buffer.from(
-      `${state.username}:${state.password}`,
-      "utf8"
-    ).toString("base64");
-
-    axios
-      .post(
-        url,
-        {},
-        {
-          headers: {
-            Authorization: `Basic ${token}`,
-          },
-        }
-      )
-      .then(
+    login(
+       state.username,
+       state.password
+    ).then(
         (response) => {
-          if (response.data) {
-            Cookies.set("token", token);
-
+          if (response) {
             setResult((prevState) => ({
               ...prevState,
               text: "התחבר בהצלחה!",

@@ -1,14 +1,18 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
-TextWrapper
 import TextWrapper from "../../elements/TextWrapper";
+import { ProtectRoute } from "../../shared/protected_route";
+import Title from "../../elements/Title";
+import Error from "../../elements/Error";
 
+function AboutManager() {
+  const [data, setData] = useState();
+  const [error, setError] = useState(false);
 
-const AboutManager = ({ data }) => {
   const [state, setState] = useState({
     id: "",
     tag: "",
@@ -19,6 +23,18 @@ const AboutManager = ({ data }) => {
     text: "",
     style: "",
     status: false,
+  });
+
+  useEffect(() => {
+    async function getRequestForm() {
+      try {
+        const response = await api.getTexts();
+        setData(response.data);
+      } catch {
+        setError(true);
+      }
+    }
+    if (!data) getRequestForm();
   });
 
   const handleSubmit = async (event) => {
@@ -33,8 +49,6 @@ const AboutManager = ({ data }) => {
         }));
       },
       (error) => {
-        console.log(error);
-
         setResult((prevState) => ({
           ...prevState,
           text: "שגיאה",
@@ -103,21 +117,24 @@ const AboutManager = ({ data }) => {
       });
     }
   };
+  
+  if(error) return <Error />;
+
 
   return (
-    api.isAuthenticated() && (
+    <ProtectRoute>
       <TextWrapper>
-        <h1> ערוך אודות</h1>
+        <Title>ערוך אודות</Title>
         <StyledSelect name="category" onChange={handleTextChange}>
           <option value=""> הוסף טקסט </option>
-          {data.map((text) => (
-            <option key={text.id} value={text.id}>
-              {text.tag}
-            </option>
-          ))}
+          {data &&
+            data.map((text) => (
+              <option key={text.id} value={text.id}>
+                {text.tag}
+              </option>
+            ))}
         </StyledSelect>
 
-        <StyledForm>
           <form onSubmit={handleSubmit}>
             <label>
               שם הטקסט. לא יופיע בעמוד
@@ -155,11 +172,10 @@ const AboutManager = ({ data }) => {
               </Button>
             )}
           </form>
-        </StyledForm>
       </TextWrapper>
-    )
+    </ProtectRoute>
   );
-};
+}
 
 const StyledSelect = styled.select`
   display: block;
@@ -171,10 +187,6 @@ const StyledSelect = styled.select`
   height: 40px;
 `;
 
-const StyledForm = styled.div`
-  display: flex;
-  margin-top: 100px;
-`;
 
 const StyledInput = styled.input`
   width: 100%;
@@ -192,13 +204,5 @@ const StyledInput = styled.input`
     color: black;
   }
 `;
-
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await api.getTexts();
-  const data = await res.data;
-  // Pass data to the page via props
-  return { props: { data } };
-}
 
 export default AboutManager;

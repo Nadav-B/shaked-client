@@ -1,14 +1,19 @@
-import axios from "axios";
 import styled from "styled-components";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
 import { contactLinks } from "../../config/contactButtonLinks";
 import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
+import { ProtectRoute } from "../../shared/protected_route";
+import Title from "../../elements/Title";
+import Error from "../../elements/Error";
 
-const ServiceManager = ({ data }) => {
+const ServiceManager = () => {
+  const [data, setData] = useState();
+  const [error, setError] = useState(false);
+
   const [state, setState] = useState({
     id: "",
     title: "",
@@ -21,6 +26,18 @@ const ServiceManager = ({ data }) => {
     text: "",
     style: "",
     status: false,
+  });
+
+  useEffect(() => {
+    async function getRequestForm() {
+      try {
+        const response = await api.getServices();
+        setData(response.data);
+      } catch {
+        setError(true);
+      }
+    }
+    if (!data) getRequestForm();
   });
 
   const handleSubmit = async (event) => {
@@ -58,7 +75,7 @@ const ServiceManager = ({ data }) => {
     }));
   };
 
-  const deleteArticle = async () => {
+  const deleteService = async () => {
     await api.deleteService(state.id).then(
       (response) => {
         setResult((prevState) => ({
@@ -110,20 +127,23 @@ const ServiceManager = ({ data }) => {
       });
     }
   };
+  if(error) return <Error />;
 
   return (
-    <TextWrapper>
-      <h1> ערוך שירות</h1>
-      <StyledSelect name="category" onChange={handleArticleChange}>
-        <option value=""> הוסף שירות </option>
-        {data.map((service) => (
-          <option key={service.id} value={service.id}>
-            {service.title}
-          </option>
-        ))}
-      </StyledSelect>
+    <ProtectRoute>
+      <TextWrapper>
+        <Title> ערוך שירותים</Title>
 
-      <StyledForm>
+        <StyledSelect name="category" onChange={handleArticleChange}>
+          <option value=""> הוסף שירות </option>
+          {data &&
+            data.map((service) => (
+              <option key={service.id} value={service.id}>
+                {service.title}
+              </option>
+            ))}
+        </StyledSelect>
+
         <form onSubmit={handleSubmit}>
           <label>
             שם השירות
@@ -154,7 +174,7 @@ const ServiceManager = ({ data }) => {
               onChange={handleChange}
             />
           </label>
-          <TextUploader setState={setState}/> 
+          <TextUploader setState={setState} />
 
           <label>
             כפתור צרו קשר
@@ -165,7 +185,7 @@ const ServiceManager = ({ data }) => {
               value={state.contactButton}
             >
               {contactLinks.map((link) => (
-                  <option  key={link.name} value={link.name}>
+                <option key={link.name} value={link.name}>
                   {link.name}{" "}
                 </option>
               ))}
@@ -181,15 +201,15 @@ const ServiceManager = ({ data }) => {
             <Button
               type="button"
               onClick={() => {
-                deleteArticle();
+                deleteService();
               }}
             >
               מחק כתבה
             </Button>
           )}
         </form>
-      </StyledForm>
-    </TextWrapper>
+      </TextWrapper>
+    </ProtectRoute>
   );
 };
 
@@ -233,14 +253,5 @@ const StyledInput = styled.input`
     color: black;
   }
 `;
-
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await api.getServices();
-  const data = res.data;
-  // Pass data to the page via props
-  return { props: { data } };
-}
 
 export default ServiceManager;

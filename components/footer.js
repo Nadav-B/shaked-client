@@ -32,7 +32,7 @@ const Fotter = () => (
       </a>
     </StyledItem>
 
-    <Wave fill='#0a589d'
+    <Wave fill='#F1F3F8'
         paused={false}
         options={{
           height: 20,

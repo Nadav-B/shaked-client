@@ -45,9 +45,14 @@ const Articles = () => {
 const StyledArticles = styled.div`
   display: flex;
   width: 100%;
+  max-width: 1400px;
+  margin: auto;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 40px;
+
+
 `;
 
 export default Articles;
