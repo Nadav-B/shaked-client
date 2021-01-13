@@ -6,9 +6,10 @@ import axios from "axios";
 const getContacts = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/contacts`;
   const token = Cookies.get("token");
+  console.log(token)
   return await axios.get(url, {
     headers: {
-      Authorization: `${token}`,
+      Authorization: ` ${token}`,
     },
   });
 };
@@ -58,7 +59,7 @@ const getArticles = async () => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: `${token}`,
+      Authorization: Bearer`${token}`,
       Accept: "application/json",
     },
   });

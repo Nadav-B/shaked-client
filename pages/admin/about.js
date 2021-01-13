@@ -7,6 +7,7 @@ import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
 import Title from "../../elements/Title";
+import Error from "../../elements/Error";
 
 function AboutManager() {
   const [data, setData] = useState();
@@ -117,7 +118,7 @@ function AboutManager() {
     }
   };
   
-  if(error) return <Login login={login} />;
+  if(error) return <Error />;
 
 
   return (

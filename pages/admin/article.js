@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Title from "../../elements/Title";
+import Error from "../../elements/Error";
 
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
@@ -144,7 +145,7 @@ const ArticleManager = () => {
       });
     }
   };
-  if(error) return <Login login={login} />;
+  if(error) return <Error />;
 
   return (
     <ProtectRoute>

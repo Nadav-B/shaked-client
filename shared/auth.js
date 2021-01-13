@@ -39,7 +39,6 @@ export const AuthProvider = ({ children }) => {
       username: username,
       password: password,
     });
-    console.log(response)
     if(response){
       Cookies.set("token",response.headers.token)
       setUser(true)

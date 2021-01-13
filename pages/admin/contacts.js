@@ -5,7 +5,7 @@ import Text from "../../elements/Text";
 import Title from "../../elements/Title";
 
 import Button from "../../elements/Button";
-import Login from "../../elements/Login";
+import Error from "../../elements/Error";
 
 import Modal from "../../elements/Modal";
 import TextWrapper from "../../elements/TextWrapper";
@@ -90,7 +90,7 @@ const ContactManagers = () => {
   });
   
 
-  if(error) return <Login login={login} />;
+  if(error) return <Error />;
   return (
     <ProtectRoute>
       <TextWrapper>
@@ -165,7 +165,7 @@ const ContactManagers = () => {
         </StyledContact>
       </TextWrapper>
       </ProtectRoute>
-    
+  
   );
 };
 

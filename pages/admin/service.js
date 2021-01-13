@@ -8,6 +8,7 @@ import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
 import Title from "../../elements/Title";
+import Error from "../../elements/Error";
 
 const ServiceManager = () => {
   const [data, setData] = useState();
@@ -126,7 +127,7 @@ const ServiceManager = () => {
       });
     }
   };
-  if (error) return <Login login={login} />;
+  if(error) return <Error />;
 
   return (
     <ProtectRoute>
