@@ -5,6 +5,7 @@ import Head from "next/head";
 import styled from "styled-components";
 import api from "../shared/api";
 import Title from "../elements/Title";
+import SEO from "../components/seo";
 
 const Contact = () => {
   const [state, setState] = useState({
@@ -63,11 +64,14 @@ const Contact = () => {
     );
   };
 
+  const seo = {
+    description: "השאירו פרטים ונחזור אליכם בהקדם",
+  };
+
   return (
     <Wrapper>
       <Head>
-        <meta name="description" content="צור קשר"></meta>
-        <meta property="og:description" content="צור קשר" key="ogdesc" />
+        <SEO seo={seo}></SEO>
       </Head>
       <Title>צרו קשר</Title>
 

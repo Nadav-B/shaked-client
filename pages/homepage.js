@@ -6,9 +6,15 @@ import Contact from "./contact";
 import Surveys from "./surveys";
 import About from "./about";
 import Services from "./services";
+import Head from "next/head";
+import SEO from "../components/seo";
 
 const Homepage = () => {
   return (
+    <>
+    <Head>
+      <SEO/>
+    </Head>
     <Wrapper>
       <StyledLandingPage>
         <StyledBackground />
@@ -31,6 +37,8 @@ const Homepage = () => {
         <Contact />
       </ContentBackground>
     </Wrapper>
+    </>
+
   );
 };
 

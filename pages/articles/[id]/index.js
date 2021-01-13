@@ -5,20 +5,21 @@ import { directByContact } from "../../../config/contactButtonLinks";
 import styled from "styled-components";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
+import SEO from "../../../components/seo";
 
 const Article = ({ data }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
+
+  const seo = {
+    title: data.title,
+    description: data.introduction,
+    image: image,
+  };
+
   return (
     <div>
       <Head>
-        <meta name="description" content={data.introduction}></meta>
-        <meta property="og:title" content={data.title} key="ogtitle" />
-        <meta property="og:image" content={image} key="ogimage" />
-        <meta
-          property="og:description"
-          content={data.introduction}
-          key="ogdesc"
-        />
+        <SEO seo={seo} />
       </Head>
       <StyledArticle>
         <StyledImage src={image} alt="" />
@@ -44,7 +45,6 @@ const StyledArticle = styled.div`
   width: 100%;
   margin: auto;
   max-width: 1200px;
-  
 `;
 
 const StyledImage = styled.img`

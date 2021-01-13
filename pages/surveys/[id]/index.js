@@ -8,6 +8,8 @@ import Title from "../../../elements/Title";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
+import SEO from "../../../components/seo";
+
 
 const Survey = ({ id }) => {
 
@@ -136,16 +138,15 @@ const Survey = ({ id }) => {
       [name]: value,
     }));
   };
+  const seo = {
+    title: data.name,
+    description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
+  };
 
   return (
     <Wrapper>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
-        <meta name="description" content={data.name}></meta>
-        <meta property="og:title" content={data.name} key="ogtitle" />
-        <meta property="og:description" content={data.name} key="ogdesc" />
-        <title>{"shaked"}</title>
+        <SEO seo={seo}></SEO>
       </Head>
       <Title className="title">{data.name}</Title>
 

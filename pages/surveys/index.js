@@ -6,19 +6,18 @@ import Text from "../../elements/Text";
 import styled from "styled-components";
 import Head from "next/head";
 import Title from "../../elements/Title";
+import SEO from "../../components/seo";
 
 const Surveys = () => {
   const data = [survey1, survey2];
 
+  const seo = {
+    description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
+  };
   return (
     <div>
       <Head>
-        <meta name="description" content=" שאלונים לביצוע בדיקה"></meta>
-        <meta
-          property="og:description"
-          content="שאלונים לביצוע בדיקה "
-          key="ogdesc"
-        />
+        <SEO seo={seo}></SEO>
       </Head>
       <Title>שאלונים לביצוע בדיקה</Title>
       <StyledContainer>

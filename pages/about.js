@@ -15,6 +15,8 @@ const About = () => {
   return (
     <Wrapper>
       <Head>
+
+        
         <meta name="description" content=" אודות" />
         <meta property="og:description" content="אודות " key="ogdesc" />
       </Head>
