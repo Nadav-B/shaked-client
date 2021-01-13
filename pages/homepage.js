@@ -27,7 +27,6 @@ const Homepage = () => {
         <CustomBackground2>
           <Articles />
         </CustomBackground2>
-
         <Services />
         <Contact />
       </ContentBackground>
