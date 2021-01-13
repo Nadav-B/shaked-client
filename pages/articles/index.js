@@ -51,6 +51,8 @@ const StyledArticles = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 40px;
+
+
 `;
 
 export default Articles;

@@ -8,27 +8,32 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
     <StyledArticlePreview>
       <a href={href} onClick={onClick} ref={ref}>
         <Wrapper>
-          <StyledPicture>
-            <img src={image} alt="" />
-          </StyledPicture>
-          <Text variant="large" margin="4px" fontSize="19px">
-            {" "}
-            {article.title}{" "}
-          </Text>
-          <Text margin="6px"> {article.introduction} </Text>
+          <StyledPicture src={image} alt="" />
+          <StyledText>
+            <Text variant="title large" margin="4px" fontSize="19px">
+              {" "}
+              {article.title}{" "}
+            </Text>
+            <Text margin="6px"> {article.introduction} </Text>
+          </StyledText>
         </Wrapper>
       </a>
     </StyledArticlePreview>
   );
 });
 
+const Wrapper = styled.div`
+  margin: auto;
+  background: white;
+  height: 100%;
+  max-width: 400px;
+`;
 const StyledArticlePreview = styled.div`
-  display: flex;
-  margin: 10px;
-  width: auto;
+  margin: 20px;
+  width: 400px;
+  min-height: 300px;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  min-height: 300px;
 
   *:hover {
     background: ${(p) => p.theme.colors.lightGrey};
@@ -38,24 +43,37 @@ const StyledArticlePreview = styled.div`
     -o-transition: background-color 2s ease-out;
     transition: background-color 2s ease-out;
   }
-`;
 
-const StyledPicture = styled.picture`
-  display: block;
-  height: 200px;
-  width: inherit;
-  margin: auto;
-
-  img {
-    height: inherit;
-    object-fit: fill;
+  @media screen and (max-width: 700px) {
+    min-height: 100px;
+    width: 100%;
   }
 `;
-const Wrapper = styled.div`
-  margin: auto;
+
+const StyledPicture = styled.img`
   display: block;
-  background: white;
-  height: 100%;
-  max-width: 400px;
+  width: 100%;
+  height: 65%;
+  object-fit: fill;
+
+  @media screen and (max-width: 700px) {
+    height: 100%;
+    max-width: 30%;
+    float: right;
+    object-fit: fill;
+    ;
+  }
 `;
+
+const StyledText = styled.div`
+  display: block;
+  padding: 5px;
+
+  @media screen and (max-width: 700px) {
+    display: inline;
+    width: 70%;
+    float: left;
+  }
+`;
+
 export default ArticlePreview;
