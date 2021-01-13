@@ -23,15 +23,14 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
 });
 
 const Wrapper = styled.div`
-  margin: auto;
-  background: white;
   height: 100%;
-  max-width: 400px;
 `;
+
 const StyledArticlePreview = styled.div`
   margin: 20px;
   width: 400px;
   min-height: 300px;
+  background: white;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -54,14 +53,13 @@ const StyledPicture = styled.img`
   display: block;
   width: 100%;
   height: 65%;
-  object-fit: fill;
 
   @media screen and (max-width: 700px) {
     height: 100%;
+    width: 30%;
     max-width: 30%;
     float: right;
-    object-fit: fill;
-    ;
+    object-fit: cover;
   }
 `;
 
@@ -72,6 +70,7 @@ const StyledText = styled.div`
   @media screen and (max-width: 700px) {
     display: inline;
     width: 70%;
+
     float: left;
   }
 `;
