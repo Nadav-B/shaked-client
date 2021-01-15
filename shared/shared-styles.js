@@ -1,4 +1,3 @@
-import React from "react";
 import { theme } from "./theme";
 import { createGlobalStyle } from "styled-components";
 
@@ -13,6 +12,15 @@ const GlobalStyles = createGlobalStyle`
     font-size: ${theme.fontSize.normal};
     font-family: ${theme.fontFamily};
   }
+  h1  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    
+    } 
 
   * {
     box-sizing: border-box;
@@ -47,6 +55,5 @@ const GlobalStyles = createGlobalStyle`
 
 
 `;
-
 
 export default GlobalStyles;

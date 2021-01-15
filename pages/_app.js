@@ -23,11 +23,18 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <>
-      <Helmet  title={metadata.getTitle()} link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+      base={true}
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />
+      <Helmet>
+        <html lang="he" />
+      </Helmet>
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
           <Head>
-            <meta charset="utf-8" />
             <link
               href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
               rel="stylesheet"
