@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import Title from "./Title";
 
 const Error = () => {
   return (
     <Wrapper>
-      <Title>שגיאה בטעינת העמוד</Title>
+      <h2>שגיאה בטעינת העמוד</h2>
     </Wrapper>
   );
 };

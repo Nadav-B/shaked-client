@@ -4,7 +4,6 @@ import survey2 from "../../public/surveys/2.json";
 import Link from "next/link";
 import Text from "../../elements/Text";
 import styled from "styled-components";
-import Title from "../../elements/Title";
 import { Helmet } from "react-helmet";
 import MetadataManager from "../../components/metadataManager";
 
@@ -24,7 +23,7 @@ const Surveys = () => {
   return (
     <div>
       <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
-      <Title>שאלונים לביצוע בדיקה</Title>
+      <h1>שאלונים לביצוע בדיקה</h1>
       <StyledContainer>
         {data.map((survey) => (
           <Link

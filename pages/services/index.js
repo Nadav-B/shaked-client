@@ -3,7 +3,6 @@ import Link from "next/link";
 import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
-import Title from "../../elements/Title";
 import Loading from "../../elements/Loading";
 import { from, gql } from "@apollo/client";
 import { Helmet } from "react-helmet";
@@ -37,7 +36,7 @@ const Services = () => {
   return (
     <div>
       <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
-      <Title>השירותים שלנו</Title>
+      <h1>השירותים שלנו</h1>
       <StyledService>
         {data.getServices.map((service, index) => (
           <StyledWrapper key={service.id}>

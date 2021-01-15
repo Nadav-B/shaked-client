@@ -3,7 +3,6 @@ import Button from "../elements/Button";
 import Text from "../elements/Text";
 import styled from "styled-components";
 import api from "../shared/api";
-import Title from "../elements/Title";
 import { Helmet } from "react-helmet";
 import MetadataManager from "../components/metadataManager";
 
@@ -73,7 +72,7 @@ const Contact = () => {
   return (
     <Wrapper>
       <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
-      <Title>צרו קשר</Title>
+      <h1>צרו קשר</h1>
 
       <StyledForm>
         <form onSubmit={handleSubmit}>

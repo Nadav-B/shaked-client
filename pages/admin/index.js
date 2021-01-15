@@ -2,13 +2,12 @@ import Link from "next/link";
 import styled from "styled-components";
 import Button from "../../elements/Button";
 import { ProtectRoute } from "../../shared/protected_route";
-import Title from "../../elements/Title";
 
   const Admin =()=> {
     return (
       <ProtectRoute>
       <StyledAdmin>
-      <Title>עמוד ניהול</Title>
+      <h1>עמוד ניהול</h1>
 
         <Link href={"/admin/contacts"}>
           <Button>הצג אנשי קשר</Button>

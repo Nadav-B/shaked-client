@@ -4,7 +4,6 @@ import styled from "styled-components";
 import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
 import Text from "../../../elements/Text";
-import Title from "../../../elements/Title";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
@@ -148,7 +147,7 @@ const Survey = ({ id }) => {
   return (
     <Wrapper>
       <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
-      <Title className="title">{data.name}</Title>
+      <h1 className="title">{data.name}</h1>
       {currentStatus == 0 && (
         <ContactWrapper>
           <Text variant="semiBold">מלאו את שמכם והתחילו את ביצוע הבדיקה:</Text>

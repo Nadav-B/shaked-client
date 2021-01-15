@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import Title from "../../elements/Title";
 import Error from "../../elements/Error";
 
 import Button from "../../elements/Button";
@@ -150,7 +149,7 @@ const ArticleManager = () => {
   return (
     <ProtectRoute>
       <TextWrapper>
-        <Title> ערוך כתבות</Title>
+        <h1> ערוך כתבות</h1>
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף כתבה </option>
           {data &&

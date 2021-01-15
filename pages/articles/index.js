@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import Title from "../../elements/Title";
 import Loading from "../../elements/Loading";
 import ARTICLES_QUERY from "../../graphql/articles.query";
 import { Helmet } from "react-helmet";
@@ -29,7 +28,7 @@ const Articles = () => {
     <div>
       <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
 
-      <Title>כתבות</Title>
+      <h1>כתבות</h1>
       <StyledArticles>
         {data.getArticles.map((article) => (
           <Link

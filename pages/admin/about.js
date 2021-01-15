@@ -6,7 +6,6 @@ import api from "../../shared/api";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
-import Title from "../../elements/Title";
 import Error from "../../elements/Error";
 
 function AboutManager() {
@@ -124,7 +123,7 @@ function AboutManager() {
   return (
     <ProtectRoute>
       <TextWrapper>
-        <Title>ערוך אודות</Title>
+        <h1>ערוך אודות</h1>
         <StyledSelect name="category" onChange={handleTextChange}>
           <option value=""> הוסף טקסט </option>
           {data &&

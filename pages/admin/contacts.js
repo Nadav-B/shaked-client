@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import api from "../../shared/api";
 import Text from "../../elements/Text";
-import Title from "../../elements/Title";
 
 import Button from "../../elements/Button";
 import Error from "../../elements/Error";
@@ -95,7 +94,7 @@ const ContactManagers = () => {
     <ProtectRoute>
       <TextWrapper>
         <StyledContact>
-          <Title>אנשי קשר</Title>
+          <h1>אנשי קשר</h1>
 
           {contacts && (
             <div>

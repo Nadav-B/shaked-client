@@ -7,7 +7,6 @@ import Surveys from "./surveys";
 import About from "./about";
 import Services from "./services";
 
-
 const Homepage = () => {
   return (
     <Wrapper>
