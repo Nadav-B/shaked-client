@@ -11,7 +11,8 @@ import { gql } from "@apollo/client";
 
 const seo = {
   title: "השירותים שלנו",
-  description: "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה"
+  description: "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה",
+  link: "https://shakedm.co.il/services"
 };
 
 
@@ -33,14 +34,6 @@ const Services = () => {
    if (error) return <span></span>;
   return (
     <div>
-      <Head>
-        <meta name="description" content=" השירותים שלנו "></meta>
-        <meta
-          property="og:description"
-          content="השירותים שלנו  "
-          key="ogdesc"
-        />
-      </Head>
       <Title>השירותים שלנו</Title>
       <StyledService>
         {data.getServices.map((service, index) => (
