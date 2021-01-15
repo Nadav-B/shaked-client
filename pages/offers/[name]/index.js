@@ -1,23 +1,23 @@
 import React from "react";
-import Head from "next/head";
+import { Helmet } from "react-helmet";
 import api from "../../../shared/api";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
-import SEO from "../../../components/seo";
 
 import { directByContact } from "../../../config/contactButtonLinks";
+
+const metadata = new MetadataManager(seo);
+
 const Offer = ({ data }) => {
   const seo = {
     title: data.title,
     description: data.introduction,
+    url: `https://shakedm.co.il/offers/${data.id}`,
   };
 
   return (
     <div>
-      <Head>
-        <SEO seo={seo} />
-      </Head>
-
+      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
       <TextWrapper
         dangerouslySetInnerHTML={{
           __html: data.content,

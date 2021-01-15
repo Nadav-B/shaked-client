@@ -1,24 +1,25 @@
 import React from "react";
-import Head from "next/head";
 import api from "../../../shared/api";
-import Button from "../../../elements/Button";
 import styled from "styled-components";
-import SEO from "../../../components/seo";
-
+import { Helmet } from "react-helmet";
+import Button from "../../../elements/Button";
 import { directByContact } from "../../../config/contactButtonLinks";
 import TextWrapper from "../../../elements/TextWrapper";
+import MetadataManager from "../../../components/metadataManager";
+
 const Service = ({ data }) => {
   const seo = {
     title: data.title,
     description: data.introduction,
+    url: `https://shakedm.co.il/services/${data.id}`,
   };
+
+  const metadata = new MetadataManager(seo);
+
 
   return (
     <StyledWrapper>
-      <Head>
-        <SEO seo={seo} />
-      </Head>
-
+      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
       <TextWrapper
         dangerouslySetInnerHTML={{
           __html: data.content,

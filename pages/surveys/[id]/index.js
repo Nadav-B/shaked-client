@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
@@ -8,11 +8,9 @@ import Title from "../../../elements/Title";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
-import SEO from "../../../components/seo";
-
+import MetadataManager from "../../../components/metadataManager";
 
 const Survey = ({ id }) => {
-
   const Status = {
     Fillname: 0,
     Questions: 1,
@@ -20,6 +18,14 @@ const Survey = ({ id }) => {
   };
   const surveys = [survey1, survey2];
   const data = surveys[id];
+
+  const seo = {
+    title: data.name,
+    description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
+    url: `https://shakedm.co.il/surveys/${id}`,
+  };
+  const metadata = new MetadataManager(seo);
+
 
   const [results, setResults] = useState(new Map());
 
@@ -138,19 +144,11 @@ const Survey = ({ id }) => {
       [name]: value,
     }));
   };
-  const seo = {
-    title: data.name,
-    description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
-
-  };
 
   return (
     <Wrapper>
-      <Head>
-        <SEO seo={seo}></SEO>
-      </Head>
+      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
       <Title className="title">{data.name}</Title>
-
       {currentStatus == 0 && (
         <ContactWrapper>
           <Text variant="semiBold">מלאו את שמכם והתחילו את ביצוע הבדיקה:</Text>
@@ -173,7 +171,7 @@ const Survey = ({ id }) => {
         <div>
           <QuestionWrapper>
             <Text fontSize="large">
-              שאלה {index +1} מתוך {data.questions.length}
+              שאלה {index + 1} מתוך {data.questions.length}
             </Text>
 
             <Progress

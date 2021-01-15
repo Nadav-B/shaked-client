@@ -58,7 +58,7 @@ const getArticles = async () => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: Bearer`${token}`,
+      Authorization: `${token}`,
       Accept: "application/json",
     },
   });

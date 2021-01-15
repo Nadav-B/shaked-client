@@ -1,14 +1,18 @@
 import React from "react";
-import Head from "next/head";
 import styled from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
 import TEXTS_QUERY from "../graphql/texts.query";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
+import MetadataManager from "../components/metadataManager";
+import { Helmet } from "react-helmet";
 
 const seo = {
   title: " שקד משכנתאות",
+  url: "https://shakedm.co.il/about",
 };
+
+const metadata = new MetadataManager(seo);
 
 const About = () => {
 
@@ -16,12 +20,9 @@ const About = () => {
   if (loading) return <Loading seo={seo}></Loading>;
   if (error) return <span></span>;
 
-  return (
+  return (  
     <Wrapper>
-      <Head>
-        <meta name="description" content=" אודות" />
-        <meta property="og:description" content="אודות " key="ogdesc" />
-      </Head>
+      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
       <TextWrapper>
         {data.getTexts.map((text) => (
           <div

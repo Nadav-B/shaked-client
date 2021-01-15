@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
-import Head from "next/head";
 import styled from "styled-components";
 import api from "../shared/api";
 import Title from "../elements/Title";
-import SEO from "../components/seo";
-
+import { Helmet } from "react-helmet";
+import MetadataManager from "../components/metadataManager";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
+  url: "https://shakedm.co.il/contact",
 };
-
+const metadata = new MetadataManager(seo);
 
 const Contact = () => {
   const [state, setState] = useState({
@@ -70,13 +70,9 @@ const Contact = () => {
     );
   };
 
-
-
   return (
     <Wrapper>
-      <Head>
-        <SEO seo={seo}></SEO>
-      </Head>
+      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
       <Title>צרו קשר</Title>
 
       <StyledForm>

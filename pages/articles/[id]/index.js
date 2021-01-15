@@ -4,8 +4,8 @@ import { directByContact } from "../../../config/contactButtonLinks";
 import styled from "styled-components";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
-import Head from "next/head";
-import SEO from "../../../components/seo";
+import { Helmet } from "react-helmet";
+import MetadataManager from "../../../components/metadataManager";
 
 const Article = ({ data }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
@@ -14,13 +14,15 @@ const Article = ({ data }) => {
     title: data.title,
     description: data.introduction,
     image: image,
+    url: `https://shakedm.co.il/articles/${data.id}`,
   };
+  const metadata = new MetadataManager(seo);
+
 
   return (
     <div>
-      <Head>
-        <SEO seo={seo} />
-      </Head>
+        <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+
       <StyledArticle>
         <StyledImage src={image} alt="image" />
         <TextWrapper

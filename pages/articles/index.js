@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import Head from "next/head";
 import Title from "../../elements/Title";
 import Loading from "../../elements/Loading";
 import ARTICLES_QUERY from "../../graphql/articles.query";
-import SEO from "../../components/seo";
+import { Helmet } from "react-helmet";
+
+import MetadataManager from "../../components/metadataManager";
 
 import ArticlePreview from "../../elements/ArticlePreview";
 import { useQuery } from "@apollo/react-hooks";
@@ -13,7 +14,10 @@ import { useQuery } from "@apollo/react-hooks";
 const seo = {
   title: "כתבות",
   description: "הכתבות הבאות יעזרו לכם לקבל מידע על הנושאים הפיננסים",
+  url: "https://shakedm.co.il/articles",
 };
+
+const metadata = new MetadataManager(seo);
 
 const Articles = () => {
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
@@ -23,9 +27,7 @@ const Articles = () => {
 
   return (
     <div>
-      <Head>
-        <SEO seo={seo}></SEO>
-      </Head>
+      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
 
       <Title>כתבות</Title>
       <StyledArticles>

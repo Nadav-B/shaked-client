@@ -1,15 +1,9 @@
 import { RotateCircleLoading } from "react-loadingg";
 import styled from "styled-components";
-import SEO from "../components/seo";
-import Head from "next/head";
 
-const Loading = ({seo}) => {
+const Loading = () => {
   return (
     <>
-        <Head>
-          <SEO seo={seo}></SEO>
-        </Head>
-
       <Wrapper>
         <RotateCircleLoading color="#0a589d" />
       </Wrapper>
