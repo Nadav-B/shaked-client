@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
-import Head from "next/head";
 import { useQuery } from "@apollo/react-hooks";
 import Title from "../../elements/Title";
 import Loading from "../../elements/Loading";

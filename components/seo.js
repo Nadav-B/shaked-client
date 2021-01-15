@@ -13,13 +13,13 @@ const SEO = ({seo}) => {
   let data = {...default_seo, ...seo};
   return (
     <>
-          <link rel="canonical" href={data.link} />
-
       <meta
         name="description"
         content={data.description}
         key="description"
       ></meta>
+      <link rel="canonical" href={data.link} />
+      <meta property="og:url" content={data.link} key="ogimage" />
       <meta property="og:title" content={data.title} key="ogtitle" />
       <meta property="og:image" content={data.image} key="ogimage" />
       <meta property="og:description" content={data.description} key="ogdesc" />
