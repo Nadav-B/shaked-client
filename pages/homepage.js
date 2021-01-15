@@ -6,8 +6,6 @@ import Contact from "./contact";
 import Surveys from "./surveys";
 import About from "./about";
 import Services from "./services";
-import Head from "next/head";
-import SEO from "../components/seo";
 
 const Homepage = () => {
   return (

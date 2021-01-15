@@ -7,6 +7,12 @@ import api from "../shared/api";
 import Title from "../elements/Title";
 import SEO from "../components/seo";
 
+
+const seo = {
+  description: "השאירו פרטים ונחזור אליכם בהקדם",
+};
+
+
 const Contact = () => {
   const [state, setState] = useState({
     fullname: "",
@@ -64,9 +70,7 @@ const Contact = () => {
     );
   };
 
-  const seo = {
-    description: "השאירו פרטים ונחזור אליכם בהקדם",
-  };
+
 
   return (
     <Wrapper>

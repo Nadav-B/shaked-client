@@ -8,13 +8,15 @@ import Head from "next/head";
 import Title from "../../elements/Title";
 import SEO from "../../components/seo";
 
+const seo = {
+  title: "שאלונים",
+  description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
+};
+
 const Surveys = () => {
   const data = [survey1, survey2];
 
-  const seo = {
-    title: "שאלונים",
-    description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
-  };
+
   return (
     <div>
       <Head>
