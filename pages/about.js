@@ -15,12 +15,11 @@ const seo = {
 const metadata = new MetadataManager(seo);
 
 const About = () => {
-
   const { data, loading, error } = useQuery(TEXTS_QUERY);
-  if (loading) return <Loading seo={seo}></Loading>;
+  if (loading) return <Loading />;
   if (error) return <span></span>;
 
-  return (  
+  return (
     <Wrapper>
       <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
       <TextWrapper>

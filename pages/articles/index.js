@@ -22,7 +22,7 @@ const metadata = new MetadataManager(seo);
 const Articles = () => {
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
 
-  if (loading) return <Loading seo={seo}></Loading>;
+  if (loading) return <Loading/>
   if (error) return <span></span>;
 
   return (

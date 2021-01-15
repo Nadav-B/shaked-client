@@ -31,7 +31,7 @@ const SERVICES_QUERY = gql`
 const Services = () => {
   const { data, loading, error } = useQuery(SERVICES_QUERY);
   
-  if (loading) return <Loading seo={seo}></Loading>;
+  if (loading) return <Loading/>
 
   if (error) return <span></span>;
   return (
