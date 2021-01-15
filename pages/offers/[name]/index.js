@@ -3,10 +3,10 @@ import { Helmet } from "react-helmet";
 import api from "../../../shared/api";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
+import MetadataManager from "../../../components/metadataManager";
 
 import { directByContact } from "../../../config/contactButtonLinks";
 
-const metadata = new MetadataManager(seo);
 
 const Offer = ({ data }) => {
   const seo = {
