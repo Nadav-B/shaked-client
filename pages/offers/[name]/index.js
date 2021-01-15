@@ -14,6 +14,8 @@ const Offer = ({ data }) => {
     description: data.introduction,
     url: `https://shakedm.co.il/offers/${data.id}`,
   };
+  const metadata = new MetadataManager(seo);
+
 
   return (
     <div>
