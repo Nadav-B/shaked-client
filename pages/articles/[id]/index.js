@@ -1,11 +1,9 @@
 import React from "react";
-import Head from "next/head";
 import api from "../../../shared/api";
 import { directByContact } from "../../../config/contactButtonLinks";
 import styled from "styled-components";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
-import SEO from "../../../components/seo";
 
 const Article = ({ data }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
@@ -18,9 +16,6 @@ const Article = ({ data }) => {
 
   return (
     <div>
-      <Head>
-        <SEO seo={seo} />
-      </Head>
       <StyledArticle>
         <StyledImage src={image} alt="" />
         <TextWrapper

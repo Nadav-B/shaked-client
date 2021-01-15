@@ -7,7 +7,6 @@ import { useQuery } from "@apollo/react-hooks";
 import Title from "../../elements/Title";
 import Loading from "../../elements/Loading";
 import { gql } from "@apollo/client";
-import SEO from "../../components/seo";
 
 
 const seo = {

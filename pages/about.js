@@ -2,33 +2,18 @@ import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
-import TEXTS_QUERY from '../graphql/texts.query';
+import TEXTS_QUERY from "../graphql/texts.query";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
-import SEO from "../components/seo";
-
 
 const seo = {
   title: " שקד משכנתאות",
 };
 
 const About = () => {
-
   const { data, loading, error } = useQuery(TEXTS_QUERY);
-  if (loading)
-    return (
-      <Loading seo={seo}></Loading>
-    );  if (error) return <span></span>;
-
-  if (loading) return (
-    <>
-    <Head>
-      <SEO seo={seo}></SEO>
-    </Head>
-    <Loading></Loading>
-    </>
-  );
-
+  if (loading) return <Loading seo={seo}></Loading>;
+  if (error) return <span></span>;
 
   return (
     <Wrapper>
@@ -56,8 +41,5 @@ const Wrapper = styled.div`
   padding-top: 40px;
   padding-bottom: 40px;
 `;
-
-
-
 
 export default About;
