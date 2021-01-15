@@ -11,7 +11,6 @@ import { gql } from "@apollo/client";
 const seo = {
   title: "השירותים שלנו",
   description: "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה",
-  link: "https://shakedm.co.il/services"
 };
 
 

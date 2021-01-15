@@ -11,6 +11,8 @@ import SEO from "../../components/seo";
 const seo = {
   title: "שאלונים",
   description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
+  link: "https://shakedm.co.il/services"
+
 };
 
 const Surveys = () => {

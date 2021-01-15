@@ -48,7 +48,6 @@ const App = ({ Component, pageProps }) => {
               href="logos/favicon-16x16.png"
             />
             <meta name="theme-color" content="#ffffff" />
-
             <SEO/>
             <GoogleTagManager />
           </Head>

@@ -19,11 +19,11 @@ const SEO = ({seo}) => {
         key="description"
       ></meta>
       <link rel="canonical" href={data.link} />
+      <meta property="og:type" content="website" />
       <meta property="og:url" content={data.link} key="ogimage" />
       <meta property="og:title" content={data.title} key="ogtitle" />
       <meta property="og:image" content={data.image} key="ogimage" />
       <meta property="og:description" content={data.description} key="ogdesc" />
-      <meta property="og:type" content="website" />
 
 
     </>
