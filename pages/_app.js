@@ -49,7 +49,7 @@ const App = ({ Component, pageProps }) => {
             />
             <meta name="theme-color" content="#ffffff" />
 
-            <SEO></SEO>
+            <SEO/>
             <GoogleTagManager />
           </Head>
           <ThemeProvider theme={theme}>

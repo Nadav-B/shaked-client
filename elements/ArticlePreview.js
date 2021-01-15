@@ -8,7 +8,7 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
     <StyledArticlePreview>
       <a href={href} onClick={onClick} ref={ref}>
         <Wrapper>
-          <StyledPicture src={image} alt="" />
+          <StyledPicture src={image} alt="Article Image" />
           <StyledText>
             <Text variant="title large" margin="4px" fontSize="19px">
               {" "}

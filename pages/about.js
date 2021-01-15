@@ -11,6 +11,7 @@ const seo = {
 };
 
 const About = () => {
+
   const { data, loading, error } = useQuery(TEXTS_QUERY);
   if (loading) return <Loading seo={seo}></Loading>;
   if (error) return <span></span>;

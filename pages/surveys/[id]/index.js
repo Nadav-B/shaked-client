@@ -141,6 +141,7 @@ const Survey = ({ id }) => {
   const seo = {
     title: data.name,
     description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
+
   };
 
   return (
