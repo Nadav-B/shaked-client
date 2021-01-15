@@ -7,6 +7,14 @@ import { useQuery } from "@apollo/react-hooks";
 import Title from "../../elements/Title";
 import Loading from "../../elements/Loading";
 import { gql } from "@apollo/client";
+import SEO from "../../components/seo";
+
+
+const seo = {
+  title: "השירותים שלנו",
+  description: "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה"
+};
+
 
 const SERVICES_QUERY = gql`
   {
@@ -21,8 +29,9 @@ const SERVICES_QUERY = gql`
 const Services = () => {
 
   const { data, loading, error } = useQuery(SERVICES_QUERY);
-  if (loading) return <Loading/>
-  if (error) return <span></span>;
+  if (loading) return <Loading seo={seo}></Loading>;
+
+   if (error) return <span></span>;
   return (
     <div>
       <Head>
