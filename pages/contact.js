@@ -71,9 +71,12 @@ const Contact = () => {
 
   return (
     <Wrapper>
-      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />{" "}
       <h1>צרו קשר</h1>
-
       <StyledForm>
         <form onSubmit={handleSubmit}>
           <label>

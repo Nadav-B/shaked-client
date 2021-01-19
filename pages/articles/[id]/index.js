@@ -21,8 +21,11 @@ const Article = ({ data }) => {
 
   return (
     <div>
-        <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
-
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />
       <StyledArticle>
         <StyledImage src={image} alt="image" />
         <TextWrapper

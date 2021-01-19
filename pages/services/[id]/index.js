@@ -16,10 +16,13 @@ const Service = ({ data }) => {
 
   const metadata = new MetadataManager(seo);
 
-
   return (
     <StyledWrapper>
-      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />{" "}
       <TextWrapper
         dangerouslySetInnerHTML={{
           __html: data.content,

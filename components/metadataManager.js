@@ -10,7 +10,6 @@ class MetadataManager {
       type: "website",
     };
     this.data = { ...default_seo, ...seo };
-    console.log(this.data)
   }
 
   getTitle() {
@@ -23,8 +22,8 @@ class MetadataManager {
 
   getMetadatas() {
     return [
-      { property: "og:title", content: this.data.title },
       { name: "desciprtion", content: this.data.description },
+      { property: "og:title", content: this.data.title },
       { property: "og:description", content: this.data.description },
       { property: "og:url", content: this.data.url },
       { property: "og:image", content: this.data.image },

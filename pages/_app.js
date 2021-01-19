@@ -23,12 +23,6 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <>
-      <Helmet
-      base={true}
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
-      />
       <Helmet>
         <html lang="he" />
       </Helmet>

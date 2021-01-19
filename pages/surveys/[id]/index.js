@@ -25,7 +25,6 @@ const Survey = ({ id }) => {
   };
   const metadata = new MetadataManager(seo);
 
-
   const [results, setResults] = useState(new Map());
 
   const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
@@ -146,7 +145,11 @@ const Survey = ({ id }) => {
 
   return (
     <Wrapper>
-      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />{" "}
       <h1 className="title">{data.name}</h1>
       {currentStatus == 0 && (
         <ContactWrapper>
@@ -165,7 +168,6 @@ const Survey = ({ id }) => {
           </form>
         </ContactWrapper>
       )}
-
       {currentStatus == 1 && (
         <div>
           <QuestionWrapper>

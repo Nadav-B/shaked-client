@@ -7,8 +7,6 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import MetadataManager from "../../components/metadataManager";
 
-
-
 const seo = {
   title: "שאלונים",
   description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
@@ -21,7 +19,11 @@ const Surveys = () => {
 
   return (
     <div>
-      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />{" "}
       <h1>שאלונים לביצוע בדיקה</h1>
       <StyledContainer>
         {data.map((survey) => (

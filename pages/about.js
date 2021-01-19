@@ -8,7 +8,7 @@ import MetadataManager from "../components/metadataManager";
 import { Helmet } from "react-helmet";
 
 const seo = {
-  title: " שקד משכנתאות",
+  title: "אודות",
   url: "https://www.shakedm.co.il/about",
 };
 
@@ -19,14 +19,23 @@ const About = () => {
   if (loading)
     return (
       <>
-        <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+        <Helmet
+          title={metadata.getTitle()}
+          link={metadata.getLinks()}
+          meta={metadata.getMetadatas()}
+        />{" "}
         <Loading />
       </>
-    );  if (error) return <span></span>;
+    );
+  if (error) return <span></span>;
 
   return (
     <Wrapper>
-      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />{" "}
       <TextWrapper>
         {data.getTexts.map((text) => (
           <div

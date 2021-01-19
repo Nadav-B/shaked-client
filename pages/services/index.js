@@ -29,18 +29,26 @@ const SERVICES_QUERY = gql`
 
 const Services = () => {
   const { data, loading, error } = useQuery(SERVICES_QUERY);
-  
+
   if (loading)
     return (
       <>
-        <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+        <Helmet
+          title={metadata.getTitle()}
+          link={metadata.getLinks()}
+          meta={metadata.getMetadatas()}
+        />
         <Loading />
       </>
     );
   if (error) return <span></span>;
   return (
     <div>
-      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />{" "}
       <h1>השירותים שלנו</h1>
       <StyledService>
         {data.getServices.map((service, index) => (

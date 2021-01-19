@@ -24,7 +24,11 @@ const Articles = () => {
   if (loading)
     return (
       <>
-        <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+        <Helmet
+          title={metadata.getTitle()}
+          link={metadata.getLinks()}
+          meta={metadata.getMetadatas()}
+        />
         <Loading />
       </>
     );
@@ -32,7 +36,11 @@ const Articles = () => {
 
   return (
     <div>
-      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />
       <h1>כתבות</h1>
       <StyledArticles>
         {data.getArticles.map((article) => (
