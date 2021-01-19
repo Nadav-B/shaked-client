@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 
 const seo = {
   title: " שקד משכנתאות",
-  url: "https://shakedm.co.il/about",
+  url: "https://www.shakedm.co.il/about",
 };
 
 const metadata = new MetadataManager(seo);

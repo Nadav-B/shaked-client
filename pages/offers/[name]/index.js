@@ -12,7 +12,7 @@ const Offer = ({ data }) => {
   const seo = {
     title: data.title,
     description: data.introduction,
-    url: `https://shakedm.co.il/offers/${data.id}`,
+    url: `https://www.shakedm.co.il/offers/${data.id}`,
   };
   const metadata = new MetadataManager(seo);
 

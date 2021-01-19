@@ -11,7 +11,7 @@ import Error from "../../elements/Error";
 
 const OfferManager = () => {
 
-  const offers_path =   `https://shakedm.co.il/offers/`;
+  const offers_path =   `https://www.shakedm.co.il/offers/`;
 
   const [error, setError] = useState(false);
 

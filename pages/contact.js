@@ -8,7 +8,7 @@ import MetadataManager from "../components/metadataManager";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
-  url: "https://shakedm.co.il/contact",
+  url: "https://www.shakedm.co.il/contact",
 };
 const metadata = new MetadataManager(seo);
 

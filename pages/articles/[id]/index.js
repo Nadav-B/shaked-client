@@ -14,7 +14,7 @@ const Article = ({ data }) => {
     title: data.title,
     description: data.introduction,
     image: image,
-    url: `https://shakedm.co.il/articles/${data.id}`,
+    url: `https://www.shakedm.co.il/articles/${data.id}`,
   };
   const metadata = new MetadataManager(seo);
 

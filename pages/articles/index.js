@@ -13,10 +13,9 @@ import { useQuery } from "@apollo/react-hooks";
 const seo = {
   title: "כתבות",
   description: "הכתבות הבאות יעזרו לכם לקבל מידע על הנושאים הפיננסים",
-  url: "https://shakedm.co.il/articles",
+  url: "https://www.shakedm.co.il/articles",
 };
 
-const metadata = new MetadataManager(seo);
 
 const Articles = () => {
   const { data, loading, error } = useQuery(ARTICLES_QUERY);

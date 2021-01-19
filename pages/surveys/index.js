@@ -12,7 +12,7 @@ import MetadataManager from "../../components/metadataManager";
 const seo = {
   title: "שאלונים",
   description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
-  url: "https://shakedm.co.il/surveys",
+  url: "https://www.shakedm.co.il/surveys",
 };
 const metadata = new MetadataManager(seo);
 
