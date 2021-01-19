@@ -24,6 +24,7 @@ class MetadataManager {
   getMetadatas() {
     return [
       { property: "og:title", content: this.data.title },
+      { name: "desciprtion", content: this.data.description },
       { property: "og:description", content: this.data.description },
       { property: "og:url", content: this.data.url },
       { property: "og:image", content: this.data.image },

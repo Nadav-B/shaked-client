@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Text from "../elements/Text";
 import Articles from "../pages/articles";
-import Contact from "../pages/about";
+import Contact from "../pages/contact";
 
 import Surveys from "../pages/surveys";
 import About from "../pages/about";

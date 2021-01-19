@@ -16,7 +16,6 @@ const seo = {
 };
 const metadata = new MetadataManager(seo);
 
-
 const Surveys = () => {
   const data = [survey1, survey2];
 

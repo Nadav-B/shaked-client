@@ -18,11 +18,16 @@ const seo = {
 
 const metadata = new MetadataManager(seo);
 
-
 const Articles = () => {
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
 
-  if (loading) return <Loading/>
+  if (loading)
+    return (
+      <>
+        <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+        <Loading />
+      </>
+    );
   if (error) return <span></span>;
 
   return (
