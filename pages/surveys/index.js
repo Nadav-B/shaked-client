@@ -12,11 +12,11 @@ const seo = {
   description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
   url: "https://www.shakedm.co.il/surveys",
 };
-const metadata = new MetadataManager(seo);
 
-const Surveys = () => {
+const Surveys = ({ disableMetadata })  => {
+  const metadata = new MetadataManager(seo, disableMetadata);
   const data = [survey1, survey2];
-
+  
   return (
     <div>
       <Helmet

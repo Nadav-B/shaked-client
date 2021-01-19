@@ -16,9 +16,8 @@ const seo = {
   url: "https://www.shakedm.co.il/articles",
 };
 
-const metadata = new MetadataManager(seo);
-
-const Articles = () => {
+const Articles = ({ disableMetadata }) => {
+  const metadata = new MetadataManager(seo, disableMetadata);
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
 
   if (loading)

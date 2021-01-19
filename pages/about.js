@@ -12,9 +12,9 @@ const seo = {
   url: "https://www.shakedm.co.il/about",
 };
 
-const metadata = new MetadataManager(seo);
 
-const About = () => {
+const About =  ({ disableMetadata }) => {
+  const metadata = new MetadataManager(seo, disableMetadata);
   const { data, loading, error } = useQuery(TEXTS_QUERY);
   if (loading)
     return (

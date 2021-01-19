@@ -3,18 +3,32 @@ import styled from "styled-components";
 import Text from "../elements/Text";
 import Articles from "../pages/articles";
 import Contact from "../pages/contact";
+import { Helmet } from "react-helmet";
+import MetadataManager from "../components/metadataManager";
 
 import Surveys from "../pages/surveys";
 import About from "../pages/about";
 import Services from "../pages/services";
 
 const Index = () => {
+
   return <Homepage />;
 };
 
 const Homepage = () => {
+
+  
+//  return <div></div> ;
+
+const metadata = new MetadataManager();
+
   return (
-    <Wrapper>
+    <div>
+      <Helmet
+        title={metadata.getTitle()}
+        link={metadata.getLinks()}
+        meta={metadata.getMetadatas()}
+      />{" "}
       <StyledLandingPage>
         <StyledBackground />
         <StyledText>
@@ -26,20 +40,18 @@ const Homepage = () => {
         <About />
       </ContentBackground>
       <CustomBackground>
-        <Surveys />
+        <Surveys disableMetadata={true} />
       </CustomBackground>
       <ContentBackground>
         <CustomBackground2>
-          <Articles />
+          <Articles disableMetadata={true} />
         </CustomBackground2>
-        <Services />
-        <Contact />
+        <Services disableMetadata={true} />
+        <Contact disableMetadata={true} />
       </ContentBackground>
-    </Wrapper>
+    </div>
   );
 };
-
-const Wrapper = styled.div``;
 
 const ContentBackground = styled.div`
   background: white;

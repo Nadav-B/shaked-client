@@ -15,8 +15,6 @@ const seo = {
   url: "https://www.shakedm.co.il/services",
 };
 
-const metadata = new MetadataManager(seo);
-
 const SERVICES_QUERY = gql`
   {
     getServices {
@@ -27,7 +25,9 @@ const SERVICES_QUERY = gql`
   }
 `;
 
-const Services = () => {
+const Services = ({ disableMetadata }) => {
+  const metadata = new MetadataManager(seo, disableMetadata);
+
   const { data, loading, error } = useQuery(SERVICES_QUERY);
 
   if (loading)

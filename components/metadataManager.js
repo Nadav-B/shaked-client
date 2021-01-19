@@ -1,5 +1,8 @@
+
+
 class MetadataManager {
-  constructor(seo) {
+
+  constructor(seo, disable) {
     const default_seo = {
       charSet: "utf-8",
       title: "שקד משכנתאות - יעוץ משכנתאות וכלכלת המשפחה",
@@ -9,7 +12,15 @@ class MetadataManager {
       url: "https://www.shakedm.co.il",
       type: "website",
     };
+
     this.data = { ...default_seo, ...seo };
+
+    if(disable) {
+      this.data = default_seo;
+    }
+
+    console.log(disable,this.data)
+
   }
 
   getTitle() {
@@ -19,16 +30,16 @@ class MetadataManager {
     return [{ rel: "canonical", href: this.data.url }];
   }
 
-
   getMetadatas() {
-    return [
-      { name: "desciprtion", content: this.data.description },
-      { property: "og:title", content: this.data.title },
-      { property: "og:description", content: this.data.description },
-      { property: "og:url", content: this.data.url },
-      { property: "og:image", content: this.data.image },
-      { property: "og:type", content: this.data.type },
-    ];
+      return [
+        { name: "desciprtion", content: this.data.description },
+        { property: "og:title", content: this.data.title },
+        { property: "og:description", content: this.data.description },
+        { property: "og:url", content: this.data.url },
+        { property: "og:image", content: this.data.image },
+        { property: "og:type", content: this.data.type },
+      ];
+    
   }
 }
 export default MetadataManager;

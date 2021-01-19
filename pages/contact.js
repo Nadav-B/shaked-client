@@ -10,9 +10,10 @@ const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
   url: "https://www.shakedm.co.il/contact",
 };
-const metadata = new MetadataManager(seo);
 
-const Contact = () => {
+const Contact = ({ disableMetadata }) => {
+  const metadata = new MetadataManager(seo, disableMetadata);
+
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",
