@@ -1,6 +1,4 @@
 const MetadataManager = (seo, disable = false) => {
-
-
   const default_seo = {
     charSet: "utf-8",
     title: "שקד משכנתאות - יעוץ משכנתאות וכלכלת המשפחה",
@@ -10,7 +8,6 @@ const MetadataManager = (seo, disable = false) => {
     url: "https://www.shakedm.co.il",
     type: "website",
   };
-
 
   if (disable) {
     return {
@@ -22,7 +19,7 @@ const MetadataManager = (seo, disable = false) => {
   const data = { ...default_seo, ...seo };
 
   const getTitle = () => {
-    return data.title;
+    return data.title + " - שקד משכנתאות";
   };
   const getLinks = () => {
     return [{ rel: "canonical", href: data.url }];
