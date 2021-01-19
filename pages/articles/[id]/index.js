@@ -16,16 +16,16 @@ const Article = ({ data }) => {
     image: image,
     url: `https://www.shakedm.co.il/articles/${data.id}`,
   };
-  const metadata = new MetadataManager(seo);
+  const metadata = MetadataManager(seo);
 
 
   return (
     <div>
-      <Helmet
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
-      />
+     <Helmet
+          title={metadata.title}
+          link={metadata.links}
+          meta={metadata.metadatas}
+        />
       <StyledArticle>
         <StyledImage src={image} alt="image" />
         <TextWrapper

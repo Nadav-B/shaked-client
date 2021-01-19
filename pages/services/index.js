@@ -26,7 +26,7 @@ const SERVICES_QUERY = gql`
 `;
 
 const Services = ({ disableMetadata }) => {
-  const metadata = new MetadataManager(seo, disableMetadata);
+  const metadata = MetadataManager(seo, disableMetadata);
 
   const { data, loading, error } = useQuery(SERVICES_QUERY);
 
@@ -34,9 +34,9 @@ const Services = ({ disableMetadata }) => {
     return (
       <>
         <Helmet
-          title={metadata.getTitle()}
-          link={metadata.getLinks()}
-          meta={metadata.getMetadatas()}
+          title={metadata.title}
+          link={metadata.links}
+          meta={metadata.metadatas}
         />
         <Loading />
       </>
@@ -45,10 +45,10 @@ const Services = ({ disableMetadata }) => {
   return (
     <div>
       <Helmet
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
-      />{" "}
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
+      />
       <h1>השירותים שלנו</h1>
       <StyledService>
         {data.getServices.map((service, index) => (

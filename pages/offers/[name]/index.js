@@ -7,19 +7,21 @@ import MetadataManager from "../../../components/metadataManager";
 
 import { directByContact } from "../../../config/contactButtonLinks";
 
-
 const Offer = ({ data }) => {
   const seo = {
     title: data.title,
     description: data.introduction,
     url: `https://www.shakedm.co.il/offers/${data.id}`,
   };
-  const metadata = new MetadataManager(seo);
-
+  const metadata = MetadataManager(seo);
 
   return (
     <div>
-      <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
+      <Helmet
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
+      />{" "}
       <TextWrapper
         dangerouslySetInnerHTML={{
           __html: data.content,

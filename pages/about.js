@@ -12,18 +12,17 @@ const seo = {
   url: "https://www.shakedm.co.il/about",
 };
 
-
-const About =  ({ disableMetadata }) => {
-  const metadata = new MetadataManager(seo, disableMetadata);
+const About = ({ disableMetadata }) => {
+  const metadata = MetadataManager(seo, disableMetadata);
   const { data, loading, error } = useQuery(TEXTS_QUERY);
   if (loading)
     return (
       <>
         <Helmet
-          title={metadata.getTitle()}
-          link={metadata.getLinks()}
-          meta={metadata.getMetadatas()}
-        />{" "}
+          title={metadata.title}
+          link={metadata.links}
+          meta={metadata.metadatas}
+        />
         <Loading />
       </>
     );
@@ -32,10 +31,10 @@ const About =  ({ disableMetadata }) => {
   return (
     <Wrapper>
       <Helmet
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
-      />{" "}
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
+      />
       <TextWrapper>
         {data.getTexts.map((text) => (
           <div

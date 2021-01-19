@@ -17,16 +17,16 @@ const seo = {
 };
 
 const Articles = ({ disableMetadata }) => {
-  const metadata = new MetadataManager(seo, disableMetadata);
+  const metadata = MetadataManager(seo, disableMetadata);
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
 
   if (loading)
     return (
       <>
         <Helmet
-          title={metadata.getTitle()}
-          link={metadata.getLinks()}
-          meta={metadata.getMetadatas()}
+          title={metadata.title}
+          link={metadata.links}
+          meta={metadata.metadatas}
         />
         <Loading />
       </>
@@ -36,9 +36,9 @@ const Articles = ({ disableMetadata }) => {
   return (
     <div>
       <Helmet
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
       />
       <h1>כתבות</h1>
       <StyledArticles>

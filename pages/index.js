@@ -3,32 +3,26 @@ import styled from "styled-components";
 import Text from "../elements/Text";
 import Articles from "../pages/articles";
 import Contact from "../pages/contact";
-import { Helmet } from "react-helmet";
-import MetadataManager from "../components/metadataManager";
-
 import Surveys from "../pages/surveys";
 import About from "../pages/about";
 import Services from "../pages/services";
 
+import { Helmet } from "react-helmet";
+import MetadataManager from "../components/metadataManager";
 const Index = () => {
-
   return <Homepage />;
 };
 
 const Homepage = () => {
-
-  
-//  return <div></div> ;
-
-const metadata = new MetadataManager();
+  const metadata = MetadataManager([]);
 
   return (
     <div>
       <Helmet
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
-      />{" "}
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
+      />
       <StyledLandingPage>
         <StyledBackground />
         <StyledText>
@@ -37,7 +31,7 @@ const metadata = new MetadataManager();
         </StyledText>
       </StyledLandingPage>
       <ContentBackground>
-        <About />
+        <About disableMetadata={true} />
       </ContentBackground>
       <CustomBackground>
         <Surveys disableMetadata={true} />

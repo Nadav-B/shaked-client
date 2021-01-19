@@ -13,17 +13,17 @@ const seo = {
   url: "https://www.shakedm.co.il/surveys",
 };
 
-const Surveys = ({ disableMetadata })  => {
-  const metadata = new MetadataManager(seo, disableMetadata);
+const Surveys = ({ disableMetadata }) => {
+  const metadata = MetadataManager(seo, disableMetadata);
   const data = [survey1, survey2];
-  
+
   return (
     <div>
       <Helmet
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
-      />{" "}
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
+      />
       <h1>שאלונים לביצוע בדיקה</h1>
       <StyledContainer>
         {data.map((survey) => (

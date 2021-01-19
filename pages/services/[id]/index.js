@@ -14,15 +14,15 @@ const Service = ({ data }) => {
     url: `https://www.shakedm.co.il/services/${data.id}`,
   };
 
-  const metadata = new MetadataManager(seo);
+  const metadata = MetadataManager(seo);
 
   return (
     <StyledWrapper>
       <Helmet
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
-      />{" "}
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
+      />
       <TextWrapper
         dangerouslySetInnerHTML={{
           __html: data.content,

@@ -12,7 +12,7 @@ const seo = {
 };
 
 const Contact = ({ disableMetadata }) => {
-  const metadata = new MetadataManager(seo, disableMetadata);
+  const metadata = MetadataManager(seo, disableMetadata);
 
   const [state, setState] = useState({
     fullname: "",
@@ -73,10 +73,10 @@ const Contact = ({ disableMetadata }) => {
   return (
     <Wrapper>
       <Helmet
-        title={metadata.getTitle()}
-        link={metadata.getLinks()}
-        meta={metadata.getMetadatas()}
-      />{" "}
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
+      />
       <h1>צרו קשר</h1>
       <StyledForm>
         <form onSubmit={handleSubmit}>
