@@ -16,6 +16,8 @@ const seo = {
   url: "https://www.shakedm.co.il/articles",
 };
 
+const metadata = new MetadataManager(seo);
+
 
 const Articles = () => {
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
@@ -26,7 +28,6 @@ const Articles = () => {
   return (
     <div>
       <Helmet link={metadata.getLinks()} meta={metadata.getMetadatas()} />
-
       <h1>כתבות</h1>
       <StyledArticles>
         {data.getArticles.map((article) => (
