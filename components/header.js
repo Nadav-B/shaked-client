@@ -13,7 +13,7 @@ const Header = ({ menuLinks, siteTitle }) => {
   return (
     <HeaderWrapper open={open}>
       <NavigationWrapper>
-        <Link href={"/homepage"}>
+        <Link href={"/"}>
           <a>
             <StyledLink>
               <SizeWrapper height={120} width={120}>

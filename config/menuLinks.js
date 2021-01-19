@@ -1,7 +1,7 @@
 const menuLinks = [
   {
     name: "עמוד ראשי",
-    link: "/homepage",
+    link: "/",
   },
   {
     name: "השירותים שלנו",
