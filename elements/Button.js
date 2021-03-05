@@ -10,7 +10,7 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   height: 40px;
-  width: 70%;
+  width: 80%;
 
 
   font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};

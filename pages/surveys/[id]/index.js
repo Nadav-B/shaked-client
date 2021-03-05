@@ -207,7 +207,7 @@ const Survey = ({ id }) => {
           {index > 0 && (
             <BackButtonWrapper>
               <Button onClick={backQuestion} type="submit">
-                לשאלה הקודמת
+                לשאלה הקודמת 
               </Button>
             </BackButtonWrapper>
           )}
@@ -267,7 +267,7 @@ const ContactWrapper = styled.div`
 
 const QuestionWrapper = styled.div`
   display: block;
-  width: 100%;
+  width: auto;
   max-width: 400px;
   margin: auto;
   text-align: center;
