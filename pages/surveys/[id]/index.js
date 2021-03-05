@@ -211,7 +211,8 @@ const Survey = ({ id }) => {
           {index > 0 && (
             <BackButtonWrapper>
               <Button onClick={backQuestion} type="submit">
-                לשאלה הקודמת
+                <img src="/assets/back.svg" alt=">" />
+                <Text>לשאלה הקודמת</Text>
               </Button>
             </BackButtonWrapper>
           )}
@@ -260,15 +261,21 @@ const Survey = ({ id }) => {
 const Wrapper = styled.div`
   margin: auto;
   width: 100%;
+  max-width: 500px;
 `;
 
 const BackButtonWrapper = styled.div`
   max-width: 200px;
+
+  img {
+    display: inline;
+    width: 20px;
+    float: right;
+  }
 `;
 const StyledAnswersWrapper = styled.div`
   display: block;
   width: 100%;
-  max-width: 400px;
   margin: auto;
   margin-top: 25px;
 `;
