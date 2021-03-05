@@ -23,7 +23,7 @@ const Survey = ({ id }) => {
     description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
     url: `https://www.shakedm.co.il/surveys/${id}`,
   };
-  const metadata =  MetadataManager(seo);
+  const metadata = MetadataManager(seo);
 
   const [results, setResults] = useState(new Map());
 
@@ -145,11 +145,11 @@ const Survey = ({ id }) => {
 
   return (
     <Wrapper>
-     <Helmet
-          title={metadata.title}
-          link={metadata.links}
-          meta={metadata.metadatas}
-        />
+      <Helmet
+        title={metadata.title}
+        link={metadata.links}
+        meta={metadata.metadatas}
+      />
       <h1 className="title">{data.name}</h1>
       {currentStatus == 0 && (
         <ContactWrapper>
@@ -273,16 +273,14 @@ const QuestionWrapper = styled.div`
   text-align: center;
 `;
 const StyledInput = styled.input`
-  width: 100%;
+  width: 90%;
   padding: 20px;
-  margin: 20px;
+  margin-top: 10px;
   display: inline-block;
   font-size: ${(p) => p.theme.fontSize.normal};
-
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-
   &::placeholder {
     color: black;
   }
