@@ -8,12 +8,14 @@ import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
 import MetadataManager from "../../../components/metadataManager";
+import Loading from "../../../elements/Loading";
 
 const Survey = ({ id }) => {
   const Status = {
     Fillname: 0,
     Questions: 1,
     CompleteContact: 2,
+    statusContact: 3,
   };
   const surveys = [survey1, survey2];
   const data = surveys[id];
@@ -31,7 +33,7 @@ const Survey = ({ id }) => {
   const [confirmation, setConfirmation] = useState({
     text: "",
     style: "",
-    status: false,
+    status: null,
   });
 
   const [contact, setContact] = useState({
@@ -86,7 +88,7 @@ const Survey = ({ id }) => {
       (response) => {
         setConfirmation((prevState) => ({
           ...prevState,
-          text: "נשלח בהצלחה!",
+          text: "פרטייך נשלחו בהצלחה, ניצור קשר בהקדם ",
           style: "sucess",
           status: true,
         }));
@@ -94,7 +96,8 @@ const Survey = ({ id }) => {
       (error) => {
         setConfirmation((prevState) => ({
           ...prevState,
-          text: "שגיאה",
+          text:
+            "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
           style: "error",
           status: false,
         }));
@@ -130,6 +133,7 @@ const Survey = ({ id }) => {
 
   const fillPhone = (event) => {
     handleSubmit(event);
+    setCurrentstatus(Status.statusContact);
   };
 
   const handleChange = (event) => {
@@ -207,7 +211,7 @@ const Survey = ({ id }) => {
           {index > 0 && (
             <BackButtonWrapper>
               <Button onClick={backQuestion} type="submit">
-                לשאלה הקודמת 
+                לשאלה הקודמת
               </Button>
             </BackButtonWrapper>
           )}
@@ -216,7 +220,7 @@ const Survey = ({ id }) => {
       {currentStatus == 2 && (
         <ContactWrapper>
           <Progress percent={100} />
-          <Text>השאירו טלפון ונציג שלנו ייצור עמכם קשר להשלמת הבדיקה:</Text>
+          <Text>השאירו טלפון ונציגנו יצרו עמכם קשר להשלמת הבדיקה:</Text>
           <form id="submitSurveyForm" onSubmit={fillPhone}>
             <StyledInput
               name="phonenumber"
@@ -226,7 +230,6 @@ const Survey = ({ id }) => {
               type="tel"
               required
             />{" "}
-            <Text variant={confirmation.style}> {confirmation.text}</Text>
             <Button
               id="submitSurvey"
               disabled={confirmation.status}
@@ -236,6 +239,19 @@ const Survey = ({ id }) => {
             </Button>
           </form>
         </ContactWrapper>
+      )}
+
+      {currentStatus == 3 && (
+        <StatusWrapper>
+          {confirmation.status == null && (
+            <div>
+              <Loading />
+              <Text>שולח פרטים</Text>
+            </div>
+          )}
+
+          <Text variant={confirmation.style}>{confirmation.text}</Text>
+        </StatusWrapper>
       )}
     </Wrapper>
   );
@@ -258,6 +274,14 @@ const StyledAnswersWrapper = styled.div`
 `;
 
 const ContactWrapper = styled.div`
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+`;
+
+const StatusWrapper = styled.div`
   display: block;
   width: 100%;
   max-width: 400px;
