@@ -59,6 +59,7 @@ const StyledServicePreview = styled.div`
     text-align: center;
     align-items: center;
     justify-content: center;
+    font-size: 13px;
     transition: 0.5s ease;
     background-color: ${(p) => p.theme.colors.white};
 
@@ -80,7 +81,7 @@ const StyledServicePreview = styled.div`
 const StyledCube = styled.div`
   display: flex;
   width: 160px;
-  height: 160px;
+  height: 180px;
   background-color: ${(p) => p.theme.colors.navyBlue};
   margin: auto;
   text-align: center;
