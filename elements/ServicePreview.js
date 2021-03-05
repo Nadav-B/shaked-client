@@ -1,29 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "../elements/Card";
 const ServicePreview = React.forwardRef(
   ({ index, service, onClick, href }, ref) => {
-    const numbers = [
-      "4929829706015130",
-      "6011349941535234",
-      "371874436422918",
-      "6396393304780891",
-      "5500831634615910",
-      "3535753443328218",
-    ];
     return (
       <a href={href} onClick={onClick} ref={ref}>
         <StyledServicePreview>
           <div className="container">
-            <Card
-              number={numbers[index]}
-              name={service.title}
-              expiry={""}
-              cvc={"445"}
-            />
-            <div className="overlay">
-              <div className="text">{service.introduction}</div>
-            </div>
+            <StyledCube>
+              <div className="front">
+                <img src={`/services/${index}.svg`} alt="service-icon" />
+                <div className="text">{service.title}</div>
+              </div>
+              <div className="overlay">
+                <img src={`/services/${index}.svg`} alt="service-icon" />
+                <div className="text">{service.title}</div>
+                <p> {service.introduction}</p>
+                <p> פרטים נוספים</p>
+                <img src="/assets/play.svg" alt="goto" />
+              </div>
+            </StyledCube>
           </div>
         </StyledServicePreview>
       </a>
@@ -34,38 +29,63 @@ const ServicePreview = React.forwardRef(
 const StyledServicePreview = styled.div`
   .container {
     position: relative;
-    width: 100%;
+  }
+
+  .front {
+    color: white;
+
+    img {
+      background: white;
+      border-radius: 40px;
+      padding: 10px;
+      margin: 10px;
+      width: 80px;
+    }
+  }
+ 
+  @media only screen and (hover: hover) {
+    .container:hover .overlay {
+    opacity: 1;
+}
+
   }
   .overlay {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
     opacity: 0;
-    transition: 0.5s ease;
-    background-color: ${(p) => p.theme.colors.navyBlue};
-    text-align: right;
-    border-radius: 14.5px;
-  }
-
-  .container:hover .overlay {
-    opacity: 1;
-  }
-
-  .text {
-    color: white;
-    font-size: 16px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    color: black;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease;
+    background-color: ${(p) => p.theme.colors.white};
+
+    img {
+      display: block;
+      width: 40px;
+      padding-left: 10px;
+    }
+
+    .text {
+      color: ${(p) => p.theme.colors.navyBlue};
+      font-weight: bold;
+    }
   }
+
+
+`;
+
+const StyledCube = styled.div`
+  display: flex;
+  width: 160px;
+  height: 160px;
+  background-color: ${(p) => p.theme.colors.navyBlue};
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default ServicePreview;

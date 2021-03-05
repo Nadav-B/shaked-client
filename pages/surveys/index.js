@@ -52,7 +52,6 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.div`
-  dispaly: block;
   padding: 20px;
   cursor: pointer;
   width: 80%;

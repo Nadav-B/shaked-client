@@ -7,6 +7,7 @@ import Loading from "../../elements/Loading";
 import { from, gql } from "@apollo/client";
 import { Helmet } from "react-helmet";
 import MetadataManager from "../../components/metadataManager";
+import SERVICES_QUERY from "../../graphql/services.query";
 
 const seo = {
   title: "השירותים שלנו",
@@ -14,16 +15,6 @@ const seo = {
     "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה",
   url: "https://www.shakedm.co.il/services",
 };
-
-const SERVICES_QUERY = gql`
-  {
-    getServices {
-      id
-      title
-      introduction
-    }
-  }
-`;
 
 const Services = ({ disableMetadata }) => {
   const metadata = MetadataManager(seo, disableMetadata);
@@ -69,9 +60,6 @@ const Services = ({ disableMetadata }) => {
 
 const StyledService = styled.div`
   display: flex;
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
