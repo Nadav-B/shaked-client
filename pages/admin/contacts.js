@@ -42,16 +42,14 @@ const ContactManagers = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  const contactToDelete = (contact) => {
-    setSelectedContact(contact);
-    setModalView(true);
+  const deleteContact = async (id) => {
+    return await api.deleteContact(id);
   };
 
-  const deleteContact = async (id) => {
-    const response = await api.deleteContact(id);
-    if (response.status) {
-      setContacts(contacts.filter((contact) => contact.id != id));
-    }
+  const deleteContacts = async () => {
+    const response = await selectedContacts.forEach((object) => {
+      deleteContact(object.id);
+    });
   };
 
   const updateSelectedContacts = (selected) => (event) => {
@@ -126,7 +124,10 @@ const ContactManagers = () => {
                     <Tr key={contact.id}>
                       <Td>
                         <input
-                          onChange={updateSelectedContacts(contact)}
+                          onClick={updateSelectedContacts(contact)}
+                          checked={selectedContacts.find(
+                            (object) => contact.id == object.id
+                          )}
                           type="checkbox"
                         />
                       </Td>
@@ -166,8 +167,7 @@ const ContactManagers = () => {
           )}
           {modalView && (
             <Modal
-              modalFunction={deleteContact}
-              object={selectedContact}
+              modalFunction={deleteContacts}
               setOpen={setModalView}
             ></Modal>
           )}

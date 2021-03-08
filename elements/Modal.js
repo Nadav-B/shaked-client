@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Text from "./Text";
 import Button from "./Button";
 
-const Modal = ({ object, modalFunction, setOpen }) => {
+const Modal = ({ modalFunction, setOpen }) => {
   const closeModal = () => {
     setOpen(false);
   };
@@ -12,7 +12,7 @@ const Modal = ({ object, modalFunction, setOpen }) => {
         <Text>בטוח שברצונך למחוק?</Text>
         <Button
           onClick={() => {
-            modalFunction(object.id);
+            modalFunction();
             closeModal();
           }}
         >
