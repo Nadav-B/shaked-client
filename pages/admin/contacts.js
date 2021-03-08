@@ -19,6 +19,8 @@ const ContactManagers = () => {
   };
   const [contacts, setContacts] = useState();
 
+  const [selectedContacts, setSelectedContacts] = useState([]);
+
   const [selectedContact, setSelectedContact] = useState();
 
   const [survey, setSurvey] = useState();
@@ -27,6 +29,7 @@ const ContactManagers = () => {
 
   const [datesData, setdatesForStatistic] = useState(null);
 
+  console.log(selectedContacts);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -48,6 +51,16 @@ const ContactManagers = () => {
     const response = await api.deleteContact(id);
     if (response.status) {
       setContacts(contacts.filter((contact) => contact.id != id));
+    }
+  };
+
+  const updateSelectedContacts = (selected) => (event) => {
+    if (event.target.checked) {
+      setSelectedContacts([...selectedContacts, selected]);
+    } else {
+      setSelectedContacts(
+        selectedContacts.filter((contact) => contact.id != selected.id)
+      );
     }
   };
 
@@ -93,13 +106,12 @@ const ContactManagers = () => {
       <TextWrapper>
         <StyledContact>
           <h1>אנשי קשר</h1>
-
           {contacts && (
             <div>
               <Table>
                 <Thead>
                   <Tr>
-                    <Th> </Th>
+                    <Th> מחק</Th>
                     <Th> שם מלא</Th>
                     <Th> טלפון</Th>
                     <Th> דוא״ל</Th>
@@ -113,14 +125,10 @@ const ContactManagers = () => {
                   {contacts.map((contact) => (
                     <Tr key={contact.id}>
                       <Td>
-                        {" "}
-                        <StyledRoundedButton
-                          onClick={() => {
-                            contactToDelete(contact);
-                          }}
-                        >
-                          X
-                        </StyledRoundedButton>{" "}
+                        <input
+                          onChange={updateSelectedContacts(contact)}
+                          type="checkbox"
+                        />
                       </Td>
                       <Td> {contact.fullname} </Td>
                       <Td>
@@ -147,6 +155,12 @@ const ContactManagers = () => {
                   ))}
                 </Tbody>
               </Table>
+
+              {selectedContacts.length && (
+                <StyledDeleteBanner>
+                  <Button onClick={() => setModalView(true)}>מחק</Button>
+                </StyledDeleteBanner>
+              )}
               <div ref={messagesEndRef} />
             </div>
           )}
@@ -171,25 +185,10 @@ const StyledContact = styled.div`
   }
 `;
 
-const StyledRoundedButton = styled.button`
-  height: 30px;
-  width: 30px;
-  margin: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: white;
-
-  &:hover {
-    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-    border: 3px solid red;
-  }
-
-  &:focus {
-    color: ${(p) => p.theme.colors.white};
-    background: ${(p) => p.theme.colors.torchRed};
-    outline: none;
-  }
+const StyledDeleteBanner = styled.div`
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 `;
 
 const SurveyModal = ({ survey, setSurvey }) => {
