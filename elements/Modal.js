@@ -2,14 +2,7 @@ import styled from "styled-components";
 import Text from "./Text";
 import Button from "./Button";
 
-const Modal = ({ object, deleteObject, setOpen }) => {
-  const approved = () => {
-    if (object.id) {
-      deleteObject(object.id);
-    }
-    closeModal();
-  };
-
+const Modal = ({ object, modalFunction, setOpen }) => {
   const closeModal = () => {
     setOpen(false);
   };
@@ -19,7 +12,8 @@ const Modal = ({ object, deleteObject, setOpen }) => {
         <Text>בטוח שברצונך למחוק?</Text>
         <Button
           onClick={() => {
-            approved();
+            modalFunction(object.id);
+            closeModal();
           }}
         >
           כן

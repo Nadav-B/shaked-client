@@ -9,22 +9,21 @@ import Error from "../../elements/Error";
 import Modal from "../../elements/Modal";
 import TextWrapper from "../../elements/TextWrapper";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
-import Chartkick,{ ColumnChart, PieChart } from "react-chartkick";
+import Chartkick, { ColumnChart, PieChart } from "react-chartkick";
 import "chart.js";
 import { ProtectRoute } from "../../shared/protected_route";
 
-
 const ContactManagers = () => {
   Chartkick.options = {
-    colors: ["#F77F00", "#FCBF49"]
-  }
+    colors: ["#F77F00", "#FCBF49"],
+  };
   const [contacts, setContacts] = useState();
 
   const [selectedContact, setSelectedContact] = useState();
 
   const [survey, setSurvey] = useState();
 
-  const [open, setOpen] = useState(false);
+  const [modalView, setModalView] = useState(false);
 
   const [datesData, setdatesForStatistic] = useState(null);
 
@@ -42,7 +41,7 @@ const ContactManagers = () => {
 
   const contactToDelete = (contact) => {
     setSelectedContact(contact);
-    setOpen(true);
+    setModalView(true);
   };
 
   const deleteContact = async (id) => {
@@ -87,9 +86,8 @@ const ContactManagers = () => {
     }
     if (!contacts) getRequestForm();
   });
-  
 
-  if(error) return <Error />;
+  if (error) return <Error />;
   return (
     <ProtectRoute>
       <TextWrapper>
@@ -152,19 +150,18 @@ const ContactManagers = () => {
               <div ref={messagesEndRef} />
             </div>
           )}
-          {open && (
+          {modalView && (
             <Modal
-              deleteObject={deleteContact}
+              modalFunction={deleteContact}
               object={selectedContact}
-              setOpen={setOpen}
+              setOpen={setModalView}
             ></Modal>
           )}
           {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
           <ColumnChart data={datesData} />
         </StyledContact>
       </TextWrapper>
-      </ProtectRoute>
-  
+    </ProtectRoute>
   );
 };
 
