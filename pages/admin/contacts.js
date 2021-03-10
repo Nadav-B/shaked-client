@@ -31,7 +31,7 @@ const ContactManagers = () => {
   const [datesData, setdatesForStatistic] = useState(null);
 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState();
 
   const renderDate = (dateString) => {
     return new Date(dateString).toDateString();
@@ -106,13 +106,13 @@ const ContactManagers = () => {
         setLoading(false);
         scrollToBottom();
       } catch {
-        setError(true);
+        setError(response.error);
       }
     }
     if (!contacts) getRequestForm();
   });
 
-  if (error) return <Error errorDescription={"התחבר מחדש"} />;
+  if (error) return <Error errorDescription={error} />;
   if (loading) return <Loading />;
 
   return (
@@ -141,7 +141,7 @@ const ContactManagers = () => {
                       <Td>
                         <input
                           onClick={updateSelectedContacts(contact)}
-                          checked={selectedContacts.find(
+                          value={selectedContacts.find(
                             (object) => contact.id == object.id
                           )}
                           type="checkbox"
@@ -179,7 +179,7 @@ const ContactManagers = () => {
                     className="flex-item"
                     onClick={() => setModalView(true)}
                   >
-                    מחק {selectedContacts.length }
+                    מחק {selectedContacts.length}
                   </Button>
                   <Button
                     className="flex-item"
@@ -192,7 +192,7 @@ const ContactManagers = () => {
                     className="flex-item"
                     onClick={() => setSelectedContacts(contacts)}
                   >
-                     סמן הכל
+                    סמן הכל
                   </Button>
                 </StyledDeleteBanner>
               )}

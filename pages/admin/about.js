@@ -30,7 +30,7 @@ function AboutManager() {
         const response = await api.getTexts();
         setData(response.data);
       } catch {
-        setError(true);
+        setError(response.error);
       }
     }
     if (!data) getRequestForm();
@@ -116,9 +116,8 @@ function AboutManager() {
       });
     }
   };
-  
-  if(error) return <Error />;
 
+  if (error) return <Error errorDescription={error} />;
 
   return (
     <ProtectRoute>
@@ -134,43 +133,43 @@ function AboutManager() {
             ))}
         </StyledSelect>
 
-          <form onSubmit={handleSubmit}>
-            <label>
-              שם הטקסט. לא יופיע בעמוד
-              <StyledInput
-                name="tag"
-                value={state.tag}
-                placeholder="שדה חובה"
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              תוכן כתבה
-              <StyledInput
-                name="content"
-                placeholder="שדה חובה"
-                value={state.content}
-                onChange={handleChange}
-              />
-            </label>
-            <TextUploader setState={setState} />
+        <form onSubmit={handleSubmit}>
+          <label>
+            שם הטקסט. לא יופיע בעמוד
+            <StyledInput
+              name="tag"
+              value={state.tag}
+              placeholder="שדה חובה"
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            תוכן כתבה
+            <StyledInput
+              name="content"
+              placeholder="שדה חובה"
+              value={state.content}
+              onChange={handleChange}
+            />
+          </label>
+          <TextUploader setState={setState} />
 
-            <Text variant={result.style}> {result.text}</Text>
-            <Button disabled={result.status} type="submit">
-              שלח
+          <Text variant={result.style}> {result.text}</Text>
+          <Button disabled={result.status} type="submit">
+            שלח
+          </Button>
+          {state.id && (
+            <Button
+              type="button"
+              onClick={() => {
+                deleteArticle();
+              }}
+            >
+              מחק טקסט
             </Button>
-            {state.id && (
-              <Button
-                type="button"
-                onClick={() => {
-                  deleteArticle();
-                }}
-              >
-                מחק טקסט
-              </Button>
-            )}
-          </form>
+          )}
+        </form>
       </TextWrapper>
     </ProtectRoute>
   );
@@ -185,7 +184,6 @@ const StyledSelect = styled.select`
   border-radius: 4px;
   height: 40px;
 `;
-
 
 const StyledInput = styled.input`
   width: 100%;

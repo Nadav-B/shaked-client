@@ -126,7 +126,7 @@ const ServiceManager = () => {
       });
     }
   };
-  if (error) return <Error errorDescription={"התחבר מחדש"} />;
+  if (error) return <Error errorDescription={error} />;
 
 
   return (
