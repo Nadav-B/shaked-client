@@ -5,6 +5,7 @@ import Text from "../../elements/Text";
 
 import Button from "../../elements/Button";
 import Error from "../../elements/Error";
+import Loading from "../../elements/Loading";
 
 import Modal from "../../elements/Modal";
 import TextWrapper from "../../elements/TextWrapper";
@@ -98,7 +99,9 @@ const ContactManagers = () => {
     if (!contacts) getRequestForm();
   });
 
+  if (loading) return <Loading />;
   if (error) return <Error />;
+  
   return (
     <ProtectRoute>
       <TextWrapper>
