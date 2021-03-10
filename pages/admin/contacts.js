@@ -22,11 +22,11 @@ const ContactManagers = () => {
 
   const [selectedContacts, setSelectedContacts] = useState([]);
 
-  const [chartPreview, setChartPreview] = useState();
+  const [chartModal, setChartPreview] = useState(false);
 
   const [survey, setSurvey] = useState();
 
-  const [modalView, setModalView] = useState(false);
+  const [deleteModal, setModalView] = useState(false);
 
   const [datesData, setdatesForStatistic] = useState(null);
 
@@ -76,7 +76,7 @@ const ContactManagers = () => {
   };
 
   const showChart = () => {
-    if (chartPreview) {
+    if (chartModal) {
       setChartPreview(false);
     } else {
       setChartPreview(true);
@@ -199,9 +199,8 @@ const ContactManagers = () => {
               <div ref={messagesEndRef} />
             </div>
           )}
-          {modalView && (
-            <Modal
-            >
+          {deleteModal && (
+            <Modal>
               <Text>בטוח שברצונך למחוק?</Text>
               <Button
                 onClick={() => {
@@ -214,7 +213,6 @@ const ContactManagers = () => {
               <Button
                 onClick={() => {
                   setModalView(false);
-
                 }}
               >
                 לא
@@ -222,10 +220,15 @@ const ContactManagers = () => {
             </Modal>
           )}
           {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
-          <Button onClick={() => showChart()}>
-            {chartPreview ? "סגור" : "פתח"} תרשים
-          </Button>
-          {chartPreview && <ColumnChart data={datesData} />}
+          <Button onClick={() => showChart()}>פתח תרשים</Button>
+
+          {chartModal && (
+            <Modal>
+              <ColumnChart data={datesData} />
+              <p> סה״כ אנשי קשר {contacts.length}</p>
+              <Button onClick={() => showChart()}>סגור</Button>
+            </Modal>
+          )}
         </StyledContact>
       </TextWrapper>
     </ProtectRoute>
