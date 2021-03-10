@@ -161,7 +161,7 @@ const ContactManagers = () => {
                         {contact.survey && (
                           <Button
                             onClick={() => {
-                              showSurvey(contact.survey);
+                              setSurvey(contact.survey);
                             }}
                           >
                             {contact.survey.name}
@@ -234,9 +234,38 @@ const ContactManagers = () => {
   );
 };
 
+const SurveyModal = ({ survey, setSurvey }) => {
+  return (
+    <Modal>
+      <h1> {survey.name}</h1>
+      {survey.answers.map((entry) => (
+        <div>
+          <Text fontSize="large"> {entry.question}</Text>
+          <Text> {entry.answer}</Text>
+        </div>
+      ))}
+      <Button onClick={() => setSurvey()}>סגור</Button>
+    </Modal>
+  );
+};
+
+const ChartModal = ({ length, datesData, showChart }) => {
+  return (
+    <Modal>
+      <ColumnChart data={datesData} />
+      <p> סה״כ אנשי קשר {length}</p>
+      <Button onClick={() => showChart()}>סגור</Button>
+    </Modal>
+  );
+};
+
 const StyledContact = styled.div`
   a:hover {
     color: blue;
+  }
+
+  td {
+    text-align: center;
   }
 `;
 
@@ -257,34 +286,5 @@ const StyledDeleteBanner = styled.div`
     margin: 20px;
   }
 `;
-
-const SurveyModal = ({ survey, setSurvey }) => {
-  const closeModal = () => {
-    setSurvey();
-  };
-
-  return (
-    <Modal>
-      <h1> {survey.name}</h1>
-      {survey.answers.map((entry) => (
-        <div>
-          <Text fontSize="large"> {entry.question}</Text>
-          <Text> {entry.answer}</Text>
-        </div>
-      ))}
-      <Button onClick={closeModal}>סגור</Button>
-    </Modal>
-  );
-};
-
-const ChartModal = ({ length, datesData, showChart }) => {
-  return (
-    <Modal>
-      <ColumnChart data={datesData} />
-      <p> סה״כ אנשי קשר {length}</p>
-      <Button onClick={() => showChart()}>סגור</Button>
-    </Modal>
-  );
-};
 
 export default ContactManagers;
