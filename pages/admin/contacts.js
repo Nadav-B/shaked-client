@@ -18,14 +18,14 @@ const ContactManagers = () => {
   Chartkick.options = {
     colors: ["#F77F00", "#FCBF49"],
   };
+
+  // contacts
   const [contacts, setContacts] = useState();
-
   const [selectedContacts, setSelectedContacts] = useState([]);
-
-  const [chartModal, setChartPreview] = useState(false);
-
   const [survey, setSurvey] = useState();
 
+  // modals
+  const [chartModal, setChartModal] = useState(false);
   const [deleteModal, setModalView] = useState(false);
 
   const [datesData, setdatesForStatistic] = useState(null);
@@ -77,9 +77,9 @@ const ContactManagers = () => {
 
   const showChart = () => {
     if (chartModal) {
-      setChartPreview(false);
+      setChartModal(!chartModal);
     } else {
-      setChartPreview(true);
+      setChartModal(!chartModal);
       if (contacts) {
         const dates = contacts
           .map((contact) => {
@@ -106,13 +106,13 @@ const ContactManagers = () => {
         setLoading(false);
         scrollToBottom();
       } catch {
-        setError(response.error);
+        setError(true);
       }
     }
     if (!contacts) getRequestForm();
   });
 
-  if (error) return <Error errorDescription={error} />;
+  if (error) return <Error errorDescription={"התחבר מחדש"} />;
   if (loading) return <Loading />;
 
   return (
@@ -221,13 +221,12 @@ const ContactManagers = () => {
           )}
           {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
           <Button onClick={() => showChart()}>פתח תרשים</Button>
-
           {chartModal && (
-            <Modal>
-              <ColumnChart data={datesData} />
-              <p> סה״כ אנשי קשר {contacts.length}</p>
-              <Button onClick={() => showChart()}>סגור</Button>
-            </Modal>
+            <ChartModal
+              showChart={showChart}
+              length={contacts.length}
+              datesData={datesData}
+            />
           )}
         </StyledContact>
       </TextWrapper>
@@ -265,7 +264,7 @@ const SurveyModal = ({ survey, setSurvey }) => {
   };
 
   return (
-    <StyledSurveyModal>
+    <Modal>
       <h1> {survey.name}</h1>
       {survey.answers.map((entry) => (
         <div>
@@ -274,20 +273,18 @@ const SurveyModal = ({ survey, setSurvey }) => {
         </div>
       ))}
       <Button onClick={closeModal}>סגור</Button>
-    </StyledSurveyModal>
+    </Modal>
   );
 };
 
-const StyledSurveyModal = styled.div`
-  position: fixed;
-  right: 0;
-  padding: 20px;
-  margin: 20px;
-  bottom: 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: white;
-  max-width: 400px;
-  color: black;
-`;
+const ChartModal = ({ length, datesData, showChart }) => {
+  return (
+    <Modal>
+      <ColumnChart data={datesData} />
+      <p> סה״כ אנשי קשר {length}</p>
+      <Button onClick={() => showChart()}>סגור</Button>
+    </Modal>
+  );
+};
 
 export default ContactManagers;
