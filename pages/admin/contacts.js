@@ -47,10 +47,16 @@ const ContactManagers = () => {
     return await api.deleteContact(id);
   };
 
-  const deleteContacts = async () => {
+  const deleteSelectedContacts = async () => {
+
+    var temp = contacts;
     const response = await selectedContacts.forEach((object) => {
       deleteContact(object.id);
+      temp = temp.filter(contact => object.id !== contact.id)
     });
+    setSelectedContacts([])
+    console.log(temp,selectedContacts)
+    setContacts(temp)
   };
 
   const updateSelectedContacts = (selected) => (event) => {
@@ -101,7 +107,7 @@ const ContactManagers = () => {
 
   if (loading) return <Loading />;
   if (error) return <Error />;
-  
+
   return (
     <ProtectRoute>
       <TextWrapper>
@@ -170,7 +176,7 @@ const ContactManagers = () => {
           )}
           {modalView && (
             <Modal
-              modalFunction={deleteContacts}
+              modalFunction={deleteSelectedContacts}
               setOpen={setModalView}
             ></Modal>
           )}
