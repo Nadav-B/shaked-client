@@ -22,7 +22,7 @@ const ContactManagers = () => {
 
   const [selectedContacts, setSelectedContacts] = useState([]);
 
-  const [selectedContact, setSelectedContact] = useState();
+  const [chartPreview, setChartPreview] = useState();
 
   const [survey, setSurvey] = useState();
 
@@ -30,7 +30,6 @@ const ContactManagers = () => {
 
   const [datesData, setdatesForStatistic] = useState(null);
 
-  console.log(selectedContacts);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -48,15 +47,18 @@ const ContactManagers = () => {
   };
 
   const deleteSelectedContacts = async () => {
-
     var temp = contacts;
-    const response = await selectedContacts.forEach((object) => {
-      deleteContact(object.id);
-      temp = temp.filter(contact => object.id !== contact.id)
-    });
-    setSelectedContacts([])
-    console.log(temp,selectedContacts)
-    setContacts(temp)
+    await Promise.all(
+      selectedContacts.map(async (object) => {
+        await deleteContact(object.id).then((res) => {
+          if (res.status == "200") {
+            temp = temp.filter((contact) => object.id !== contact.id);
+          }
+        });
+      })
+    );
+    setSelectedContacts([]);
+    setContacts(temp);
   };
 
   const updateSelectedContacts = (selected) => (event) => {
@@ -73,23 +75,28 @@ const ContactManagers = () => {
     setSurvey(survey);
   };
 
-  useEffect(() => {
-    if (contacts && !datesData) {
-      const dates = contacts
-        .map((contact) => {
-          return renderDate(contact.date);
-        })
-        .reduce((acc, value) => {
-          if (!acc[value]) {
-            acc[value] = 1;
-          } else {
-            acc[value]++;
-          }
-          return acc;
-        }, {});
-      setdatesForStatistic(dates);
+  const showChart = () => {
+    if (chartPreview) {
+      setChartPreview(false);
+    } else {
+      setChartPreview(true);
+      if (contacts) {
+        const dates = contacts
+          .map((contact) => {
+            return renderDate(contact.date);
+          })
+          .reduce((acc, value) => {
+            if (!acc[value]) {
+              acc[value] = 1;
+            } else {
+              acc[value]++;
+            }
+            return acc;
+          }, {});
+        setdatesForStatistic(dates);
+      }
     }
-  }, contacts);
+  };
 
   useEffect(() => {
     async function getRequestForm() {
@@ -105,8 +112,8 @@ const ContactManagers = () => {
     if (!contacts) getRequestForm();
   });
 
+  if (error) return <Error errorDescription={"התחבר מחדש"} />;
   if (loading) return <Loading />;
-  if (error) return <Error />;
 
   return (
     <ProtectRoute>
@@ -118,7 +125,7 @@ const ContactManagers = () => {
               <Table>
                 <Thead>
                   <Tr>
-                    <Th> מחק</Th>
+                    <Th>סמן</Th>
                     <Th> שם מלא</Th>
                     <Th> טלפון</Th>
                     <Th> דוא״ל</Th>
@@ -166,9 +173,27 @@ const ContactManagers = () => {
                 </Tbody>
               </Table>
 
-              {selectedContacts.length && (
+              {selectedContacts.length > 0 && (
                 <StyledDeleteBanner>
-                  <Button onClick={() => setModalView(true)}>מחק</Button>
+                  <Button
+                    className="flex-item"
+                    onClick={() => setModalView(true)}
+                  >
+                    מחק {selectedContacts.length }
+                  </Button>
+                  <Button
+                    className="flex-item"
+                    onClick={() => setSelectedContacts([])}
+                  >
+                    נקה בחירה
+                  </Button>
+
+                  <Button
+                    className="flex-item"
+                    onClick={() => setSelectedContacts(contacts)}
+                  >
+                     סמן הכל
+                  </Button>
                 </StyledDeleteBanner>
               )}
               <div ref={messagesEndRef} />
@@ -181,7 +206,10 @@ const ContactManagers = () => {
             ></Modal>
           )}
           {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
-          <ColumnChart data={datesData} />
+          <Button onClick={() => showChart()}>
+            {chartPreview ? "סגור" : "פתח"} תרשים
+          </Button>
+          {chartPreview && <ColumnChart data={datesData} />}
         </StyledContact>
       </TextWrapper>
     </ProtectRoute>
@@ -196,8 +224,20 @@ const StyledContact = styled.div`
 
 const StyledDeleteBanner = styled.div`
   position: fixed;
-  width: 100%;
+  display: flex;
+  width: 50%;
+  margin: auto;
   bottom: 0;
+  left: 0;
+  right: 0;
+
+  .flex-item:first-child {
+    max-width: 70px;
+  }
+
+  .flex-item {
+    margin: 20px;
+  }
 `;
 
 const SurveyModal = ({ survey, setSurvey }) => {

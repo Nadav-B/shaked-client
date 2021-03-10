@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-const Error = () => {
+const Error = ({ errorDescription }) => {
   return (
     <Wrapper>
       <h2>שגיאה בטעינת העמוד</h2>
+      {errorDescription}
     </Wrapper>
   );
 };
@@ -11,8 +12,8 @@ const Error = () => {
 const Wrapper = styled.div`
   position: relative;
   padding: 20px;
-  widht: 100%;
   margin: auto;
+  text-align: center;
 `;
 
 export default Error;

@@ -60,7 +60,6 @@ const ArticleManager = () => {
         }));
       },
       (error) => {
-        console.log(error);
         setResult((prevState) => ({
           ...prevState,
           text: "שגיאה",
@@ -144,7 +143,7 @@ const ArticleManager = () => {
       });
     }
   };
-  if(error) return <Error />;
+  if (error) return <Error errorDescription={"התחבר מחדש"} />;
 
   return (
     <ProtectRoute>
