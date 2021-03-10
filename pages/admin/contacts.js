@@ -201,9 +201,25 @@ const ContactManagers = () => {
           )}
           {modalView && (
             <Modal
-              modalFunction={deleteSelectedContacts}
-              setOpen={setModalView}
-            ></Modal>
+            >
+              <Text>בטוח שברצונך למחוק?</Text>
+              <Button
+                onClick={() => {
+                  deleteSelectedContacts();
+                  setModalView(false);
+                }}
+              >
+                כן
+              </Button>
+              <Button
+                onClick={() => {
+                  setModalView(false);
+
+                }}
+              >
+                לא
+              </Button>{" "}
+            </Modal>
           )}
           {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
           <Button onClick={() => showChart()}>

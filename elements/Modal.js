@@ -2,30 +2,10 @@ import styled from "styled-components";
 import Text from "./Text";
 import Button from "./Button";
 
-const Modal = ({ modalFunction, setOpen }) => {
-  const closeModal = () => {
-    setOpen(false);
-  };
+const Modal = ({ children }) => {
   return (
     <StyledModal>
-      <Wrapper>
-        <Text>בטוח שברצונך למחוק?</Text>
-        <Button
-          onClick={() => {
-            modalFunction();
-            closeModal();
-          }}
-        >
-          כן
-        </Button>
-        <Button
-          onClick={() => {
-            closeModal();
-          }}
-        >
-          לא
-        </Button>
-      </Wrapper>
+      <Wrapper>{children}</Wrapper>
     </StyledModal>
   );
 };
