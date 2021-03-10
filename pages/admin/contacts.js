@@ -141,7 +141,7 @@ const ContactManagers = () => {
                       <Td>
                         <input
                           onClick={updateSelectedContacts(contact)}
-                          value={selectedContacts.find(
+                          checked={selectedContacts.find(
                             (object) => contact.id == object.id
                           )}
                           type="checkbox"
