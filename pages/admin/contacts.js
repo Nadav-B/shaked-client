@@ -13,7 +13,6 @@ import Chartkick, { ColumnChart, PieChart } from "react-chartkick";
 import "chart.js";
 import { ProtectRoute } from "../../shared/protected_route";
 
-
 const Display = {
   contacts: 0,
   delete: 1,

@@ -143,7 +143,7 @@ const ArticleManager = () => {
       });
     }
   };
-  if (error) return <Error errorDescription={error} />;
+  if (error) return <Error errorDescription={"התחבר מחדש"} />;
 
   return (
     <ProtectRoute>

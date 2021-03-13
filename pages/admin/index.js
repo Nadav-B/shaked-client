@@ -3,12 +3,11 @@ import styled from "styled-components";
 import Button from "../../elements/Button";
 import { ProtectRoute } from "../../shared/protected_route";
 
-  const Admin =()=> {
-    return (
-      <ProtectRoute>
+const Admin = () => {
+  return (
+    <ProtectRoute>
       <StyledAdmin>
-      <h1>עמוד ניהול</h1>
-
+        <h1>עמוד ניהול</h1>
         <Link href={"/admin/contacts"}>
           <Button>הצג אנשי קשר</Button>
         </Link>
@@ -25,9 +24,8 @@ import { ProtectRoute } from "../../shared/protected_route";
           <Button> ערוך או הוסף הצעות</Button>
         </Link>
       </StyledAdmin>
-      </ProtectRoute>
-    );
-  
+    </ProtectRoute>
+  );
 };
 
 const StyledAdmin = styled.div`

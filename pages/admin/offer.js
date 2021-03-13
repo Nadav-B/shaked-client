@@ -144,7 +144,7 @@ const OfferManager = () => {
       });
     }
   };
-  if(error) return <Error />;
+  if (error) return <Error errorDescription={"התחבר מחדש"} />;
 
   return (
     <ProtectRoute>
