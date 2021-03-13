@@ -32,7 +32,7 @@ const Menu = ({  menuLinks, open, onClick }) => {
               onClick();
             }}
           >
-            <Link href={"/homepage"}>
+            <Link href={"/"}>
               <a className="admin">התנתק</a>
             </Link>
           </li>,
