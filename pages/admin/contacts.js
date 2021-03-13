@@ -22,11 +22,11 @@ const ContactManagers = () => {
   // contacts
   const [contacts, setContacts] = useState();
   const [selectedContacts, setSelectedContacts] = useState([]);
-  const [survey, setSurvey] = useState();
-
+  const [modal, setModalPreview] = useState(true);
   // modals
   const [chartModal, setChartModal] = useState(false);
   const [deleteModal, setModalView] = useState(false);
+  const [survey, setSurvey] = useState();
 
   const [datesData, setdatesForStatistic] = useState(null);
 
@@ -71,9 +71,6 @@ const ContactManagers = () => {
     }
   };
 
-  const showSurvey = (survey) => {
-    setSurvey(survey);
-  };
 
   const showChart = () => {
     if (chartModal) {
@@ -199,36 +196,37 @@ const ContactManagers = () => {
               <div ref={messagesEndRef} />
             </div>
           )}
-          {deleteModal && (
-            <Modal>
-              <Text>בטוח שברצונך למחוק?</Text>
-              <Button
-                onClick={() => {
-                  deleteSelectedContacts();
-                  setModalView(false);
-                }}
-              >
-                כן
-              </Button>
-              <Button
-                onClick={() => {
-                  setModalView(false);
-                }}
-              >
-                לא
-              </Button>{" "}
-            </Modal>
-          )}
-          {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
-          <Button onClick={() => showChart()}>פתח תרשים</Button>
-          {chartModal && (
-            <ChartModal
-              showChart={showChart}
-              length={contacts.length}
-              datesData={datesData}
-            />
-          )}
         </StyledContact>
+
+        {deleteModal && (
+          <Modal>
+            <Text>בטוח שברצונך למחוק?</Text>
+            <Button
+              onClick={() => {
+                deleteSelectedContacts();
+                setModalView(false);
+              }}
+            >
+              כן
+            </Button>
+            <Button
+              onClick={() => {
+                setModalView(false);
+              }}
+            >
+              לא
+            </Button>{" "}
+          </Modal>
+        )}
+        {survey && <SurveyModal setSurvey={setSurvey} survey={survey} />}
+        <Button onClick={() => showChart()}>פתח תרשים</Button>
+        {chartModal && (
+          <ChartModal
+            showChart={showChart}
+            length={contacts.length}
+            datesData={datesData}
+          />
+        )}
       </TextWrapper>
     </ProtectRoute>
   );
