@@ -292,7 +292,7 @@ const StyledContact = styled.div`
 const StyledDeleteBanner = styled.div`
   position: fixed;
   display: flex;
-  width: 50%;
+  width: 100%;
   margin: auto;
   bottom: 0;
   left: 0;
