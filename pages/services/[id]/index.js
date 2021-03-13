@@ -14,8 +14,7 @@ const Service = ({ data }) => {
     url: `https://www.shakedm.co.il/services/${data.id}`,
   };
 
-  const metadata = MetadataManager(seo);
-
+  const metadata = MetadataManager(seo)
   return (
     <StyledWrapper>
       <Helmet
