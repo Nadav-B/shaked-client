@@ -13,19 +13,26 @@ import Chartkick, { ColumnChart, PieChart } from "react-chartkick";
 import "chart.js";
 import { ProtectRoute } from "../../shared/protected_route";
 
+
+const Display = {
+  contacts: 0,
+  delete: 1,
+  survey: 2,
+  chart: 3,
+};
+
 const ContactManagers = () => {
   Chartkick.options = {
     colors: ["#F77F00", "#FCBF49"],
   };
 
-  const [displayView, setDisplayView] = useState("contacts");
+  const [displayView, setDisplayView] = useState(Display.contacts);
 
   // contacts
   const [contacts, setContacts] = useState();
   const [selectedContacts, setSelectedContacts] = useState([]);
-  // modals
-  const [survey, setSurvey] = useState();
 
+  const [survey, setSurvey] = useState();
   const [datesData, setdatesForStatistic] = useState(null);
 
   const [loading, setLoading] = useState(true);
@@ -107,7 +114,7 @@ const ContactManagers = () => {
   return (
     <ProtectRoute>
       <TextWrapper>
-        {displayView == "contacts" && (
+        {displayView == Display.contacts && (
           <StyledContact>
             <h1>אנשי קשר</h1>
             {contacts && (
@@ -152,7 +159,7 @@ const ContactManagers = () => {
                             <Button
                               onClick={() => {
                                 setSurvey(contact.survey);
-                                setDisplayView("survey");
+                                setDisplayView(Display.survey);
                               }}
                             >
                               {contact.survey.name}
@@ -168,7 +175,7 @@ const ContactManagers = () => {
                   <StyledDeleteBanner>
                     <Button
                       className="flex-item"
-                      onClick={() => setDisplayView("delete")}
+                      onClick={() => setDisplayView(Display.delete)}
                     >
                       מחק {selectedContacts.length}
                     </Button>
@@ -194,7 +201,7 @@ const ContactManagers = () => {
             <Button
               onClick={() => {
                 showChart();
-                setDisplayView("chart");
+                setDisplayView(Display.chart);
               }}
             >
               פתח תרשים
@@ -202,18 +209,18 @@ const ContactManagers = () => {
           </StyledContact>
         )}
 
-        {displayView == "delete" && (
+        {displayView == Display.delete && (
           <DeleteModal
             deleteSelectedContacts={deleteSelectedContacts}
             setDisplayView={setDisplayView}
           />
         )}
 
-        {displayView == "survey" && (
+        {displayView == Display.survey && (
           <SurveyModal survey={survey} setDisplayView={setDisplayView} />
         )}
 
-        {displayView == "chart" && (
+        {displayView == Display.chart && (
           <ChartModal
             setDisplayView={setDisplayView}
             length={contacts.length}
@@ -227,24 +234,24 @@ const ContactManagers = () => {
 
 const DeleteModal = ({ deleteSelectedContacts, setDisplayView }) => {
   return (
-    <div>
+    <StyledDeleteModal>
       <Text>בטוח שברצונך למחוק?</Text>
       <Button
         onClick={() => {
           deleteSelectedContacts();
-          setDisplayView("contacts");
+          setDisplayView(Display.contacts);
         }}
       >
         כן
       </Button>
       <Button
         onClick={() => {
-          setDisplayView("contacts");
+          setDisplayView(Display.contacts);
         }}
       >
         לא
       </Button>{" "}
-    </div>
+    </StyledDeleteModal>
   );
 };
 
@@ -258,7 +265,7 @@ const SurveyModal = ({ survey, setDisplayView }) => {
           <Text> {entry.answer}</Text>
         </div>
       ))}
-      <Button onClick={() => setDisplayView("contacts")}>סגור</Button>
+      <Button onClick={() => setDisplayView(Display.contacts)}>סגור</Button>
     </div>
   );
 };
@@ -268,7 +275,7 @@ const ChartModal = ({ length, datesData, setDisplayView }) => {
     <div>
       <ColumnChart data={datesData} />
       <p> סה״כ אנשי קשר {length}</p>
-      <Button onClick={() => setDisplayView("contacts")}>סגור</Button>
+      <Button onClick={() => setDisplayView(Display.contacts)}>סגור</Button>
     </div>
   );
 };
@@ -299,6 +306,13 @@ const StyledDeleteBanner = styled.div`
   .flex-item {
     margin: 20px;
   }
+`;
+
+const StyledDeleteModal = styled.div`
+  text-align: center;
+  margin: auto;
+  height: 100%;
+  vertical-align: middle;
 `;
 
 export default ContactManagers;
