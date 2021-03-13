@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Modal = ({ children }) => {
   return (
     <StyledModal>
-      <Wrapper>{children}</Wrapper>
+    {children}
     </StyledModal>
   );
 };

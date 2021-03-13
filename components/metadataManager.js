@@ -27,7 +27,7 @@ const MetadataManager = (seo, disable = false) => {
 
   const getMetadatas = () => {
     return [
-      { name: "desciprtion", content: data.description },
+      { name: "description", content: data.description },
       { property: "og:title", content: data.title },
       { property: "og:description", content: data.description },
       { property: "og:url", content: data.url },
