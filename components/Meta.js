@@ -18,20 +18,16 @@ const Meta = ({ seo }) => {
       <meta name="description" content={data.description} />
       <meta property="og:type" content="website" />
       <meta name="og:title" property="og:title" content={data.title} />
-      <meta
-        name="og:description"
-        property="og:description"
-        content={data.description}
-      />
+      <meta name="og:description" property="og:description" content={data.description} />
       <meta property="og:site_name" content="שקד משכנתאות" />
       <meta property="og:url" content={data.url} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={data.title} />
       <meta name="twitter:description" content={data.description} />
-      <meta name="twitter:site" content="@propernounco" />
-      <meta name="twitter:creator" content="@propernounco" />
-      <link rel="icon" type="image/png" href="/static/images/favicon.ico" />
-      <link rel="apple-touch-icon" href="/static/images/favicon.ico" />
+      <meta name="twitter:site" content="שקד משכנתאות" />
+      <meta name="twitter:creator" content="@nbabai" />
+      <link rel="icon" type="image/png" href="https://shakedm.co.il/logos/favicon.ico" />
+      <link rel="apple-touch-icon" href="https://shakedm.co.il/logos/apple-touch-icon.png" />
       {data.css && <link rel="stylesheet" href={`${data.css}`} />}
       <meta property="og:image" content={`${data.image}`} />
       {data.image && <meta name="twitter:image" content={`${data.image}`} />}
