@@ -13,7 +13,7 @@ const seo = {
   title: "השירותים שלנו",
   description:
     "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה",
-  url: "https://shakedm.co.il/services",
+  url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/services`,
 };
 
 const Services = ({ disableMetadata }) => {

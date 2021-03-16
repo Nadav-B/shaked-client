@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SizeWrapper from "../elements/SizeWrapper";
-import Wave from 'react-wavify'
+import Wave from "react-wavify";
 
 const Fotter = () => (
   <StyledFooter>
@@ -32,16 +32,16 @@ const Fotter = () => (
       </a>
     </StyledItem>
 
-    <Wave fill='#F1F3F8'
-        paused={false}
-        options={{
-          height: 20,
-          amplitude: 20,
-          speed: 0.15,
-          points: 2,
-        }}
-        
-  />
+    <Wave
+      fill="#F1F3F8"
+      paused={false}
+      options={{
+        height: 20,
+        amplitude: 20,
+        speed: 0.15,
+        points: 2,
+      }}
+    />
   </StyledFooter>
 );
 

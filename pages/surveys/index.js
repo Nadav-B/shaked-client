@@ -10,7 +10,7 @@ import Meta from "../../components/Meta";
 const seo = {
   title: "שאלונים",
   description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
-  url: "https://shakedm.co.il/surveys",
+  url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys`,
 };
 
 const Surveys = ({ disableMetadata }) => {

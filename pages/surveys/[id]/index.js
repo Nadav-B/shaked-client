@@ -24,7 +24,7 @@ const Survey = ({ id }) => {
   const seo = {
     title: data.name,
     description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
-    url: `https://shakedm.co.il/surveys/${id}`,
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${id}`,
   };
   
 

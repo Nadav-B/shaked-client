@@ -11,7 +11,7 @@ const Offer = ({ data }) => {
   const seo = {
     title: data.title,
     description: data.introduction,
-    url: `https://shakedm.co.il/offers/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/offers/${data.id}`,
   };
 
   return (

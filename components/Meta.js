@@ -5,8 +5,8 @@ const Meta = ({ seo }) => {
     title: "שקד משכנתאות - יעוץ משכנתאות וכלכלת המשפחה",
     description:
       "המשרד שיעניק לכם את הידע הנדרש לקבלת החלטות נכונות ויפעל עבורכם אל מול הבנקים והגופים הפיננסים כדי להשיג לכם את המשכנתא המושלמת. המשרד מאגד בתוכו יועצים מהמובילים בשוק המשכנתאות, בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית ומחוצה לה. היועצים שלנו ילוו אתכם מקבלת ההחלטה לרכישת נכס ועד לחתימות על המשכנתא, ידאגו ליצור התאמה מושלמת בין המשכנתא ליכולת הכלכלית שלכם ויפעלו מול הבנקים והגופים הפיננסים להשגתה בתנאים הטובים ביותר.",
-    image: "https://shakedm.co.il/logos/orginal_size.png",
-    url: "https://shakedm.co.il",
+    image: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/logos/orginal_size.png`,
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}`,
     type: "website",
   };
 
@@ -18,7 +18,11 @@ const Meta = ({ seo }) => {
       <meta name="description" content={data.description} />
       <meta property="og:type" content="website" />
       <meta name="og:title" property="og:title" content={data.title} />
-      <meta name="og:description" property="og:description" content={data.description} />
+      <meta
+        name="og:description"
+        property="og:description"
+        content={data.description}
+      />
       <meta property="og:site_name" content="שקד משכנתאות" />
       <meta property="og:url" content={data.url} />
       <meta name="twitter:card" content="summary" />
@@ -26,8 +30,16 @@ const Meta = ({ seo }) => {
       <meta name="twitter:description" content={data.description} />
       <meta name="twitter:site" content="שקד משכנתאות" />
       <meta name="twitter:creator" content="@nbabai" />
-      <link rel="icon" type="image/png" href="https://shakedm.co.il/logos/favicon.ico" />
-      <link rel="apple-touch-icon" href="https://shakedm.co.il/logos/apple-touch-icon.png" />
+      <link
+        rel="icon"
+        type="image/png"
+        href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/logos/favicon.ico`}
+
+      />
+      <link
+        rel="apple-touch-icon"
+        href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/logos/apple-touch-icon.png`}
+      />
       {data.css && <link rel="stylesheet" href={`${data.css}`} />}
       <meta property="og:image" content={`${data.image}`} />
       {data.image && <meta name="twitter:image" content={`${data.image}`} />}

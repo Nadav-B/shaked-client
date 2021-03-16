@@ -9,7 +9,7 @@ import Meta from "../components/Meta";
 
 const seo = {
   title: "אודות",
-  url: "https://shakedm.co.il/about",
+  url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/about`,
 };
 
 const About = ({ disableMetadata }) => {
