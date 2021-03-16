@@ -11,7 +11,7 @@ import Meta from "../../components/Meta";
 const seo = {
   title: "כתבות",
   description: "הכתבות הבאות יעזרו לכם לקבל מידע על הנושאים הפיננסים",
-  url: "https://www.shakedm.co.il/articles",
+  url: "https://shakedm.co.il/articles",
 };
 
 const Articles = ({ disableMetadata }) => {

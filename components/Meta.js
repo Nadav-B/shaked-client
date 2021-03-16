@@ -6,12 +6,11 @@ const Meta = ({ seo }) => {
     description:
       "המשרד שיעניק לכם את הידע הנדרש לקבלת החלטות נכונות ויפעל עבורכם אל מול הבנקים והגופים הפיננסים כדי להשיג לכם את המשכנתא המושלמת. המשרד מאגד בתוכו יועצים מהמובילים בשוק המשכנתאות, בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית ומחוצה לה. היועצים שלנו ילוו אתכם מקבלת ההחלטה לרכישת נכס ועד לחתימות על המשכנתא, ידאגו ליצור התאמה מושלמת בין המשכנתא ליכולת הכלכלית שלכם ויפעלו מול הבנקים והגופים הפיננסים להשגתה בתנאים הטובים ביותר.",
     image: "https://shakedm.co.il/logos/orginal_size.png",
-    url: "https://www.shakedm.co.il",
+    url: "https://shakedm.co.il",
     type: "website",
   };
 
   const data = { ...default_seo, ...seo };
-  console.log(data);
   return (
     <Head>
       <html lang="he" />
@@ -24,8 +23,8 @@ const Meta = ({ seo }) => {
         property="og:description"
         content={data.description}
       />
-      <meta property="og:site_name" content={data.title} />
-      <meta property="og:url" content={`${data.canonical}`} />
+      <meta property="og:site_name" content="שקד משכנתאות" />
+      <meta property="og:url" content={data.url} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={data.title} />
       <meta name="twitter:description" content={data.description} />
@@ -34,16 +33,9 @@ const Meta = ({ seo }) => {
       <link rel="icon" type="image/png" href="/static/images/favicon.ico" />
       <link rel="apple-touch-icon" href="/static/images/favicon.ico" />
       {data.css && <link rel="stylesheet" href={`${data.css}`} />}
-      {data.image ? (
-        <meta property="og:image" content={`${data.image}`} />
-      ) : (
-        <meta
-          property="og:image"
-          content="https://www.propernoun.co/static/images/proper-noun-social.png"
-        />
-      )}
+      <meta property="og:image" content={`${data.image}`} />
       {data.image && <meta name="twitter:image" content={`${data.image}`} />}
-      {data.canonical && <link rel="canonical" href={`${data.canonical}`} />}
+      <link rel="canonical" href={data.url} />
       {data.js && <script type="text/javascript" src={`${data.js}`}></script>}
     </Head>
   );

@@ -8,7 +8,7 @@ import Meta from "../components/Meta";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
-  url: "https://www.shakedm.co.il/contact",
+  url: "https://shakedm.co.il/contact",
 };
 
 const Contact = ({ disableMetadata }) => {

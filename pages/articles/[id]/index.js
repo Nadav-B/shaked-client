@@ -14,7 +14,7 @@ const Article = ({ data }) => {
     title: data.title,
     description: data.introduction,
     image: image,
-    url: `https://www.shakedm.co.il/articles/${data.id}`,
+    url: `https://shakedm.co.il/articles/${data.id}`,
   };
 
   return (

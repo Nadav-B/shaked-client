@@ -12,7 +12,7 @@ const Service = ({ data }) => {
   const seo = {
     title: data.title,
     description: data.introduction,
-    url: `https://www.shakedm.co.il/services/${data.id}`,
+    url: `https://shakedm.co.il/services/${data.id}`,
   };
 
   return (
