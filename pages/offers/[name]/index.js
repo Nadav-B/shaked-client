@@ -1,11 +1,12 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+
 import api from "../../../shared/api";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
 import MetadataManager from "../../../components/metadataManager";
 
 import { directByContact } from "../../../config/contactButtonLinks";
+import Meta from "../../../components/Meta";
 
 const Offer = ({ data }) => {
   const seo = {
@@ -17,7 +18,7 @@ const Offer = ({ data }) => {
 
   return (
     <div>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

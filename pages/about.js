@@ -5,7 +5,8 @@ import TEXTS_QUERY from "../graphql/texts.query";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
 import MetadataManager from "../components/metadataManager";
-import { Helmet } from "react-helmet";
+import Meta from "../components/Meta";
+
 
 const seo = {
   title: "אודות",
@@ -18,7 +19,7 @@ const About = ({ disableMetadata }) => {
   if (loading)
     return (
       <>
-        <Helmet
+        <Meta
           title={metadata.title}
           link={metadata.links}
           meta={metadata.metadatas}
@@ -30,7 +31,7 @@ const About = ({ disableMetadata }) => {
 
   return (
     <Wrapper>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

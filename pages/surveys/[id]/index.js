@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+
 import styled from "styled-components";
 import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
@@ -9,6 +9,7 @@ import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
 import MetadataManager from "../../../components/metadataManager";
 import Loading from "../../../elements/Loading";
+import Meta from "../../../components/Meta";
 
 const Survey = ({ id }) => {
   const Status = {
@@ -149,7 +150,7 @@ const Survey = ({ id }) => {
 
   return (
     <Wrapper>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

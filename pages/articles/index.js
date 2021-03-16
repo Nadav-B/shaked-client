@@ -3,12 +3,13 @@ import Link from "next/link";
 import styled from "styled-components";
 import Loading from "../../elements/Loading";
 import ARTICLES_QUERY from "../../graphql/articles.query";
-import { Helmet } from "react-helmet";
+
 
 import MetadataManager from "../../components/metadataManager";
 
 import ArticlePreview from "../../elements/ArticlePreview";
 import { useQuery } from "@apollo/react-hooks";
+import Meta from "../../components/Meta";
 
 const seo = {
   title: "כתבות",
@@ -23,7 +24,7 @@ const Articles = ({ disableMetadata }) => {
   if (loading)
     return (
       <>
-        <Helmet
+        <Meta
           title={metadata.title}
           link={metadata.links}
           meta={metadata.metadatas}
@@ -35,7 +36,7 @@ const Articles = ({ disableMetadata }) => {
 
   return (
     <div>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

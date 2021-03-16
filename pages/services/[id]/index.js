@@ -1,11 +1,12 @@
 import React from "react";
 import api from "../../../shared/api";
 import styled from "styled-components";
-import { Helmet } from "react-helmet";
+
 import Button from "../../../elements/Button";
 import { directByContact } from "../../../config/contactButtonLinks";
 import TextWrapper from "../../../elements/TextWrapper";
 import MetadataManager from "../../../components/metadataManager";
+import Meta from "../../../components/Meta";
 
 const Service = ({ data }) => {
   const seo = {
@@ -17,7 +18,7 @@ const Service = ({ data }) => {
   const metadata = MetadataManager(seo)
   return (
     <StyledWrapper>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

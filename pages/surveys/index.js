@@ -4,8 +4,9 @@ import survey2 from "../../public/surveys/2.json";
 import Link from "next/link";
 import Text from "../../elements/Text";
 import styled from "styled-components";
-import { Helmet } from "react-helmet";
+
 import MetadataManager from "../../components/metadataManager";
+import Meta from "../../components/Meta";
 
 const seo = {
   title: "שאלונים",
@@ -19,7 +20,7 @@ const Surveys = ({ disableMetadata }) => {
 
   return (
     <div>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

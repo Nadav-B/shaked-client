@@ -5,9 +5,10 @@ import styled from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
 import Loading from "../../elements/Loading";
 import { from, gql } from "@apollo/client";
-import { Helmet } from "react-helmet";
+
 import MetadataManager from "../../components/metadataManager";
 import SERVICES_QUERY from "../../graphql/services.query";
+import Meta from "../../components/Meta";
 
 const seo = {
   title: "השירותים שלנו",
@@ -24,7 +25,7 @@ const Services = ({ disableMetadata }) => {
   if (loading)
     return (
       <>
-        <Helmet
+        <Meta
           title={metadata.title}
           link={metadata.links}
           meta={metadata.metadatas}
@@ -35,7 +36,7 @@ const Services = ({ disableMetadata }) => {
   if (error) return <span></span>;
   return (
     <div>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

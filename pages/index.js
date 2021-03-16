@@ -7,8 +7,8 @@ import Surveys from "../pages/surveys";
 import About from "../pages/about";
 import Services from "../pages/services";
 
-import { Helmet } from "react-helmet";
 import MetadataManager from "../components/metadataManager";
+import Meta from "../components/Meta";
 const Index = () => {
   return <Homepage />;
 };
@@ -18,7 +18,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

@@ -3,8 +3,9 @@ import Button from "../elements/Button";
 import Text from "../elements/Text";
 import styled from "styled-components";
 import api from "../shared/api";
-import { Helmet } from "react-helmet";
+
 import MetadataManager from "../components/metadataManager";
+import Meta from "../components/Meta";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
@@ -72,7 +73,7 @@ const Contact = ({ disableMetadata }) => {
 
   return (
     <Wrapper>
-      <Helmet
+      <Meta
         title={metadata.title}
         link={metadata.links}
         meta={metadata.metadatas}

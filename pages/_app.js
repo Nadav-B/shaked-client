@@ -4,7 +4,7 @@ import { theme } from "../shared/theme";
 import Header from "../components/header";
 import menuLinks from "../config/menuLinks";
 import Footer from "../components/footer";
-import { Helmet } from "react-helmet";
+
 
 import Head from "next/head";
 import React, { useState, useRef } from "react";
@@ -15,15 +15,16 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { useApollo } from "../apollo-client";
 import { AuthProvider } from "../shared/auth";
+import Meta from "../components/Meta";
 
 const App = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps);
 
   return (
     <>
-      <Helmet>
+      <Meta>
         <html lang="he" />
-      </Helmet>
+      </Meta>
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
           <Head>

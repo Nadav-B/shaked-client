@@ -4,8 +4,9 @@ import { directByContact } from "../../../config/contactButtonLinks";
 import styled from "styled-components";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
-import { Helmet } from "react-helmet";
+
 import MetadataManager from "../../../components/metadataManager";
+import Meta from "../../../components/Meta";
 
 const Article = ({ data }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
@@ -21,7 +22,7 @@ const Article = ({ data }) => {
 
   return (
     <div>
-     <Helmet
+     <Meta
           title={metadata.title}
           link={metadata.links}
           meta={metadata.metadatas}
