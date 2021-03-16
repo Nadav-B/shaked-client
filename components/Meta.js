@@ -14,6 +14,7 @@ const Meta = ({ seo }) => {
   console.log(data);
   return (
     <Head>
+      <html lang="he" />
       <title>{data.title}</title>
       <meta name="description" content={data.description} />
       <meta property="og:type" content="website" />
