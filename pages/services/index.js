@@ -6,7 +6,6 @@ import { useQuery } from "@apollo/react-hooks";
 import Loading from "../../elements/Loading";
 import { from, gql } from "@apollo/client";
 
-import MetadataManager from "../../components/metadataManager";
 import SERVICES_QUERY from "../../graphql/services.query";
 import Meta from "../../components/Meta";
 
@@ -18,29 +17,19 @@ const seo = {
 };
 
 const Services = ({ disableMetadata }) => {
-  const metadata = MetadataManager(seo, disableMetadata);
-
   const { data, loading, error } = useQuery(SERVICES_QUERY);
 
   if (loading)
     return (
       <>
-        <Meta
-          title={metadata.title}
-          link={metadata.links}
-          meta={metadata.metadatas}
-        />
+        <Meta disableMetadata seo={seo} />
         <Loading />
       </>
     );
   if (error) return <span></span>;
   return (
     <div>
-      <Meta
-        title={metadata.title}
-        link={metadata.links}
-        meta={metadata.metadatas}
-      />
+      <Meta disableMetadata seo={seo} />
       <h1>השירותים שלנו</h1>
       <StyledService>
         {data.getServices.map((service, index) => (

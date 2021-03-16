@@ -7,7 +7,7 @@ import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
-import MetadataManager from "../../../components/metadataManager";
+
 import Loading from "../../../elements/Loading";
 import Meta from "../../../components/Meta";
 
@@ -26,7 +26,7 @@ const Survey = ({ id }) => {
     description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
     url: `https://www.shakedm.co.il/surveys/${id}`,
   };
-  const metadata = MetadataManager(seo);
+  
 
   const [results, setResults] = useState(new Map());
 
@@ -150,11 +150,8 @@ const Survey = ({ id }) => {
 
   return (
     <Wrapper>
-      <Meta
-        title={metadata.title}
-        link={metadata.links}
-        meta={metadata.metadatas}
-      />
+        <Meta seo={seo}/>
+
       <h1 className="title">{data.name}</h1>
       {currentStatus == 0 && (
         <ContactWrapper>

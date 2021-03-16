@@ -4,9 +4,8 @@ import { useQuery } from "@apollo/react-hooks";
 import TEXTS_QUERY from "../graphql/texts.query";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
-import MetadataManager from "../components/metadataManager";
-import Meta from "../components/Meta";
 
+import Meta from "../components/Meta";
 
 const seo = {
   title: "אודות",
@@ -14,16 +13,11 @@ const seo = {
 };
 
 const About = ({ disableMetadata }) => {
-  const metadata = MetadataManager(seo, disableMetadata);
   const { data, loading, error } = useQuery(TEXTS_QUERY);
   if (loading)
     return (
       <>
-        <Meta
-          title={metadata.title}
-          link={metadata.links}
-          meta={metadata.metadatas}
-        />
+        <Meta disableMetadata seo={seo} />
         <Loading />
       </>
     );
@@ -31,11 +25,7 @@ const About = ({ disableMetadata }) => {
 
   return (
     <Wrapper>
-      <Meta
-        title={metadata.title}
-        link={metadata.links}
-        meta={metadata.metadatas}
-      />
+      <Meta disableMetadata seo={seo} />
       <TextWrapper>
         {data.getTexts.map((text) => (
           <div

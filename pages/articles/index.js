@@ -4,9 +4,6 @@ import styled from "styled-components";
 import Loading from "../../elements/Loading";
 import ARTICLES_QUERY from "../../graphql/articles.query";
 
-
-import MetadataManager from "../../components/metadataManager";
-
 import ArticlePreview from "../../elements/ArticlePreview";
 import { useQuery } from "@apollo/react-hooks";
 import Meta from "../../components/Meta";
@@ -18,17 +15,12 @@ const seo = {
 };
 
 const Articles = ({ disableMetadata }) => {
-  const metadata = MetadataManager(seo, disableMetadata);
   const { data, loading, error } = useQuery(ARTICLES_QUERY);
 
   if (loading)
     return (
       <>
-        <Meta
-          title={metadata.title}
-          link={metadata.links}
-          meta={metadata.metadatas}
-        />
+        <Meta disableMetadata seo={seo} />
         <Loading />
       </>
     );
@@ -36,11 +28,7 @@ const Articles = ({ disableMetadata }) => {
 
   return (
     <div>
-      <Meta
-        title={metadata.title}
-        link={metadata.links}
-        meta={metadata.metadatas}
-      />
+      <Meta disableMetadata seo={seo} />
       <h1>כתבות</h1>
       <StyledArticles>
         {data.getArticles.map((article) => (

@@ -5,7 +5,6 @@ import Header from "../components/header";
 import menuLinks from "../config/menuLinks";
 import Footer from "../components/footer";
 
-
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
@@ -22,9 +21,6 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <>
-      <Meta>
-        <html lang="he" />
-      </Meta>
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
           <Head>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Text from "../../elements/Text";
 import styled from "styled-components";
 
-import MetadataManager from "../../components/metadataManager";
+
 import Meta from "../../components/Meta";
 
 const seo = {
@@ -15,16 +15,12 @@ const seo = {
 };
 
 const Surveys = ({ disableMetadata }) => {
-  const metadata = MetadataManager(seo, disableMetadata);
   const data = [survey1, survey2];
 
   return (
     <div>
-      <Meta
-        title={metadata.title}
-        link={metadata.links}
-        meta={metadata.metadatas}
-      />
+        <Meta disableMetadata seo={seo}/>
+
       <h1>שאלונים לביצוע בדיקה</h1>
       <StyledContainer>
         {data.map((survey) => (

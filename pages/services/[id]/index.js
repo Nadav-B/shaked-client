@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Button from "../../../elements/Button";
 import { directByContact } from "../../../config/contactButtonLinks";
 import TextWrapper from "../../../elements/TextWrapper";
-import MetadataManager from "../../../components/metadataManager";
+
 import Meta from "../../../components/Meta";
 
 const Service = ({ data }) => {
@@ -15,14 +15,9 @@ const Service = ({ data }) => {
     url: `https://www.shakedm.co.il/services/${data.id}`,
   };
 
-  const metadata = MetadataManager(seo)
   return (
     <StyledWrapper>
-      <Meta
-        title={metadata.title}
-        link={metadata.links}
-        meta={metadata.metadatas}
-      />
+      <Meta seo={seo} />
       <TextWrapper
         dangerouslySetInnerHTML={{
           __html: data.content,

@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
 
-import MetadataManager from "../../../components/metadataManager";
 import Meta from "../../../components/Meta";
 
 const Article = ({ data }) => {
@@ -17,16 +16,10 @@ const Article = ({ data }) => {
     image: image,
     url: `https://www.shakedm.co.il/articles/${data.id}`,
   };
-  const metadata = MetadataManager(seo);
-
 
   return (
     <div>
-     <Meta
-          title={metadata.title}
-          link={metadata.links}
-          meta={metadata.metadatas}
-        />
+      <Meta seo={seo} />
       <StyledArticle>
         <StyledImage src={image} alt="image" />
         <TextWrapper

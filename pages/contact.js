@@ -4,7 +4,6 @@ import Text from "../elements/Text";
 import styled from "styled-components";
 import api from "../shared/api";
 
-import MetadataManager from "../components/metadataManager";
 import Meta from "../components/Meta";
 
 const seo = {
@@ -13,8 +12,6 @@ const seo = {
 };
 
 const Contact = ({ disableMetadata }) => {
-  const metadata = MetadataManager(seo, disableMetadata);
-
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",
@@ -73,11 +70,8 @@ const Contact = ({ disableMetadata }) => {
 
   return (
     <Wrapper>
-      <Meta
-        title={metadata.title}
-        link={metadata.links}
-        meta={metadata.metadatas}
-      />
+      <Meta disableMetadata seo={seo} />
+
       <h1>צרו קשר</h1>
       <StyledForm>
         <form onSubmit={handleSubmit}>
