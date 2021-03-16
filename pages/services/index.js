@@ -4,7 +4,6 @@ import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
 import Loading from "../../elements/Loading";
-import { from, gql } from "@apollo/client";
 
 import SERVICES_QUERY from "../../graphql/services.query";
 import Meta from "../../components/Meta";
