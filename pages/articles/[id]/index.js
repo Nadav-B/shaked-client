@@ -14,7 +14,7 @@ const Article = ({ data }) => {
     title: data.title,
     description: data.introduction,
     image: image,
-    url: `https://shakedm.co.il/articles/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/articles/${data.id}`,
   };
 
   return (
