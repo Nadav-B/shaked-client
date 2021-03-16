@@ -17,7 +17,7 @@ const About = ({ disableMetadata }) => {
   if (loading)
     return (
       <>
-        <Meta disableMetadata seo={seo} />
+        {!disableMetadata && <Meta seo={seo} />}
         <Loading />
       </>
     );
@@ -25,7 +25,7 @@ const About = ({ disableMetadata }) => {
 
   return (
     <Wrapper>
-      <Meta disableMetadata seo={seo} />
+      {!disableMetadata && <Meta seo={seo} />}
       <TextWrapper>
         {data.getTexts.map((text) => (
           <div

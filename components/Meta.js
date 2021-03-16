@@ -1,17 +1,16 @@
 import Head from "next/head";
-const Meta = ({ seo, disableMetadata = false }) => {
-  console.log(disableMetadata, seo);
+const Meta = ({ seo }) => {
   const default_seo = {
     charSet: "utf-8",
     title: "שקד משכנתאות - יעוץ משכנתאות וכלכלת המשפחה",
     description:
       "המשרד שיעניק לכם את הידע הנדרש לקבלת החלטות נכונות ויפעל עבורכם אל מול הבנקים והגופים הפיננסים כדי להשיג לכם את המשכנתא המושלמת. המשרד מאגד בתוכו יועצים מהמובילים בשוק המשכנתאות, בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית ומחוצה לה. היועצים שלנו ילוו אתכם מקבלת ההחלטה לרכישת נכס ועד לחתימות על המשכנתא, ידאגו ליצור התאמה מושלמת בין המשכנתא ליכולת הכלכלית שלכם ויפעלו מול הבנקים והגופים הפיננסים להשגתה בתנאים הטובים ביותר.",
-    image: "https://shakedm.co.il/logos/favicon.svg",
+    image: "https://shakedm.co.il/logos/orginal_size.png",
     url: "https://www.shakedm.co.il",
     type: "website",
   };
 
-  const data = disableMetadata ? default_seo : { ...default_seo, ...seo };
+  const data = { ...default_seo, ...seo };
   console.log(data);
   return (
     <Head>

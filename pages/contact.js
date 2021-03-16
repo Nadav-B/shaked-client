@@ -70,7 +70,7 @@ const Contact = ({ disableMetadata }) => {
 
   return (
     <Wrapper>
-      <Meta disableMetadata seo={seo} />
+      {!disableMetadata && <Meta seo={seo} />}
 
       <h1>צרו קשר</h1>
       <StyledForm>

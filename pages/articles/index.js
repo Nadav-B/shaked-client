@@ -20,7 +20,7 @@ const Articles = ({ disableMetadata }) => {
   if (loading)
     return (
       <>
-        <Meta disableMetadata seo={seo} />
+        {!disableMetadata && <Meta seo={seo} />}
         <Loading />
       </>
     );
@@ -28,7 +28,7 @@ const Articles = ({ disableMetadata }) => {
 
   return (
     <div>
-      <Meta disableMetadata seo={seo} />
+      {!disableMetadata && <Meta seo={seo} />}
       <h1>כתבות</h1>
       <StyledArticles>
         {data.getArticles.map((article) => (

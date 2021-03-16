@@ -22,14 +22,14 @@ const Services = ({ disableMetadata }) => {
   if (loading)
     return (
       <>
-        <Meta disableMetadata seo={seo} />
+        {!disableMetadata && <Meta seo={seo} />}
         <Loading />
       </>
     );
   if (error) return <span></span>;
   return (
     <div>
-      <Meta disableMetadata seo={seo} />
+      {!disableMetadata && <Meta seo={seo} />}
       <h1>השירותים שלנו</h1>
       <StyledService>
         {data.getServices.map((service, index) => (
