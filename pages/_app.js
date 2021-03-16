@@ -14,7 +14,6 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { useApollo } from "../apollo-client";
 import { AuthProvider } from "../shared/auth";
-import Meta from "../components/Meta";
 
 const App = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps);

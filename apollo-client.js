@@ -14,7 +14,6 @@ const link = createHttpLink({
 });
 
 
-
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
 let apolloClient
