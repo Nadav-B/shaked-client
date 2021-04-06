@@ -8,7 +8,7 @@ const getContacts = async () => {
   const token = Cookies.get("token");
   return await axios.get(url, {
     headers: {
-      Authorization: ` ${token}`,
+      Authorization: `${token}`,
     },
   });
 };
