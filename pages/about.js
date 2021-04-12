@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import TEXTS_QUERY from "../graphql/texts.query";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";

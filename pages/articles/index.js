@@ -5,7 +5,7 @@ import Loading from "../../elements/Loading";
 import ARTICLES_QUERY from "../../graphql/articles.query";
 
 import ArticlePreview from "../../elements/ArticlePreview";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import Meta from "../../components/Meta";
 
 const seo = {
