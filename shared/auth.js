@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
           if (response) setUser(true);
         } catch (error){
           console.log(error)
+          logout()
         }
       }
     }
