@@ -7,7 +7,7 @@ import merge from 'deepmerge'
 
 // Update the GraphQL endpoint to any instance of GraphQL that you like
 
-const GRAPHQL_URL = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/graphql`;
+const GRAPHQL_URL = `${process.env.NEXT_PUBLIC_API_URL}/graphql`;
 const link = createHttpLink({
   fetch, // Switches between unfetch & node-fetch for client & server.
   uri: GRAPHQL_URL
