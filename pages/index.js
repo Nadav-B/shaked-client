@@ -16,16 +16,16 @@ const Index = () => {
 const Homepage = () => {
   return (
     <div>
-      <Wrapper>
-        <Meta />
-        <StyledLandingPage>
-          <StyledBackground />
+      <Meta />
+      <StyledBackground />
+      <StyledLandingPage>
+        <Wrapper>
           <StyledText>
             <h1> שקד משכנתאות</h1>
             <Text> יעוץ משכנתאות וכלכלת המשפחה</Text>
           </StyledText>
-        </StyledLandingPage>
-      </Wrapper>
+        </Wrapper>
+      </StyledLandingPage>
       <ContentBackground id="about">
         <About disableMetadata={true} />
       </ContentBackground>
@@ -60,7 +60,7 @@ const CustomBackground2 = styled.div`
 `;
 
 const StyledText = styled.div`
-  position: absolute;
+  position: relative;
   top: 1vw;
   right: 0;
   left: 0;
@@ -77,9 +77,9 @@ const StyledText = styled.div`
 `;
 
 const StyledBackground = styled.div`
-  position: relative;
+  position: absolute;
   width: 150%;
-  height: 500px;
+  height: 900px;
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 1) 0%,

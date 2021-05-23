@@ -35,16 +35,15 @@ Header.defaultProps = {
 };
 
 const HeaderWrapper = styled.div`
-
-
+  background-color: white;
 `;
 
 const StyledLogo = styled.div`
   position: fixed;
-  height: 150px;
   right: 20px;
   top: 5px;
   width: 150px;
+  height: 150px;
   background: white;
   border-radius: 80px;
   padding: 20px;
@@ -54,12 +53,10 @@ const StyledLogo = styled.div`
   }
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    height: 119.4px;
-    width: 119px;
-    margin-right: 0;
-
-    margin-left: 10px;
-    margin-top: 5px;
+    height: 120px;
+    width: 120px;
+    padding: 13px;
+    top: 0;
   }
 `;
 

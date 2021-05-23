@@ -13,45 +13,51 @@ const ToggleButton = ({ open, onClick }) => {
 };
 
 export const StyledToggleButton = styled.button`
+  display: none;
   position: fixed;
-  top: 2%;
-  left: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
-  background: transparent;
-  border: none;
-  margin-top: 40px;
-  margin-left: 30px;
 
-  cursor: pointer;
-  z-index: 100;
-
-  &:focus {
-    outline: none;
-  }
-
-  div {
+  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    top: 20px;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     width: 2rem;
-    height: 0.25rem;
-    background: black;
-    border-radius: 10px;
+    height: 2rem;
+    background: transparent;
+    border: none;
+
     transition: all 0.3s linear;
-    position: relative;
     transform-origin: 1px;
 
-    :first-child {
-      transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
-    }
-    :nth-child(2) {
-      opacity: ${({ open }) => (open ? "0" : "1")};
-      transform: ${({ open }) => (open ? "translateX(20px)" : "translateX(0)")};
+
+    cursor: pointer;
+    z-index: 100;
+
+    &:focus {
+      outline: none;
     }
 
-    :nth-child(3) {
-      transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
+    div {
+      width: 2rem;
+      height: 0.25rem;
+      background: black;
+      border-radius: 20px;
+      transition: all 0.3s linear;
+      transform-origin: 1px;
+
+      :first-child {
+        transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
+      }
+      :nth-child(2) {
+        opacity: ${({ open }) => (open ? "0" : "1")};
+        transform: ${({ open }) =>
+          open ? "translateX(20px)" : "translateX(0)"};
+      }
+
+      :nth-child(3) {
+        transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
+      }
     }
   }
 `;
