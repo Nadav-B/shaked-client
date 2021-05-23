@@ -27,7 +27,6 @@ const Survey = ({ id }) => {
     description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
     url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${id}`,
   };
-  
 
   const [results, setResults] = useState(new Map());
 
@@ -98,8 +97,7 @@ const Survey = ({ id }) => {
       (error) => {
         setConfirmation((prevState) => ({
           ...prevState,
-          text:
-            "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
+          text: "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
           style: "error",
           status: false,
         }));
@@ -151,7 +149,7 @@ const Survey = ({ id }) => {
 
   return (
     <Wrapper>
-        <Meta seo={seo}/>
+      <Meta seo={seo} />
 
       <h1 className="title">{data.name}</h1>
       {currentStatus == 0 && (
@@ -256,7 +254,6 @@ const Survey = ({ id }) => {
     </Wrapper>
   );
 };
-
 
 const BackButtonWrapper = styled.div`
   max-width: 200px;

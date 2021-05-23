@@ -10,7 +10,10 @@ const Menu = ({ menuLinks, open, onClick }) => {
     <StyledMenu open={open}>
       <ul>
         {menuLinks.map((link) => (
-          <Link key={link.name} href={link.link}>
+          <Link
+            key={link.name}
+            href={`${process.env.NEXT_PUBLIC_WEBSITE_URL + link.link}`}
+          >
             <li onClick={onClick}>
               <a>{link.name}</a>
             </li>

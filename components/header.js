@@ -15,7 +15,7 @@ const Header = ({ menuLinks, siteTitle }) => {
       <StyledLogo>
         <Link href={"/"}>
           <a>
-            <img src="/logos/favicon.svg" alt="Logo" />
+            <img src="/logos/favicon.svg" alt="שקד משכנאות" />
           </a>
         </Link>
       </StyledLogo>

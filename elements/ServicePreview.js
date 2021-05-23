@@ -1,5 +1,9 @@
 import React from "react";
+import Fade from "react-reveal/Fade";
+
 import styled from "styled-components";
+
+
 const ServicePreview = React.forwardRef(
   ({ index, service, onClick, href }, ref) => {
     return (
@@ -8,7 +12,11 @@ const ServicePreview = React.forwardRef(
           <div className="container">
             <StyledCube>
               <div className="front">
+              <Fade>
+
                 <img src={`/services/${index}.svg`} alt="service-icon" />
+
+                </Fade>
                 <div className="text">{service.title}</div>
               </div>
               <div className="overlay">
