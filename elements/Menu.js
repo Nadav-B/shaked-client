@@ -4,9 +4,8 @@ import Link from "next/link";
 import { bool, func } from "prop-types";
 import { useAuth } from "../shared/auth";
 
-const Menu = ({  menuLinks, open, onClick }) => {
-
-  const { isAuthenticated,logout } = useAuth();
+const Menu = ({ menuLinks, open, onClick }) => {
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <StyledMenu open={open}>
@@ -18,6 +17,7 @@ const Menu = ({  menuLinks, open, onClick }) => {
             </Link>
           </li>
         ))}
+
         {isAuthenticated && [
           <li key="admin" onClick={onClick}>
             <Link href={"/admin"}>
@@ -43,19 +43,21 @@ const Menu = ({  menuLinks, open, onClick }) => {
 };
 
 const StyledMenu = styled.nav`
-  height: auto;
-  display: block;
   position: fixed;
   top: 0;
   right: 0;
+  display: block;
   width: 100%;
-  height: 120px;
+  height: 90px;
   background: white;
   z-index: 1;
+
   li {
     cursor: pointer;
     float: right;
-    margin-left: 3vw;
+    margin-top: 30px;
+    margin-left: 2rem;
+    margin-right: 3rem;
     color: black;
     text-align: center;
   }
@@ -66,7 +68,7 @@ const StyledMenu = styled.nav`
 
   ul {
     position: relative;
-    top: 50px;
+    top: 10px;
     right: 150px;
   }
   a {

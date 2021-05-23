@@ -5,6 +5,8 @@ import styled from "styled-components";
 import api from "../shared/api";
 
 import Meta from "../components/Meta";
+import Wrapper from "../elements/Wrapper";
+import TextWrapper from "../elements/TextWrapper";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
@@ -73,7 +75,7 @@ const Contact = ({ disableMetadata }) => {
       {!disableMetadata && <Meta seo={seo} />}
 
       <h1>צרו קשר</h1>
-      <StyledForm>
+      <TextWrapper>
         <form onSubmit={handleSubmit}>
           <label>
             שם מלא
@@ -133,21 +135,10 @@ const Contact = ({ disableMetadata }) => {
             שלח
           </Button>
         </form>
-      </StyledForm>
+      </TextWrapper>
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  margin: auto;
-  width: 100%;
-`;
-
-const StyledForm = styled.div`
-  display: flex;
-  max-width: 340px;
-  margin: auto;
-`;
 
 const StyledSelect = styled.select`
   display: block;
@@ -170,7 +161,6 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   font-size: ${(p) => p.theme.fontSize.normal};
 
-  bacgkround: silver;
   &::placeholder {
     color: black;
   }

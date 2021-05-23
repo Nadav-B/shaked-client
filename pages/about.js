@@ -6,6 +6,7 @@ import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
 
 import Meta from "../components/Meta";
+import Wrapper from "../elements/Wrapper";
 
 const seo = {
   title: "אודות",
@@ -39,12 +40,5 @@ const About = ({ disableMetadata }) => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  max-width: 700px;
-  margin: auto;
-  padding-top: 40px;
-  padding-bottom: 40px;
-`;
 
 export default About;

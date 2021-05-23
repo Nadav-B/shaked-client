@@ -4,28 +4,27 @@ const menuLinks = [
     link: "/",
   },
   {
-    name: "השירותים שלנו",
-    link: "/services",
+    name: "אודות ",
+    link: "#about",
   },
 
   {
     name: "שאלונים",
-    link: "/surveys",
+    link: "#surveys",
   },
 
   {
-    name: "אודות ",
-    link: "/about",
+    name: "כתבות",
+    link: "#articles",
   },
   {
-    name: "כתבות",
-    link: "/articles",
+    name: "השירותים שלנו",
+    link: "#services",
   },
   {
     name: "צור קשר",
-    link: "/contact",
+    link: "#contact",
   },
-
 ];
 
 export default menuLinks;

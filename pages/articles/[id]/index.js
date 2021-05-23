@@ -6,6 +6,7 @@ import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
 
 import Meta from "../../../components/Meta";
+import Wrapper from "../../../elements/Wrapper";
 
 const Article = ({ data }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
@@ -18,7 +19,7 @@ const Article = ({ data }) => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <Meta seo={seo} />
       <StyledArticle>
         <StyledImage src={image} alt="image" />
@@ -35,7 +36,7 @@ const Article = ({ data }) => {
       >
         {data.contactButton}
       </Button>{" "}
-    </div>
+    </Wrapper>
   );
 };
 

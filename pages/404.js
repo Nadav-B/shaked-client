@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Button from "../elements/Button";
+import Wrapper from "../elements/Wrapper";
 
 const Custom404 = () => {
   return (
@@ -11,7 +12,7 @@ const Custom404 = () => {
           <BackButtonWrapper>
             <Button>
               <img src="/assets/back.svg" alt=">" />
-              <h3>חזרה לעמוד הבית</h3>
+              <h3> לעמוד הבית</h3>
             </Button>
           </BackButtonWrapper>
         </a>
@@ -32,12 +33,5 @@ const BackButtonWrapper = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
-  max-width: 700px;
-  margin: auto;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  text-align: center;
-`;
 
 export default Custom404;

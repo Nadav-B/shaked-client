@@ -9,6 +9,7 @@ import { contactLinks } from "../../config/contactButtonLinks";
 import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
+import Wrapper from "../../elements/Wrapper";
 
 const ArticleManager = () => {
   const [data, setData] = useState();
@@ -147,8 +148,10 @@ const ArticleManager = () => {
 
   return (
     <ProtectRoute>
-      <TextWrapper>
+      <Wrapper>
         <h1> ערוך כתבות</h1>
+        <TextWrapper>
+
         <StyledSelect name="category" onChange={handleArticleChange}>
           <option value=""> הוסף כתבה </option>
           {data &&
@@ -158,7 +161,6 @@ const ArticleManager = () => {
               </option>
             ))}
         </StyledSelect>
-
           <form onSubmit={handleSubmit}>
             <label>
               שם הכתבה
@@ -242,7 +244,8 @@ const ArticleManager = () => {
               </Button>
             )}
           </form>
-      </TextWrapper>
+        </TextWrapper>
+      </Wrapper>
     </ProtectRoute>
   );
 };
@@ -267,16 +270,11 @@ const StyledSelect = styled.select`
   height: 40px;
 `;
 
-const StyledForm = styled.form`
-  display: flex;
-  margin-top: 100px;
-`;
-
 const StyledInput = styled.input`
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
-  
+
   display: inline-block;
   font-size: ${(p) => p.theme.fontSize.normal};
 
@@ -284,7 +282,6 @@ const StyledInput = styled.input`
   border-radius: 4px;
   box-sizing: border-box;
 
-  bacgkround: silver;
   &::placeholder {
     color: black;
   }

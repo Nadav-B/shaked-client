@@ -12,25 +12,16 @@ const Header = ({ menuLinks, siteTitle }) => {
 
   return (
     <HeaderWrapper open={open}>
-      <NavigationWrapper>
+      <StyledLogo>
         <Link href={"/"}>
           <a>
-            <StyledLink>
-              <SizeWrapper height={120} width={120}>
-                <img src="/logos/favicon.svg" alt="Logo" />
-              </SizeWrapper>
-            </StyledLink>
+            <img src="/logos/favicon.svg" alt="Logo" />
           </a>
         </Link>
-        {open && (
-          <Menu
-            open={open}
-            menuLinks={menuLinks}
-            onClick={() => setOpen(!open)}
-          />
-        )}
-        <ToggleButton open={open} onClick={() => setOpen(!open)} />
-      </NavigationWrapper>
+      </StyledLogo>
+
+      <Menu open={open} menuLinks={menuLinks} onClick={() => setOpen(!open)} />
+      <ToggleButton open={open} onClick={() => setOpen(!open)} />
     </HeaderWrapper>
   );
 };
@@ -44,31 +35,32 @@ Header.defaultProps = {
 };
 
 const HeaderWrapper = styled.div`
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  position: relative;
 
+
+`;
+
+const StyledLogo = styled.div`
+  position: fixed;
+  height: 150px;
+  right: 20px;
+  top: 5px;
+  width: 150px;
+  background: white;
+  border-radius: 80px;
+  padding: 20px;
+  z-index: 100;
   img {
-    position: fixed;
-    width: 130px;
-    padding-right: 32px;
-    padding-top: 15px;
-    z-index: 100;
+    height: 100%;
   }
-`;
 
-const NavigationWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-`;
+  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    height: 119.4px;
+    width: 119px;
+    margin-right: 0;
 
-const StyledLink = styled.div`
-  display: inline-block;
-  height: 100%;
-  cursor: pointer;
-  margin-left: 20px;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
 `;
 
 export default Header;

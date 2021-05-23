@@ -6,6 +6,7 @@ import TextWrapper from "../../../elements/TextWrapper";
 
 import { directByContact } from "../../../config/contactButtonLinks";
 import Meta from "../../../components/Meta";
+import Wrapper from "../../../elements/Wrapper";
 
 const Offer = ({ data }) => {
   const seo = {
@@ -15,7 +16,7 @@ const Offer = ({ data }) => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <Meta seo={seo} />
       <TextWrapper
         dangerouslySetInnerHTML={{
@@ -29,7 +30,7 @@ const Offer = ({ data }) => {
       >
         {data.contactButton}
       </Button>
-    </div>
+    </Wrapper>
   );
 };
 

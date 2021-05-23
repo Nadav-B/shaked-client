@@ -10,6 +10,7 @@ import { Progress } from "react-sweet-progress";
 
 import Loading from "../../../elements/Loading";
 import Meta from "../../../components/Meta";
+import Wrapper from "../../../elements/Wrapper";
 
 const Survey = ({ id }) => {
   const Status = {
@@ -256,11 +257,6 @@ const Survey = ({ id }) => {
   );
 };
 
-const Wrapper = styled.div`
-  margin: auto;
-  width: 100%;
-  max-width: 500px;
-`;
 
 const BackButtonWrapper = styled.div`
   max-width: 200px;

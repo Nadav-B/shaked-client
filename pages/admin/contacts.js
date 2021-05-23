@@ -12,6 +12,7 @@ import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import Chartkick, { ColumnChart, PieChart } from "react-chartkick";
 import "chart.js";
 import { ProtectRoute } from "../../shared/protected_route";
+import Wrapper from "../../elements/Wrapper";
 
 const Display = {
   contacts: 0,
@@ -112,121 +113,121 @@ const ContactManagers = () => {
 
   return (
     <ProtectRoute>
-      <TextWrapper>
-        {displayView == Display.contacts && (
-          <StyledContact>
-            <h1>אנשי קשר</h1>
-            {contacts && (
-              <div>
-                <Table>
-                  <Thead>
-                    <Tr>
-                      <Th>סמן</Th>
-                      <Th> שם מלא</Th>
-                      <Th> טלפון</Th>
-                      <Th> דוא״ל</Th>
-                      <Th> כתובת</Th>
-                      <Th> תאריך</Th>
-                      <Th> סוג השירות</Th>
-                      <Th> שאלון </Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {contacts.map((contact) => (
-                      <Tr key={contact.id}>
-                        <Td>
-                          <input
-                            onClick={updateSelectedContacts(contact)}
-                            checked={selectedContacts.find(
-                              (object) => contact.id == object.id
-                            )}
-                            type="checkbox"
-                          />
-                        </Td>
-                        <Td> {contact.fullname} </Td>
-                        <Td>
-                          <a href={`tel:${contact.phonenumber}`}>
-                            {contact.phonenumber}
-                          </a>
-                        </Td>
-                        <Td> {contact.email} </Td>
-                        <Td> {contact.address} </Td>
-                        <Td> {renderDate(contact.date)} </Td>
-                        <Td> {contact.category} </Td>
-                        <Td>
-                          {contact.survey && (
-                            <Button
-                              onClick={() => {
-                                setSurvey(contact.survey);
-                                setDisplayView(Display.survey);
-                              }}
-                            >
-                              {contact.survey.name}
-                            </Button>
-                          )}
-                        </Td>
+      <Wrapper>
+          {displayView == Display.contacts && (
+            <StyledContact>
+              <h1>אנשי קשר</h1>
+              {contacts && (
+                <div>
+                  <Table>
+                    <Thead>
+                      <Tr>
+                        <Th>סמן</Th>
+                        <Th> שם מלא</Th>
+                        <Th> טלפון</Th>
+                        <Th> דוא״ל</Th>
+                        <Th> כתובת</Th>
+                        <Th> תאריך</Th>
+                        <Th> סוג השירות</Th>
+                        <Th> שאלון </Th>
                       </Tr>
-                    ))}
-                  </Tbody>
-                </Table>
+                    </Thead>
+                    <Tbody>
+                      {contacts.map((contact) => (
+                        <Tr key={contact.id}>
+                          <Td>
+                            <input
+                              onClick={updateSelectedContacts(contact)}
+                              checked={selectedContacts.find(
+                                (object) => contact.id == object.id
+                              )}
+                              type="checkbox"
+                            />
+                          </Td>
+                          <Td> {contact.fullname} </Td>
+                          <Td>
+                            <a href={`tel:${contact.phonenumber}`}>
+                              {contact.phonenumber}
+                            </a>
+                          </Td>
+                          <Td> {contact.email} </Td>
+                          <Td> {contact.address} </Td>
+                          <Td> {renderDate(contact.date)} </Td>
+                          <Td> {contact.category} </Td>
+                          <Td>
+                            {contact.survey && (
+                              <Button
+                                onClick={() => {
+                                  setSurvey(contact.survey);
+                                  setDisplayView(Display.survey);
+                                }}
+                              >
+                                {contact.survey.name}
+                              </Button>
+                            )}
+                          </Td>
+                        </Tr>
+                      ))}
+                    </Tbody>
+                  </Table>
 
-                {selectedContacts.length > 0 && (
-                  <StyledDeleteBanner>
-                    <Button
-                      className="flex-item"
-                      onClick={() => setDisplayView(Display.delete)}
-                    >
-                      מחק {selectedContacts.length}
-                    </Button>
-                    <Button
-                      className="flex-item"
-                      onClick={() => setSelectedContacts([])}
-                    >
-                      נקה בחירה
-                    </Button>
+                  {selectedContacts.length > 0 && (
+                    <StyledDeleteBanner>
+                      <Button
+                        className="flex-item"
+                        onClick={() => setDisplayView(Display.delete)}
+                      >
+                        מחק {selectedContacts.length}
+                      </Button>
+                      <Button
+                        className="flex-item"
+                        onClick={() => setSelectedContacts([])}
+                      >
+                        נקה בחירה
+                      </Button>
 
-                    <Button
-                      className="flex-item"
-                      onClick={() => setSelectedContacts(contacts)}
-                    >
-                      סמן הכל
-                    </Button>
-                  </StyledDeleteBanner>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-            )}
+                      <Button
+                        className="flex-item"
+                        onClick={() => setSelectedContacts(contacts)}
+                      >
+                        סמן הכל
+                      </Button>
+                    </StyledDeleteBanner>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+              )}
 
-            <Button
-              onClick={() => {
-                showChart();
-                setDisplayView(Display.chart);
-              }}
-            >
-              פתח תרשים
-            </Button>
-          </StyledContact>
-        )}
+              <Button
+                onClick={() => {
+                  showChart();
+                  setDisplayView(Display.chart);
+                }}
+              >
+                פתח תרשים
+              </Button>
+            </StyledContact>
+          )}
 
-        {displayView == Display.delete && (
-          <DeleteModal
-            deleteSelectedContacts={deleteSelectedContacts}
-            setDisplayView={setDisplayView}
-          />
-        )}
+          {displayView == Display.delete && (
+            <DeleteModal
+              deleteSelectedContacts={deleteSelectedContacts}
+              setDisplayView={setDisplayView}
+            />
+          )}
 
-        {displayView == Display.survey && (
-          <SurveyModal survey={survey} setDisplayView={setDisplayView} />
-        )}
+          {displayView == Display.survey && (
+            <SurveyModal survey={survey} setDisplayView={setDisplayView} />
+          )}
 
-        {displayView == Display.chart && (
-          <ChartModal
-            setDisplayView={setDisplayView}
-            length={contacts.length}
-            datesData={datesData}
-          />
-        )}
-      </TextWrapper>
+          {displayView == Display.chart && (
+            <ChartModal
+              setDisplayView={setDisplayView}
+              length={contacts.length}
+              datesData={datesData}
+            />
+          )}
+      </Wrapper>
     </ProtectRoute>
   );
 };

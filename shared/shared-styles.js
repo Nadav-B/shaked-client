@@ -3,7 +3,9 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 
-  html,
+html {
+  scroll-behavior: smooth;
+}
   body {
     height: 100%;
     margin: 0;

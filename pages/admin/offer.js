@@ -8,6 +8,7 @@ import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
 import Error from "../../elements/Error";
+import Wrapper from "../../elements/Wrapper";
 
 const OfferManager = () => {
   const offers_path = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/offers/`;
@@ -145,97 +146,101 @@ const OfferManager = () => {
 
   return (
     <ProtectRoute>
-      <TextWrapper>
+      <Wrapper>
         <h1> ערוך הצעות</h1>
-        <StyledSelect name="category" onChange={handleArticleChange}>
-          <option value=""> הוסף הצעה </option>
-          {data &&
-            data.map((service) => (
-              <option key={service.id} value={service.id}>
-                {service.title}
-              </option>
-            ))}
-        </StyledSelect>
-
-        <form onSubmit={handleSubmit}>
-          <label>
-            שם ההצעה באנגלית
-            <StyledInput
-              name="path"
-              value={state.path}
-              placeholder="שדה חובה"
-              onChange={handleChange}
-              required
-            />
-            {state.path !== "" && (
-              <Button onClick={() => copyToClipBoard(offers_path + state.path)}>
-                העתק קישור (זמין רק לאחר שמירה)
-              </Button>
-            )}
-          </label>
-          <label>
-            שם ההצעה
-            <StyledInput
-              name="title"
-              value={state.title}
-              placeholder="שדה חובה"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            הקדמה
-            <StyledInput
-              name="introduction"
-              placeholder="שדה חובה"
-              value={state.introduction}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            תוכן ההצעה
-            <StyledInput
-              name="content"
-              placeholder="שדה חובה"
-              value={state.content}
-              onChange={handleChange}
-            />
-          </label>
-          <TextUploader setState={setState} />
-          <label>
-            כפתור צרו קשר
-            <StyledSelect
-              value={state.contactButton}
-              name="contactButton"
-              onChange={handleChange}
-              value={state.contactButton}
-            >
-              {contactLinks.map((link) => (
-                <option key={link.name} value={link.name}>
-                  {link.name}{" "}
+        <TextWrapper>
+          <StyledSelect name="category" onChange={handleArticleChange}>
+            <option value=""> הוסף הצעה </option>
+            {data &&
+              data.map((service) => (
+                <option key={service.id} value={service.id}>
+                  {service.title}
                 </option>
               ))}
-            </StyledSelect>
-          </label>
+          </StyledSelect>
 
-          <Text variant={result.style}> {result.text}</Text>
-          <Button disabled={result.status} type="submit">
-            שלח
-          </Button>
+          <form onSubmit={handleSubmit}>
+            <label>
+              שם ההצעה באנגלית
+              <StyledInput
+                name="path"
+                value={state.path}
+                placeholder="שדה חובה"
+                onChange={handleChange}
+                required
+              />
+              {state.path !== "" && (
+                <Button
+                  onClick={() => copyToClipBoard(offers_path + state.path)}
+                >
+                  העתק קישור (זמין רק לאחר שמירה)
+                </Button>
+              )}
+            </label>
+            <label>
+              שם ההצעה
+              <StyledInput
+                name="title"
+                value={state.title}
+                placeholder="שדה חובה"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              הקדמה
+              <StyledInput
+                name="introduction"
+                placeholder="שדה חובה"
+                value={state.introduction}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              תוכן ההצעה
+              <StyledInput
+                name="content"
+                placeholder="שדה חובה"
+                value={state.content}
+                onChange={handleChange}
+              />
+            </label>
+            <TextUploader setState={setState} />
+            <label>
+              כפתור צרו קשר
+              <StyledSelect
+                value={state.contactButton}
+                name="contactButton"
+                onChange={handleChange}
+                value={state.contactButton}
+              >
+                {contactLinks.map((link) => (
+                  <option key={link.name} value={link.name}>
+                    {link.name}{" "}
+                  </option>
+                ))}
+              </StyledSelect>
+            </label>
 
-          {state.id && (
-            <Button
-              type="button"
-              onClick={() => {
-                deleteObject();
-              }}
-            >
-              מחק כתבה
+            <Text variant={result.style}> {result.text}</Text>
+            <Button disabled={result.status} type="submit">
+              שלח
             </Button>
-          )}
-        </form>
-      </TextWrapper>
+
+            {state.id && (
+              <Button
+                type="button"
+                onClick={() => {
+                  deleteObject();
+                }}
+              >
+                מחק כתבה
+              </Button>
+            )}
+          </form>
+        </TextWrapper>
+      </Wrapper>
     </ProtectRoute>
   );
 };

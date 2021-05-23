@@ -7,6 +7,7 @@ import { directByContact } from "../../../config/contactButtonLinks";
 import TextWrapper from "../../../elements/TextWrapper";
 
 import Meta from "../../../components/Meta";
+import Wrapper from "../../../elements/Wrapper";
 
 const Service = ({ data }) => {
   const seo = {
@@ -16,7 +17,7 @@ const Service = ({ data }) => {
   };
 
   return (
-    <StyledWrapper>
+    <Wrapper>
       <Meta seo={seo} />
       <TextWrapper
         dangerouslySetInnerHTML={{
@@ -30,14 +31,9 @@ const Service = ({ data }) => {
       >
         {data.contactButton}
       </Button>
-    </StyledWrapper>
+    </Wrapper>
   );
 };
-
-const StyledWrapper = styled.div`
-  max-width: 700px;
-  margin: auto;
-`;
 
 // This gets called on every request
 export async function getServerSideProps({ query }) {

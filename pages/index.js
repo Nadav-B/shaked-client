@@ -8,6 +8,7 @@ import About from "../pages/about";
 import Services from "../pages/services";
 
 import Meta from "../components/Meta";
+import Wrapper from "../elements/Wrapper";
 const Index = () => {
   return <Homepage />;
 };
@@ -15,26 +16,32 @@ const Index = () => {
 const Homepage = () => {
   return (
     <div>
-      <Meta />
-      <StyledLandingPage>
-        <StyledBackground />
-        <StyledText>
-          <h1> שקד משכנתאות</h1>
-          <Text> יעוץ משכנתאות וכלכלת המשפחה</Text>
-        </StyledText>
-      </StyledLandingPage>
-      <ContentBackground>
+      <Wrapper>
+        <Meta />
+        <StyledLandingPage>
+          <StyledBackground />
+          <StyledText>
+            <h1> שקד משכנתאות</h1>
+            <Text> יעוץ משכנתאות וכלכלת המשפחה</Text>
+          </StyledText>
+        </StyledLandingPage>
+      </Wrapper>
+      <ContentBackground id="about">
         <About disableMetadata={true} />
       </ContentBackground>
-      <CustomBackground>
+      <CustomBackground id="surveys">
         <Surveys disableMetadata={true} />
       </CustomBackground>
       <ContentBackground>
-        <CustomBackground2>
+        <CustomBackground2 id="articles">
           <Articles disableMetadata={true} />
         </CustomBackground2>
-        <Services disableMetadata={true} />
-        <Contact disableMetadata={true} />
+        <ContentBackground id="services">
+          <Services disableMetadata={true} />
+        </ContentBackground>
+        <ContentBackground id="contact">
+          <Contact disableMetadata={true} />
+        </ContentBackground>
       </ContentBackground>
     </div>
   );
@@ -53,36 +60,37 @@ const CustomBackground2 = styled.div`
 `;
 
 const StyledText = styled.div`
-    position: absolute;
-    top: 1vw;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    text-align: center;
-    color: #000;
-    h1 {
-      font-size: 35px;
-    }
-    h2 {
-      font-size: 15px;
-      color: black;
-  `;
+  position: absolute;
+  top: 1vw;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  color: #000;
+  h1 {
+    font-size: 35px;
+  }
+  h2 {
+    font-size: 15px;
+    color: black;
+  }
+`;
 
 const StyledBackground = styled.div`
-  position: fixed;
+  position: relative;
   width: 150%;
-  height: 560px;
+  height: 500px;
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 1) 0%,
     rgba(204, 214, 228, 1) 100%
   );
-  top: -100px;
+  top: -180px;
   right: -300px;
   z-index: -4;
   border-radius: 150px;
   opacity: 0.48;
-  transform: rotate(5deg);
+  transform: rotate(1deg);
 
   @media only screen and (max-width: 1050px) {
     position: fixed;
@@ -111,7 +119,6 @@ const StyledLandingPage = styled.div`
     overflow: hidden;
     background: transparent;
 
- 
     h1 {
       font-size: 40px;
       color: ${(p) => p.theme.colors.navyBlue};
@@ -121,18 +128,7 @@ const StyledLandingPage = styled.div`
     }
   }
   
-  
-  
-  .surveys-seciton {
-    background-color:transparent;
-  }
-  
-  
-  
-  .about:hover {
-    -webkit-filter: opacity(0.5) drop-shadow(0 0 0 rgb(40, 46, 135));
-    filter: opacity(0.5) drop-shadow(0 0 0 rgb(40, 46, 135));
-  }
+
   
   @media only screen and (max-width: 1050px) {
     

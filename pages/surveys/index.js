@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Fade from "react-reveal/Fade";
 
 import Meta from "../../components/Meta";
+import Wrapper from "../../elements/Wrapper";
 
 const seo = {
   title: "שאלונים",
@@ -18,41 +19,34 @@ const Surveys = ({ disableMetadata }) => {
   const data = [survey1, survey2];
 
   return (
-    <div>
+    <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
       <h1>שאלונים לביצוע בדיקה</h1>
-      <StyledContainer>
-        {data.map((survey) => (
+      {data.map((survey) => (
+        <Fade up>
           <Link
             key={survey.id}
             passHref
             href="/surveys/[id]"
             as={`/surveys/${survey.id}`}
           >
-            <Fade up>
+            <a>
               <StyledButton>
-                <a>
-                  <Text margin={45} fontSize="large">
-                    {survey.name}
-                  </Text>
-                </a>
+                <Text margin={45} fontSize="large">
+                  {survey.name}
+                </Text>
               </StyledButton>
-            </Fade>
+            </a>
           </Link>
-        ))}
-      </StyledContainer>
-    </div>
+        </Fade>
+      ))}
+    </Wrapper>
   );
 };
-const StyledContainer = styled.div`
-  margin: auto;
-  padding-bottom: 40px;
-`;
 
 const StyledButton = styled.div`
   padding: 20px;
   border-radius: ${(p) => p.theme.border}px;
-
   cursor: pointer;
   width: 80%;
   max-width: 300px;
@@ -61,7 +55,7 @@ const StyledButton = styled.div`
 
   text-align: center;
   margin: auto;
-  margin-bottom: 20px;
+  margin-top: 20px;
 
   :hover {
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);

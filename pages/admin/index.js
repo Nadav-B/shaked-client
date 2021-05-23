@@ -1,29 +1,32 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Button from "../../elements/Button";
+import Wrapper from "../../elements/Wrapper";
 import { ProtectRoute } from "../../shared/protected_route";
 
 const Admin = () => {
   return (
     <ProtectRoute>
-      <StyledAdmin>
-        <h1>עמוד ניהול</h1>
-        <Link href={"/admin/contacts"}>
-          <Button>הצג אנשי קשר</Button>
-        </Link>
-        <Link href={"/admin/article"}>
-          <Button> ערוך או הוסף כתבה</Button>
-        </Link>
-        <Link href={"/admin/service"}>
-          <Button> ערוך או הוסף שירות</Button>
-        </Link>
-        <Link href={"/admin/about"}>
-          <Button> ערוך או הוסף אודות</Button>
-        </Link>
-        <Link href={"/admin/offer"}>
-          <Button> ערוך או הוסף הצעות</Button>
-        </Link>
-      </StyledAdmin>
+      <Wrapper>
+        <StyledAdmin>
+          <h1>עמוד ניהול</h1>
+          <Link href={"/admin/contacts"}>
+            <Button>הצג אנשי קשר</Button>
+          </Link>
+          <Link href={"/admin/article"}>
+            <Button> ערוך או הוסף כתבה</Button>
+          </Link>
+          <Link href={"/admin/service"}>
+            <Button> ערוך או הוסף שירות</Button>
+          </Link>
+          <Link href={"/admin/about"}>
+            <Button> ערוך או הוסף אודות</Button>
+          </Link>
+          <Link href={"/admin/offer"}>
+            <Button> ערוך או הוסף הצעות</Button>
+          </Link>
+        </StyledAdmin>
+      </Wrapper>
     </ProtectRoute>
   );
 };

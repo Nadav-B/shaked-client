@@ -7,6 +7,7 @@ import ARTICLES_QUERY from "../../graphql/articles.query";
 import ArticlePreview from "../../elements/ArticlePreview";
 import { useQuery } from "@apollo/client";
 import Meta from "../../components/Meta";
+import Wrapper from "../../elements/Wrapper";
 
 const seo = {
   title: "כתבות",
@@ -27,7 +28,7 @@ const Articles = ({ disableMetadata }) => {
   if (error) return <span></span>;
 
   return (
-    <div>
+    <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
       <h1>כתבות</h1>
       <StyledArticles>
@@ -42,7 +43,7 @@ const Articles = ({ disableMetadata }) => {
           </Link>
         ))}
       </StyledArticles>
-    </div>
+    </Wrapper>
   );
 };
 
@@ -54,7 +55,6 @@ const StyledArticles = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  padding-bottom: 40px;
 `;
 
 export default Articles;

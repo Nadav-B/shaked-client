@@ -3,8 +3,9 @@ import Button from "./Button";
 import Text from "./Text";
 import styled from "styled-components";
 import Router from "next/router";
+import Wrapper from "./Wrapper";
 
-const Login = ({login}) => {
+const Login = ({ login }) => {
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -18,29 +19,17 @@ const Login = ({login}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(
-       state.username,
-       state.password
-    ).then(
-        (response) => {
-          if (response) {
-            setResult((prevState) => ({
-              ...prevState,
-              text: "התחבר בהצלחה!",
-              style: "sucess",
-              status: true,
-            }));
-            Router.push("/admin");
-          } else {
-            setResult((prevState) => ({
-              ...prevState,
-              text: "שגיאה",
-              style: "error",
-              status: false,
-            }));
-          }
-        },
-        (error) => {
+    login(state.username, state.password).then(
+      (response) => {
+        if (response) {
+          setResult((prevState) => ({
+            ...prevState,
+            text: "התחבר בהצלחה!",
+            style: "sucess",
+            status: true,
+          }));
+          Router.push("/admin");
+        } else {
           setResult((prevState) => ({
             ...prevState,
             text: "שגיאה",
@@ -48,7 +37,16 @@ const Login = ({login}) => {
             status: false,
           }));
         }
-      );
+      },
+      (error) => {
+        setResult((prevState) => ({
+          ...prevState,
+          text: "שגיאה",
+          style: "error",
+          status: false,
+        }));
+      }
+    );
   };
 
   const handleChange = (event) => {
@@ -62,36 +60,39 @@ const Login = ({login}) => {
     }));
   };
   return (
-    <StyledForm>
-      <form onSubmit={handleSubmit}>
-        <label>
-          שם משתמש
-          <StyledInput
-            name="username"
-            value={state.username}
-            placeholder="שדה חובה"
-            onChange={handleChange}
-            type="text"
-            id="username"
-            required
-          />
-        </label>
-        <label>
-          סיסמא
-          <StyledInput
-            name="password"
-            id="password"
-            value={state.password}
-            placeholder="שדה חובה"
-            onChange={handleChange}
-            type="password"
-            required
-          />
-        </label>
-        <Text variant={result.style}> {result.text}</Text>
-        <Button type="submit">שלח</Button>
-      </form>
-    </StyledForm>
+    <Wrapper>
+      <h1> דף ניהול</h1>
+      <StyledForm>
+        <form onSubmit={handleSubmit}>
+          <label>
+            שם משתמש
+            <StyledInput
+              name="username"
+              value={state.username}
+              placeholder="שדה חובה"
+              onChange={handleChange}
+              type="text"
+              id="username"
+              required
+            />
+          </label>
+          <label>
+            סיסמא
+            <StyledInput
+              name="password"
+              id="password"
+              value={state.password}
+              placeholder="שדה חובה"
+              onChange={handleChange}
+              type="password"
+              required
+            />
+          </label>
+          <Text variant={result.style}> {result.text}</Text>
+          <Button type="submit">שלח</Button>
+        </form>
+      </StyledForm>
+    </Wrapper>
   );
 };
 
@@ -99,7 +100,6 @@ const StyledForm = styled.div`
   display: flex;
   max-width: 340px;
   margin: auto;
-  margin-top: 100px;
 `;
 
 const StyledInput = styled.input`

@@ -7,6 +7,7 @@ import TextUploader from "../../elements/TextUploader";
 import TextWrapper from "../../elements/TextWrapper";
 import { ProtectRoute } from "../../shared/protected_route";
 import Error from "../../elements/Error";
+import Wrapper from "../../elements/Wrapper";
 
 function AboutManager() {
   const [data, setData] = useState();
@@ -118,59 +119,60 @@ function AboutManager() {
   };
   if (error) return <Error errorDescription={"התחבר מחדש"} />;
 
-
   return (
     <ProtectRoute>
-      <TextWrapper>
+      <Wrapper>
         <h1>ערוך אודות</h1>
-        <StyledSelect name="category" onChange={handleTextChange}>
-          <option value=""> הוסף טקסט </option>
-          {data &&
-            data.map((text) => (
-              <option key={text.id} value={text.id}>
-                {text.tag}
-              </option>
-            ))}
-        </StyledSelect>
+        <TextWrapper>
+          <StyledSelect name="category" onChange={handleTextChange}>
+            <option value=""> הוסף טקסט </option>
+            {data &&
+              data.map((text) => (
+                <option key={text.id} value={text.id}>
+                  {text.tag}
+                </option>
+              ))}
+          </StyledSelect>
 
-        <form onSubmit={handleSubmit}>
-          <label>
-            שם הטקסט. לא יופיע בעמוד
-            <StyledInput
-              name="tag"
-              value={state.tag}
-              placeholder="שדה חובה"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            תוכן כתבה
-            <StyledInput
-              name="content"
-              placeholder="שדה חובה"
-              value={state.content}
-              onChange={handleChange}
-            />
-          </label>
-          <TextUploader setState={setState} />
+          <form onSubmit={handleSubmit}>
+            <label>
+              שם הטקסט. לא יופיע בעמוד
+              <StyledInput
+                name="tag"
+                value={state.tag}
+                placeholder="שדה חובה"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              תוכן כתבה
+              <StyledInput
+                name="content"
+                placeholder="שדה חובה"
+                value={state.content}
+                onChange={handleChange}
+              />
+            </label>
+            <TextUploader setState={setState} />
 
-          <Text variant={result.style}> {result.text}</Text>
-          <Button disabled={result.status} type="submit">
-            שלח
-          </Button>
-          {state.id && (
-            <Button
-              type="button"
-              onClick={() => {
-                deleteArticle();
-              }}
-            >
-              מחק טקסט
+            <Text variant={result.style}> {result.text}</Text>
+            <Button disabled={result.status} type="submit">
+              שלח
             </Button>
-          )}
-        </form>
-      </TextWrapper>
+            {state.id && (
+              <Button
+                type="button"
+                onClick={() => {
+                  deleteArticle();
+                }}
+              >
+                מחק טקסט
+              </Button>
+            )}
+          </form>
+        </TextWrapper>
+      </Wrapper>
     </ProtectRoute>
   );
 }

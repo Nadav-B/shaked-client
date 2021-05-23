@@ -1,19 +1,13 @@
 import { RotateCircleLoading } from "react-loadingg";
 import styled from "styled-components";
+import Wrapper from "./Wrapper";
 
 const Loading = () => {
   return (
-    <>
-      <Wrapper>
-        <RotateCircleLoading color="#0a589d" />
-      </Wrapper>
-    </>
+    <Wrapper>
+      <RotateCircleLoading color="#0a589d" />
+    </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  position: relative;
-  padding: 20px;
-`;
 
 export default Loading;

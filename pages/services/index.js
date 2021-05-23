@@ -7,6 +7,7 @@ import Loading from "../../elements/Loading";
 
 import SERVICES_QUERY from "../../graphql/services.query";
 import Meta from "../../components/Meta";
+import Wrapper from "../../elements/Wrapper";
 
 const seo = {
   title: "השירותים שלנו",
@@ -27,7 +28,7 @@ const Services = ({ disableMetadata }) => {
     );
   if (error) return <span></span>;
   return (
-    <div>
+    <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
       <h1>השירותים שלנו</h1>
       <StyledService>
@@ -43,7 +44,7 @@ const Services = ({ disableMetadata }) => {
           </StyledWrapper>
         ))}
       </StyledService>
-    </div>
+    </Wrapper>
   );
 };
 
