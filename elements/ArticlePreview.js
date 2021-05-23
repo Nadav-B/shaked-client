@@ -30,8 +30,11 @@ const StyledArticlePreview = styled.div`
   margin: 20px;
   width: 400px;
   min-height: 300px;
+  border-radius: ${(p) => p.theme.border}px;
+
   background: white;
   cursor: pointer;
+
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   *:hover {

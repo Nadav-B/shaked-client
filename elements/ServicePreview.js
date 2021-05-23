@@ -30,6 +30,7 @@ const StyledServicePreview = styled.div`
   .container {
     position: relative;
   }
+  border-radius: ${(p) => p.theme.border}px;
 
   .front {
     color: white;
@@ -42,12 +43,11 @@ const StyledServicePreview = styled.div`
       width: 80px;
     }
   }
- 
+
   @media only screen and (hover: hover) {
     .container:hover .overlay {
-    opacity: 1;
-}
-
+      opacity: 1;
+    }
   }
   .overlay {
     position: absolute;
@@ -61,24 +61,32 @@ const StyledServicePreview = styled.div`
     justify-content: center;
     font-size: 13px;
     transition: 0.5s ease;
+    border: 1px solid ${(p) => p.theme.colors.navyBlue};
+    border-radius: ${(p) => p.theme.border}px;
     background-color: ${(p) => p.theme.colors.white};
 
     img {
       display: block;
-      width: 40px;
-      padding-left: 10px;
+      width: 20px;
+      padding-left: 5px;
     }
 
     .text {
       color: ${(p) => p.theme.colors.navyBlue};
-      font-weight: bold;
+    }
+
+    p {
+      text-align: right;
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 12px;
     }
   }
-
-
 `;
 
 const StyledCube = styled.div`
+  border-radius: ${(p) => p.theme.border}px;
+
   display: flex;
   width: 160px;
   height: 180px;
