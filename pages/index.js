@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Text from "../elements/Text";
 import Articles from "../pages/articles";
 import Contact from "../pages/contact";
 import Surveys from "../pages/surveys";
@@ -17,15 +16,15 @@ const Homepage = () => {
   return (
     <div>
       <Meta />
-      <StyledBackground />
-      <StyledLandingPage>
-        <Wrapper>
+      <Wrapper>
+        <StyledLandingPage>
           <StyledText>
             <h1> שקד משכנתאות</h1>
-            <Text> יעוץ משכנתאות וכלכלת המשפחה</Text>
+            <h2> יעוץ משכנתאות וכלכלת המשפחה</h2>
           </StyledText>
-        </Wrapper>
-      </StyledLandingPage>
+          <img src="landing/towers.jpg" alt="Shaked" />
+        </StyledLandingPage>
+      </Wrapper>
       <ContentBackground id="about">
         <About disableMetadata={true} />
       </ContentBackground>
@@ -59,124 +58,28 @@ const CustomBackground2 = styled.div`
   background-image: linear-gradient(to bottom, #dfe9f3 0%, white 100%);
 `;
 
-const StyledText = styled.div`
+const StyledLandingPage = styled.div`
   position: relative;
-  top: 1vw;
+  top: -10px;
+`;
+
+const StyledText = styled.div`
+  position: absolute;
+  top: 13%;
   right: 0;
   left: 0;
-  bottom: 0;
   text-align: center;
-  color: #000;
   h1 {
-    font-size: 35px;
+    font-size: 30px;
+    color: ${(p) => p.theme.colors.navyBlue};
+    padding: 10;
+    margin: auto;
   }
   h2 {
-    font-size: 15px;
-    color: black;
+    font-size: 14px;
   }
 `;
 
-const StyledBackground = styled.div`
-  position: absolute;
-  width: 150%;
-  height: 900px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(204, 214, 228, 1) 100%
-  );
-  top: -180px;
-  right: -300px;
-  z-index: -4;
-  border-radius: 150px;
-  opacity: 0.48;
-  transform: rotate(1deg);
 
-  @media only screen and (max-width: 1050px) {
-    position: fixed;
-    height: 500px;
-    width: 1500px;
 
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(204, 214, 228, 1) 100%
-    );
-    top: -200px;
-    right: -150px;
-    z-index: -4;
-    border-radius: 130px;
-    opacity: 0.48;
-    transform: rotate(10deg);
-  }
-`;
-
-const StyledLandingPage = styled.div`
-
-    position: relative;
-    width: auto;
-    height: 400px;
-    overflow: hidden;
-    background: transparent;
-
-    h1 {
-      font-size: 40px;
-      color: ${(p) => p.theme.colors.navyBlue};
-    }
-    h2 {
-      font-size: 30px;
-    }
-  }
-  
-
-  
-  @media only screen and (max-width: 1050px) {
-    
-  .landing-section {
-  
-    height: 300px;
-  
-    //  background-color: red;
-    .caption {
-      position: absolute;
-      top: 1vw;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      text-align: center;
-      color: #000;
-  
-      h1 {
-        font-size: 35px;
-      }
-      h2 {
-        font-size: 15px;
-        color: black;
-      }
-    }
-    .landing-background {
-      position: fixed;
-      height: 500px;
-      width: 1500px;
-  
-      background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(204, 214, 228, 1) 100%);
-      top: -200px;
-      right: -150px;
-      z-index: -4;
-      border-radius: 130px;
-      opacity: 0.48;
-      transform: rotate(10deg);
-    }
-  
-    h1 {
-      font-size: 40px;
-    }
-    h2 {
-      font-size: 30px;
-    }
-  }
-  
-  }
-
-`;
 export default Index;

@@ -15,14 +15,10 @@ html {
     font-family: ${theme.fontFamily};
   }
   h1  {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     text-align: center;
-    padding: 20px;
-    margin: 0;
+    margin: auto;
     margin-bottom: 20px;
-
     } 
 
   * {

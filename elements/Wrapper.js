@@ -2,6 +2,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   margin: auto;
-  padding-top: 140px;
+  padding-top: 80px;
 `;
 export default Wrapper;
