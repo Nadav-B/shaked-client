@@ -4,6 +4,7 @@ import survey2 from "../../public/surveys/2.json";
 import Link from "next/link";
 import Text from "../../elements/Text";
 import styled from "styled-components";
+import Fade from "react-reveal/Fade";
 
 import Meta from "../../components/Meta";
 
@@ -28,13 +29,15 @@ const Surveys = ({ disableMetadata }) => {
             href="/surveys/[id]"
             as={`/surveys/${survey.id}`}
           >
-            <a>
+            <Fade up>
               <StyledButton>
-                <Text margin={45} fontSize="large">
-                  {survey.name}
-                </Text>
+                <a>
+                  <Text margin={45} fontSize="large">
+                    {survey.name}
+                  </Text>
+                </a>
               </StyledButton>
-            </a>
+            </Fade>
           </Link>
         ))}
       </StyledContainer>
@@ -48,8 +51,11 @@ const StyledContainer = styled.div`
 
 const StyledButton = styled.div`
   padding: 20px;
+  border-radius: ${(p) => p.theme.border}px;
+
   cursor: pointer;
   width: 80%;
+  max-width: 300px;
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 

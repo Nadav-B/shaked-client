@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import SizeWrapper from "../elements/SizeWrapper";
-import Wave from "react-wavify";
 
 const Fotter = () => (
   <StyledFooter>
@@ -31,24 +30,15 @@ const Fotter = () => (
         </SizeWrapper>
       </a>
     </StyledItem>
-
-    <Wave
-      fill="#F1F3F8"
-      paused={false}
-      options={{
-        height: 20,
-        amplitude: 20,
-        speed: 0.15,
-        points: 2,
-      }}
-    />
   </StyledFooter>
 );
 
 const StyledFooter = styled.footer`
-  display: column;
+  display: block;
   background: white;
   margin: auto;
+  padding-bottom: 20px;
+
   width: 100%;
   text-align: center;
   justify-content: space-between;

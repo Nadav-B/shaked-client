@@ -36,11 +36,11 @@ const colors = {
   whisper: "#E8E8E8",
   white: "#fff",
   zambezi: "#5D5D5D",
-}
+};
 
 // TODO: don't include colors in theme and later rename 'mode' to colors which holds the current mode colors
 export const theme = {
-  fontFamily: 'Varela Round, sans-serif',
+  fontFamily: "Varela Round, sans-serif",
   fontWeight: {
     regular: 400,
     medium: 500,
@@ -52,8 +52,8 @@ export const theme = {
     normal: "16px",
     large: "20px",
     xl: "30px",
-
   },
   sizes: { sidebarWidth: "345px", gridWidth: "120px" },
-  colors
-}
+  border: 10,
+  colors,
+};

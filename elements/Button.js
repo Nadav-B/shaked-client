@@ -1,9 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 
-const Button = ({ children, onClick, focus, active }) => (
-  <StyledButton active={active}>{children}</StyledButton>
-);
 
 const StyledButton = styled.button`
   display: block;
@@ -12,10 +8,12 @@ const StyledButton = styled.button`
   height: 40px;
   width: 80%;
 
-
   font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};
   font-family: ${(p) => p.theme.fontFamily};
-  border: 0;
+  border-radius: ${(p) => p.theme.border}px;
+  border: 1px solid  ${(p) => p.theme.colors.lightGrey};
+
+
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: ${({ active }) => (active ? "#0a589d" : "white")};
   outline: none;
@@ -23,7 +21,6 @@ const StyledButton = styled.button`
   margin: auto;
   margin-bottom: 20px;
   margin-top: 20px;
-
 
   cursor: pointer;
 
