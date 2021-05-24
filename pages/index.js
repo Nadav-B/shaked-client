@@ -73,12 +73,12 @@ const StyledText = styled.div`
     margin: auto;
   }
   h2 {
-    font-size: 14px;
+    font-size: 12px;
     margin: auto;
   }
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    top: 25px;
+    top: 11px;
   }
 `;
 

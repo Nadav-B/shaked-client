@@ -35,7 +35,6 @@ const StyledText = styled.p`
       : "currentColor"};
   font-weight: ${(p) => (p.variant.includes("title") ? "bold" : "normal")};
 
-
   .title {
     font-size: 30px;
   }
