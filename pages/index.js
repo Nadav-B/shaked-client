@@ -7,7 +7,6 @@ import About from "../pages/about";
 import Services from "../pages/services";
 
 import Meta from "../components/Meta";
-import Wrapper from "../elements/Wrapper";
 const Index = () => {
   return <Homepage />;
 };
@@ -21,7 +20,7 @@ const Homepage = () => {
           <h1> שקד משכנתאות</h1>
           <h2> יעוץ משכנתאות וכלכלת המשפחה</h2>
         </StyledText>
-        <img src="landing/towers.jpg" alt="Shaked" />
+        <img src="landing/towers.webp" alt=" שקד משכנתאות" />
       </StyledLandingPage>
       <ContentBackground id="about">
         <About disableMetadata={true} />
