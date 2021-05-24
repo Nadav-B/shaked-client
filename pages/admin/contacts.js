@@ -7,12 +7,12 @@ import Button from "../../elements/Button";
 import Error from "../../elements/Error";
 import Loading from "../../elements/Loading";
 
-import TextWrapper from "../../elements/TextWrapper";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import Chartkick, { ColumnChart, PieChart } from "react-chartkick";
 import "chart.js";
 import { ProtectRoute } from "../../shared/protected_route";
 import Wrapper from "../../elements/Wrapper";
+import TextWrapper from "../../elements/TextWrapper";
 
 const Display = {
   contacts: 0,
@@ -260,10 +260,10 @@ const SurveyModal = ({ survey, setDisplayView }) => {
     <div>
       <h1> {survey.name}</h1>
       {survey.answers.map((entry) => (
-        <div>
+        <TextWrapper>
           <Text fontSize="large"> {entry.question}</Text>
           <Text> {entry.answer}</Text>
-        </div>
+        </TextWrapper>
       ))}
       <Button onClick={() => setDisplayView(Display.contacts)}>סגור</Button>
     </div>
@@ -281,6 +281,10 @@ const ChartModal = ({ length, datesData, setDisplayView }) => {
 };
 
 const StyledContact = styled.div`
+
+margin-left: 20px;
+margin-right: 20px;
+
   a:hover {
     color: blue;
   }

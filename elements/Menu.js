@@ -45,27 +45,22 @@ const Menu = ({ menuLinks, open, onClick }) => {
 };
 
 const StyledMenu = styled.nav`
-  position: fixed;
-  top: 0;
-  right: 0;
   display: block;
   width: 100%;
-  height: 90px;
-  background: white;
+  height: 60px;
   z-index: 1;
 
   ul {
-    position: relative;
-    top: 10px;
-    right: 150px;
+    margin: auto;
+    padding-right: 50px;
   }
 
   li {
+    margin-top: 20px;
     cursor: pointer;
     float: right;
-    margin-top: 30px;
-    margin-left: 2rem;
-    margin-right: 3rem;
+    padding-right: 50px;
+
     color: black;
     text-align: center;
   }
@@ -75,21 +70,20 @@ const StyledMenu = styled.nav`
   }
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: ${({ open }) => (open ? "100%" : "70px")};
-
-    background: white;
+    height: ${({ open }) => (open ? "100%" : "50px")};
 
     ul {
       display: ${({ open }) => (open ? "block" : "none")};
-      position: relative;
-      top: 150px;
-      right: 0;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      padding-top: 80px;
+
       background: white;
+      z-index: 100;
     }
+
     li {
       direction: rtl;
       margin: 0;

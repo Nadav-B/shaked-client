@@ -14,11 +14,11 @@ const ToggleButton = ({ open, onClick }) => {
 
 export const StyledToggleButton = styled.button`
   display: none;
-  position: fixed;
+  position: absolute;
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    top: 20px;
-    left: 40px;
+    top: 10px;
+    left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

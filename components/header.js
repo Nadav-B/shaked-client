@@ -39,24 +39,18 @@ const HeaderWrapper = styled.div`
 `;
 
 const StyledLogo = styled.div`
-  position: fixed;
+  position: absolute;
   right: 20px;
-  top: 5px;
-  width: 150px;
-  height: 150px;
-  background: white;
+  top: 0px;
+  width: 50px;
+  height: 50px;
   border-radius: 80px;
-  padding: 20px;
   z-index: 100;
   img {
     height: 100%;
   }
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    height: 120px;
-    width: 120px;
-    padding: 13px;
-    top: 0;
   }
 `;
 

@@ -16,15 +16,13 @@ const Homepage = () => {
   return (
     <div>
       <Meta />
-      <Wrapper>
-        <StyledLandingPage>
-          <StyledText>
-            <h1> שקד משכנתאות</h1>
-            <h2> יעוץ משכנתאות וכלכלת המשפחה</h2>
-          </StyledText>
-          <img src="landing/towers.jpg" alt="Shaked" />
-        </StyledLandingPage>
-      </Wrapper>
+      <StyledLandingPage>
+        <StyledText>
+          <h1> שקד משכנתאות</h1>
+          <h2> יעוץ משכנתאות וכלכלת המשפחה</h2>
+        </StyledText>
+        <img src="landing/towers.jpg" alt="Shaked" />
+      </StyledLandingPage>
       <ContentBackground id="about">
         <About disableMetadata={true} />
       </ContentBackground>
@@ -60,26 +58,28 @@ const CustomBackground2 = styled.div`
 
 const StyledLandingPage = styled.div`
   position: relative;
-  top: -10px;
 `;
 
 const StyledText = styled.div`
   position: absolute;
-  top: 13%;
   right: 0;
   left: 0;
+  top: 120px;
   text-align: center;
+
   h1 {
     font-size: 30px;
     color: ${(p) => p.theme.colors.navyBlue};
-    padding: 10;
     margin: auto;
   }
   h2 {
     font-size: 14px;
+    margin: auto;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    top: 25px;
   }
 `;
-
-
 
 export default Index;
