@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import styled from "styled-components";
 import Loading from "../../elements/Loading";
 import ARTICLES_QUERY from "../../graphql/articles.query";
@@ -33,14 +32,7 @@ const Articles = ({ disableMetadata }) => {
       <h1>כתבות</h1>
       <StyledArticles>
         {data.getArticles.map((article) => (
-          <Link
-            key={article.id}
-            passHref
-            href="/articles/[id]"
-            as={`/articles/${article.id}`}
-          >
-            <ArticlePreview key={article.id} article={article} />
-          </Link>
+          <ArticlePreview key={article.id} article={article} />
         ))}
       </StyledArticles>
     </Wrapper>

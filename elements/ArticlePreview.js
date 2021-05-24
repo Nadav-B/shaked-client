@@ -1,30 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 import Text from "../elements/Text";
+import Link from "next/link";
+
 const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;
 
   return (
     <StyledArticlePreview>
-      <a href={href} onClick={onClick} ref={ref}>
-        <Wrapper>
-          <StyledPicture src={image} alt="Article Image" />
+      <Link
+        key={article.id}
+        passHref
+        href="/articles/[id]"
+        as={`/articles/${article.id}`}
+      >
+        <a href={href} onClick={onClick} ref={ref}>
+          <StyledPicture src={image} alt={article.title} />
           <StyledText>
-            <Text variant="title large" margin="4px" fontSize="19px">
+            <Text variant="title large" margin="4px" fontSize="15px">
               {" "}
               {article.title}{" "}
             </Text>
             <Text margin="6px"> {article.introduction} </Text>
           </StyledText>
-        </Wrapper>
-      </a>
+        </a>
+      </Link>
     </StyledArticlePreview>
   );
 });
-
-const Wrapper = styled.div`
-  height: 100%;
-`;
 
 const StyledArticlePreview = styled.div`
   margin: 20px;
