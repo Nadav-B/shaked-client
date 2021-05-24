@@ -3,9 +3,15 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 
-html {
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+
+  html {
   scroll-behavior: smooth;
-}
+  }
+
   body {
     height: 100%;
     margin: 0;
@@ -18,25 +24,9 @@ html {
     justify-content: center;
     text-align: center;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
+    font-size: 21px;
     } 
-
-  * {
-    box-sizing: border-box;
-    direction: rtl;
-  }
-
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
-
-  ul,
-  ol {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
 
   img {
     width: 100%;
@@ -51,7 +41,6 @@ html {
   a:hover {
     color: #0a589d;
   }
-
 
 `;
 

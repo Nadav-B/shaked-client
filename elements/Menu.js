@@ -53,6 +53,8 @@ const StyledMenu = styled.nav`
   ul {
     margin: auto;
     padding-right: 50px;
+    list-style-type: none;
+
   }
 
   li {
@@ -82,9 +84,11 @@ const StyledMenu = styled.nav`
 
       background: white;
       z-index: 100;
+
     }
 
     li {
+      
       direction: rtl;
       margin: 0;
       padding: 20px;
