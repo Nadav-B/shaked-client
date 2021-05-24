@@ -6,7 +6,6 @@ import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
 
 import Meta from "../../../components/Meta";
-import Wrapper from "../../../elements/Wrapper";
 
 const Article = ({ data }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${data.id}`;
@@ -19,33 +18,28 @@ const Article = ({ data }) => {
   };
 
   return (
-    <Wrapper>
+    <div>
       <Meta seo={seo} />
-      <StyledArticle>
+      <TextWrapper>
         <StyledImage src={image} alt="image" />
-        <TextWrapper
+        <div
           dangerouslySetInnerHTML={{
             __html: data.content,
           }}
-        ></TextWrapper>
-      </StyledArticle>
-      <Button
-        onClick={() => {
-          directByContact(data.contactButton);
-        }}
-      >
-        {data.contactButton}
-      </Button>{" "}
-    </Wrapper>
+        ></div>
+        <Button
+          onClick={() => {
+            directByContact(data.contactButton);
+          }}
+        >
+          {data.contactButton}
+        </Button>
+      </TextWrapper>
+    </div>
   );
 };
 
-const StyledArticle = styled.div`
-  display: block;
-  width: 100%;
-  margin: auto;
-  max-width: 1200px;
-`;
+
 
 const StyledImage = styled.img`
   margin: auto;
@@ -53,8 +47,9 @@ const StyledImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
+
   margin-bottom: 20px;
-  width: 50%;
+  width: 100%;
 `;
 
 // This gets called on every request

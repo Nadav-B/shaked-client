@@ -17,11 +17,12 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
         <a href={href} onClick={onClick} ref={ref}>
           <StyledPicture src={image} alt={article.title} />
           <StyledText>
-            <Text variant="title large" margin="4px" fontSize="15px">
-              {" "}
-              {article.title}{" "}
+            <Text variant="title large" margin="4px" fontSize="16px">
+              {article.title}
             </Text>
-            <Text margin="6px"> {article.introduction} </Text>
+            <Text fontSize="14px" margin="6px">
+              {article.introduction}
+            </Text>
           </StyledText>
         </a>
       </Link>
@@ -59,11 +60,15 @@ const StyledPicture = styled.img`
   display: block;
   width: 100%;
   height: 65%;
+  border-top-left-radius: ${(p) => p.theme.border}px;
+  border-top-right-radius: ${(p) => p.theme.border}px;
 
   @media screen and (max-width: 700px) {
     height: 100%;
     width: 30%;
-    max-width: 30%;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: ${(p) => p.theme.border}px;
+
     float: right;
     object-fit: cover;
   }
@@ -76,7 +81,6 @@ const StyledText = styled.div`
   @media screen and (max-width: 700px) {
     display: inline;
     width: 70%;
-
     float: left;
   }
 `;

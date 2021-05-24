@@ -1,7 +1,9 @@
 import { theme } from "./theme";
 import { createGlobalStyle } from "styled-components";
 
+
 const GlobalStyles = createGlobalStyle`
+
 
   * {
     box-sizing: border-box;
@@ -24,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
     justify-content: center;
     text-align: center;
     margin: auto;
-    margin-bottom: 1px;
+    margin-bottom: 20px;
     font-size: 21px;
     } 
 
