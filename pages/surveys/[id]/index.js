@@ -14,7 +14,6 @@ import Wrapper from "../../../elements/Wrapper";
 
 const Survey = ({ id }) => {
   const Status = {
-    Fillname: 0,
     Questions: 1,
     CompleteContact: 2,
     statusContact: 3,
@@ -30,7 +29,7 @@ const Survey = ({ id }) => {
 
   const [results, setResults] = useState(new Map());
 
-  const [currentStatus, setCurrentstatus] = useState(Status.Fillname);
+  const [currentStatus, setCurrentstatus] = useState(Status.Questions);
   const [confirmation, setConfirmation] = useState({
     text: "",
     style: "",
@@ -72,6 +71,7 @@ const Survey = ({ id }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setCurrentstatus(Status.statusContact);
 
     const survey = {
       name: data.name,
@@ -126,21 +126,13 @@ const Survey = ({ id }) => {
     if (index > 0) setIndex(index - 1);
   };
 
-  const fillName = (event) => {
-    event.preventDefault();
-    setCurrentstatus(Status.Questions);
-  };
-
-  const fillPhone = (event) => {
-    handleSubmit(event);
-    setCurrentstatus(Status.statusContact);
-  };
-
   const handleChange = (event) => {
     event.preventDefault();
+
     const target = event.target;
     const value = target.value;
     const name = target.name;
+
     setContact((prevState) => ({
       ...prevState,
       [name]: value,
@@ -150,25 +142,7 @@ const Survey = ({ id }) => {
   return (
     <Wrapper>
       <Meta seo={seo} />
-
       <h1 className="title">{data.name}</h1>
-      {currentStatus == 0 && (
-        <ContactWrapper>
-          <Text variant="semiBold">מלאו את שמכם והתחילו את ביצוע הבדיקה:</Text>
-          <form onSubmit={fillName}>
-            <StyledInput
-              name="fullname"
-              value={contact.fullname}
-              placeholder="שדה חובה"
-              onChange={handleChange}
-              required
-            />{" "}
-            <Button id="SurveysStarted" type="submit">
-              התחל
-            </Button>
-          </form>
-        </ContactWrapper>
-      )}
       {currentStatus == 1 && (
         <div>
           <QuestionWrapper>
@@ -218,12 +192,24 @@ const Survey = ({ id }) => {
       {currentStatus == 2 && (
         <ContactWrapper>
           <Progress percent={100} />
-          <Text>השאירו טלפון ונציגנו יצרו עמכם קשר להשלמת הבדיקה:</Text>
-          <form id="submitSurveyForm" onSubmit={fillPhone}>
+
+          <Text variant="semiBold">
+            מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת הבדיקה החינמית
+          </Text>
+
+          <form id="submitSurveyForm" onSubmit={handleSubmit}>
+            <StyledInput
+              name="fullname"
+              value={contact.fullname}
+              placeholder="שם מלא"
+              type="text"
+              onChange={handleChange}
+              required
+            />{" "}
             <StyledInput
               name="phonenumber"
               value={contact.phonenumber}
-              placeholder="שדה חובה"
+              placeholder="טלפון"
               onChange={handleChange}
               type="tel"
               required
