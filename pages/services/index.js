@@ -4,7 +4,7 @@ import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
 import { useQuery } from "@apollo/client";
 import Loading from "../../elements/Loading";
-
+import { JSONLD, Product } from "react-structured-data";
 import SERVICES_QUERY from "../../graphql/services.query";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
@@ -33,15 +33,24 @@ const Services = ({ disableMetadata }) => {
       <h1>השירותים שלנו</h1>
       <StyledService>
         {data.getServices.map((service, index) => (
-          <StyledWrapper key={service.id}>
-            <Link passHref href="/services/[id]" as={`/services/${service.id}`}>
-              <ServicePreview
-                index={index}
-                key={service.id}
-                service={service}
-              />
-            </Link>
-          </StyledWrapper>
+          <div key={service.id}>
+            <JSONLD>
+              <Product name={service.title} description={service.introduction}></Product>
+            </JSONLD>
+            <StyledWrapper>
+              <Link
+                passHref
+                href="/services/[id]"
+                as={`/services/${service.id}`}
+              >
+                <ServicePreview
+                  index={index}
+                  key={service.id}
+                  service={service}
+                />
+              </Link>
+            </StyledWrapper>
+          </div>
         ))}
       </StyledService>
     </Wrapper>
@@ -60,4 +69,3 @@ const StyledWrapper = styled.div`
 `;
 
 export default Services;
- 

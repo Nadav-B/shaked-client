@@ -14,6 +14,7 @@ import { ApolloProvider } from "@apollo/client";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { useApollo } from "../apollo-client";
 import { AuthProvider } from "../shared/auth";
+import { JSONLD, Product, Brand } from "react-structured-data";
 
 const App = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps);
@@ -47,6 +48,22 @@ const App = ({ Component, pageProps }) => {
             />
             <meta name="theme-color" content="#ffffff" />
             <GoogleTagManager />
+
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `            <script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+   "brand" : {
+    "@type" : "Brand",
+    "name" : "שקד משכנתאות",
+    "logo" : "https://shakedm.co.il/logos/favicon.svg"
+  }
+}
+
+</script>`,
+              }}
+            />
           </Head>
 
           <ThemeProvider theme={theme}>
