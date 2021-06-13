@@ -49,9 +49,9 @@ const App = ({ Component, pageProps }) => {
             <meta name="theme-color" content="#ffffff" />
             <GoogleTagManager />
 
-            <script
+            <div
               dangerouslySetInnerHTML={{
-                __html: `            <script type="application/ld+json">
+                __html: `<script type="application/ld+json">
 {
   "@context" : "http://schema.org",
    "brand" : {
@@ -60,7 +60,6 @@ const App = ({ Component, pageProps }) => {
     "logo" : "https://shakedm.co.il/logos/favicon.svg"
   }
 }
-
 </script>`,
               }}
             />
