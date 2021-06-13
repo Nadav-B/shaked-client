@@ -194,7 +194,7 @@ const Survey = ({ id }) => {
           <Progress percent={100} />
 
           <Text variant="semiBold">
-            מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת הבדיקה החינמית
+            מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת בדיקה ללא עלות
           </Text>
 
           <form id="submitSurveyForm" onSubmit={handleSubmit}>

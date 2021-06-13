@@ -31,7 +31,7 @@ const Surveys = ({ disableMetadata }) => {
             as={`/surveys/${survey.id}`}
           >
             <a>
-              <StyledButton>
+              <StyledButton id="surveySelected">
                 <Text margin={45} fontSize="large">
                   {survey.name}
                 </Text>
