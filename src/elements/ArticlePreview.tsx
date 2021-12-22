@@ -1,20 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-import Text from "../elements/Text";
+import Text from "./Text";
 import Link from "next/link";
+import { GetArticles, GetArticles_getArticles } from "../graphql/__generated__/GetArticles";
 
-const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
-  const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;
+
+  const ArticlePreview: React.FC<{article:GetArticles_getArticles }> = ({
+    article,
+  }) => {
+
+  
+    const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;
+
 
   return (
     <StyledArticlePreview>
       <Link
         key={article.id}
-        passHref
+        
         href="/articles/[id]"
         as={`/articles/${article.id}`}
       >
-        <a href={href} onClick={onClick} ref={ref}>
+        <a >
           <StyledPicture src={image} alt={article.title} />
           <StyledText>
             <Text variant="title large" margin="0 6px 0 0" fontSize="16px">
@@ -31,7 +38,7 @@ const ArticlePreview = React.forwardRef(({ article, onClick, href }, ref) => {
       </Link>
     </StyledArticlePreview>
   );
-});
+};
 
 const StyledArticlePreview = styled.div`
   margin: 20px;

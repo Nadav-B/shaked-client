@@ -6,7 +6,7 @@ import styled from "styled-components";
  */
 
 /** TODO: refactor */
-const Text = ({ className, as = "p", variant = "", children, fontSize, margin }) => {
+const Text = ({  as = "p", variant = "", children, fontSize, margin }) => {
   return (
     <StyledText as={as} variant={variant} fontSize={fontSize} margin={margin}>
       {children}
