@@ -9,7 +9,7 @@ import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
 
 
-import GetServices from "../../graphql/__generated__/GetServices";
+import {GetServices} from "../../graphql/__generated__/GetServices";
 import query from "../../graphql/GetServices.graphql";
 
 const seo = {
@@ -19,8 +19,11 @@ const seo = {
   url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/services`,
 };
 
-const Services = ({ disableMetadata }) => {
-  const { data, loading, error } = useQuery < GetServices > query;
+
+  const Services: React.FC<{ disableMetadata: string }> = ({
+    disableMetadata,
+  }) => {
+    const { data, loading, error } = useQuery<GetServices>(query);
 
 
   if (loading)
@@ -36,7 +39,8 @@ const Services = ({ disableMetadata }) => {
       {!disableMetadata && <Meta seo={seo} />}
       <h1>השירותים שלנו</h1>
       <StyledService>
-        {data.getServices.map((service, index) => (
+        {data?.getServices.map((service, index) => (
+          
           <div key={service.id}>
             <JSONLD>
               <Product name={service.title} description={service.introduction}></Product>

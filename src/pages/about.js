@@ -19,7 +19,7 @@ const seo = {
 
 const About = ({ disableMetadata }) => {
 
-  const { data, loading, error } = useQuery < FindAllContent > query;
+  const { data, loading, error } = useQuery < GetTexts > query;
 
   if (loading)
     return (
@@ -34,7 +34,7 @@ const About = ({ disableMetadata }) => {
     <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
       <TextWrapper>
-        {data.getTexts.map((text) => (
+        {data?.getTexts.map((text) => (
           <div
             key={text.id}
             dangerouslySetInnerHTML={{

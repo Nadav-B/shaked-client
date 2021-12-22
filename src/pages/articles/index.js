@@ -36,7 +36,7 @@ const Articles = ({ disableMetadata }) => {
       {!disableMetadata && <Meta seo={seo} />}
       <h1>כתבות</h1>
       <StyledArticles>
-        {data.getArticles.map((article) => (
+        {data?.getArticles.map((article) => (
           <ArticlePreview key={article.id} article={article} />
         ))}
       </StyledArticles>
