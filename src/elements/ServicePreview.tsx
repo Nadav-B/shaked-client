@@ -1,13 +1,25 @@
+import Link from "next/link";
 import React from "react";
 import Fade from "react-reveal/Fade";
 
 import styled from "styled-components";
+import { GetServices_getServices } from "../graphql/__generated__/GetServices";
 
-const ServicePreview = React.forwardRef(
-  ({ index, service, onClick, href }, ref) => {
+
+
+    const ServicePreview: React.FC<{service:GetServices_getServices,index:Number }> = ({
+      service,index
+    }) => {
+
+      
+
     return (
-      <a href={href} onClick={onClick} ref={ref}>
         <StyledServicePreview>
+        <Link
+        key={service.id}
+        href="/services/[id]"
+        as={`/services/${service.id}`}
+      >
           <div className="container">
             <StyledCube>
               <div className="front">
@@ -25,16 +37,19 @@ const ServicePreview = React.forwardRef(
               </div>
             </StyledCube>
           </div>
+          </Link>
+
         </StyledServicePreview>
-      </a>
     );
-  }
-);
+  
+};
 
 const StyledServicePreview = styled.div`
   .container {
     position: relative;
   }
+  cursor: pointer;
+
   border-radius: ${(p) => p.theme.border}px;
 
   .front {
