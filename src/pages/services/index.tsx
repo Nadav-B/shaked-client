@@ -10,7 +10,7 @@ import Wrapper from "../../elements/Wrapper";
 
 
 import {GetServices} from "../../graphql/__generated__/GetServices";
-import query from "../../graphql/GetServices.graphql";
+import query from '../../graphql/GetServices.graphql';
 
 const seo = {
   title: "השירותים שלנו",
