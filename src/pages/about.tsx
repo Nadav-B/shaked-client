@@ -19,7 +19,7 @@ const seo = {
 
 const About = ({ disableMetadata }) => {
 
-  const { data, loading, error } = useQuery < GetTexts > query;
+    const { data, loading, error } = useQuery<GetTexts>(query);
 
   if (loading)
     return (
