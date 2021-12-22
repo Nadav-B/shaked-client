@@ -7,7 +7,8 @@ import { useQuery } from "@apollo/client";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
 
-import GetArticles from "../../graphql/__generated__/GetArticles";
+import{GetArticles} from "../../graphql/__generated__/GetArticles";
+
 import query from "../../graphql/GetArticles.graphql";
 
 
@@ -19,7 +20,7 @@ const seo = {
 
 const Articles = ({ disableMetadata }) => {
 
-  const { data, loading, error } = useQuery < GetArticles > query;
+  const { data, loading, error } = useQuery<GetArticles>(query);
 
 
   if (loading)
