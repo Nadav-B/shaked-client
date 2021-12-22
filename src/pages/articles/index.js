@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import Loading from "../../elements/Loading";
-import ARTICLES_QUERY from "../../graphql/articles.query";
 
 import ArticlePreview from "../../elements/ArticlePreview";
 import { useQuery } from "@apollo/client";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
+
+import GetArticles from "../../graphql/__generated__/GetArticles";
+import query from "../../graphql/GetArticles.graphql";
+
 
 const seo = {
   title: "כתבות",
@@ -15,7 +18,9 @@ const seo = {
 };
 
 const Articles = ({ disableMetadata }) => {
-  const { data, loading, error } = useQuery(ARTICLES_QUERY);
+
+  const { data, loading, error } = useQuery < GetArticles > query;
+
 
   if (loading)
     return (

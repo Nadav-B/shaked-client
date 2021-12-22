@@ -12,7 +12,7 @@ import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
 import { ApolloProvider } from "@apollo/client";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
-import { useApollo } from "../apollo-client";
+import { useApollo } from "../../apollo-client";
 import { AuthProvider } from "../shared/auth";
 import { JSONLD, Product, Brand } from "react-structured-data";
 

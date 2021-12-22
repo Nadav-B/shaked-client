@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "generate:types": "apollo client:codegen src/graphql/__generated__ --target typescript --outputFlat"
+
   },
   "dependencies": {
     "@apollo/client": "^3.3.14",

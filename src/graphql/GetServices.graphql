@@ -1,0 +1,8 @@
+
+ query GetServices {
+    getServices {
+      id
+      title
+      introduction
+    }
+  }

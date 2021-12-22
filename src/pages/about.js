@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { useQuery } from "@apollo/client";
-import TEXTS_QUERY from "../graphql/texts.query";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
 
 import Meta from "../components/Meta";
 import Wrapper from "../elements/Wrapper";
+
+
+import GetTexts from "../graphql/__generated__/GetTexts";
+import query from "../graphql/GetTexts.graphql";
+
 
 const seo = {
   title: "אודות",
@@ -14,7 +18,9 @@ const seo = {
 };
 
 const About = ({ disableMetadata }) => {
-  const { data, loading, error } = useQuery(TEXTS_QUERY);
+
+  const { data, loading, error } = useQuery < FindAllContent > query;
+
   if (loading)
     return (
       <>

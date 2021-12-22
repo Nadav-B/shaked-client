@@ -1,0 +1,10 @@
+
+query  GetArticles {
+   getArticles {
+      id
+      title
+      introduction
+      tag
+    }
+  }
+

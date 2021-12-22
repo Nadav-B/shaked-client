@@ -5,9 +5,12 @@ import styled from "styled-components";
 import { useQuery } from "@apollo/client";
 import Loading from "../../elements/Loading";
 import { JSONLD, Product } from "react-structured-data";
-import SERVICES_QUERY from "../../graphql/services.query";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
+
+
+import GetServices from "../../graphql/__generated__/GetServices";
+import query from "../../graphql/GetServices.graphql";
 
 const seo = {
   title: "השירותים שלנו",
@@ -17,7 +20,8 @@ const seo = {
 };
 
 const Services = ({ disableMetadata }) => {
-  const { data, loading, error } = useQuery(SERVICES_QUERY);
+  const { data, loading, error } = useQuery < GetServices > query;
+
 
   if (loading)
     return (
