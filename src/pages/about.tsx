@@ -8,7 +8,7 @@ import Meta from "../components/Meta";
 import Wrapper from "../elements/Wrapper";
 
 
-import GetTexts from "../graphql/__generated__/GetTexts";
+import {GetTexts} from "../graphql/__generated__/GetTexts";
 import query from "../graphql/GetTexts.graphql";
 
 
