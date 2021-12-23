@@ -17,22 +17,27 @@ const NewMortage: React.FC = ({}) => {
   return (
     <Wrapper>
       <Flex flexDirection="column">
-        <div>מחיר סוף שנה לליווי למשכנתא חדשה 6,500 ₪ במקום 7,900 ₪</div>
-        <Contact disableMetadata={true}></Contact>
+        <TextWrapper>שקד משכנתאות</TextWrapper>
 
-        <div>
+        <TextWrapper>"הבחירה הנכונה שלכם"</TextWrapper>
+        <TextWrapper>
+          <div>מחיר סוף שנה לליווי למשכנתא חדשה 6,500 ₪ במקום 7,900 ₪</div>
+        </TextWrapper>
+        <Contact disableMetadata={true}></Contact>
+        <TextWrapper>
           התאמת משכנתא אישית בהתאם לצרכים שלכם מכרז בין הבנקים והשגת התנאים
           האולטימטיביים עבורכם ליווי מלא לאורך כל התהליך מקצועיות, אמינות,
           זמינות והרבה סבלנות..
-        </div>
+        </TextWrapper>
+
         <h1> מי אנחנו?</h1>
 
-        <div>
+        <TextWrapper>
           שקד משכנתאות - הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק
           המשכנתאות, בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת
           הבנקאית ומחוצה לה. היועצים שלנו ילוו אתכם לאורך כל הדרך, באופן מקצועי
           והכי אישי שיש.
-        </div>
+        </TextWrapper>
 
         <Reviews></Reviews>
 
