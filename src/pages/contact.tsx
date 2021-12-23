@@ -18,7 +18,7 @@ enum FormularStyle {
   compact= 1
 };
 
-const Contact:React.FC<{ disableMetadata:boolean, style: FormularStyle }> = ({
+const Contact:React.FC<{ disableMetadata:boolean }> = ({
   disableMetadata }) => {
 
 

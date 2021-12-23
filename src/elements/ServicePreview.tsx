@@ -53,7 +53,6 @@ const StyledServicePreview = styled.div`
   border-radius: ${(p) => p.theme.border}px;
 
   .front {
-    color: white;
 
     img {
       background: white;
@@ -110,7 +109,6 @@ const StyledCube = styled.div`
   display: flex;
   width: 160px;
   height: 180px;
-  background-color: ${(p) => p.theme.colors.navyBlue};
   margin: auto;
   text-align: center;
   align-items: center;
