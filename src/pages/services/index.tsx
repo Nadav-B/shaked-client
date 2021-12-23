@@ -4,7 +4,6 @@ import ServicePreview from "../../elements/ServicePreview";
 import styled from "styled-components";
 import { useQuery } from "@apollo/client";
 import Loading from "../../elements/Loading";
-import { JSONLD, Product } from "react-structured-data";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
 
@@ -20,7 +19,7 @@ const seo = {
 };
 
 
-  const Services: React.FC<{ disableMetadata: string }> = ({
+  const Services: React.FC<{ disableMetadata: boolean }> = ({
     disableMetadata,
   }) => {
     const { data, loading, error } = useQuery<GetServices>(query);
@@ -42,9 +41,7 @@ const seo = {
         {data?.getServices.map((service, index) => (
           
           <div key={service.id}>
-            <JSONLD>
-              <Product name={service.title} description={service.introduction}></Product>
-            </JSONLD>
+
             <StyledWrapper>
               <Link
                 passHref
@@ -75,5 +72,6 @@ const StyledService = styled.div`
 const StyledWrapper = styled.div`
   padding: 5px;
 `;
+
 
 export default Services;

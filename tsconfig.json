@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/pages/campaigns/new-mortage/index.tss"  ],
   "exclude": [
     "node_modules"
   ]
