@@ -17,7 +17,7 @@ const NewMortage: React.FC = ({}) => {
   return (
     <Wrapper>
 
-      <Contact>
+      <Contact disableMetadata= {true}>
 
 
       </Contact>

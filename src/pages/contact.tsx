@@ -13,7 +13,16 @@ const seo = {
   url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/contact`,
 };
 
-const Contact = ({ disableMetadata }) => {
+enum FormularStyle {
+  default = 0,
+  compact= 1
+};
+
+const Contact:React.FC<{ disableMetadata:boolean, style: FormularStyle }> = ({
+  disableMetadata }) => {
+
+
+  
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",
@@ -98,6 +107,8 @@ const Contact = ({ disableMetadata }) => {
               required
             />
           </label>
+
+          
           <label>
             דוא״ל
             <StyledInput
