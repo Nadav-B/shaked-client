@@ -1,6 +1,12 @@
 import * as React from 'react';
+import styled from '@emotion/styled'
+import { Theme } from '@emotion/react';
 
+export type TextSizeProps = 'large' | 'medium' | 'small';
 
+import shouldForwardProp from '@styled-system/should-forward-prop';
+
+import { color, typography, ColorProps, TypographyProps } from 'styled-system';
 
 const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
   (
