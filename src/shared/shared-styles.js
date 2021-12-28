@@ -1,8 +1,14 @@
 import { theme } from "./theme";
 import { createGlobalStyle } from "styled-components";
 
-
 const GlobalStyles = createGlobalStyle`
+
+
+  @font-face {
+    font-family: Assistant;
+    font-display: swap;
+    src: url('fonts/assistant/Assistant-Regular.ttf');
+  }
 
 
   * {
