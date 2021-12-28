@@ -15,14 +15,12 @@ const seo = {
 
 enum FormularStyle {
   default = 0,
-  compact= 1
-};
+  compact = 1,
+}
 
-const Contact:React.FC<{ disableMetadata:boolean }> = ({
-  disableMetadata }) => {
-
-
-  
+const Contact: React.FC<{ disableMetadata: boolean }> = ({
+  disableMetadata,
+}) => {
   const [state, setState] = useState({
     fullname: "",
     phonenumber: "",
@@ -86,43 +84,59 @@ const Contact:React.FC<{ disableMetadata:boolean }> = ({
       <h1>צרו קשר</h1>
       <TextWrapper>
         <form onSubmit={handleSubmit}>
+
+          {state.fullname !=="" &&
+          <Text size={"small"}> 
+            שם
+          </Text>
+          }
           <label>
-            שם מלא
             <StyledInput
+              title="שם"
               name="fullname"
               value={state.fullname}
-              placeholder="שדה חובה"
+              placeholder="שם"
               onChange={handleChange}
               required
             />
           </label>
           <label>
-            מספר טלפון
+          {state.phonenumber !=="" &&
+          <> 
+            טלפון
+          </>
+          }
             <StyledInput
               name="phonenumber"
-              placeholder="שדה חובה"
+              placeholder="מספר טלפון "
               value={state.phonenumber}
               onChange={handleChange}
+              maxLength={11}
               type="tel"
+              title="טלפון"
               required
             />
           </label>
 
+          {/* 
+
+
+
           
           <label>
-            דוא״ל
             <StyledInput
               name="email"
               type="email"
+              placeholder="דוא״ל"
               value={state.email}
               onChange={handleChange}
             />
           </label>
           <label>
-            ישוב
             <StyledInput
               name="address"
               value={state.address}
+              placeholder="ישוב"
               onChange={handleChange}
             />
           </label>
@@ -141,6 +155,8 @@ const Contact:React.FC<{ disableMetadata:boolean }> = ({
               ))}
             </StyledSelect>
           </label>
+
+          */}
           <Text variant={result.style}> {result.text}</Text>
           <Button disabled={result.status} type="submit">
             שלח
@@ -167,12 +183,13 @@ const StyledInput = styled.input`
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid ${(p) => p.theme.colors.veryLightGrey};
   border-radius: 4px;
   box-sizing: border-box;
-
+  background: ${(p) => p.theme.colors.veryLightGrey};
   &::placeholder {
-    color:  ${(p) => p.theme.colors.dimGray};
+    color: ${(p) => p.theme.colors.black};
+   
 
   }
 `;

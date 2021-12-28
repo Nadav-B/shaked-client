@@ -49,6 +49,12 @@ const GlobalStyles = createGlobalStyle`
     color: #0a589d;
   }
 
+  .ltr {
+
+    direction: ltr;
+
+  }
+
 `;
 
 export default GlobalStyles;

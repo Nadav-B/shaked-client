@@ -22,7 +22,7 @@ const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
     },
     ref
   ) => {
-    const fontsize = props.fontSize || size;
+    const size = props.fontSize || size;
     const fontWeight =
       weight === 'regular'
         ? 400
@@ -39,6 +39,7 @@ const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
         size={size}
         truncate={truncate}
         fontWeight={fontWeight}
+      
         {...props}
         ref={ref}
       >
