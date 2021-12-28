@@ -23,9 +23,8 @@ const Surveys = ({ disableMetadata }) => {
       {!disableMetadata && <Meta seo={seo} />}
       <h1>שאלונים לביצוע בדיקה</h1>
       {data.map((survey) => (
-        <Fade up>
           <Link
-            key={survey.id}
+            key={survey.name}
             passHref
             href="/surveys/[id]"
             as={`/surveys/${survey.id}`}
@@ -38,7 +37,6 @@ const Surveys = ({ disableMetadata }) => {
               </StyledButton>
             </a>
           </Link>
-        </Fade>
       ))}
     </Wrapper>
   );

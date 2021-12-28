@@ -40,7 +40,7 @@ const colors = {
 
 // TODO: don't include colors in theme and later rename 'mode' to colors which holds the current mode colors
 export const theme = {
-  fontFamily: "Varela Round, sans-serif",
+  fontFamily: "Assistant, sans-serif",
   fontWeight: {
     regular: 400,
     medium: 500,

@@ -29,6 +29,8 @@ const App = ({ Component, pageProps }) => {
               rel="stylesheet"
             ></link>
 
+            
+
             <link
               rel="apple-touch-icon"
               sizes="180x180"
