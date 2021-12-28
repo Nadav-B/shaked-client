@@ -24,12 +24,6 @@ const App = ({ Component, pageProps }) => {
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
           <Head>
-            <link
-              href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
-              rel="stylesheet"
-            ></link>
-
-            
 
             <link
               rel="apple-touch-icon"

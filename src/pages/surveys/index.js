@@ -55,6 +55,7 @@ const StyledButton = styled.div`
   margin: auto;
   margin-top: 20px;
 
+
   :hover {
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   }
