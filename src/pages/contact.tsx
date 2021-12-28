@@ -10,7 +10,11 @@ import TextWrapper from "../elements/TextWrapper";
 import Flex from "../elements/Flex";
 import mutation from "../graphql/SaveContact.graphql";
 import { useMutation } from "@apollo/client";
-import { SaveContact, SaveContact_saveContact } from "../graphql/__generated__/SaveContact";
+import {
+  SaveContact,
+  SaveContact_saveContact,
+} from "../graphql/__generated__/SaveContact";
+import { ContactInput } from "../graphql/__generated__/globalTypes";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
@@ -34,21 +38,9 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
   });
 
   const [submitContact, { data, loading, error }] = useMutation<
-  { SaveContact: SaveContact },
-  { contact: SaveContact_saveContact }
->(mutation, {
-  variables: { contact: { 
-    fullName: "",
-    phoneNumber: "",
-    email: "",
-    address: "",
-    category: "כללי",
-    comment: "",
-    
-
-
-  } }
-});
+    { SaveContact: SaveContact },
+    { contactInput: ContactInput }
+  >(mutation);
 
   const [result, setResult] = useState({
     text: "",
@@ -78,7 +70,19 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await api.postContact(state).then(
+
+    submitContact({
+      variables: {
+        contactInput: {
+          fullName: state.fullname,
+          phoneNumber: state.phonenumber,
+          email:state.email,
+          address: state.address,
+          category: state.category,
+          comment: "",
+        },
+      },
+    }).then(
       (response) => {
         setResult((prevState) => ({
           ...prevState,
@@ -96,6 +100,7 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
         }));
       }
     );
+  
   };
 
   return (
@@ -106,7 +111,7 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
 
       <TextWrapper>
         <form onSubmit={handleSubmit}>
-          <Flex  flexDirection="column">
+          <Flex flexDirection="column">
             {state.fullname !== "" && <Text size={"small"}>שם</Text>}
             <label>
               <StyledInput
@@ -131,9 +136,8 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
                 required
               />
             </label>
-      
 
-          {/* 
+            {/* 
 
 
 
@@ -172,12 +176,11 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
           </label>
 
           */}
-          <Text variant={result.style}> {result.text}</Text>
-          <Button disabled={result.status} type="submit">
-            שלח
-          </Button>
+            <Text variant={result.style}> {result.text}</Text>
+            <Button disabled={result.status} type="submit">
+              שלח
+            </Button>
           </Flex>
-
         </form>
       </TextWrapper>
     </Wrapper>

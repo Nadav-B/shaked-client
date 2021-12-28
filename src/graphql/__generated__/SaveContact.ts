@@ -24,5 +24,5 @@ export interface SaveContact {
 }
 
 export interface SaveContactVariables {
-  contactInput?: ContactInput | null;
+  contactInput: ContactInput;
 }
