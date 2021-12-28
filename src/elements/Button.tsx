@@ -1,7 +1,51 @@
-import styled from "styled-components";
+import styled from '@emotion/styled'
+import TypeFontSize from "./FontSize";
+import shouldForwardProp from "@styled-system/should-forward-prop";
+import {
+  position,
+  border,
+  space,
+  layout,
+  color,
+  background,
+  flex,
+  flexbox,
+  shadow,
+  typography,
+  PositionProps,
+  LayoutProps,
+  SpaceProps,
+  ColorProps,
+  BorderProps,
+  ShadowProps,
+  BackgroundProps,
+  TypographyProps,
+  FlexboxProps,
+  GridProps,
+} from "styled-system";
 
 
-const StyledButton = styled.button`
+
+
+
+export type ButtonProps = PositionProps &
+  LayoutProps &
+  FlexboxProps &
+  SpaceProps &
+  TypeFontSize &
+  ColorProps &
+  BorderProps &
+  ShadowProps &
+  BackgroundProps &
+  TypographyProps &
+  GridProps &
+  React.AllHTMLAttributes<HTMLElement> & {
+    as?: As;
+    children?: React.ReactNode;
+  };
+  type As<P = any> = React.ElementType<P>;
+
+const StyledButton =  styled("button", { shouldForwardProp })<ButtonProps>`
   display: block;
   align-items: center;
   justify-content: center;
