@@ -9,7 +9,7 @@
 
 export interface GetServices_getServices {
   __typename: "Service";
-  id: string;
+  id: any;
   title: string | null;
   introduction: string | null;
 }

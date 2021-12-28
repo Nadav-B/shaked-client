@@ -8,8 +8,8 @@
 // ====================================================
 
 export interface GetTexts_getTexts {
-  __typename: "Text";
-  id: string;
+  __typename: "TextContainer";
+  id: any;
   content: string | null;
 }
 
