@@ -1,0 +1,10 @@
+mutation SaveContact($contactInput: ContactInput!) {
+  saveContact(contact: $contactInput) {
+    fullName
+    phoneNumber
+    email
+    address
+    category
+    comment
+  }
+}

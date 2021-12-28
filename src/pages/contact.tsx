@@ -8,6 +8,9 @@ import Meta from "../components/Meta";
 import Wrapper from "../elements/Wrapper";
 import TextWrapper from "../elements/TextWrapper";
 import Flex from "../elements/Flex";
+import mutation from "../graphql/SaveContact.graphql";
+import { useMutation } from "@apollo/client";
+import { SaveContact, SaveContact_saveContact } from "../graphql/__generated__/SaveContact";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
@@ -29,6 +32,23 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
     address: "",
     category: "כללי",
   });
+
+  const [submitContact, { data, loading, error }] = useMutation<
+  { SaveContact: SaveContact },
+  { contact: SaveContact_saveContact }
+>(mutation, {
+  variables: { contact: { 
+    fullName: "",
+    phoneNumber: "",
+    email: "",
+    address: "",
+    category: "כללי",
+    comment: "",
+    
+
+
+  } }
+});
 
   const [result, setResult] = useState({
     text: "",
