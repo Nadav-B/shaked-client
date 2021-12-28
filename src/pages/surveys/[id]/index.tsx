@@ -7,10 +7,17 @@ import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
+import mutation from "../../../graphql/SaveContact.graphql";
 
 import Loading from "../../../elements/Loading";
 import Meta from "../../../components/Meta";
 import Wrapper from "../../../elements/Wrapper";
+import { useMutation } from "@apollo/client";
+import { SaveContact } from "../../../graphql/__generated__/SaveContact";
+import {
+  ContactInput,
+  SurveyInput,
+} from "../../../graphql/__generated__/globalTypes";
 
 const Survey = ({ id }) => {
   const Status = {
@@ -19,10 +26,10 @@ const Survey = ({ id }) => {
     statusContact: 3,
   };
   const surveys = [survey1, survey2];
-  const data = surveys[id];
+  const selectedSurvey = surveys[id];
 
   const seo = {
-    title: data.name,
+    title: selectedSurvey.name,
     description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
     url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${id}`,
   };
@@ -57,6 +64,12 @@ const Survey = ({ id }) => {
 
   const [index, setIndex] = useState(0);
 
+  const [submitContact, { data, loading, error }] = useMutation<
+    { SaveContact: SaveContact },
+    { contactInput: ContactInput },
+    { surveyInput: SurveyInput }
+  >(mutation);
+
   const parseAnswersForSubmit = () => {
     var tempArray = [];
 
@@ -75,8 +88,9 @@ const Survey = ({ id }) => {
     event.preventDefault();
     setCurrentstatus(Status.statusContact);
 
-    const survey = {
-      name: data.name,
+    const survey: SurveyInput = {
+
+      name: selectedSurvey.name,
       answers: parseAnswersForSubmit(),
     };
 
@@ -87,7 +101,12 @@ const Survey = ({ id }) => {
       survey: survey,
     };
 
-    api.postContact(contactForm).then(
+
+    submitContact({
+      variables: {
+        contactInput: contactForm,
+      },
+    }).then(
       (response) => {
         setConfirmation((prevState) => ({
           ...prevState,
@@ -118,8 +137,8 @@ const Survey = ({ id }) => {
     event.preventDefault();
     results.set(question, answer);
 
-    if (index < data.questions.length - 1) setIndex(index + 1);
-    if (index == data.questions.length - 1)
+    if (index < selectedSurvey.questions.length - 1) setIndex(index + 1);
+    if (index == selectedSurvey.questions.length - 1)
       setCurrentstatus(Status.CompleteContact);
   };
 
@@ -144,12 +163,12 @@ const Survey = ({ id }) => {
   return (
     <Wrapper>
       <Meta seo={seo} />
-      <h1 className="title">{data.name}</h1>
+      <h1 className="title">{selectedSurvey.name}</h1>
       {currentStatus == 1 && (
         <div>
           <QuestionWrapper>
             <Text fontSize="large">
-              שאלה {index + 1} מתוך {data.questions.length}
+              שאלה {index + 1} מתוך {selectedSurvey.questions.length}
             </Text>
 
             <Progress
@@ -159,20 +178,26 @@ const Survey = ({ id }) => {
                   color: "#0a589d",
                 },
               }}
-              percent={(index / data.questions.length) * 100}
+              percent={(index / selectedSurvey.questions.length) * 100}
             />
-            <Text fontSize="large"> {data.questions[index].question}</Text>
+            <Text fontSize="large">
+              {" "}
+              {selectedSurvey.questions[index].question}
+            </Text>
           </QuestionWrapper>
 
           <StyledAnswersWrapper>
-            {data.questions[index].answers.map((answer, counter) => (
+            {selectedSurvey.questions[index].answers.map((answer, counter) => (
               <Button
                 key={counter}
-                active={isChoosen(data.questions[index].question, answer)}
+                active={isChoosen(
+                  selectedSurvey.questions[index].question,
+                  answer
+                )}
                 onClick={(event) => {
                   handleAnswerSubmit(
                     event,
-                    data.questions[index].question,
+                    selectedSurvey.questions[index].question,
                     answer
                   );
                 }}
@@ -283,16 +308,17 @@ const QuestionWrapper = styled.div`
   text-align: center;
 `;
 const StyledInput = styled.input`
-  width: 90%;
-  padding: 20px;
-  margin-top: 10px;
+  width: 100%;
+
+  padding: 12px 20px;
+  margin: 8px 0;
   display: inline-block;
-  font-size: ${(p) => p.theme.fontSize.normal};
-  border: 1px solid #ccc;
+  border: 1px solid ${(p) => p.theme.colors.veryLightGrey};
   border-radius: 4px;
   box-sizing: border-box;
+  background: ${(p) => p.theme.colors.veryLightGrey};
   &::placeholder {
-    color: black;
+    color: ${(p) => p.theme.colors.black};
   }
 `;
 
