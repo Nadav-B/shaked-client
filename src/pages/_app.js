@@ -24,7 +24,6 @@ const App = ({ Component, pageProps }) => {
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
           <Head>
-
             <link
               rel="apple-touch-icon"
               sizes="180x180"
