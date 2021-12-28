@@ -7,6 +7,7 @@ import api from "../shared/api";
 import Meta from "../components/Meta";
 import Wrapper from "../elements/Wrapper";
 import TextWrapper from "../elements/TextWrapper";
+import Flex from "../elements/Flex";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
@@ -82,41 +83,35 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
       {!disableMetadata && <Meta seo={seo} />}
 
       <h1>צרו קשר</h1>
+
       <TextWrapper>
         <form onSubmit={handleSubmit}>
-
-          {state.fullname !=="" &&
-          <Text size={"small"}> 
-            שם
-          </Text>
-          }
-          <label>
-            <StyledInput
-              title="שם"
-              name="fullname"
-              value={state.fullname}
-              placeholder="שם"
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-          {state.phonenumber !=="" &&
-          <> 
-            טלפון
-          </>
-          }
-            <StyledInput
-              name="phonenumber"
-              placeholder="מספר טלפון "
-              value={state.phonenumber}
-              onChange={handleChange}
-              maxLength={11}
-              type="tel"
-              title="טלפון"
-              required
-            />
-          </label>
+          <Flex  flexDirection="column">
+            {state.fullname !== "" && <Text size={"small"}>שם</Text>}
+            <label>
+              <StyledInput
+                title="שם"
+                name="fullname"
+                value={state.fullname}
+                placeholder="שם"
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              {state.phonenumber !== "" && <>טלפון</>}
+              <StyledInput
+                name="phonenumber"
+                placeholder="מספר טלפון "
+                value={state.phonenumber}
+                onChange={handleChange}
+                maxLength={11}
+                type="tel"
+                title="טלפון"
+                required
+              />
+            </label>
+      
 
           {/* 
 
@@ -161,6 +156,8 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
           <Button disabled={result.status} type="submit">
             שלח
           </Button>
+          </Flex>
+
         </form>
       </TextWrapper>
     </Wrapper>
@@ -180,6 +177,7 @@ const StyledSelect = styled.select`
 
 const StyledInput = styled.input`
   width: 100%;
+
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -189,8 +187,6 @@ const StyledInput = styled.input`
   background: ${(p) => p.theme.colors.veryLightGrey};
   &::placeholder {
     color: ${(p) => p.theme.colors.black};
-   
-
   }
 `;
 

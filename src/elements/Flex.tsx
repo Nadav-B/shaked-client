@@ -1,7 +1,7 @@
-import * as React from 'react';
-import styled from '@emotion/styled';
+import * as React from "react";
+import styled from "@emotion/styled";
 
-import shouldForwardProp from '@styled-system/should-forward-prop';
+import shouldForwardProp from "@styled-system/should-forward-prop";
 import {
   position,
   border,
@@ -12,7 +12,6 @@ import {
   flex,
   flexbox,
   shadow,
-
   typography,
   PositionProps,
   LayoutProps,
@@ -24,15 +23,15 @@ import {
   TypographyProps,
   FlexboxProps,
   GridProps,
-} from 'styled-system';
+} from "styled-system";
 
-const Flex = styled('div', { shouldForwardProp })<FlexProps>(
+const Flex = styled("div", { shouldForwardProp })<FlexProps>(
   () => ({
-    display: 'flex',
+    display: "flex",
     minWidth: 0,
-        margin: 0,
+    margin: 0,
     padding: 0,
-    boxSizing: 'border-box',
+    boxSizing: "border-box",
   }),
   position,
   layout,
@@ -63,5 +62,5 @@ export type FlexProps = PositionProps &
 
 type As<P = any> = React.ElementType<P>;
 
-Flex.displayName = 'Flex';
-export default Flex ;
+Flex.displayName = "Flex";
+export default Flex;
