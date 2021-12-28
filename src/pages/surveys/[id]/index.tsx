@@ -89,7 +89,6 @@ const Survey = ({ id }) => {
     setCurrentstatus(Status.statusContact);
 
     const survey: SurveyInput = {
-
       name: selectedSurvey.name,
       answers: parseAnswersForSubmit(),
     };
@@ -100,7 +99,6 @@ const Survey = ({ id }) => {
       category: contact.category,
       survey: survey,
     };
-
 
     submitContact({
       variables: {
@@ -127,9 +125,8 @@ const Survey = ({ id }) => {
   };
 
   const isChoosen = (question, answer) => {
-    for (let [key, value] of results) {
-      if (key == question && value === answer) return true;
-    }
+
+    if (results.get(question) === answer) return true;
     return false;
   };
 
