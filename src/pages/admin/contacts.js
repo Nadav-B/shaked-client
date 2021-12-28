@@ -144,10 +144,10 @@ const ContactManagers = () => {
                               type="checkbox"
                             />
                           </Td>
-                          <Td> {contact.fullname} </Td>
+                          <Td> {contact.fullName} </Td>
                           <Td>
-                            <a href={`tel:${contact.phonenumber}`}>
-                              {contact.phonenumber}
+                            <a href={`tel:${contact.phoneNumber}`}>
+                              {contact.phoneNumber}
                             </a>
                           </Td>
                           <Td> {contact.email} </Td>

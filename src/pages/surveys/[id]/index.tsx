@@ -27,7 +27,7 @@ const Survey = ({ id }) => {
     url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${id}`,
   };
 
-  const [results, setResults] = useState(new Map());
+  const [results, setResults] = useState(new Map<String, String>());
 
   const [currentStatus, setCurrentstatus] = useState(Status.Questions);
   const [confirmation, setConfirmation] = useState({
@@ -37,8 +37,8 @@ const Survey = ({ id }) => {
   });
 
   const [contact, setContact] = useState({
-    fullname: "",
-    phonenumber: "",
+    fullName: "",
+    phoneNumber: "",
     category: "שאלון",
   });
 
@@ -59,13 +59,15 @@ const Survey = ({ id }) => {
 
   const parseAnswersForSubmit = () => {
     var tempArray = [];
-    for (let [key, value] of results) {
+
+    results.forEach((key, value) => {
       const answer = {
         question: key,
         answer: value,
       };
       tempArray.push(answer);
-    }
+    });
+
     return tempArray;
   };
 
@@ -79,8 +81,8 @@ const Survey = ({ id }) => {
     };
 
     const contactForm = {
-      fullname: contact.fullname,
-      phonenumber: contact.phonenumber,
+      fullName: contact.fullName,
+      phoneNumber: contact.phoneNumber,
       category: contact.category,
       survey: survey,
     };
@@ -199,16 +201,16 @@ const Survey = ({ id }) => {
 
           <form id="submitSurveyForm" onSubmit={handleSubmit}>
             <StyledInput
-              name="fullname"
-              value={contact.fullname}
+              name="fullName"
+              value={contact.fullName}
               placeholder="שם מלא"
               type="text"
               onChange={handleChange}
               required
             />{" "}
             <StyledInput
-              name="phonenumber"
-              value={contact.phonenumber}
+              name="phoneNumber"
+              value={contact.phoneNumber}
               placeholder="טלפון"
               onChange={handleChange}
               type="tel"
