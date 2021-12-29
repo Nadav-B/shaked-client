@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import TypeFontSize from "./FontSize";
 import shouldForwardProp from "@styled-system/should-forward-prop";
 import {

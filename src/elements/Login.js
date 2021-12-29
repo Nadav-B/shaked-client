@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import Text from "./Text";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import Router from "next/router";
 import Wrapper from "./Wrapper";
 

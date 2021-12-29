@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import { Theme } from '@emotion/react';
 
 export type TextSizeProps = 'large' | 'medium' | 'small';

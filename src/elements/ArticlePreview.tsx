@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import Text from "./Text";
 import Link from "next/link";
 import { GetArticles, GetArticles_getArticles } from "../graphql/__generated__/GetArticles";

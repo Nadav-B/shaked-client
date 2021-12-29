@@ -1,5 +1,5 @@
 import { RotateCircleLoading } from "react-loadingg";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import Wrapper from "./Wrapper";
 
 const Loading = () => {

@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import Fade from "react-reveal/Fade";
 
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import { GetServices_getServices } from "../graphql/__generated__/GetServices";
 
 

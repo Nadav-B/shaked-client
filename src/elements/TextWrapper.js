@@ -1,5 +1,5 @@
 // Burger.styled.js
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 const TextWrapper = styled.div`
   margin: auto;
