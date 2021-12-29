@@ -52,10 +52,10 @@ const StyledButton =  styled("button", { shouldForwardProp })<ButtonProps>`
   height: 40px;
   width: 80%;
 
-  font-size: ${(props) => props.fontSize || props.theme.fontSize.normal};
-  font-family: ${(props) => props.theme.fontFamily};
-  border-radius: ${(props) => props.theme.border}px;
-  border: 1px solid  ${(props) => props.theme.colors.lightGrey};
+  font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};
+  font-family: ${(p) => p.theme.fontFamily};
+  border-radius: ${(p) => p.theme.border}px;
+  border: 1px solid  ${(p) => p.theme.colors.lightGrey};
 
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

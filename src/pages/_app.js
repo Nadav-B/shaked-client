@@ -1,4 +1,4 @@
-import  ThemeProvider  from "@emotion/styled"
+import { ThemeProvider } from "styled-components";
 import GlobalStyles from "../shared/shared-styles";
 import { theme } from "../shared/theme";
 import Header from "../components/header";
