@@ -1,16 +1,16 @@
 import React from "react";
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import Loading from "../../elements/Loading";
-
 import ArticlePreview from "../../elements/ArticlePreview";
 import { useQuery } from "@apollo/client";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
 
-import{GetArticles} from "../../graphql/__generated__/GetArticles";
+import { GetArticles } from "../../graphql/__generated__/GetArticles";
 
 import query from "../../graphql/GetArticles.graphql";
-
+import Carousel from "../../elements/Carousel";
+import Flex from "../../elements/Flex";
 
 const seo = {
   title: "כתבות",
@@ -19,9 +19,7 @@ const seo = {
 };
 
 const Articles = ({ disableMetadata }) => {
-
   const { data, loading, error } = useQuery<GetArticles>(query);
-
 
   if (loading)
     return (
@@ -36,11 +34,12 @@ const Articles = ({ disableMetadata }) => {
     <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
       <h1>כתבות</h1>
-      <StyledArticles>
-        {data?.getArticles.map((article) => (
+
+      <Carousel
+        items={data?.getArticles.map((article) => (
           <ArticlePreview key={article.id} article={article} />
         ))}
-      </StyledArticles>
+      ></Carousel>
     </Wrapper>
   );
 };
