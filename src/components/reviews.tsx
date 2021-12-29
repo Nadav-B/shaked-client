@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import Wrapper from "../elements/Wrapper";
 
 import Flex from "../elements/Flex";

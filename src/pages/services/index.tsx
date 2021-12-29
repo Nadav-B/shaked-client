@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import ServicePreview from "../../elements/ServicePreview";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import { useQuery } from "@apollo/client";
 import Loading from "../../elements/Loading";
 import Meta from "../../components/Meta";

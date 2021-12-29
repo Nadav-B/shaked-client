@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import api from "../../shared/api";
 import Text from "../../elements/Text";
 

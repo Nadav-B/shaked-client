@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import survey1 from "../../../../public/surveys/1.json";
 import survey2 from "../../../../public/surveys/2.json";
 import Text from "../../../elements/Text";

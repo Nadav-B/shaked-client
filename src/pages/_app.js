@@ -8,7 +8,7 @@ import Footer from "../components/footer";
 
 import Head from "next/head";
 import React, { useState, useRef } from "react";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
 import { ApolloProvider } from "@apollo/client";

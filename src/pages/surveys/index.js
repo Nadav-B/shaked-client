@@ -3,7 +3,7 @@ import survey1 from "../../../public/surveys/1.json";
 import survey2 from "../../../public/surveys/2.json";
 import Link from "next/link";
 import Text from "../../elements/Text";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import Fade from "react-reveal/Fade";
 
 import Meta from "../../components/Meta";

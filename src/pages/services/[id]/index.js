@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../../../shared/api";
-import styled from "styled-components";
+import styled from '@emotion/styled';
 
 import Button from "../../../elements/Button";
 import { directByContact } from "../../../config/contactButtonLinks";

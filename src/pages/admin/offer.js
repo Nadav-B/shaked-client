@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from '@emotion/styled';
 import React, { useState, useEffect } from "react";
 import Button from "../../elements/Button";
 import Text from "../../elements/Text";
