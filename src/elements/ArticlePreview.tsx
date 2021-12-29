@@ -1,54 +1,67 @@
 import React from "react";
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import Text from "./Text";
 import Link from "next/link";
-import { GetArticles, GetArticles_getArticles } from "../graphql/__generated__/GetArticles";
+import {
+  GetArticles,
+  GetArticles_getArticles,
+} from "../graphql/__generated__/GetArticles";
+import Flex from "./Flex";
 
-
-  const ArticlePreview: React.FC<{article:GetArticles_getArticles }> = ({
-    article,
-  }) => {
-
-  
-    const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;
-
+const ArticlePreview: React.FC<{ article: GetArticles_getArticles }> = ({
+  article,
+}) => {
+  const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;
 
   return (
-    <StyledArticlePreview>
-      <Link
-        key={article.id}
-        
-        href="/articles/[id]"
-        as={`/articles/${article.id}`}
-      >
-        <a >
-          <StyledPicture src={image} alt={article.title} />
-          <StyledText>
-            <Text variant="title large" margin="0 6px 0 0" fontSize="16px">
-              {article.title}
-            </Text>
-            <Text variant="" margin="0 6px 0 0 " fontSize="10px">
-              {article.tag}
-            </Text>
-            <Text fontSize="13px" margin="6px 6px 6px 0">
-              {article.introduction}
-            </Text>
-          </StyledText>
-        </a>
-      </Link>
-    </StyledArticlePreview>
+    <>
+      <StyledArticlePreview>
+        <Link
+          key={article.id}
+          href="/articles/[id]"
+          as={`/articles/${article.id}`}
+        >
+          <a>
+            <Flex flexDirection="column">
+              <StyledPicture src={image} alt={article.title} />
+             <TitleContainer>
+
+             <Text color="denim1" margin="2px 6px 0 0" fontSize="12px">
+                {article.title}
+              </Text> 
+             </TitleContainer>
+
+             <TitleContainer>
+
+              <Text
+                fontWeight="medium"
+                variant=""
+                fontSize="10px"
+              >
+                {article.tag}
+              </Text>
+              </TitleContainer>
+              <TitleContainer>
+
+
+              <Text fontSize="12px" margin="6px 6px 6px 0">
+                {article.introduction}
+              </Text>
+              </TitleContainer>
+            </Flex>
+          </a>
+        </Link>
+      </StyledArticlePreview>
+    </>
   );
 };
 
 const StyledArticlePreview = styled.div`
   margin: 20px;
   width: 400px;
-  min-height: 300px;
-  border-radius: ${(p) => p.theme.border}px;
-
+  height: 300px;
   background: white;
   cursor: pointer;
-
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   *:hover {
@@ -60,39 +73,28 @@ const StyledArticlePreview = styled.div`
     transition: background-color 2s ease-out;
   }
 
-  @media screen and (max-width: 700px) {
-    min-height: 100px;
-    width: 100%;
+  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    height: 250px;
   }
 `;
 
+const TitleContainer = styled.div`
+display: block;
+min-height: 20px;
+margin-right: 20px;
+margin-left: 20px;
+
+
+@media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+  margin-right: 5px;
+  margin-left: 5px;
+
+}
+`
 const StyledPicture = styled.img`
   display: block;
   width: 100%;
-  height: 65%;
-  border-top-left-radius: ${(p) => p.theme.border}px;
-  border-top-right-radius: ${(p) => p.theme.border}px;
-
-  @media screen and (max-width: 700px) {
-    height: 100%;
-    width: 30%;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: ${(p) => p.theme.border}px;
-
-    float: right;
-    object-fit: cover;
-  }
-`;
-
-const StyledText = styled.div`
-  display: block;
-  padding: 5px;
-
-  @media screen and (max-width: 700px) {
-    display: inline;
-    width: 70%;
-    float: left;
-  }
+  max-height: 300px;
 `;
 
 export default ArticlePreview;

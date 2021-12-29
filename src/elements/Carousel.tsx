@@ -19,7 +19,7 @@ const Carousel: React.FC<SliderProps> = ({ items }) => {
 
   const [currentChunk, setCurrentChucnk] = useState(0);
 
-  const chunks = sliceIntoChunks(items, 3);
+  const chunks = sliceIntoChunks(items, 2);
 
   return (
     <div>

@@ -57,6 +57,7 @@ export type TextProps = Omit<TypographyProps, 'fontSize'> &
     as?: As;
     fontSize?: string | number;
     children?: React.ReactNode;
+  
     weight?: 'regular' | 'medium' | 'strong';
   };
 
@@ -67,7 +68,7 @@ const StyledText = styled('p', { shouldForwardProp })<StyledTextProps>(
     ...p.textStyles,
     margin: 0,
     fontFamily: p.theme.fontFamily,
-    fontWeight: 400,
+    fontWeight: "bold",
     letterSpacing: '0.000001px',
     color: p.theme.colors.text,
     boxSizing: 'border-box',
