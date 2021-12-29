@@ -70,6 +70,7 @@ const StyledButton =  styled("button", { shouldForwardProp })<ButtonProps>`
 
   &:hover {
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    color: black;
   }
 
   &:disabled {

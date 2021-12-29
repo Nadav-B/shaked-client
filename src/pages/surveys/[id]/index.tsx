@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import survey1 from "../../../../public/surveys/1.json";
 import survey2 from "../../../../public/surveys/2.json";
 import Text from "../../../elements/Text";
@@ -18,6 +18,8 @@ import {
   ContactInput,
   SurveyInput,
 } from "../../../graphql/__generated__/globalTypes";
+import TextWrapper from "../../../elements/TextWrapper";
+import Flex from "../../../elements/Flex";
 
 const Survey = ({ id }) => {
   const Status = {
@@ -125,7 +127,6 @@ const Survey = ({ id }) => {
   };
 
   const isChoosen = (question, answer) => {
-
     if (results.get(question) === answer) return true;
     return false;
   };
@@ -216,28 +217,41 @@ const Survey = ({ id }) => {
       {currentStatus == 2 && (
         <ContactWrapper>
           <Progress percent={100} />
+          <StatusWrapper>
 
           <Text variant="semiBold">
             מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת בדיקה ללא עלות
           </Text>
+          </StatusWrapper>
 
+          <TextWrapper>
           <form id="submitSurveyForm" onSubmit={handleSubmit}>
-            <StyledInput
-              name="fullName"
-              value={contact.fullName}
-              placeholder="שם מלא"
-              type="text"
-              onChange={handleChange}
-              required
-            />{" "}
-            <StyledInput
-              name="phoneNumber"
-              value={contact.phoneNumber}
-              placeholder="טלפון"
-              onChange={handleChange}
-              type="tel"
-              required
-            />{" "}
+          <Flex flexDirection="column">
+
+            <label>
+              {contact.fullName !== "" && <Text size={"small"}>שם</Text>}
+              <StyledInput
+                name="fullName"
+                value={contact.fullName}
+                placeholder="שם מלא"
+                type="text"
+                onChange={handleChange}
+                required
+              />{" "}
+            </label>
+
+            <label>
+              {contact.phoneNumber !== "" && <>טלפון</>}
+              <StyledInput
+                name="phoneNumber"
+                value={contact.phoneNumber}
+                placeholder="טלפון"
+                onChange={handleChange}
+                type="tel"
+                required
+              />{" "}
+            </label>
+
             <Button
               id="submitSurvey"
               disabled={confirmation.status}
@@ -245,7 +259,11 @@ const Survey = ({ id }) => {
             >
               שלח
             </Button>
-          </form>
+            </Flex>
+
+          </  form>
+          </TextWrapper>
+
         </ContactWrapper>
       )}
 
@@ -286,7 +304,6 @@ const ContactWrapper = styled.div`
   width: 100%;
   max-width: 400px;
   margin: auto;
-  text-align: center;
 `;
 
 const StatusWrapper = styled.div`
