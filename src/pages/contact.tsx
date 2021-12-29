@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
-import styled from "styled-components";
+import styled from '@emotion/styled'
+
 import api from "../shared/api";
 
 import Meta from "../components/Meta";

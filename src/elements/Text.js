@@ -1,5 +1,6 @@
 import React from "react";
-import styled from "styled-components";
+import styled from '@emotion/styled'
+
 
 /**
  * valid variants are: 'large', 'small', 'regular', 'medium', 'semiBold', 'ellipsis', 'nowrap'

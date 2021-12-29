@@ -1,4 +1,5 @@
-import { ThemeProvider } from "styled-components";
+import { jsx, ThemeProvider } from '@emotion/react'
+
 import GlobalStyles from "../shared/shared-styles";
 import { theme } from "../shared/theme";
 import Header from "../components/header";

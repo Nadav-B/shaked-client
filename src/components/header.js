@@ -5,7 +5,8 @@ import Menu from "../elements/Menu";
 import PropTypes from "prop-types";
 import SizeWrapper from "../elements/SizeWrapper";
 import Link from "next/link";
-import styled from "styled-components";
+import styled from '@emotion/styled'
+
 
 const Header = ({ menuLinks, siteTitle }) => {
   const [open, setOpen] = useState(false);

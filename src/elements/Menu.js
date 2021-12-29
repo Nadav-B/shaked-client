@@ -1,5 +1,6 @@
 // Burger.styled.js
-import styled from "styled-components";
+import styled from '@emotion/styled'
+
 import Link from "next/link";
 import { bool, func } from "prop-types";
 import { useAuth } from "../shared/auth";

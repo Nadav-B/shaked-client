@@ -1,5 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled from '@emotion/styled'
+
+
 import Articles from "../pages/articles";
 import Contact from "../pages/contact";
 import Surveys from "../pages/surveys";
