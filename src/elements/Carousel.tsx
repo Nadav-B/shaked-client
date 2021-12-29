@@ -19,7 +19,6 @@ const Carousel: React.FC<SliderProps> = ({ items }) => {
 
   const [currentChunk, setCurrentChucnk] = useState(0);
 
-
   const chunks = sliceIntoChunks(items, 3);
 
   return (
@@ -31,11 +30,17 @@ const Carousel: React.FC<SliderProps> = ({ items }) => {
       </Flex>
 
       <Slider>
-        {chunks.map((value, index)=> {
+        {chunks.map((value, index) => {
           console.log(value, index);
-          return <StyledButton onClick={()=> setCurrentChucnk(index)}> </StyledButton>;
+          return (
+            <StyledButton
+              active={index == currentChunk}
+              onClick={() => setCurrentChucnk(index)}
+            >
+              {" "}
+            </StyledButton>
+          );
         })}
-
       </Slider>
     </div>
   );
@@ -45,18 +50,24 @@ const Slider = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const StyledButton = styled.button`
-margin-right: 10px;
-margin-left: 10px;
-width: 40px;
-border: 0;
-border-radius: 25px;
 
-height:4px;
+interface ButtonProps {
+  active: boolean;
+}
+
+const StyledButton = styled.button<ButtonProps>`
+margin-right: 20px;
+margin-left: 20px;
+width: 60px;
+border: 0;
+border-radius: 150px;
+
+height: 5px;
 background-color: ${(p) => p.theme.colors.darkGrey};
 cursor: pointer;
 
 
+background: ${({ active }) => (active ? "#0a589d" : "grey")};
 
 :hover {
   background-color: ${(p) => p.theme.colors.dimGray};
