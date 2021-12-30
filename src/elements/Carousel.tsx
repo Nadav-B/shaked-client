@@ -8,7 +8,11 @@ interface SliderProps {
 }
 
 const Carousel: React.FC<SliderProps> = ({ items }) => {
-  function sliceIntoChunks(arr, chunkSize) {
+
+
+  
+
+  const sliceIntoChunks=(arr, chunkSize) => {
     const res = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
       const chunk = arr.slice(i, i + chunkSize);
@@ -31,9 +35,10 @@ const Carousel: React.FC<SliderProps> = ({ items }) => {
 
       <Slider>
         {chunks.map((value, index) => {
-          console.log(value, index);
+          console.log(index== currentChunk)
           return (
             <StyledButton
+            key={index}
               active={index == currentChunk}
               onClick={() => setCurrentChucnk(index)}
             >
@@ -60,12 +65,9 @@ margin-right: 20px;
 margin-left: 20px;
 width: 60px;
 border: 0;
-border-radius: 150px;
-
+border-radius: 5px;
 height: 5px;
-background-color: ${(p) => p.theme.colors.darkGrey};
 cursor: pointer;
-
 
 background: ${({ active }) => (active ? "#0a589d" : "grey")};
 
