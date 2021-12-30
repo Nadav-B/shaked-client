@@ -22,7 +22,7 @@ const ArticlePreview: React.FC<{ article: GetArticles_getArticles }> = ({
           as={`/articles/${article.id}`}
         >
           <a>
-            <Flex flexDirection="column">
+            <Flex width="200px" flexDirection="column">
               <StyledPicture src={image} alt={article.title} />
              <TitleContainer>
 
@@ -58,7 +58,6 @@ const ArticlePreview: React.FC<{ article: GetArticles_getArticles }> = ({
 
 const StyledArticlePreview = styled.div`
   margin: 20px;
-  width: 400px;
   height: 300px;
   background: white;
   cursor: pointer;

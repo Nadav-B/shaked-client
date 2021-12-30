@@ -23,11 +23,11 @@ const Carousel: React.FC<SliderProps> = ({ items }) => {
 
   const [currentChunk, setCurrentChucnk] = useState(0);
 
-  const chunks = sliceIntoChunks(items, 2);
+  const chunks = sliceIntoChunks(items,5);
 
   return (
     <div>
-      <Flex alignItems="center" justifyContent="center">
+      <Flex flexWrap="no-wrap" overflowX="auto" alignItems="center" justifyContent="center">
         {chunks[currentChunk].map((element) => {
           return element;
         })}
@@ -53,6 +53,7 @@ const Carousel: React.FC<SliderProps> = ({ items }) => {
 const Slider = styled.div`
   display: flex;
   align-items: center;
+  
   justify-content: center;
 `;
 
