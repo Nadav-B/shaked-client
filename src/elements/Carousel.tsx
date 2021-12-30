@@ -4,11 +4,15 @@ import { useState } from "react";
 import Flex from "./Flex";
 
 interface SliderProps {
-  items: [any];
+  items: any;
 }
 
 const Carousel: React.FC<SliderProps> = ({ items }) => {
   return (
+    <StyledCarousel>
+
+
+    
       <Flex
         flexWrap="no-wrap"
         overflowX="auto"
@@ -19,8 +23,33 @@ const Carousel: React.FC<SliderProps> = ({ items }) => {
           return element;
         })}
       </Flex>
+
+     </StyledCarousel>
   );
 };
+
+
+const StyledCarousel = styled.div`
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+`;
 const Slider = styled.div`
   display: flex;
   align-items: center;
