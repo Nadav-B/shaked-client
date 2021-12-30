@@ -14,7 +14,6 @@ const ArticlePreview: React.FC<{ article: GetArticles_getArticles }> = ({
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;
 
   return (
-    <>
       <StyledArticlePreview>
         <Link
           key={article.id}
@@ -52,7 +51,6 @@ const ArticlePreview: React.FC<{ article: GetArticles_getArticles }> = ({
           </a>
         </Link>
       </StyledArticlePreview>
-    </>
   );
 };
 

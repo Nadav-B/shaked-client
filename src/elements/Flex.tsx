@@ -14,6 +14,7 @@ import {
   shadow,
   typography,
   PositionProps,
+
   LayoutProps,
   SpaceProps,
   ColorProps,
@@ -38,6 +39,7 @@ const Flex = styled("div", { shouldForwardProp })<FlexProps>(
   flex,
   flexbox,
   space,
+  
   color,
   background,
   border,

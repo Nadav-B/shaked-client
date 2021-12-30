@@ -8,52 +8,27 @@ interface SliderProps {
 }
 
 const Carousel: React.FC<SliderProps> = ({ items }) => {
-
-
-  
-
-  const sliceIntoChunks=(arr, chunkSize) => {
-    const res = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      const chunk = arr.slice(i, i + chunkSize);
-      res.push(chunk);
-    }
-    return res;
-  }
-
-  const [currentChunk, setCurrentChucnk] = useState(0);
-
-  const chunks = sliceIntoChunks(items,5);
-
   return (
-    <div>
-      <Flex flexWrap="no-wrap" overflowX="auto" alignItems="center" justifyContent="center">
-        {chunks[currentChunk].map((element) => {
+      <Flex
+        flexWrap="no-wrap"
+        overflowX="auto"
+        alignItems="center"
+        justifyContent="flex-start"
+      >
+        {items.map((element) => {
           return element;
         })}
       </Flex>
-
-      <Slider>
-        {chunks.map((value, index) => {
-          console.log(index== currentChunk)
-          return (
-            <StyledButton
-            key={index}
-              active={index == currentChunk}
-              onClick={() => setCurrentChucnk(index)}
-            >
-              {" "}
-            </StyledButton>
-          );
-        })}
-      </Slider>
-    </div>
   );
 };
 const Slider = styled.div`
   display: flex;
   align-items: center;
-  
+
+  ::-webkit-scrollbar { 
+    display: none; 
+    }
+
   justify-content: center;
 `;
 
