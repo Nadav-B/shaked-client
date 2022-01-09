@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Assistant';
     font-display: swap;
-    src: url('fonts/assistant/Assistant-Regular.ttf');
+    src: 'url('fonts/assistant/Assistant-Regular.ttf')';
   }
 
   * {
