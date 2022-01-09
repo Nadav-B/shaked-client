@@ -16,6 +16,7 @@ import {
   SaveContact_saveContact,
 } from "../graphql/__generated__/SaveContact";
 import { ContactInput } from "../graphql/__generated__/globalTypes";
+import Title from "../elements/Title";
 
 const seo = {
   description: "השאירו פרטים ונחזור אליכם בהקדם",
@@ -27,8 +28,8 @@ enum FormularStyle {
   compact = 1,
 }
 
-const Contact: React.FC<{ disableMetadata: boolean }> = ({
-  disableMetadata,
+const Contact: React.FC<{ disableMetadata: boolean, title?: string }> = ({
+  disableMetadata, title="צרו קשר"
 }) => {
   const [state, setState] = useState({
     fullname: "",
@@ -37,6 +38,9 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
     address: "",
     category: "כללי",
   });
+
+
+
 
   const [submitContact, { data, loading, error }] = useMutation<
     { SaveContact: SaveContact },
@@ -108,7 +112,7 @@ const Contact: React.FC<{ disableMetadata: boolean }> = ({
     <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
 
-      <h1>צרו קשר</h1>
+      <Title> {title} </Title>
 
       <TextWrapper>
         <form onSubmit={handleSubmit}>

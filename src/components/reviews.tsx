@@ -3,11 +3,12 @@ import styled from "@emotion/styled";
 import Wrapper from "../elements/Wrapper";
 
 import Flex from "../elements/Flex";
+import Title from "../elements/Title";
 
 const Reviews: React.FC<{}> = ({}) => {
   return (
     <div>
-      <h1> מה לקוחות אומרים עלינו?</h1>
+      <Title> מה לקוחות אומרים עלינו?</Title>
       <StyledFlex
 
       >
