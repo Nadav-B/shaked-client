@@ -22,7 +22,6 @@ const NewMortage: React.FC = ({}) => {
       <Flex flexDirection="column">
         <HeadlineWrapper>
           <StyledHeadlineTitle>הבחירה הנכונה שלכם</StyledHeadlineTitle>
-
           <StyledCircle>
             <StledOfferText>ליווי משכנתא חדשה</StledOfferText>
             <StledOfferText>הנחה לזמן מוגבל</StledOfferText>

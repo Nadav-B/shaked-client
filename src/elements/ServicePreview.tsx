@@ -53,9 +53,11 @@ const StyledServicePreview = styled.div`
   border-radius: ${(p) => p.theme.border}px;
 
   .front {
+    box-shadow: 0 7px 70px rgb(5 3 44 / 8%);
+
+    width: 80px;
 
     img {
-      background: white;
       border-radius: 40px;
       padding: 10px;
       margin: 10px;
