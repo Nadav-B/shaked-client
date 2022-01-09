@@ -9,7 +9,7 @@ const ServicePreview: React.FC<{
   service: GetServices_getServices;
   index: Number;
 }> = ({ service, index }) => {
-  const [overlay, setOverlay] = useState(true);
+  const [overlay, setOverlay] = useState(false);
   const someHandler = () => {
     setOverlay(!overlay);
   };
