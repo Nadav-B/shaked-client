@@ -10,9 +10,7 @@ interface SliderProps {
 const Carousel: React.FC<SliderProps> = ({ items }) => {
   return (
     <StyledCarousel>
-
-
-    
+  
       <Flex
         flexWrap="no-wrap"
         overflowX="auto"

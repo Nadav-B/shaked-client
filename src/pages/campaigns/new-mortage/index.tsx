@@ -39,8 +39,7 @@ const NewMortage: React.FC = ({}) => {
           והכי אישי שיש.
         </TextWrapper>
 
-        <Reviews></Reviews>
-
+        <Reviews />
         <Services disableMetadata={true} />
       </Flex>
     </Wrapper>
