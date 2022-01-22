@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import Fade from "react-reveal/Fade";
 
 import styled from "@emotion/styled";
 import { GetServices_getServices } from "../graphql/__generated__/GetServices";

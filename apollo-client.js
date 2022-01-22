@@ -1,7 +1,6 @@
-import { createHttpLink } from 'apollo-link-http';
 import fetch from 'isomorphic-unfetch';
 import { useMemo } from 'react'
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloClient,createHttpLink, InMemoryCache } from '@apollo/client'
 import { concatPagination } from '@apollo/client/utilities'
 import merge from 'deepmerge'
 

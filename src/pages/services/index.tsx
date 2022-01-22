@@ -7,7 +7,7 @@ import Loading from "../../elements/Loading";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
 
-import { GetServices } from "../../graphql/__generated__/GetServices";
+import { GetServices, GetServices_getServices } from "../../graphql/__generated__/GetServices";
 import query from "../../graphql/GetServices.graphql";
 import Title from "../../elements/Title";
 
@@ -17,6 +17,7 @@ const seo = {
     "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה",
   url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/services`,
 };
+
 
 const Services: React.FC<{ disableMetadata: boolean }> = ({
   disableMetadata,

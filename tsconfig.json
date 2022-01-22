@@ -16,15 +16,18 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
-  "files": ["src/@types/graphql.d.ts"],
-
+  "files": [
+    "src/@types/graphql.d.ts"
+  ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/pages/campaigns/new-mortage/index.tss"  ],
+    "**/*.tsx",
+    "src/pages/campaigns/new-mortage/index.tss"
+  ],
   "exclude": [
     "node_modules"
   ]

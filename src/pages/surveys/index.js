@@ -4,7 +4,6 @@ import survey2 from "../../../public/surveys/2.json";
 import Link from "next/link";
 import Text from "../../elements/Text";
 import styled from '@emotion/styled';
-import Fade from "react-reveal/Fade";
 
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";

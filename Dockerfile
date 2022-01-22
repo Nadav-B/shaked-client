@@ -4,10 +4,10 @@ FROM node:16.0-alpine
 WORKDIR /usr/src/app
 
 # Installing dependencies
-COPY package.json ./
-COPY package-lock.json ./
+COPY package.json .
+COPY yarn.lock .
 
-RUN npm install
+RUN yarn install
 
 # Copying source files
 COPY . .
