@@ -21,6 +21,7 @@ const App = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps);
 
   const requiredStyles = css`
+    @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
     @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200&display=swap");
   `;
 
