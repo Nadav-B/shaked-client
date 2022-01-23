@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 const TextWrapper = styled.div`
   margin: auto;
+  margin-bottom: 20px;
   max-width: 700px;
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {

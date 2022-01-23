@@ -18,9 +18,8 @@ const seo = {
 
 const NewMortage: React.FC = ({}) => {
   return (
-    <Wrapper>
-      <Flex flexDirection="column">
-        <HeadlineWrapper>
+    <Flex flexDirection="column" justifyContent="center">
+        <Flex  flexDirection="column">
           <StyledHeadlineTitle>"הבחירה הנכונה שלכם"</StyledHeadlineTitle>
 
           <ProductBox>
@@ -31,7 +30,7 @@ const NewMortage: React.FC = ({}) => {
               <StledOfferText>במקום 7,900 ₪</StledOfferText>
             </StyledCircle>
           </ProductBox>
-        </HeadlineWrapper>
+        </Flex>
 
         <Contact
           title="לתאום שיחה ללא התחייבות"
@@ -57,22 +56,16 @@ const NewMortage: React.FC = ({}) => {
 
         <Reviews />
         <Services disableMetadata={true} />
-      </Flex>
-    </Wrapper>
+    </Flex>
   );
 };
 
-const HeadlineWrapper = styled.div`
-  display: flex;
-  width: auto;
-  flex-wrap: wrap;
-`;
 
 const StyledHeadlineTitle = styled.div`
   margin: 9px 15px 0 19px;
   font-size: 40px;
   font-weight: 600;
-  width: 100%;
+  width: auto;
   line-height: 1;
   text-align: right;
   color: #21646b;
@@ -85,7 +78,7 @@ const ProductBox = styled.div`
   margin-bottom:20px;
 
   display: flex;
-  width: 100%;
+  width: auto;
 `;
 
 const StyledSubTitle = styled.div`

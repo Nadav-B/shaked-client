@@ -32,27 +32,19 @@ const Articles = ({ disableMetadata }) => {
   if (error) return <span></span>;
 
   return (
-    <Wrapper>
+    <Flex alignItems="center" flexDirection="column">
       {!disableMetadata && <Meta seo={seo} />}
       <Title>כתבות</Title>
 
-      <Carousel
-        items={data?.getArticles.map((article) => (
-          <ArticlePreview key={article.id} article={article} />
-        ))}
-      ></Carousel>
-    </Wrapper>
+        <Carousel
+          items={data?.getArticles.map((article) => (
+            <ArticlePreview key={article.id} article={article} />
+          ))}
+        ></Carousel>
+    </Flex>
   );
 };
 
-const StyledArticles = styled.div`
-  display: flex;
-  width: 100%;
-  max-width: 1400px;
-  margin: auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
+
 
 export default Articles;

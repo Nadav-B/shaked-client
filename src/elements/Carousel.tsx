@@ -10,7 +10,6 @@ interface SliderProps {
 const Carousel: React.FC<SliderProps> = ({ items }) => {
   return (
     <StyledCarousel>
-  
       <Flex
         flexWrap="no-wrap"
         overflowX="auto"
@@ -47,17 +46,11 @@ const StyledCarousel = styled.div`
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-`;
-const Slider = styled.div`
-  display: flex;
-  align-items: center;
 
-  ::-webkit-scrollbar { 
-    display: none; 
-    }
+width: 90%;
 
-  justify-content: center;
 `;
+
 
 interface ButtonProps {
   active: boolean;

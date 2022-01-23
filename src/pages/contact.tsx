@@ -105,7 +105,7 @@ const Contact: React.FC<{ disableMetadata: boolean; title?: string }> = ({
   };
 
   return (
-    <Wrapper>
+    <Flex flexDirection="column">
       {!disableMetadata && <Meta seo={seo} />}
 
       <h1> {title} </h1>
@@ -188,7 +188,7 @@ const Contact: React.FC<{ disableMetadata: boolean; title?: string }> = ({
           </Flex>
         </form>
       </TextWrapper>
-    </Wrapper>
+    </Flex>
   );
 };
 
