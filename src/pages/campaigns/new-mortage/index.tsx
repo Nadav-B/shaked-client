@@ -90,12 +90,13 @@ const ProductBox = styled.div`
 const StyledSubTitle = styled.div`
   margin-right: 30px;
   font-size: 25px;
-  float: right;
   font-weight: bold;
   line-height: 1;
   text-align: right;
   color: #21646b;
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+      max-width: 120px;
+
   }
 `;
 
@@ -103,8 +104,8 @@ const StyledCircle = styled.div`
   position: relative;
 
   display: flex;
-  height: 225px;
-  width: 225px;
+  height: 160px;
+  width: 160px;
   float: left;
   font-weight: bold;
   align-items: center;

@@ -26,13 +26,13 @@ const Homepage = () => {
       <ContentBackground id="about">
         <About disableMetadata={true} />
       </ContentBackground>
-      <CustomBackground id="surveys">
+      <ContentBackground id="surveys">
         <Surveys disableMetadata={true} />
-      </CustomBackground>
+      </ContentBackground>
       <ContentBackground>
-        <CustomBackground2 id="articles">
+        <ContentBackground id="articles">
           <Articles disableMetadata={true} />
-        </CustomBackground2>
+        </ContentBackground>
         <ContentBackground id="services">
           <Services disableMetadata={true} />
         </ContentBackground>
@@ -48,13 +48,8 @@ const ContentBackground = styled.div`
   background: white;
 `;
 
-const CustomBackground = styled.div`
-  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-`;
 
-const CustomBackground2 = styled.div`
-  background-image: linear-gradient(to bottom, #dfe9f3 0%, white 100%);
-`;
+
 
 const StyledLandingPage = styled.div`
   display: flex;
