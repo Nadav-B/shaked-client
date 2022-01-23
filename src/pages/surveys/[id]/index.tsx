@@ -302,7 +302,7 @@ const StatusWrapper = styled.div`
 
 const StyledInput = styled.input`
   width: 100%;
-  font-size: 12px;
+  font-size:16px; 
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;

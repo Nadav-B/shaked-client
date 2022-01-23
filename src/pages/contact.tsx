@@ -210,7 +210,7 @@ const StyledBox = styled.div`
 const StyledInput = styled.input`
   width: 300px;
   height: 30px;
-  font-size: 12px;
+  font-size:16px; 
   margin-top: 10px;
   border: 1px solid ${(p) => p.theme.colors.veryLightGrey};
   border-radius: 4px;
