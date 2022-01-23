@@ -19,7 +19,7 @@ const seo = {
 const NewMortage: React.FC = ({}) => {
   return (
     <Flex flexDirection="column" justifyContent="center">
-      <Flex flexDirection="column">
+      <Flex  alignItems="center" flexDirection="column">
         <StyledHeadlineTitle>"הבחירה הנכונה שלכם"</StyledHeadlineTitle>
 
         <ProductBox>
@@ -74,8 +74,7 @@ const ProductBox = styled.div`
   margin-bottom: 20px;
   display: flex;
   width: auto;
-  overflow: hidden;
-
+  justify-content: center;
   @keyframes scaleIn {
     from {
       transform: scale(0.6, 0.6);
@@ -122,7 +121,6 @@ const StyledCircle = styled.div`
     width: 150px;
   }
 `;
-
 
 const StyledPrice = styled.div`
   color: white;
