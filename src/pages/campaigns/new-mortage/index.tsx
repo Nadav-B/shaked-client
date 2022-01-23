@@ -19,47 +19,43 @@ const seo = {
 const NewMortage: React.FC = ({}) => {
   return (
     <Flex flexDirection="column" justifyContent="center">
-        <Flex  flexDirection="column">
-          <StyledHeadlineTitle>"הבחירה הנכונה שלכם"</StyledHeadlineTitle>
+      <Flex flexDirection="column">
+        <StyledHeadlineTitle>"הבחירה הנכונה שלכם"</StyledHeadlineTitle>
 
-          <ProductBox>
-            <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
-            <StyledCircle>
-              <StledOfferText>הנחה לזמן מוגבל</StledOfferText>
-              <StyledPrice>6,500 ₪</StyledPrice>
-              <StledOfferText>במקום 7,900 ₪</StledOfferText>
-            </StyledCircle>
-          </ProductBox>
-        </Flex>
+        <ProductBox>
+          <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
+          <StyledCircle>
+            <StledOfferText>הנחה לזמן מוגבל</StledOfferText>
+            <StyledPrice>6,500 ₪</StyledPrice>
+            <StledOfferText>במקום 7,900 ₪</StledOfferText>
+          </StyledCircle>
+        </ProductBox>
+      </Flex>
 
-        <Contact
-          title="לתאום שיחה ללא התחייבות"
-          disableMetadata={true}
-        ></Contact>
+      <Contact title="לתאום שיחה ללא התחייבות" disableMetadata={true}></Contact>
 
-        <Title> למה שקד?</Title>
+      <Title> למה שקד?</Title>
 
-        <TextWrapper>
-          התאמת משכנתא אישית בהתאם לצרכים שלכם מכרז בין הבנקים והשגת התנאים
-          האולטימטיביים עבורכם ליווי מלא לאורך כל התהליך מקצועיות, אמינות,
-          זמינות והרבה סבלנות..
-        </TextWrapper>
+      <TextWrapper>
+        התאמת משכנתא אישית בהתאם לצרכים שלכם מכרז בין הבנקים והשגת התנאים
+        האולטימטיביים עבורכם ליווי מלא לאורך כל התהליך מקצועיות, אמינות, זמינות
+        והרבה סבלנות..
+      </TextWrapper>
 
-        <Title> מי אנחנו?</Title>
+      <Title> מי אנחנו?</Title>
 
-        <TextWrapper>
-          שקד משכנתאות - הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק
-          המשכנתאות, בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת
-          הבנקאית ומחוצה לה. היועצים שלנו ילוו אתכם לאורך כל הדרך, באופן מקצועי
-          והכי אישי שיש.
-        </TextWrapper>
+      <TextWrapper>
+        שקד משכנתאות - הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק
+        המשכנתאות, בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת
+        הבנקאית ומחוצה לה. היועצים שלנו ילוו אתכם לאורך כל הדרך, באופן מקצועי
+        והכי אישי שיש.
+      </TextWrapper>
 
-        <Reviews />
-        <Services disableMetadata={true} />
+      <Reviews />
+      <Services disableMetadata={true} />
     </Flex>
   );
 };
-
 
 const StyledHeadlineTitle = styled.div`
   margin: 9px 15px 0 19px;
@@ -75,10 +71,21 @@ const StyledHeadlineTitle = styled.div`
 
 const ProductBox = styled.div`
   margin-top: 30px;
-  margin-bottom:20px;
-
+  margin-bottom: 20px;
   display: flex;
   width: auto;
+  overflow: hidden;
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.6, 0.6);
+      opacity: 0.5;
+    }
+    to {
+      transform: scale(0.7, 0.7);
+      opacity: 0;
+    }
+  }
 `;
 
 const StyledSubTitle = styled.div`
@@ -94,6 +101,8 @@ const StyledSubTitle = styled.div`
 `;
 
 const StyledCircle = styled.div`
+  position: relative;
+
   display: flex;
   height: 225px;
   width: 225px;
@@ -113,6 +122,7 @@ const StyledCircle = styled.div`
     width: 150px;
   }
 `;
+
 
 const StyledPrice = styled.div`
   color: white;
