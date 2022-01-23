@@ -54,7 +54,7 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   align-items: center;
   background-color: #21646b;
-
+  padding-bottom: 20px;
   @media screen and (max-width: 700px) {
   }
 `;

@@ -1,9 +1,10 @@
 import React from "react";
 import api from "../../../shared/api";
 import { directByContact } from "../../../config/contactButtonLinks";
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
+import Flex from "../../../elements/Flex";
 
 import Meta from "../../../components/Meta";
 
@@ -18,40 +19,42 @@ const Article = ({ data }) => {
   };
 
   return (
-    <div>
+    <Flex
+      marginRight="20px"
+      marginLeft="20px"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection="column"
+    >
       <Meta seo={seo} />
-      <TextWrapper>
-        <StyledImage src={image} alt="image" />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: data.content,
-          }}
-        ></div>
-        <Button
-          onClick={() => {
-            directByContact(data.contactButton);
-          }}
-        >
-          {data.contactButton}
-        </Button>
-      </TextWrapper>
-    </div>
+      <StyledImage src={image} alt="image" />
+      <StyledContent
+        dangerouslySetInnerHTML={{
+          __html: data.content,
+        }}
+      />
+      <Button
+        maxWidth={"400px"}
+        onClick={() => {
+          directByContact(data.contactButton);
+        }}
+      >
+        {data.contactButton}
+      </Button>
+    </Flex>
   );
 };
 
-
-
 const StyledImage = styled.img`
-  margin: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
-  margin-bottom: 20px;
-  width: 100%;
+  max-width: 700px;
+  margin-top: 10px;
 `;
 
+const StyledContent = styled.div`
+  max-width: 700px;
+  margin-top: 10px;
+
+`;
 // This gets called on every request
 export async function getServerSideProps({ query }) {
   const id = query.id;

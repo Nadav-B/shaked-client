@@ -7,7 +7,7 @@ import { directByContact } from "../../../config/contactButtonLinks";
 import TextWrapper from "../../../elements/TextWrapper";
 
 import Meta from "../../../components/Meta";
-import Wrapper from "../../../elements/Wrapper";
+import Flex from "../../../elements/Flex";
 
 const Service = ({ data }) => {
   const seo = {
@@ -17,7 +17,7 @@ const Service = ({ data }) => {
   };
 
   return (
-    <Wrapper>
+    <Flex marginTop="20px" flexDirection="column">
       <Meta seo={seo} />
       <TextWrapper
         dangerouslySetInnerHTML={{
@@ -25,13 +25,15 @@ const Service = ({ data }) => {
         }}
       ></TextWrapper>
       <Button
+              maxWidth={"400px"}
+
         onClick={() => {
           directByContact(data.contactButton);
         }}
       >
         {data.contactButton}
       </Button>
-    </Wrapper>
+    </Flex>
   );
 };
 

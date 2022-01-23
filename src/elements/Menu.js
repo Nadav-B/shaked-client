@@ -1,33 +1,37 @@
 // Burger.styled.js
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 import Link from "next/link";
 import { bool, func } from "prop-types";
 import { useAuth } from "../shared/auth";
+import { route } from "next/dist/server/router";
 
 const Menu = ({ menuLinks, open, onClick }) => {
+  const { asPath, pathname } = useRouter();
   const { isAuthenticated, logout } = useAuth();
+
   return (
     <StyledMenu open={open}>
-      <ul>
+      <StyledUl open={open}>
         {menuLinks.map((link) => (
           <Link
             key={link.name}
             href={`${process.env.NEXT_PUBLIC_WEBSITE_URL + link.link}`}
           >
-            <li onClick={onClick}>
+            <StyledLink active={asPath.endsWith(link.link)} onClick={onClick}>
               <a>{link.name}</a>
-            </li>
+            </StyledLink>
           </Link>
         ))}
 
         {isAuthenticated && [
-          <li key="admin" onClick={onClick}>
+          <StyledLink key="admin" onClick={onClick}>
             <Link href={"/admin"}>
               <a>עמוד מנהל</a>
             </Link>
-          </li>,
-          <li
+          </StyledLink>,
+          <StyledLink
             key="logout"
             className="admin"
             onClick={() => {
@@ -38,36 +42,58 @@ const Menu = ({ menuLinks, open, onClick }) => {
             <Link href={"/"}>
               <a className="admin">התנתק</a>
             </Link>
-          </li>,
+          </StyledLink>,
         ]}
-      </ul>
+      </StyledUl>
     </StyledMenu>
   );
 };
+
+const StyledLink = styled.li`
+  margin-top: 20px;
+  margin-right: 30px;
+  cursor: pointer;
+  color: black;
+
+  ${({ active }) =>
+    active &&
+    `
+
+  font-weight: bold;
+`}
+
+  @media screen and(max-width: ${(props) => props.theme.responsive.medium}) {
+    margin: 0;
+  }
+`;
+
+const StyledUl = styled.ul`
+  display: flex;
+  margin: auto;
+  align-items: flex-end;
+  padding-right: 20px;
+  list-style-type: none;
+
+  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    display: ${({ open }) => (open ? "flex" : "none")};
+    position: fixed;
+    height: 100%;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    right: 0;
+    padding: 0;
+    padding-top: 40px;
+    background: white;
+    z-index: 150;
+  }
+`;
 
 const StyledMenu = styled.nav`
   display: block;
   width: 100%;
   height: 60px;
   z-index: 1;
-
-  ul {
-    margin: auto;
-    padding-right: 50px;
-    list-style-type: none;
-
-  }
-
-  li {
-    margin-top: 20px;
-    cursor: pointer;
-    float: right;
-    padding-right: 50px;
-
-    color: black;
-    text-align: center;
-  }
-
   .admin {
     color: red;
   }
@@ -75,33 +101,6 @@ const StyledMenu = styled.nav`
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
     height: ${({ open }) => (open ? "100%" : "50px")};
     z-index: 101;
-
-    ul {
-      display: ${({ open }) => (open ? "block" : "none")};
-      position: fixed;
-      height: 100%;
-      width: 100%;
-      right:0;
-      padding: 0;
-      padding-top: 80px;
-      background: white;
-      z-index: 150;
-
-    }
-
-    li {
-      
-      direction: rtl;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-      width: 100%;
-      border-width: 5px;
-      display: table-cell;
-      position: relative;
-      border-top-style: solid;
-      border: 1px solid rgba(228, 228, 228, 0.2);
-    }
 
     a {
       color: black;
