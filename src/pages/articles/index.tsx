@@ -11,6 +11,7 @@ import { GetArticles } from "../../graphql/__generated__/GetArticles";
 import query from "../../graphql/GetArticles.graphql";
 import Carousel from "../../elements/Carousel";
 import Flex from "../../elements/Flex";
+import Title from "../../elements/Title";
 
 const seo = {
   title: "כתבות",
@@ -33,7 +34,7 @@ const Articles = ({ disableMetadata }) => {
   return (
     <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
-      <h1>כתבות</h1>
+      <Title>כתבות</Title>
 
       <Carousel
         items={data?.getArticles.map((article) => (

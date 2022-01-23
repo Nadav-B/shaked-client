@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 import api from "../shared/api";
 
@@ -28,8 +28,9 @@ enum FormularStyle {
   compact = 1,
 }
 
-const Contact: React.FC<{ disableMetadata: boolean, title?: string }> = ({
-  disableMetadata, title="צרו קשר"
+const Contact: React.FC<{ disableMetadata: boolean; title?: string }> = ({
+  disableMetadata,
+  title = "צרו קשר",
 }) => {
   const [state, setState] = useState({
     fullname: "",
@@ -38,9 +39,6 @@ const Contact: React.FC<{ disableMetadata: boolean, title?: string }> = ({
     address: "",
     category: "כללי",
   });
-
-
-
 
   const [submitContact, { data, loading, error }] = useMutation<
     { SaveContact: SaveContact },
@@ -75,13 +73,12 @@ const Contact: React.FC<{ disableMetadata: boolean, title?: string }> = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-
     submitContact({
       variables: {
         contactInput: {
           fullName: state.fullname,
           phoneNumber: state.phonenumber,
-          email:state.email,
+          email: state.email,
           address: state.address,
           category: state.category,
           comment: "",
@@ -105,18 +102,17 @@ const Contact: React.FC<{ disableMetadata: boolean, title?: string }> = ({
         }));
       }
     );
-  
   };
 
   return (
     <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
 
-      <Title> {title} </Title>
+      <h1> {title} </h1>
 
       <TextWrapper>
         <form onSubmit={handleSubmit}>
-          <Flex flexDirection="column">
+          <Flex alignItems="center" flexDirection="column">
             {state.fullname !== "" && <Text size={"small"}>שם</Text>}
             <label>
               <StyledInput
@@ -128,8 +124,9 @@ const Contact: React.FC<{ disableMetadata: boolean, title?: string }> = ({
                 required
               />
             </label>
+            {state.phonenumber !== "" && <>טלפון</>}
+
             <label>
-              {state.phonenumber !== "" && <>טלפון</>}
               <StyledInput
                 name="phonenumber"
                 placeholder="מספר טלפון "
@@ -182,9 +179,12 @@ const Contact: React.FC<{ disableMetadata: boolean, title?: string }> = ({
 
           */}
             <Text variant={result.style}> {result.text}</Text>
-            <Button disabled={result.status} type="submit">
-              שלח
-            </Button>
+
+            <StyledBox>
+              <Button disabled={result.status} type="submit">
+                שלח
+              </Button>
+            </StyledBox>
           </Flex>
         </form>
       </TextWrapper>
@@ -203,17 +203,21 @@ const StyledSelect = styled.select`
   height: 40px;
 `;
 
-const StyledInput = styled.input`
-  width: 100%;
+const StyledBox = styled.div`
+  width: 200px;
+`;
 
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
+const StyledInput = styled.input`
+  width: 300px;
+  height: 30px;
+  font-size: 12px;
+  margin-top: 10px;
   border: 1px solid ${(p) => p.theme.colors.veryLightGrey};
   border-radius: 4px;
   box-sizing: border-box;
   background: ${(p) => p.theme.colors.veryLightGrey};
   &::placeholder {
+    padding-right: 10px;
     color: ${(p) => p.theme.colors.black};
   }
 `;

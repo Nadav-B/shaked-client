@@ -43,11 +43,9 @@ const ServicePreview: React.FC<{
 };
 
 const StyledCube = styled.div`
-  width: 160px;
-  height: 180px;
+  width: 150px;
+  height: 130px;
   cursor: pointer;
-  background: #0a589d14;
-  margin: 15px;
 `;
 
 const StyledFront = styled.div`
@@ -79,7 +77,7 @@ const StyledBack = styled.div`
   transition: 0.5s ease;
 
   img {
-    width: 20px;
+    width: 10px;
   }
 
 }

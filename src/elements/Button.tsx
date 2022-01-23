@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import TypeFontSize from "./FontSize";
 import shouldForwardProp from "@styled-system/should-forward-prop";
 import {
@@ -24,10 +24,6 @@ import {
   GridProps,
 } from "styled-system";
 
-
-
-
-
 export type ButtonProps = PositionProps &
   LayoutProps &
   FlexboxProps &
@@ -43,30 +39,33 @@ export type ButtonProps = PositionProps &
     as?: As;
     children?: React.ReactNode;
   };
-  type As<P = any> = React.ElementType<P>;
+type As<P = any> = React.ElementType<P>;
 
-const StyledButton =  styled("button", { shouldForwardProp })<ButtonProps>`
+const StyledButton = styled("button", { shouldForwardProp })<ButtonProps>`
   display: block;
   align-items: center;
   justify-content: center;
   height: 40px;
   width: 80%;
-
   font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};
   font-family: ${(p) => p.theme.fontFamily};
   border-radius: ${(p) => p.theme.border}px;
-  border: 1px solid  ${(p) => p.theme.colors.lightGrey};
-
-
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: ${({ active }) => (active ? "#0a589d" : "white")};
-  outline: none;
-  color: ${({ active }) => (active ? "white" : "#0a589d")};
+  border: 1px solid ${(p) => p.theme.colors.lightGrey};
+  background: #21646b;
+  color: white;
+  font-weight: bold;
   margin: auto;
   margin-bottom: 20px;
-  margin-top: 20px;
-
+  margin-top: 9px;
   cursor: pointer;
+
+  ${({ active }) =>
+    active &&
+    `
+    border-radius: 10px;
+    background: green;
+    font-weight: bold;
+`}
 
   &:hover {
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);

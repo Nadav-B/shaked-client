@@ -1,6 +1,5 @@
 import React from "react";
-import styled from '@emotion/styled'
-
+import styled from "@emotion/styled";
 
 import Articles from "../pages/articles";
 import Contact from "../pages/contact";
@@ -9,20 +8,20 @@ import About from "../pages/about";
 import Services from "../pages/services";
 
 import Meta from "../components/Meta";
+import Flex from "../elements/Flex";
 const Index = () => {
   return <Homepage />;
 };
 
 const Homepage = () => {
   return (
-    <div>
+    <Flex flexDirection="column">
       <Meta />
       <StyledLandingPage>
         <StyledText>
           <h1> שקד משכנתאות</h1>
           <h2> יעוץ משכנתאות וכלכלת המשפחה</h2>
         </StyledText>
-        <img src="landing/towers.webp" alt=" שקד משכנתאות" />
       </StyledLandingPage>
       <ContentBackground id="about">
         <About disableMetadata={true} />
@@ -41,7 +40,7 @@ const Homepage = () => {
           <Contact disableMetadata={true} />
         </ContentBackground>
       </ContentBackground>
-    </div>
+    </Flex>
   );
 };
 
@@ -58,23 +57,22 @@ const CustomBackground2 = styled.div`
 `;
 
 const StyledLandingPage = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 200px;
+  text-align: center;
 `;
 
 const StyledText = styled.div`
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 120px;
-  text-align: center;
-
   h1 {
-    font-size: 30px;
-    color: ${(p) => p.theme.colors.navyBlue};
+    font-size: 50px;
+    color: ${(p) => p.theme.colors.darkGreen
+ };
     margin: auto;
   }
   h2 {
-    font-size: 12px;
+    font-size: 20px;
     margin: auto;
   }
 

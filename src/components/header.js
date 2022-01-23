@@ -5,14 +5,14 @@ import Menu from "../elements/Menu";
 import PropTypes from "prop-types";
 import SizeWrapper from "../elements/SizeWrapper";
 import Link from "next/link";
-import styled from '@emotion/styled'
-
+import styled from "@emotion/styled";
 
 const Header = ({ menuLinks, siteTitle }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <HeaderWrapper open={open}>
+      <Background />
       <StyledLogo>
         <Link href={"/"}>
           <a>
@@ -36,22 +36,30 @@ Header.defaultProps = {
 };
 
 const HeaderWrapper = styled.div`
-  background-color: white;
+  display: flex;
+  position: relative;
+  width: auto;
+  height: 146px;
+`;
+
+const Background = styled.div`
+  position: absolute;
+  background-color: #cff2ef;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  opacity: 0.58;
 `;
 
 const StyledLogo = styled.div`
-  position: absolute;
-  right: 20px;
-  top: 0px;
-  width: 50px;
-  height: 50px;
-  border-radius: 80px;
+  width: 150px;
+  margin-right: 20px;
+  margin-top: 10px;
   z-index: 100;
-  img {
-    height: 100%;
-  }
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    width: 200px;
+
   }
 `;
 

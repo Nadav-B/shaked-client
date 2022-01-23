@@ -74,17 +74,18 @@ const StyledMenu = styled.nav`
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
     height: ${({ open }) => (open ? "100%" : "50px")};
+    z-index: 101;
 
     ul {
       display: ${({ open }) => (open ? "block" : "none")};
       position: fixed;
       height: 100%;
       width: 100%;
+      right:0;
       padding: 0;
       padding-top: 80px;
-
       background: white;
-      z-index: 100;
+      z-index: 150;
 
     }
 

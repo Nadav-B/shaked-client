@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
+import Titel from "../../elements/Title";
 
 const seo = {
   title: "שאלונים",
@@ -20,7 +21,7 @@ const Surveys = ({ disableMetadata }) => {
   return (
     <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
-      <h1>שאלונים לביצוע בדיקה</h1>
+      <Titel>שאלונים לביצוע בדיקה</Titel>
       {data.map((survey) => (
           <Link
             key={survey.name}

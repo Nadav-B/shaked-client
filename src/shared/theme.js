@@ -3,7 +3,8 @@ const colors = {
   lightGrey: "#EFF2EF",
   darkGrey: "#D9D9D9",
   caribbeanGreen: "#158467",
-
+  lightTurquoise: "#cff2ef",
+  darkGreen:  "#21646b",
   aliceBlue: "#E6F5FF",
   bisque: "#FFE1BE",
   black: "#000",

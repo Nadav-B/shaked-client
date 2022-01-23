@@ -163,26 +163,23 @@ const Survey = ({ id }) => {
       <Meta seo={seo} />
       <h1 className="title">{selectedSurvey.name}</h1>
       {currentStatus == 1 && (
-        <div>
-          <QuestionWrapper>
-            <Text fontSize="large">
-              שאלה {index + 1} מתוך {selectedSurvey.questions.length}
-            </Text>
-
-            <Progress
-              theme={{
-                active: {
-                  symbol: "‍",
-                  color: "#0a589d",
-                },
-              }}
-              percent={(index / selectedSurvey.questions.length) * 100}
-            />
-            <Text fontSize="large">
-              {" "}
-              {selectedSurvey.questions[index].question}
-            </Text>
-          </QuestionWrapper>
+        <Flex margin="30px" alignItems="center" flexDirection="column">
+          <Text fontSize="large">
+            שאלה {index + 1} מתוך {selectedSurvey.questions.length}
+          </Text>
+          <Progress
+            theme={{
+              active: {
+                symbol: "‍",
+                color: "#0a589d",
+              },
+            }}
+            percent={(index / selectedSurvey.questions.length) * 100}
+          />
+          <Text fontSize="large">
+            {" "}
+            {selectedSurvey.questions[index].question}
+          </Text>
 
           <StyledAnswersWrapper>
             {selectedSurvey.questions[index].answers.map((answer, counter) => (
@@ -212,59 +209,55 @@ const Survey = ({ id }) => {
               </Button>
             </BackButtonWrapper>
           )}
-        </div>
+        </Flex>
       )}
       {currentStatus == 2 && (
-        <ContactWrapper>
+        <Flex margin="30px" alignItems="center" flexDirection="column">
           <Progress percent={100} />
           <StatusWrapper>
-
-          <Text variant="semiBold">
-            מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת בדיקה ללא עלות
-          </Text>
+            <Text variant="semiBold">
+              מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת בדיקה ללא עלות
+            </Text>
           </StatusWrapper>
 
           <TextWrapper>
-          <form id="submitSurveyForm" onSubmit={handleSubmit}>
-          <Flex flexDirection="column">
+            <form id="submitSurveyForm" onSubmit={handleSubmit}>
+              <Flex flexDirection="column">
+                <label>
+                  {contact.fullName !== "" && <Text size={"small"}>שם</Text>}
+                  <StyledInput
+                    name="fullName"
+                    value={contact.fullName}
+                    placeholder="שם מלא"
+                    type="text"
+                    onChange={handleChange}
+                    required
+                  />{" "}
+                </label>
 
-            <label>
-              {contact.fullName !== "" && <Text size={"small"}>שם</Text>}
-              <StyledInput
-                name="fullName"
-                value={contact.fullName}
-                placeholder="שם מלא"
-                type="text"
-                onChange={handleChange}
-                required
-              />{" "}
-            </label>
+                <label>
+                  {contact.phoneNumber !== "" && <>טלפון</>}
+                  <StyledInput
+                    name="phoneNumber"
+                    value={contact.phoneNumber}
+                    placeholder="טלפון"
+                    onChange={handleChange}
+                    type="tel"
+                    required
+                  />{" "}
+                </label>
 
-            <label>
-              {contact.phoneNumber !== "" && <>טלפון</>}
-              <StyledInput
-                name="phoneNumber"
-                value={contact.phoneNumber}
-                placeholder="טלפון"
-                onChange={handleChange}
-                type="tel"
-                required
-              />{" "}
-            </label>
-
-            <Button
-              id="submitSurvey"
-              disabled={confirmation.status}
-              type="submit"
-            >
-              שלח
-            </Button>
-            </Flex>
-
-          </  form>
+                <Button
+                  id="submitSurvey"
+                  disabled={confirmation.status}
+                  type="submit"
+                >
+                  שלח
+                </Button>
+              </Flex>
+            </form>
           </TextWrapper>
-
-        </ContactWrapper>
+        </Flex>
       )}
 
       {currentStatus == 3 && (
@@ -284,26 +277,19 @@ const Survey = ({ id }) => {
 };
 
 const BackButtonWrapper = styled.div`
-  max-width: 200px;
-
+  width: 200px;
   img {
     display: inline;
     width: 20px;
     float: right;
   }
 `;
+
 const StyledAnswersWrapper = styled.div`
   display: block;
   width: 100%;
   margin: auto;
   margin-top: 25px;
-`;
-
-const ContactWrapper = styled.div`
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
 `;
 
 const StatusWrapper = styled.div`
@@ -314,16 +300,9 @@ const StatusWrapper = styled.div`
   text-align: center;
 `;
 
-const QuestionWrapper = styled.div`
-  display: block;
-  width: auto;
-  max-width: 400px;
-  margin: auto;
-  text-align: center;
-`;
 const StyledInput = styled.input`
   width: 100%;
-
+  font-size: 12px;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
