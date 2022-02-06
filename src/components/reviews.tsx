@@ -10,7 +10,7 @@ const Reviews: React.FC<{}> = ({}) => {
       <Title> מה לקוחות אומרים עלינו?</Title>
       <StyledFlex>
         <a
-          target="_blank"
+
           href={
             "https://www.facebook.com/liran.mishali/posts/10161424289698098"
           }
@@ -28,7 +28,6 @@ const Reviews: React.FC<{}> = ({}) => {
         </a>
 
         <a
-          target="_blank"
           href={
             "https://www.facebook.com/hadar.berman.5/posts/10158004774682811"
           }
@@ -47,7 +46,6 @@ const Reviews: React.FC<{}> = ({}) => {
         </a>
 
         <a
-          target="_blank"
           href={"https://www.facebook.com/asaf.david23/posts/10219299682109947"}
         >
           <StyledReview>
@@ -63,7 +61,6 @@ const Reviews: React.FC<{}> = ({}) => {
         </a>
 
         <a
-          target="_blank"
           href={
             "https://www.facebook.com/permalink.php?story_fbid=4237047926358194&id=2177117312351276"
           }
@@ -81,7 +78,6 @@ const Reviews: React.FC<{}> = ({}) => {
         </a>
 
         <a
-          target="_blank"
           href={
             "https://www.facebook.com/permalink.php?story_fbid=4120632211333100&id=2177117312351276"
           }
