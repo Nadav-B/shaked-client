@@ -18,7 +18,7 @@ const seo = {
 };
 
 
-const NewMortage: React.FC = ({}) => {
+const NewMortgage: React.FC = ({}) => {
 
 
     return (
@@ -159,4 +159,4 @@ const StledOfferText = styled.div`
   }
 `;
 
-export default NewMortage;
+export default NewMortgage;
