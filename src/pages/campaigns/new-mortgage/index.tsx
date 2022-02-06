@@ -30,9 +30,9 @@ const NewMortgage: React.FC = ({}) => {
                     <ProductBox id="contact">
                         <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
                         <StyledCircle>
-                            <StledOfferText>הנחה לזמן מוגבל</StledOfferText>
+                            <StyledOfferText>הנחה לזמן מוגבל</StyledOfferText>
                             <StyledPrice>6,500 ₪* </StyledPrice>
-                            <StledOfferText>במקום 7,900 ₪</StledOfferText>
+                            <StyledOfferText>במקום 7,900 ₪</StyledOfferText>
                         </StyledCircle>
                     </ProductBox>
                 </Flex>
@@ -61,16 +61,16 @@ const NewMortgage: React.FC = ({}) => {
                 <Title> מי אנחנו?</Title>
 
                 <TextWrapper>
-                    <Text>
+                    <Text textAlign="center">
                         שקד משכנתאות - הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק המשכנתאות,
                     </Text>
-                    <Text>
+                    <Text textAlign="center">
                         בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית ומחוצה לה.
                     </Text>
-                    <Text>
+                    <Text textAlign="center">
                         היועצים שלנו ילוו אתכם לאורך כל הדרך,
                     </Text>
-                    <Text fontWeight="bold">
+                    <Text fontWeight="bold" textAlign="center">
                         באופן מקצועי והכי אישי שיש!
                     </Text>
                 </TextWrapper>
@@ -91,10 +91,7 @@ const NewMortgage: React.FC = ({}) => {
                     </Text>
 
                 </TextWrapper>
-
             </Flex>
-
-
         </>
     );
 };
@@ -103,7 +100,7 @@ const NewMortgage: React.FC = ({}) => {
 const StyledHeadlineTitle = styled.div`
   margin: 9px 15px 0 19px;
   font-size: 40px;
-  font-weight: 600;
+  font-weight: bold;
   width: auto;
   line-height: 1;
   text-align: right;
@@ -173,7 +170,7 @@ const StyledPrice = styled.div`
   font-weight: bold;
 `;
 
-const StledOfferText = styled.div`
+const StyledOfferText = styled.div`
   color: white;
   font-size: ${(p) => p.theme.fontSize.large};
   text-align: center;

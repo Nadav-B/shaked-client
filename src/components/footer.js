@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import SizeWrapper from "../elements/SizeWrapper";
 import Flex from "../elements/Flex";
 
-const Fotter = () => (
+const Footer = () => (
   <StyledFooter>
     <StyledItem>שקד משכנתאות</StyledItem>
     <Flex>
@@ -64,7 +64,7 @@ const StyledItem = styled.div`
   color: white;
   margin-right: 6px;
   margin-left: 6px;
-  font-weight: bold;
+  font-weight: normal;
 
   a {
     color: white;
@@ -76,4 +76,4 @@ const StyledItem = styled.div`
   }
 `;
 
-export default Fotter;
+export default Footer;
