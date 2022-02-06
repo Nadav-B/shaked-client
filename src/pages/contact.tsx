@@ -100,61 +100,52 @@ const Contact: React.FC<ContactOptions> = ({
     return (
         <Flex flexDirection="column">
             {!disableMetadata && <Meta seo={seo}/>}
+            <StyledHeadline> {title} </StyledHeadline>
 
-            <h1> {title} </h1>
+            <form onSubmit={handleSubmit}>
+                <Flex alignItems="center" flexDirection="column">
+                    {state.fullName !== "" && <Text size={"small"}>שם</Text>}
+                    <label>
+                        <StyledInput
+                            title="שם"
+                            name="fullName"
+                            value={state.fullName}
+                            placeholder="שם"
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    {state.phoneNumber !== "" && <>טלפון</>}
 
-            <TextWrapper>
-                <form onSubmit={handleSubmit}>
-                    <Flex alignItems="center" flexDirection="column">
-                        {state.fullName !== "" && <Text size={"small"}>שם</Text>}
-                        <label>
-                            <StyledInput
-                                title="שם"
-                                name="fullName"
-                                value={state.fullName}
-                                placeholder="שם"
-                                onChange={handleChange}
-                                required
-                            />
-                        </label>
-                        {state.phoneNumber !== "" && <>טלפון</>}
+                    <label>
+                        <StyledInput
+                            name="phoneNumber"
+                            placeholder="מספר טלפון"
+                            value={state.phoneNumber}
+                            onChange={handleChange}
+                            maxLength={11}
+                            type="tel"
+                            title="טלפון"
+                            required
+                        />
+                    </label>
 
-                        <label>
-                            <StyledInput
-                                name="phoneNumber"
-                                placeholder="מספר טלפון "
-                                value={state.phoneNumber}
-                                onChange={handleChange}
-                                maxLength={11}
-                                type="tel"
-                                title="טלפון"
-                                required
-                            />
-                        </label>
+                    <Text variant={result.style}> {result.text}</Text>
 
-                        <Text variant={result.style}> {result.text}</Text>
-
-                        <StyledBox>
-                            <Button disabled={result.status} type="submit">
-                                שלח
-                            </Button>
-                        </StyledBox>
-                    </Flex>
-                </form>
-            </TextWrapper>
+                    <StyledBox>
+                        <Button disabled={result.status} type="submit">
+                            שלח
+                        </Button>
+                    </StyledBox>
+                </Flex>
+            </form>
         </Flex>
     );
 };
 
-const StyledSelect = styled.select`
-  display: block;
-  width: 100%;
-  margin: auto;
-  margin-top: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  height: 40px;
+
+const StyledHeadline = styled.h1`
+  font-weight: bold;
 `;
 
 const StyledBox = styled.div`
@@ -174,6 +165,7 @@ const StyledInput = styled.input`
   &::placeholder {
     padding-right: 10px;
     color: ${(p) => p.theme.colors.black};
+
   }
 `;
 

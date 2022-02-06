@@ -1,103 +1,105 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styled from "@emotion/styled";
 import Wrapper from "../elements/Wrapper";
 import Title from "../elements/Title";
 import Link from "next/link";
 
 const Reviews: React.FC<{}> = ({}) => {
-  return (
-    <Wrapper>
-      <Title> מה לקוחות אומרים עלינו?</Title>
-      <StyledFlex>
-        <a
+    return (
+        <Wrapper>
+            <Title> מה לקוחות אומרים עלינו?</Title>
+            <StyledFlex>
 
-          href={
-            "https://www.facebook.com/liran.mishali/posts/10161424289698098"
-          }
-        >
-          <StyledReview>
-            <StyledCircle>
-              <img src="/reviews/1.jpg"></img>
-            </StyledCircle>
-            <StyledClient> לירן .מ. תל-אביב</StyledClient>
-            <StyledComment invertedSide={true}>
-              "..מתחילת הדרך הרגשנו שאנחנו בידיים טובות.. שי מאוד מקצועי, אמין,
-              ואחראי. בלעדיו לא היינו שורדים את התהליך! .."
-            </StyledComment>
-          </StyledReview>
-        </a>
 
-        <a
-          href={
-            "https://www.facebook.com/hadar.berman.5/posts/10158004774682811"
-          }
-        >
-          <StyledReview>
-            <StyledCircle>
-              <img src="/reviews/2.jpg"></img>
-            </StyledCircle>{" "}
-            <StyledClient> הדר .מ. חריש</StyledClient>
-            <StyledComment>
-              "..אין לתאר את ההקלה שמישהו אחר מטפל לך בתסבוכת הזו.. סופר מקצועי,
-              עובד מכל הלב.. היה זמין עבורנו תמיד.. סמכנו עליו בעיניים
-              עצומות!.."
-            </StyledComment>
-          </StyledReview>
-        </a>
+                <a
+                    href={
+                        "https://www.facebook.com/permalink.php?story_fbid=4120632211333100&id=2177117312351276"
+                    }
+                >
+                    <StyledReview>
+                        <StyledCircle>
+                            <img src="/reviews/5.jpg"></img>
+                        </StyledCircle>
+                        <StyledClient>יעל .ב. מכמורת</StyledClient>
+                        <StyledComment invertedSide={true}>
+                            "..לא מתפשר ולא נח עד להשגת היעד ללא פשרות, שבפועל תורגם לחסכון
+                            כספי ענק שלי. לא מובן למצוא אנשי מקצוע שנותנים לך שקט ועושים לך
+                            חיים קלים באחת ההחלטות הקריטיות בחיים... אתה פשוט איש טוב באמצע
+                            הדרך וכן יירבו כמוך."
+                        </StyledComment>
+                    </StyledReview>
+                </a>
+                <a
 
-        <a
-          href={"https://www.facebook.com/asaf.david23/posts/10219299682109947"}
-        >
-          <StyledReview>
-            <StyledCircle>
-              <img src="/reviews/3.jpg"></img>
-            </StyledCircle>{" "}
-            <StyledClient>אסף .ד. ראש העין</StyledClient>
-            <StyledComment invertedSide={true}>
-              "..בזכותו חסכנו הרבה! התהליך איתו היה סופר קליל, מקצועי, ומהיר!
-              ממליצים בחום."
-            </StyledComment>
-          </StyledReview>
-        </a>
+                    href={
+                        "https://www.facebook.com/liran.mishali/posts/10161424289698098"
+                    }
+                >
+                    <StyledReview>
+                        <StyledCircle>
+                            <img src="/reviews/1.jpg"></img>
+                        </StyledCircle>
+                        <StyledClient> לירן .מ. תל-אביב</StyledClient>
+                        <StyledComment invertedSide={true}>
+                            "..מתחילת הדרך הרגשנו שאנחנו בידיים טובות.. שי מאוד מקצועי, אמין,
+                            ואחראי. בלעדיו לא היינו שורדים את התהליך! .."
+                        </StyledComment>
+                    </StyledReview>
+                </a>
 
-        <a
-          href={
-            "https://www.facebook.com/permalink.php?story_fbid=4237047926358194&id=2177117312351276"
-          }
-        >
-          <StyledReview>
-            <StyledCircle>
-              <img src="/reviews/4.jpg"></img>
-            </StyledCircle>{" "}
-            <StyledClient>גל .ר. חולון</StyledClient>
-            <StyledComment>
-              "..שי נלחם בשבילנו לאורך כל הדרך, עשה הרבה מעבר למה שהיה צריך ללא
-              ספק!! ..תמיכה מלאה למרות הקשיים שהתגלו בדרך."
-            </StyledComment>
-          </StyledReview>
-        </a>
+                <a
+                    href={
+                        "https://www.facebook.com/hadar.berman.5/posts/10158004774682811"
+                    }
+                >
+                    <StyledReview>
+                        <StyledCircle>
+                            <img src="/reviews/2.jpg"></img>
+                        </StyledCircle>{" "}
+                        <StyledClient> הדר .מ. חריש</StyledClient>
+                        <StyledComment>
+                            "..אין לתאר את ההקלה שמישהו אחר מטפל לך בתסבוכת הזו.. סופר מקצועי,
+                            עובד מכל הלב.. היה זמין עבורנו תמיד.. סמכנו עליו בעיניים
+                            עצומות!.."
+                        </StyledComment>
+                    </StyledReview>
+                </a>
 
-        <a
-          href={
-            "https://www.facebook.com/permalink.php?story_fbid=4120632211333100&id=2177117312351276"
-          }
-        >
-          <StyledReview>
-            <StyledCircle>
-              <img src="/reviews/5.jpg"></img>
-            </StyledCircle>
-            <StyledClient>יעל .ב. מכמורת</StyledClient>
-            <StyledComment invertedSide={true}>
-              "..לא מתפשר ולא נח עד להשגת היעד ללא פשרות, שבפועל תורגם לחסכון
-              כספי ענק שלי. לא מובן למצוא אנשי מקצוע שנותנים לך שקט ועושים לך
-              חיים קלים באחת ההחלטות הקריטיות בחיים... אתה פשוט איש טוב באמצע
-              הדרך וכן יירבו כמוך."
-            </StyledComment>
-          </StyledReview>
-        </a>
-      </StyledFlex>
-    </Wrapper>
-  );
+                <a
+                    href={"https://www.facebook.com/asaf.david23/posts/10219299682109947"}
+                >
+                    <StyledReview>
+                        <StyledCircle>
+                            <img src="/reviews/3.jpg"></img>
+                        </StyledCircle>{" "}
+                        <StyledClient>אסף .ד. ראש העין</StyledClient>
+                        <StyledComment invertedSide={true}>
+                            "..בזכותו חסכנו הרבה! התהליך איתו היה סופר קליל, מקצועי, ומהיר!
+                            ממליצים בחום."
+                        </StyledComment>
+                    </StyledReview>
+                </a>
+
+                <a
+                    href={
+                        "https://www.facebook.com/permalink.php?story_fbid=4237047926358194&id=2177117312351276"
+                    }
+                >
+                    <StyledReview>
+                        <StyledCircle>
+                            <img src="/reviews/4.jpg"></img>
+                        </StyledCircle>{" "}
+                        <StyledClient>גל .ר. חולון</StyledClient>
+                        <StyledComment>
+                            "..שי נלחם בשבילנו לאורך כל הדרך, עשה הרבה מעבר למה שהיה צריך ללא
+                            ספק!! ..תמיכה מלאה למרות הקשיים שהתגלו בדרך."
+                        </StyledComment>
+                    </StyledReview>
+                </a>
+
+            </StyledFlex>
+        </Wrapper>
+    );
 };
 
 const StyledFlex = styled.div`
@@ -110,7 +112,7 @@ const StyledFlex = styled.div`
 `;
 
 interface StyledComment {
-  invertedSide?: boolean;
+    invertedSide?: boolean;
 }
 
 const StyledComment = styled.div<StyledComment>`
@@ -118,11 +120,12 @@ const StyledComment = styled.div<StyledComment>`
   background-color: #cff2ef;
   border-radius: 0.4em;
   padding: 8px;
+
   &:after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: ${({ invertedSide }) => (invertedSide ? "80%" : "20%")};
+    left: ${({invertedSide}) => (invertedSide ? "80%" : "20%")};
     width: 0;
     height: 0;
     border: 21px solid transparent;

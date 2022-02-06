@@ -9,8 +9,8 @@ import Contact from "../../contact";
 import Reviews from "../../../components/reviews";
 import styled from "@emotion/styled";
 import Title from "../../../elements/Title";
-import Bubbel from "../../../elements/Bubbel";
-import {router} from "next/client";
+
+import Text from "../../../elements/Text";
 
 const seo = {
     description: "השאירו פרטים ונחזור אליכם בהקדם",
@@ -20,11 +20,10 @@ const seo = {
 
 const NewMortgage: React.FC = ({}) => {
 
-
     return (
         <>
             <Meta seo={seo}/>
-            <Flex flexDirection="column" justifyContent="center">
+            <Flex fontSize="18px" flexDirection="column" justifyContent="center">
                 <Flex alignItems="center" flexDirection="column">
                     <StyledHeadlineTitle>"הבחירה הנכונה שלכם"</StyledHeadlineTitle>
 
@@ -32,31 +31,48 @@ const NewMortgage: React.FC = ({}) => {
                         <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
                         <StyledCircle>
                             <StledOfferText>הנחה לזמן מוגבל</StledOfferText>
-                            <StyledPrice>6,500 ₪</StyledPrice>
+                            <StyledPrice>6,500 ₪* </StyledPrice>
                             <StledOfferText>במקום 7,900 ₪</StledOfferText>
                         </StyledCircle>
                     </ProductBox>
                 </Flex>
-                <div>
-                    <Contact category="קמפיין ליווי משכנתא" title="לתאום שיחה ללא התחייבות"
-                             disableMetadata={true}></Contact>
-                </div>
+                <Contact category="קמפיין ליווי משכנתא" title="לתאום שיחה ללא התחייבות"
+                         disableMetadata={true}></Contact>
 
                 <Title> למה שקד?</Title>
-
                 <TextWrapper>
-                    התאמת משכנתא אישית בהתאם לצרכים שלכם מכרז בין הבנקים והשגת התנאים
-                    האולטימטיביים עבורכם ליווי מלא לאורך כל התהליך מקצועיות, אמינות, זמינות
-                    והרבה סבלנות..
+                    <Text textAlign="center">
+                        התאמת משכנתא אישית בהתאם לצרכים שלכם
+                    </Text>
+
+                    <Text textAlign="center">
+                        מכרז בין הבנקים והשגת התנאים האולטימטיביים עבורכם
+                    </Text>
+
+                    <Text textAlign="center">
+                        ליווי מלא לאורך כל התהליך
+                    </Text>
+
+                    <Text fontWeight="bold" textAlign="center">
+                        מקצועיות, אמינות, זמינות והרבה סבלנות..
+                    </Text>
                 </TextWrapper>
 
                 <Title> מי אנחנו?</Title>
 
                 <TextWrapper>
-                    שקד משכנתאות - הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק
-                    המשכנתאות, בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת
-                    הבנקאית ומחוצה לה. היועצים שלנו ילוו אתכם לאורך כל הדרך, באופן מקצועי
-                    והכי אישי שיש.
+                    <Text>
+                        שקד משכנתאות - הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק המשכנתאות,
+                    </Text>
+                    <Text>
+                        בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית ומחוצה לה.
+                    </Text>
+                    <Text>
+                        היועצים שלנו ילוו אתכם לאורך כל הדרך,
+                    </Text>
+                    <Text fontWeight="bold">
+                        באופן מקצועי והכי אישי שיש!
+                    </Text>
                 </TextWrapper>
 
                 <Reviews/>
@@ -66,15 +82,23 @@ const NewMortgage: React.FC = ({}) => {
                        <a href={"#contact"}>
                     <Bubbel></Bubbel>
                 </a>
-
                 */}
+                <TextWrapper>
+                    <Text fontSize="medium">
+                        * המחיר וההנחה יאושרו רק לאחר בחינת התיק על ידי המשרד
+                        ולא יחולו על תיקים עם מורכבות כגון לקוחות מוגבלים, בניה עצמית, בעלי חברות וכו'.
 
+                    </Text>
+
+                </TextWrapper>
 
             </Flex>
+
 
         </>
     );
 };
+
 
 const StyledHeadlineTitle = styled.div`
   margin: 9px 15px 0 19px;
@@ -108,7 +132,7 @@ const ProductBox = styled.div`
 
 const StyledSubTitle = styled.div`
   margin-right: 30px;
-  font-size: 25px;
+  font-size: 35px;
   font-weight: bold;
   line-height: 1;
   text-align: right;
