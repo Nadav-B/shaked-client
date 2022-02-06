@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Button from "../elements/Button";
 import Text from "../elements/Text";
 import styled from "@emotion/styled";
@@ -10,136 +10,142 @@ import Wrapper from "../elements/Wrapper";
 import TextWrapper from "../elements/TextWrapper";
 import Flex from "../elements/Flex";
 import mutation from "../graphql/SaveContact.graphql";
-import { useMutation } from "@apollo/client";
+import {useMutation} from "@apollo/client";
 import {
-  SaveContact,
-  SaveContact_saveContact,
+    SaveContact,
+    SaveContact_saveContact,
 } from "../graphql/__generated__/SaveContact";
-import { ContactInput } from "../graphql/__generated__/globalTypes";
+import {ContactInput} from "../graphql/__generated__/globalTypes";
 import Title from "../elements/Title";
 
 const seo = {
-  description: "השאירו פרטים ונחזור אליכם בהקדם",
-  url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/contact`,
+    description: "השאירו פרטים ונחזור אליכם בהקדם",
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/contact`,
 };
 
 enum FormularStyle {
-  default = 0,
-  compact = 1,
+    default = 0,
+    compact = 1,
 }
 
-const Contact: React.FC<{ disableMetadata: boolean; title?: string }> = ({
-  disableMetadata,
-  title = "צרו קשר",
-}) => {
-  const [state, setState] = useState({
-    fullname: "",
-    phonenumber: "",
-    email: "",
-    address: "",
-    category: "כללי",
-  });
 
-  const [submitContact, { data, loading, error }] = useMutation<
-    { SaveContact: SaveContact },
-    { contactInput: ContactInput }
-  >(mutation);
+interface ContactOptions {
+    disableMetadata: boolean
+    title?: string
+    category?: string
+}
 
-  const [result, setResult] = useState({
-    text: "",
-    style: "",
-    status: false,
-  });
+const Contact: React.FC<ContactOptions> = ({
+                                               disableMetadata,
+                                               title = "צרו קשר",
+                                               category= "כללי"
+                                           }) => {
+    const [state, setState] = useState({
+        fullName: "",
+        phoneNumber: "",
+        email: "",
+        address: "",
+        category: category,
+    });
 
-  const tags = [
-    "כללי",
-    "משכנתא חדשה",
-    "בדיקת משכנתא קיימת",
-    "מחזור משכנתא",
-    "נפרדים מהמינוס",
-  ];
+    const [submitContact, {data, loading, error}] = useMutation<{ SaveContact: SaveContact },
+        { contactInput: ContactInput }>(mutation);
 
-  const handleChange = (event) => {
-    event.preventDefault();
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+    const [result, setResult] = useState({
+        text: "",
+        style: "",
+        status: false,
+    });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    const tags = [
+        "כללי",
+        "משכנתא חדשה",
+        "בדיקת משכנתא קיימת",
+        "מחזור משכנתא",
+        "נפרדים מהמינוס",
+    ];
 
-    submitContact({
-      variables: {
-        contactInput: {
-          fullName: state.fullname,
-          phoneNumber: state.phonenumber,
-          email: state.email,
-          address: state.address,
-          category: state.category,
-          comment: "",
-        },
-      },
-    }).then(
-      (response) => {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "נשלח בהצלחה!",
-          style: "sucess",
-          status: true,
+    const handleChange = (event) => {
+        event.preventDefault();
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        setState((prevState) => ({
+            ...prevState,
+            [name]: value,
         }));
-      },
-      (error) => {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "שגיאה",
-          style: "error",
-          status: false,
-        }));
-      }
-    );
-  };
+    };
 
-  return (
-    <Flex flexDirection="column">
-      {!disableMetadata && <Meta seo={seo} />}
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-      <h1> {title} </h1>
+        submitContact({
+            variables: {
+                contactInput: {
+                    fullName: state.fullName,
+                    phoneNumber: state.phoneNumber,
+                    email: state.email,
+                    address: state.address,
+                    category: state.category,
+                    comment: "",
+                },
+            },
+        }).then(
+            (response) => {
+                setResult((prevState) => ({
+                    ...prevState,
+                    text: "נשלח בהצלחה!",
+                    style: "success",
+                    status: true,
+                }));
+            },
+            (error) => {
+                setResult((prevState) => ({
+                    ...prevState,
+                    text: "שגיאה",
+                    style: "error",
+                    status: false,
+                }));
+            }
+        );
+    };
 
-      <TextWrapper>
-        <form onSubmit={handleSubmit}>
-          <Flex alignItems="center" flexDirection="column">
-            {state.fullname !== "" && <Text size={"small"}>שם</Text>}
-            <label>
-              <StyledInput
-                title="שם"
-                name="fullname"
-                value={state.fullname}
-                placeholder="שם"
-                onChange={handleChange}
-                required
-              />
-            </label>
-            {state.phonenumber !== "" && <>טלפון</>}
+    return (
+        <Flex flexDirection="column">
+            {!disableMetadata && <Meta seo={seo}/>}
 
-            <label>
-              <StyledInput
-                name="phonenumber"
-                placeholder="מספר טלפון "
-                value={state.phonenumber}
-                onChange={handleChange}
-                maxLength={11}
-                type="tel"
-                title="טלפון"
-                required
-              />
-            </label>
+            <h1> {title} </h1>
 
-            {/* 
+            <TextWrapper>
+                <form onSubmit={handleSubmit}>
+                    <Flex alignItems="center" flexDirection="column">
+                        {state.fullName !== "" && <Text size={"small"}>שם</Text>}
+                        <label>
+                            <StyledInput
+                                title="שם"
+                                name="fullName"
+                                value={state.fullName}
+                                placeholder="שם"
+                                onChange={handleChange}
+                                required
+                            />
+                        </label>
+                        {state.phoneNumber !== "" && <>טלפון</>}
+
+                        <label>
+                            <StyledInput
+                                name="phoneNumber"
+                                placeholder="מספר טלפון "
+                                value={state.phoneNumber}
+                                onChange={handleChange}
+                                maxLength={11}
+                                type="tel"
+                                title="טלפון"
+                                required
+                            />
+                        </label>
+
+                        {/*
 
 
 
@@ -178,18 +184,18 @@ const Contact: React.FC<{ disableMetadata: boolean; title?: string }> = ({
           </label>
 
           */}
-            <Text variant={result.style}> {result.text}</Text>
+                        <Text variant={result.style}> {result.text}</Text>
 
-            <StyledBox>
-              <Button disabled={result.status} type="submit">
-                שלח
-              </Button>
-            </StyledBox>
-          </Flex>
-        </form>
-      </TextWrapper>
-    </Flex>
-  );
+                        <StyledBox>
+                            <Button disabled={result.status} type="submit">
+                                שלח
+                            </Button>
+                        </StyledBox>
+                    </Flex>
+                </form>
+            </TextWrapper>
+        </Flex>
+    );
 };
 
 const StyledSelect = styled.select`
@@ -210,12 +216,13 @@ const StyledBox = styled.div`
 const StyledInput = styled.input`
   width: 300px;
   height: 30px;
-  font-size:16px; 
+  font-size: 16px;
   margin-top: 10px;
   border: 1px solid ${(p) => p.theme.colors.veryLightGrey};
   border-radius: 4px;
   box-sizing: border-box;
   background: ${(p) => p.theme.colors.veryLightGrey};
+
   &::placeholder {
     padding-right: 10px;
     color: ${(p) => p.theme.colors.black};

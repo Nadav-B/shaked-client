@@ -34,8 +34,7 @@ const NewMortage: React.FC = ({}) => {
                     </ProductBox>
                 </Flex>
                 <div id="contact">
-
-                    <Contact title="לתאום שיחה ללא התחייבות" disableMetadata={true}></Contact>
+                    <Contact category="קמפיין ליווי משכנתא" title="לתאום שיחה ללא התחייבות" disableMetadata={true}></Contact>
                 </div>
 
                 <Title> למה שקד?</Title>
@@ -109,7 +108,7 @@ const StyledSubTitle = styled.div`
   text-align: right;
   color: #21646b;
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-      max-width: 120px;
+    max-width: 120px;
 
   }
 `;
