@@ -10,13 +10,17 @@ import Reviews from "../../../components/reviews";
 import styled from "@emotion/styled";
 import Title from "../../../elements/Title";
 import Bubbel from "../../../elements/Bubbel";
+import {router} from "next/client";
 
 const seo = {
     description: "השאירו פרטים ונחזור אליכם בהקדם",
     url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/campaigns/new-mortgage`,
 };
 
+
 const NewMortage: React.FC = ({}) => {
+
+
     return (
         <>
             <Meta seo={seo}/>
@@ -24,7 +28,7 @@ const NewMortage: React.FC = ({}) => {
                 <Flex alignItems="center" flexDirection="column">
                     <StyledHeadlineTitle>"הבחירה הנכונה שלכם"</StyledHeadlineTitle>
 
-                    <ProductBox>
+                    <ProductBox id="contact">
                         <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
                         <StyledCircle>
                             <StledOfferText>הנחה לזמן מוגבל</StledOfferText>
@@ -33,8 +37,9 @@ const NewMortage: React.FC = ({}) => {
                         </StyledCircle>
                     </ProductBox>
                 </Flex>
-                <div id="contact">
-                    <Contact category="קמפיין ליווי משכנתא" title="לתאום שיחה ללא התחייבות" disableMetadata={true}></Contact>
+                <div>
+                    <Contact category="קמפיין ליווי משכנתא" title="לתאום שיחה ללא התחייבות"
+                             disableMetadata={true}></Contact>
                 </div>
 
                 <Title> למה שקד?</Title>
@@ -55,14 +60,15 @@ const NewMortage: React.FC = ({}) => {
                 </TextWrapper>
 
                 <Reviews/>
-                <Services disableMetadata={true}/>
 
-
-                <a href={"#contact"}>
-
+                <Services backSide={false} disableMetadata={true}/>
+                {/*
+                       <a href={"#contact"}>
                     <Bubbel></Bubbel>
-
                 </a>
+
+                */}
+
 
             </Flex>
 

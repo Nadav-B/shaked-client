@@ -23,12 +23,6 @@ const seo = {
     url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/contact`,
 };
 
-enum FormularStyle {
-    default = 0,
-    compact = 1,
-}
-
-
 interface ContactOptions {
     disableMetadata: boolean
     title?: string
@@ -38,7 +32,7 @@ interface ContactOptions {
 const Contact: React.FC<ContactOptions> = ({
                                                disableMetadata,
                                                title = "צרו קשר",
-                                               category= "כללי"
+                                               category = "כללי"
                                            }) => {
     const [state, setState] = useState({
         fullName: "",
@@ -57,13 +51,6 @@ const Contact: React.FC<ContactOptions> = ({
         status: false,
     });
 
-    const tags = [
-        "כללי",
-        "משכנתא חדשה",
-        "בדיקת משכנתא קיימת",
-        "מחזור משכנתא",
-        "נפרדים מהמינוס",
-    ];
 
     const handleChange = (event) => {
         event.preventDefault();
@@ -145,45 +132,6 @@ const Contact: React.FC<ContactOptions> = ({
                             />
                         </label>
 
-                        {/*
-
-
-
-          
-          <label>
-            <StyledInput
-              name="email"
-              type="email"
-              placeholder="דוא״ל"
-              value={state.email}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            <StyledInput
-              name="address"
-              value={state.address}
-              placeholder="ישוב"
-              onChange={handleChange}
-            />
-          </label>
-
-          <label>
-            פנייה בנושא
-            <StyledSelect
-              name="category"
-              value={state.category}
-              onChange={handleChange}
-            >
-              {tags.map((tag) => (
-                <option key={tag} value={tag}>
-                  {tag}
-                </option>
-              ))}
-            </StyledSelect>
-          </label>
-
-          */}
                         <Text variant={result.style}> {result.text}</Text>
 
                         <StyledBox>
