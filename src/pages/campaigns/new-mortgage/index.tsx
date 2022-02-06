@@ -9,6 +9,7 @@ import Contact from "../../contact";
 import Reviews from "../../../components/reviews";
 import styled from "@emotion/styled";
 import Title from "../../../elements/Title";
+import Bubbel from "../../../elements/Bubbel";
 
 const seo = {
     description: "השאירו פרטים ונחזור אליכם בהקדם",
@@ -32,8 +33,10 @@ const NewMortage: React.FC = ({}) => {
                         </StyledCircle>
                     </ProductBox>
                 </Flex>
+                <div id="contact">
 
-                <Contact title="לתאום שיחה ללא התחייבות" disableMetadata={true}></Contact>
+                    <Contact title="לתאום שיחה ללא התחייבות" disableMetadata={true}></Contact>
+                </div>
 
                 <Title> למה שקד?</Title>
 
@@ -54,6 +57,14 @@ const NewMortage: React.FC = ({}) => {
 
                 <Reviews/>
                 <Services disableMetadata={true}/>
+
+
+                <a href={"#contact"}>
+
+                    <Bubbel></Bubbel>
+
+                </a>
+
             </Flex>
 
         </>
