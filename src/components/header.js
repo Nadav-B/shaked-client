@@ -59,7 +59,6 @@ const StyledLogo = styled.div`
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
     width: 200px;
-
   }
 `;
 

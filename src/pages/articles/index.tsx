@@ -1,10 +1,8 @@
 import React from "react";
-import styled from "@emotion/styled";
 import Loading from "../../elements/Loading";
 import ArticlePreview from "../../elements/ArticlePreview";
 import { useQuery } from "@apollo/client";
 import Meta from "../../components/Meta";
-import Wrapper from "../../elements/Wrapper";
 
 import { GetArticles } from "../../graphql/__generated__/GetArticles";
 

@@ -54,7 +54,6 @@ const Services: React.FC<{ disableMetadata: boolean }> = ({
 
 const StyledService = styled.div`
   display: flex;
-  flex-direction: coulmn;
   flex-wrap: wrap;
   justify-content: center;
 `;
