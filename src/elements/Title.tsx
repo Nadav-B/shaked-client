@@ -11,6 +11,7 @@ const Title: React.FC<TitleProps> = ({ children }) => {
 const StyledTitle = styled.h1`
   color: black;
   font-weight: bold;
+  margin: 0 0 5px;
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
     text-align: right;

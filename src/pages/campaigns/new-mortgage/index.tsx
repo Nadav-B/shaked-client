@@ -2,13 +2,15 @@ import React from "react";
 
 import Meta from "../../../components/Meta";
 import TextWrapper from "../../../elements/TextWrapper";
-import Flex from "../../../elements/Flex";
+import Flex, {FlexProps} from "../../../elements/Flex";
 
 import Services from "../../services";
 import Contact from "../../contact";
 import Reviews from "../../../components/reviews";
 import styled from "@emotion/styled";
 import Title from "../../../elements/Title";
+import {TypographyProps, typography} from 'styled-system'
+import shouldForwardProp from "@styled-system/should-forward-prop";
 
 import Text from "../../../elements/Text";
 
@@ -30,9 +32,17 @@ const NewMortgage: React.FC = ({}) => {
                     <ProductBox id="contact">
                         <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
                         <StyledCircle>
-                            <StyledOfferText>הנחה לזמן מוגבל</StyledOfferText>
-                            <StyledPrice>6,500 ₪* </StyledPrice>
-                            <StyledOfferText>במקום 7,900 ₪</StyledOfferText>
+                            <StyledOfferText>הנחה לזמן מוגבל*</StyledOfferText>
+                            <StyledPrice>
+                                <StyledCurrency fontSize={15}>₪</StyledCurrency>
+                                6,500</StyledPrice>
+                            <StyledOfferText>
+                                במקום
+                                <StyledUnderline> <StyledCurrency fontSize={10}>
+                                    ₪
+                                </StyledCurrency>7,900
+                                </StyledUnderline>
+                            </StyledOfferText>
                         </StyledCircle>
                     </ProductBox>
                 </Flex>
@@ -41,36 +51,37 @@ const NewMortgage: React.FC = ({}) => {
 
                 <Title> למה שקד?</Title>
                 <TextWrapper>
-                    <Text textAlign="center">
+                    <Text>
                         התאמת משכנתא אישית בהתאם לצרכים שלכם
                     </Text>
 
-                    <Text textAlign="center">
+                    <Text>
                         מכרז בין הבנקים והשגת התנאים האולטימטיביים עבורכם
                     </Text>
 
-                    <Text textAlign="center">
+                    <Text>
                         ליווי מלא לאורך כל התהליך
                     </Text>
 
-                    <Text fontWeight="bold" textAlign="center">
-                        מקצועיות, אמינות, זמינות והרבה סבלנות..
+                    <Text fontWeight="600">
+                        מקצועיות, אמינות, זמינות והרבה סבלנות.
                     </Text>
                 </TextWrapper>
 
                 <Title> מי אנחנו?</Title>
 
                 <TextWrapper>
-                    <Text textAlign="center">
-                        שקד משכנתאות - הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק המשכנתאות,
+                    <Text>
+                        שקד משכנתאות הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק המשכנתאות,
                     </Text>
-                    <Text textAlign="center">
+                    <Text>
                         בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית ומחוצה לה.
                     </Text>
-                    <Text textAlign="center">
-                        היועצים שלנו ילוו אתכם לאורך כל הדרך,
+
+                    <Text>
+                        היועצים שלנו ילוו אתכם לאורך כל הדרך
                     </Text>
-                    <Text fontWeight="bold" textAlign="center">
+                    <Text fontWeight="bold">
                         באופן מקצועי והכי אישי שיש!
                     </Text>
                 </TextWrapper>
@@ -179,5 +190,18 @@ const StyledOfferText = styled.div`
     font-size: ${(p) => p.theme.fontSize.normal};
   }
 `;
+
+const StyledUnderline = styled.span`
+  text-decoration: line-through;
+`;
+
+const StyledCurrency = styled("span", {shouldForwardProp})<TypographyProps>(
+    () => ({
+        marginRight: "2px",
+    }),
+
+    typography
+);
+
 
 export default NewMortgage;
