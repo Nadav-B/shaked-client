@@ -34,7 +34,7 @@ const Homepage = () => {
           <Articles disableMetadata={true} />
         </ContentBackground>
         <ContentBackground id="services">
-          <Services disableMetadata={true} />
+          <Services backSide={false} disableMetadata={true} />
         </ContentBackground>
         <ContentBackground id="contact">
           <Contact disableMetadata={true} />
@@ -47,8 +47,6 @@ const Homepage = () => {
 const ContentBackground = styled.div`
   background: white;
 `;
-
-
 
 
 const StyledLandingPage = styled.div`
