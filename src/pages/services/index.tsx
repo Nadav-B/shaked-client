@@ -60,6 +60,8 @@ const StyledService = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
+  max-width: 500px;
 `;
 
 export default Services;

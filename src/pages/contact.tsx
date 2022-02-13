@@ -144,16 +144,13 @@ const Contact: React.FC<ContactOptions> = ({
 };
 
 
-const StyledHeadline = styled.h1`
-  font-weight: bold;
-`;
 
 const StyledBox = styled.div`
   width: 200px;
 `;
 
 const StyledInput = styled.input`
-  width: 300px;
+  width: auto;
   height: 30px;
   font-size: 16px;
   margin-top: 10px;

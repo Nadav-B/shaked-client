@@ -9,7 +9,7 @@ const Reviews: React.FC<{}> = ({}) => {
     const inverted = false;
 
     return (
-        <Wrapper>
+        <>
             <Title> מה לקוחות אומרים עלינו?</Title>
             <StyledFlex>
 
@@ -101,15 +101,17 @@ const Reviews: React.FC<{}> = ({}) => {
                 </a>
 
             </StyledFlex>
-        </Wrapper>
+        </>
     );
 };
+
+
+
 
 const StyledFlex = styled.div`
   display: flex;
   flex-direction: column;
-  padding-right: 25px;
-  padding-left: 25px;
+
   align-items: center;
   justify-content: center;
 `;

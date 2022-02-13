@@ -15,6 +15,7 @@ import shouldForwardProp from "@styled-system/should-forward-prop";
 import Text from "../../../elements/Text";
 
 const seo = {
+    title: "מבצע ליווי משכנתא חדשה",
     description: "השאירו פרטים ונחזור אליכם בהקדם",
     url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/campaigns/new-mortgage`,
 };
@@ -89,9 +90,14 @@ const NewMortgage: React.FC = ({}) => {
                     </Text>
                 </StyledWrapper>
 
-                <Reviews/>
+                <StyledWrapper>
 
-                <Services backSide={false} disableMetadata={true}/>
+                    <Reviews/>
+                </StyledWrapper>
+                <StyledWrapper>
+
+                    <Services backSide={false} disableMetadata={true}/>
+                </StyledWrapper>
 
                 <TextWrapper>
                     <Text fontSize="medium">
@@ -114,9 +120,15 @@ const StyledHeadlineTitle = styled.div`
   font-weight: bold;
   width: auto;
   line-height: 1;
+
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    font-size: 6vw;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.responsive.small}) {
     font-size: 8vw;
   }
+
 `;
 
 
@@ -127,29 +139,45 @@ const StyledSubTitle = styled.div`
   line-height: 1;
   text-align: right;
   color: #21646b;
+
+
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
     max-width: 120px;
-    font-size:  5vw;
+    font-size: 5vw;
   }
 
   @media screen and (max-width: ${(props) => props.theme.responsive.small}) {
     max-width: 120px;
     font-size: 8vw;
   }
+
 `;
 
-const StyledWrapper = styled.div`
 
+const StyledOfferText = styled.div`
+  color: white;
+  font-size: 1vw;
+  text-align: center;
+
+  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    font-size: 2vw;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.responsive.small}) {
+    font-size: 4vw;
+  }
+`;
+
+
+const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   @media screen and (max-width: ${(props) => props.theme.responsive.small}) {
     align-items: flex-start;
     margin-right: 10px;
     margin-left: 10px;
   }
-
 `;
 const ProductBox = styled.div`
   margin-top: 30px;
@@ -172,15 +200,19 @@ const StyledCircle = styled.div`
   align-items: center;
   background-color: #21646b;
   border-radius: 50%;
-  margin-left: 20px;
   transform: rotate(-15deg); /* Equal to rotateZ(45deg) */
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    height: 150px;
-    width: 150px;
+    height: 22vw;
+    width: 22vw;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.responsive.small}) {
+    height: 35vw;
+    width: 35vw;
   }
 `;
 
@@ -191,15 +223,6 @@ const StyledPrice = styled.div`
   font-weight: bold;
 `;
 
-const StyledOfferText = styled.div`
-  color: white;
-  font-size: ${(p) => p.theme.fontSize.large};
-  text-align: center;
-
-  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    font-size: ${(p) => p.theme.fontSize.normal};
-  }
-`;
 
 const StyledUnderline = styled.span`
   text-decoration: line-through;
