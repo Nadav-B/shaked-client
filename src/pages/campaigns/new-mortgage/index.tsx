@@ -85,7 +85,7 @@ const NewMortgage: React.FC = ({}) => {
                     <Text>
                         היועצים שלנו ילוו אתכם לאורך כל הדרך
                     </Text>
-                    <Text fontWeight="bold">
+                    <Text fontWeight="600">
                         באופן מקצועי והכי אישי שיש!
                     </Text>
                 </StyledWrapper>
