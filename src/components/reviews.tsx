@@ -93,7 +93,7 @@ const Reviews: React.FC<{}> = ({}) => {
                             <img src="/reviews/4.jpg"></img>
                         </StyledCircle>{" "}
                         <StyledClient>גל .ר. חולון</StyledClient>
-                        <StyledComment invertedSide={!inverted}>
+                        <StyledComment invertedSide={inverted}>
                             "..שי נלחם בשבילנו לאורך כל הדרך, עשה הרבה מעבר למה שהיה צריך ללא
                             ספק!! ..תמיכה מלאה למרות הקשיים שהתגלו בדרך."
                         </StyledComment>

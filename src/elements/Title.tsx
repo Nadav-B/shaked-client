@@ -10,7 +10,6 @@ const StyledTitle = styled("h1", {shouldForwardProp})<TypographyProps>(
         fontWeight: "bold",
         fontSize: "21px",
         margin: 0,
-        marginTop: "10px",
         marginBottom: "4px"
 
     },

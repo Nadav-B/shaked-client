@@ -133,7 +133,7 @@ const Contact: React.FC<ContactOptions> = ({
                     <Text variant={result.style}> {result.text}</Text>
 
                     <StyledBox>
-                        <Button disabled={result.status} type="submit">
+                        <Button id={category} disabled={result.status} type="submit">
                             שלח
                         </Button>
                     </StyledBox>

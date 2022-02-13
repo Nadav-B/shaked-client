@@ -15,7 +15,7 @@ import shouldForwardProp from "@styled-system/should-forward-prop";
 import Text from "../../../elements/Text";
 
 const seo = {
-    title: "מבצע ליווי משכנתא חדשה",
+    title: "שקד משכנתאות, ליווי משכנתא חדשה, הנחה לזמן מוגבל!",
     description: "השאירו פרטים ונחזור אליכם בהקדם",
     url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/campaigns/new-mortgage`,
 };
@@ -66,28 +66,33 @@ const NewMortgage: React.FC = ({}) => {
 
                 </StyledWrapper>
 
+
+                <StyledSpace>
+
+
+                    <StyledWrapper>
+                        <Title> מי אנחנו?</Title>
+
+                        <Text>
+                            שקד משכנתאות הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק המשכנתאות,
+                        </Text>
+                        <Text>
+                            בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית ומחוצה לה.
+                        </Text>
+
+                        <Text>
+                            היועצים שלנו ילוו אתכם לאורך כל הדרך
+                        </Text>
+                        <Text fontWeight="600">
+                            באופן מקצועי והכי אישי שיש!
+                        </Text>
+                    </StyledWrapper>
+                </StyledSpace>
+
                 <StyledWrapper>
-
-                    <Title> מי אנחנו?</Title>
-
-                    <Text>
-                        שקד משכנתאות הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק המשכנתאות,
-                    </Text>
-                    <Text>
-                        בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית ומחוצה לה.
-                    </Text>
-
-                    <Text>
-                        היועצים שלנו ילוו אתכם לאורך כל הדרך
-                    </Text>
-                    <Text fontWeight="600">
-                        באופן מקצועי והכי אישי שיש!
-                    </Text>
-                </StyledWrapper>
-
-                <StyledWrapper>
-
-                    <Reviews/>
+                    <StyledSpace>
+                        <Reviews/>
+                    </StyledSpace>
                 </StyledWrapper>
                 <StyledWrapper>
 
@@ -106,6 +111,11 @@ const NewMortgage: React.FC = ({}) => {
         </StyledWrapper>
     );
 };
+
+
+const StyledSpace = styled.div`
+  margin-top: 40px;
+`
 
 
 const StyledHeadlineTitle = styled.div`
