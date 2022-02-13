@@ -10,6 +10,7 @@ import Wrapper from "../../elements/Wrapper";
 import {GetServices, GetServices_getServices} from "../../graphql/__generated__/GetServices";
 import query from "../../graphql/GetServices.graphql";
 import Title from "../../elements/Title";
+import Flex from "../../elements/Flex";
 
 const seo = {
     title: "השירותים שלנו",
@@ -42,7 +43,7 @@ const Services: React.FC<ServicesOption> = ({
         );
     if (error) return <span></span>;
     return (
-        <Wrapper>
+        <Flex alignItems="center" flexDirection="column">
             {!disableMetadata && <Meta seo={seo}/>}
             <Title>השירותים שלנו</Title>
             <StyledService>
@@ -51,7 +52,7 @@ const Services: React.FC<ServicesOption> = ({
                                     service={service}/>
                 ))}
             </StyledService>
-        </Wrapper>
+        </Flex>
     );
 };
 

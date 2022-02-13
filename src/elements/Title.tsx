@@ -1,22 +1,22 @@
 import styled from "@emotion/styled";
 import * as React from "react";
-import Flex from "./Flex";
+import {TypographyProps, typography} from 'styled-system'
+import shouldForwardProp from "@styled-system/should-forward-prop";
 
-interface TitleProps {}
 
-const Title: React.FC<TitleProps> = ({ children }) => {
-  return <StyledTitle>{children}</StyledTitle>;
-};
+const StyledTitle = styled("h1", {shouldForwardProp})<TypographyProps>(
+    {
+        color: "black",
+        fontWeight: "bold",
+        fontSize: "21px",
+        margin: 0,
+        marginTop: "10px",
+        marginBottom: "4px"
 
-const StyledTitle = styled.h1`
-  color: black;
-  font-weight: bold;
-  margin: 0 0 5px;
+    },
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    text-align: right;
-    margin-right: 30px;
-  }
-`;
+    typography
+    )
+;
 
-export default Title;
+export default StyledTitle;

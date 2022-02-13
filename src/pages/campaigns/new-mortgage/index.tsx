@@ -23,7 +23,7 @@ const seo = {
 const NewMortgage: React.FC = ({}) => {
 
     return (
-        <>
+        <StyledWrapper>
             <Meta seo={seo}/>
             <Flex fontSize="18px" flexDirection="column" justifyContent="center">
                 <Flex alignItems="center" flexDirection="column">
@@ -49,8 +49,9 @@ const NewMortgage: React.FC = ({}) => {
                 <Contact category="קמפיין ליווי משכנתא" title="לתאום שיחה ללא התחייבות"
                          disableMetadata={true}></Contact>
 
-                <Title> למה שקד?</Title>
-                <TextWrapper>
+                <StyledWrapper>
+
+                    <Title> למה שקד?</Title>
                     <Text>
                         התאמת משכנתא אישית בהתאם לצרכים שלכם
                     </Text>
@@ -66,11 +67,13 @@ const NewMortgage: React.FC = ({}) => {
                     <Text fontWeight="600">
                         מקצועיות, אמינות, זמינות והרבה סבלנות.
                     </Text>
-                </TextWrapper>
 
-                <Title> מי אנחנו?</Title>
+                </StyledWrapper>
 
-                <TextWrapper>
+                <StyledWrapper>
+
+                    <Title> מי אנחנו?</Title>
+
                     <Text>
                         שקד משכנתאות הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק המשכנתאות,
                     </Text>
@@ -84,16 +87,12 @@ const NewMortgage: React.FC = ({}) => {
                     <Text fontWeight="bold">
                         באופן מקצועי והכי אישי שיש!
                     </Text>
-                </TextWrapper>
+                </StyledWrapper>
 
                 <Reviews/>
 
                 <Services backSide={false} disableMetadata={true}/>
-                {/*
-                       <a href={"#contact"}>
-                    <Bubbel></Bubbel>
-                </a>
-                */}
+
                 <TextWrapper>
                     <Text fontSize="medium">
                         * המחיר וההנחה יאושרו רק לאחר בחינת התיק על ידי המשרד
@@ -103,61 +102,72 @@ const NewMortgage: React.FC = ({}) => {
 
                 </TextWrapper>
             </Flex>
-        </>
+        </StyledWrapper>
     );
 };
 
 
 const StyledHeadlineTitle = styled.div`
   margin: 9px 15px 0 19px;
-  font-size: 40px;
+  font-color: black;
+  font-size: 2vw;
   font-weight: bold;
   width: auto;
   line-height: 1;
-  text-align: right;
-  color: #21646b;
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    font-size: 8vw;
   }
 `;
 
-const ProductBox = styled.div`
-  margin-top: 30px;
-  margin-bottom: 20px;
-  display: flex;
-  width: auto;
-  justify-content: center;
-  @keyframes scaleIn {
-    from {
-      transform: scale(0.6, 0.6);
-      opacity: 0.5;
-    }
-    to {
-      transform: scale(0.7, 0.7);
-      opacity: 0;
-    }
-  }
-`;
 
 const StyledSubTitle = styled.div`
   margin-right: 30px;
-  font-size: 35px;
+  font-size: 2vw;
   font-weight: bold;
   line-height: 1;
   text-align: right;
   color: #21646b;
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
     max-width: 120px;
+    font-size:  5vw;
+  }
 
+  @media screen and (max-width: ${(props) => props.theme.responsive.small}) {
+    max-width: 120px;
+    font-size: 8vw;
   }
 `;
 
-const StyledCircle = styled.div`
-  position: relative;
+const StyledWrapper = styled.div`
 
   display: flex;
-  height: 160px;
-  width: 160px;
-  float: left;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (max-width: ${(props) => props.theme.responsive.small}) {
+    align-items: flex-start;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+`;
+const ProductBox = styled.div`
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  justify-content: space-evenly;
+  max-width: 500px;
+  align-items: baseline;
+`;
+
+
+const StyledCircle = styled.div`
+  position: relative;
+  display: flex;
+  height: 11vw;
+  width: 11vw;
   font-weight: bold;
   align-items: center;
   background-color: #21646b;

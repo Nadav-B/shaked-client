@@ -100,7 +100,7 @@ const Contact: React.FC<ContactOptions> = ({
     return (
         <Flex flexDirection="column">
             {!disableMetadata && <Meta seo={seo}/>}
-            <Title> {title} </Title>
+            <Title textAlign="center"> {title} </Title>
 
             <form onSubmit={handleSubmit}>
                 <Flex alignItems="center" flexDirection="column">

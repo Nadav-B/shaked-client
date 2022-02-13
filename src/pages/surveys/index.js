@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
 import Titel from "../../elements/Title";
+import Flex from "../../elements/Flex";
 
 const seo = {
   title: "שאלונים",
@@ -19,7 +20,7 @@ const Surveys = ({ disableMetadata }) => {
   const data = [survey1, survey2];
 
   return (
-    <Wrapper>
+      <Flex alignItems="center" flexDirection="column">
       {!disableMetadata && <Meta seo={seo} />}
       <Titel>שאלונים לביצוע בדיקה</Titel>
       {data.map((survey) => (
@@ -38,7 +39,7 @@ const Surveys = ({ disableMetadata }) => {
             </a>
           </Link>
       ))}
-    </Wrapper>
+      </Flex>
   );
 };
 
@@ -46,14 +47,12 @@ const StyledButton = styled.div`
   padding: 20px;
   border-radius: ${(p) => p.theme.border}px;
   cursor: pointer;
-  width: 80%;
   max-width: 300px;
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
   text-align: center;
-  margin: auto;
-  margin-top: 20px;
+  margin-bottom: 30px;
+
 
 
   :hover {
