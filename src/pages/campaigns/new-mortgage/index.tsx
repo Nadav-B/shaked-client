@@ -188,10 +188,8 @@ const ProductBox = styled.div`
   margin-top: 30px;
   margin-bottom: 20px;
   display: flex;
-  justify-content: center;
   width: 100%;
-  justify-content: space-evenly;
-  max-width: 500px;
+  justify-content: space-around;
   align-items: baseline;
 `;
 
@@ -199,8 +197,8 @@ const ProductBox = styled.div`
 const StyledCircle = styled.div`
   position: relative;
   display: flex;
-  height: 11vw;
-  width: 11vw;
+  height: 10vw;
+  width: 10vw;
   font-weight: bold;
   align-items: center;
   background-color: #21646b;
