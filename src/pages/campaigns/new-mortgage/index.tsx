@@ -31,8 +31,6 @@ const NewMortgage: React.FC = ({}) => {
                         <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
                         <StyledCircle>
                             <StyledOfferText>הנחה לזמן מוגבל</StyledOfferText>
-                            <StyledPrice>6,500 ₪* </StyledPrice>
-                            <StyledOfferText>במקום 7,900 ₪</StyledOfferText>
                         </StyledCircle>
                     </ProductBox>
                 </Flex>
@@ -172,11 +170,11 @@ const StyledPrice = styled.div`
 
 const StyledOfferText = styled.div`
   color: white;
-  font-size: ${(p) => p.theme.fontSize.large};
+  font-size: ${(p) => p.theme.fontSize.xl};
   text-align: center;
 
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
-    font-size: ${(p) => p.theme.fontSize.normal};
+    font-size: ${(p) => p.theme.fontSize.xl};
   }
 `;
 
