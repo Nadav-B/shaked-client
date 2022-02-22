@@ -100,7 +100,7 @@ const Contact: React.FC<ContactOptions> = ({
     return (
         <Flex flexDirection="column">
             {!disableMetadata && <Meta seo={seo}/>}
-            <StyledHeadline> {title} </StyledHeadline>
+            <Title textAlign="center"> {title} </Title>
 
             <form onSubmit={handleSubmit}>
                 <Flex alignItems="center" flexDirection="column">
@@ -133,7 +133,7 @@ const Contact: React.FC<ContactOptions> = ({
                     <Text variant={result.style}> {result.text}</Text>
 
                     <StyledBox>
-                        <Button disabled={result.status} type="submit">
+                        <Button id={category} disabled={result.status} type="submit">
                             שלח
                         </Button>
                     </StyledBox>
@@ -144,16 +144,13 @@ const Contact: React.FC<ContactOptions> = ({
 };
 
 
-const StyledHeadline = styled.h1`
-  font-weight: bold;
-`;
 
 const StyledBox = styled.div`
   width: 200px;
 `;
 
 const StyledInput = styled.input`
-  width: 300px;
+  width: auto;
   height: 30px;
   font-size: 16px;
   margin-top: 10px;

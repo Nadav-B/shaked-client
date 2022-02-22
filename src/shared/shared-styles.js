@@ -3,13 +3,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 
-
-  @font-face {
-    font-family: 'Assistant';
-    font-display: swap;
-    src: 'url('fonts/assistant/Assistant-Regular.ttf')';
-  }
-
+  
   * {
     box-sizing: border-box;
     direction: rtl;
@@ -27,13 +21,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: ${theme.fontSize.normal};
     font-family: ${theme.fontFamily};
   }
-  h1  {
-    justify-content: center;
-    text-align: center;
-    margin: auto;
-    margin-bottom: 20px;
-    font-size: 21px;
-    } 
+
 
   img {
     width: 100%;

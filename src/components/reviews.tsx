@@ -5,8 +5,11 @@ import Title from "../elements/Title";
 import Link from "next/link";
 
 const Reviews: React.FC<{}> = ({}) => {
+
+    const inverted = false;
+
     return (
-        <Wrapper>
+        <>
             <Title> מה לקוחות אומרים עלינו?</Title>
             <StyledFlex>
 
@@ -21,7 +24,7 @@ const Reviews: React.FC<{}> = ({}) => {
                             <img src="/reviews/5.jpg"></img>
                         </StyledCircle>
                         <StyledClient>יעל .ב. מכמורת</StyledClient>
-                        <StyledComment invertedSide={true}>
+                        <StyledComment invertedSide={inverted}>
                             "..לא מתפשר ולא נח עד להשגת היעד ללא פשרות, שבפועל תורגם לחסכון
                             כספי ענק שלי. לא מובן למצוא אנשי מקצוע שנותנים לך שקט ועושים לך
                             חיים קלים באחת ההחלטות הקריטיות בחיים... אתה פשוט איש טוב באמצע
@@ -40,7 +43,7 @@ const Reviews: React.FC<{}> = ({}) => {
                             <img src="/reviews/1.jpg"></img>
                         </StyledCircle>
                         <StyledClient> לירן .מ. תל-אביב</StyledClient>
-                        <StyledComment invertedSide={true}>
+                        <StyledComment invertedSide={!inverted}>
                             "..מתחילת הדרך הרגשנו שאנחנו בידיים טובות.. שי מאוד מקצועי, אמין,
                             ואחראי. בלעדיו לא היינו שורדים את התהליך! .."
                         </StyledComment>
@@ -57,7 +60,7 @@ const Reviews: React.FC<{}> = ({}) => {
                             <img src="/reviews/2.jpg"></img>
                         </StyledCircle>{" "}
                         <StyledClient> הדר .מ. חריש</StyledClient>
-                        <StyledComment>
+                        <StyledComment invertedSide={inverted}>
                             "..אין לתאר את ההקלה שמישהו אחר מטפל לך בתסבוכת הזו.. סופר מקצועי,
                             עובד מכל הלב.. היה זמין עבורנו תמיד.. סמכנו עליו בעיניים
                             עצומות!.."
@@ -73,7 +76,7 @@ const Reviews: React.FC<{}> = ({}) => {
                             <img src="/reviews/3.jpg"></img>
                         </StyledCircle>{" "}
                         <StyledClient>אסף .ד. ראש העין</StyledClient>
-                        <StyledComment invertedSide={true}>
+                        <StyledComment invertedSide={!inverted}>
                             "..בזכותו חסכנו הרבה! התהליך איתו היה סופר קליל, מקצועי, ומהיר!
                             ממליצים בחום."
                         </StyledComment>
@@ -90,7 +93,7 @@ const Reviews: React.FC<{}> = ({}) => {
                             <img src="/reviews/4.jpg"></img>
                         </StyledCircle>{" "}
                         <StyledClient>גל .ר. חולון</StyledClient>
-                        <StyledComment>
+                        <StyledComment invertedSide={inverted}>
                             "..שי נלחם בשבילנו לאורך כל הדרך, עשה הרבה מעבר למה שהיה צריך ללא
                             ספק!! ..תמיכה מלאה למרות הקשיים שהתגלו בדרך."
                         </StyledComment>
@@ -98,15 +101,17 @@ const Reviews: React.FC<{}> = ({}) => {
                 </a>
 
             </StyledFlex>
-        </Wrapper>
+        </>
     );
 };
+
+
+
 
 const StyledFlex = styled.div`
   display: flex;
   flex-direction: column;
-  padding-right: 25px;
-  padding-left: 25px;
+
   align-items: center;
   justify-content: center;
 `;
