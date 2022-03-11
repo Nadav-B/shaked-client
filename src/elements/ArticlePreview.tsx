@@ -4,11 +4,11 @@ import Text from "./Text";
 import Link from "next/link";
 import {
   GetArticles,
-  GetArticles_getArticles,
 } from "../graphql/__generated__/GetArticles";
 import Flex from "./Flex";
+import {GetArticle_article} from "../graphql/__generated__/GetArticle";
 
-const ArticlePreview: React.FC<{ article: GetArticles_getArticles }> = ({
+const ArticlePreview: React.FC<{ article: GetArticle_article }> = ({
   article,
 }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;

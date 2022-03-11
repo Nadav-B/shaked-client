@@ -4,6 +4,7 @@ import Text from "./Text";
 import styled from '@emotion/styled';
 import Router from "next/router";
 import Wrapper from "./Wrapper";
+import Flex from "./Flex";
 
 const Login = ({ login }) => {
   const [state, setState] = useState({
@@ -60,9 +61,8 @@ const Login = ({ login }) => {
     }));
   };
   return (
-    <Wrapper>
+      <Flex margin="auto" maxWidth={400} flexDirection="column">
       <h1> דף ניהול</h1>
-      <StyledForm>
         <form onSubmit={handleSubmit}>
           <label>
             שם משתמש
@@ -91,16 +91,11 @@ const Login = ({ login }) => {
           <Text variant={result.style}> {result.text}</Text>
           <Button type="submit">שלח</Button>
         </form>
-      </StyledForm>
-    </Wrapper>
+    </Flex>
   );
 };
 
-const StyledForm = styled.div`
-  display: flex;
-  max-width: 340px;
-  margin: auto;
-`;
+
 
 const StyledInput = styled.input`
   width: 100%;
