@@ -1,94 +1,97 @@
 import React from "react";
 
 import Meta from "../../../components/Meta";
-import TextWrapper from "../../../elements/TextWrapper";
-import Flex, { FlexProps } from "../../../elements/Flex";
+import Flex from "../../../elements/Flex";
+import Link from "next/link";
 
 import Services from "../../services";
 import Contact from "../../contact";
 import Reviews from "../../../components/reviews";
 import styled from "@emotion/styled";
 import Title from "../../../elements/Title";
-import { TypographyProps, typography } from "styled-system";
+import {typography, TypographyProps} from "styled-system";
 import shouldForwardProp from "@styled-system/should-forward-prop";
 
 import Text from "../../../elements/Text";
+import StyledButton from "../../../elements/Button";
 
 const seo = {
-  title: "שקד משכנתאות, ליווי משכנתא חדשה, הנחה לזמן מוגבל!",
-  description: "השאירו פרטים ונחזור אליכם בהקדם",
-  url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/campaigns/new-mortgage`,
+    title: "שקד משכנתאות, ליווי משכנתא חדשה, הנחה לזמן מוגבל!",
+    description: "השאירו פרטים ונחזור אליכם בהקדם",
+    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/campaigns/new-mortgage`,
 };
 
 const NewMortgage: React.FC = ({}) => {
-  return (
-    <StyledWrapper>
-      <Meta seo={seo} />
-      <Flex fontSize="18px" flexDirection="column" justifyContent="center">
-        <Flex alignItems="center" flexDirection="column">
-          <StyledHeadlineTitle>"הבחירה הנכונה שלכם"</StyledHeadlineTitle>
-
-          <ProductBox id="contact">
-            <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
-            <StyledCircle>
-              <StyledOfferText>הנחה לזמן מוגבל</StyledOfferText>
-            </StyledCircle>
-          </ProductBox>
-        </Flex>
-        <Contact
-          category="קמפיין ליווי משכנתא"
-          title="לתאום שיחה ללא התחייבות"
-          disableMetadata={true}
-        ></Contact>
-
+    return (
         <StyledWrapper>
-          <Title> למה שקד?</Title>
-          <Text>התאמת משכנתא אישית בהתאם לצרכים שלכם</Text>
+            <Meta seo={seo}/>
+            <Flex fontSize="18px" flexDirection="column" justifyContent="center">
+                <Flex alignItems="center" flexDirection="column">
+                    <StyledHeadlineTitle>"הבחירה הנכונה שלכם"</StyledHeadlineTitle>
+                    <ProductBox id="contact">
+                        <StyledSubTitle>ליווי משכנתא חדשה </StyledSubTitle>
+                        <StyledCircle>
+                            <StyledOfferText>הנחה לזמן מוגבל</StyledOfferText>
+                        </StyledCircle>
+                    </ProductBox>
+                </Flex>
+                <Link
+                    passHref
+                    href="/surveys/[id]"
+                    as={`/surveys/1`}
+                >
+                    <StyledButton> התחל בדיקה! </StyledButton>
+                </Link>
+                <StyledWrapper>
+                    <Title> למה שקד?</Title>
+                    <Text>התאמת משכנתא אישית בהתאם לצרכים שלכם</Text>
 
-          <Text>
-            מכרז בין הבנקים והשגת התנאים האולטימטיביים עבורכם. ליווי מלא לאורך
-            כל התהליך{" "}
-          </Text>
+                    <Text>
+                        מכרז בין הבנקים והשגת התנאים האולטימטיביים עבורכם. ליווי מלא לאורך
+                        כל התהליך{" "}
+                    </Text>
 
-          <Text fontWeight="600">מקצועיות, אמינות, זמינות והרבה סבלנות.</Text>
+                    <Text fontWeight="600">מקצועיות, אמינות, זמינות והרבה סבלנות.</Text>
+                </StyledWrapper>
+
+                <StyledSpace>
+                    <StyledWrapper>
+                        <Title> מי אנחנו?</Title>
+
+                        <Text>
+                            שקד משכנתאות הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק
+                            המשכנתאות,
+                        </Text>
+                        <Text>
+                            בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית
+                            ומחוצה לה.
+                        </Text>
+
+                        <Text>היועצים שלנו ילוו אתכם לאורך כל הדרך</Text>
+                        <Text fontWeight="600">באופן מקצועי והכי אישי שיש!</Text>
+                    </StyledWrapper>
+                </StyledSpace>
+
+                <StyledWrapper>
+                    <StyledSpace>
+                        <Reviews/>
+                    </StyledSpace>
+                </StyledWrapper>
+                <StyledWrapper>
+                    <Services backSide={false} disableMetadata={true}/>
+                </StyledWrapper>
+
+
+                <Contact
+                    category="קמפיין ליווי משכנתא"
+                    title="לתאום שיחה ללא התחייבות"
+                    disableMetadata={true}
+                ></Contact>
+
+
+            </Flex>
         </StyledWrapper>
-
-        <StyledSpace>
-          <StyledWrapper>
-            <Title> מי אנחנו?</Title>
-
-            <Text>
-              שקד משכנתאות הינו משרד קטן ואישי הכולל יועצים מהמובילים בשוק
-              המשכנתאות,
-            </Text>
-            <Text>
-              בעלי השכלה פיננסית, הכשרה מקצועית ושנים של ניסיון במערכת הבנקאית
-              ומחוצה לה.
-            </Text>
-
-            <Text>היועצים שלנו ילוו אתכם לאורך כל הדרך</Text>
-            <Text fontWeight="600">באופן מקצועי והכי אישי שיש!</Text>
-          </StyledWrapper>
-        </StyledSpace>
-
-        <StyledWrapper>
-          <StyledSpace>
-            <Reviews />
-          </StyledSpace>
-        </StyledWrapper>
-        <StyledWrapper>
-          <Services backSide={false} disableMetadata={true} />
-        </StyledWrapper>
-
-        <TextWrapper>
-          <Text fontSize="medium">
-            * המחיר וההנחה יאושרו רק לאחר בחינת התיק על ידי המשרד ולא יחולו על
-            תיקים עם מורכבות כגון לקוחות מוגבלים, בניה עצמית, בעלי חברות וכו'.
-          </Text>
-        </TextWrapper>
-      </Flex>
-    </StyledWrapper>
-  );
+    );
 };
 
 const StyledSpace = styled.div`
@@ -196,12 +199,12 @@ const StyledPrice = styled.div`
   font-weight: bold;
 `;
 
-const StyledCurrency = styled("span", { shouldForwardProp })<TypographyProps>(
-  () => ({
-    marginRight: "2px",
-  }),
+const StyledCurrency = styled("span", {shouldForwardProp})<TypographyProps>(
+    () => ({
+        marginRight: "2px",
+    }),
 
-  typography
+    typography
 );
 
 export default NewMortgage;
