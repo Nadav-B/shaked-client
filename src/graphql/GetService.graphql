@@ -1,0 +1,11 @@
+query  GetService($id: Long!) {
+    service(id: $id) {
+        id
+        title
+        introduction
+        content
+        contactButton
+
+    }
+}
+
