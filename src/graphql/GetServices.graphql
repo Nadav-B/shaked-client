@@ -1,6 +1,6 @@
 
  query GetServices {
-    getServices {
+    services {
       id
       title
       introduction

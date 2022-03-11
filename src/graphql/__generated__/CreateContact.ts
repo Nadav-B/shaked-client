@@ -6,23 +6,23 @@
 import { ContactInput } from "./globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: SaveContact
+// GraphQL mutation operation: CreateContact
 // ====================================================
 
-export interface SaveContact_saveContact {
+export interface CreateContact_createContact {
   __typename: "Contact";
-  fullName: string;
-  phoneNumber: string;
+  fullName: string | null;
+  phoneNumber: string | null;
   email: string | null;
   address: string | null;
   category: string | null;
   comment: string | null;
 }
 
-export interface SaveContact {
-  saveContact: SaveContact_saveContact | null;
+export interface CreateContact {
+  createContact: CreateContact_createContact | null;
 }
 
-export interface SaveContactVariables {
+export interface CreateContactVariables {
   contactInput: ContactInput;
 }

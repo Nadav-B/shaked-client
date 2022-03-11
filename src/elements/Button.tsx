@@ -46,7 +46,7 @@ const StyledButton = styled("button", { shouldForwardProp })<ButtonProps>`
   align-items: center;
   justify-content: center;
   height: 40px;
-  width: 80%;
+  width: 100%;
   max-width: ${(p) => p.maxWidth};
 
   font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};

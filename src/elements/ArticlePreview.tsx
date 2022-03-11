@@ -3,12 +3,11 @@ import styled from "@emotion/styled";
 import Text from "./Text";
 import Link from "next/link";
 import {
-  GetArticles,
-  GetArticles_getArticles,
+  GetArticles_articles,
 } from "../graphql/__generated__/GetArticles";
 import Flex from "./Flex";
 
-const ArticlePreview: React.FC<{ article: GetArticles_getArticles }> = ({
+const ArticlePreview: React.FC<{ article: GetArticles_articles }> = ({
   article,
 }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${article.id}`;

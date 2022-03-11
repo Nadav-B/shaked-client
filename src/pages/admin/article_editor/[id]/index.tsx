@@ -1,0 +1,285 @@
+import styled from '@emotion/styled';
+import React, {useEffect, useState} from "react";
+
+import Button from "../../../../elements/Button";
+import Text from "../../../../elements/Text";
+import api from "../../../../shared/api";
+import {contactLinks} from "../../../../config/contactButtonLinks";
+import TextUploader from "../../../../elements/TextUploader";
+import TextWrapper from "../../../../elements/TextWrapper";
+import {ProtectRoute} from "../../../../shared/protected_route";
+import {useQuery} from "@apollo/client";
+import query from "../../../../graphql/GetArticle.graphql";
+import {GetArticle, GetArticleVariables} from "../../../../graphql/__generated__/GetArticle";
+import Flex from "../../../../elements/Flex";
+import {useRouter} from "next/router";
+import Loading from "../../../../elements/Loading";
+import Error from "../../../../elements/Error";
+
+const ArticleManager = () => {
+    const router = useRouter()
+    const id = router.query.id;
+
+    const {data, loading, error} = useQuery<GetArticle, GetArticleVariables>(query, {
+        variables: {id: id},
+    });
+
+
+    useEffect(() => {
+        if (id && data?.article) {
+
+            console.log(data)
+
+            setImagePreview(
+                `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${id}`
+            );
+            setState({
+                id: data.article.id,
+                title: data.article.title,
+                introduction: data.article.introduction,
+                content: data.article.content,
+                tag: data.article.tag,
+                contactButton: data.article.contactButton,
+            });
+        } else {
+            setImagePreview(null);
+            setState({
+                id: "",
+                title: "",
+                introduction: "",
+                content: "",
+                tag: "",
+                contactButton: contactLinks[0].name,
+            });
+        }
+
+    }, [id]);
+    const handleArticleChange = (event) => {
+        event.preventDefault();
+        const target = event.target;
+        const id = target.value;
+
+        setUploadImage(null);
+        setResult({
+            text: "",
+            style: "",
+            status: false,
+        });
+
+
+    };
+
+    const [state, setState] = useState({
+        id: "",
+        title: "",
+        introduction: "",
+        content: "",
+        tag: "",
+        contactButton: contactLinks[0].name,
+    });
+
+    const [imagePreview, setImagePreview] = useState("");
+
+    const [uploadImage, setUploadImage] = useState();
+
+    const [result, setResult] = useState({
+        text: "",
+        style: "",
+        status: false,
+    });
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await api.postArticle(state).then(
+            (response) => {
+                if (response.data.id && uploadImage) {
+                    api.postArticleImage(response.data.id, uploadImage);
+                }
+
+                setResult((prevState) => ({
+                    ...prevState,
+                    text: "נשלח בהצלחה!",
+                    style: "sucess",
+                    status: true,
+                }));
+            },
+            (error) => {
+                setResult((prevState) => ({
+                    ...prevState,
+                    text: "שגיאה",
+                    style: "error",
+                    status: false,
+                }));
+            }
+        );
+    };
+
+    const handleChange = (event) => {
+        event.preventDefault();
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        setState((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const handleImage = async (event) => {
+        setUploadImage(event.target.files[0]);
+    };
+
+    const deleteArticle = async () => {
+        await api.deleteArticle(state.id).then(
+            (response) => {
+                setResult((prevState) => ({
+                    ...prevState,
+                    text: "נמחק בהצלחה",
+                    style: "sucess",
+                    status: true,
+                }));
+            },
+            (error) => {
+                setResult((prevState) => ({
+                    ...prevState,
+                    text: "שגיאה",
+                    style: "error",
+                    status: false,
+                }));
+            }
+        );
+    };
+
+
+    return (
+        <ProtectRoute>
+            <Flex margin={"20px"} flexDirection={"column"}>
+                <h1> ערוך כתבה</h1>
+                <TextWrapper>
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            שם הכתבה
+                            <StyledInput
+                                name="title"
+                                value={state.title}
+                                placeholder="שדה חובה"
+                                onChange={handleChange}
+                                required
+                            />
+                        </label>
+                        <label>
+                            הקדמה
+                            <StyledInput
+                                name="introduction"
+                                placeholder="שדה חובה"
+                                value={state.introduction}
+                                onChange={handleChange}
+                                required
+                            />
+                        </label>
+                        <label>
+                            קטגוריה
+                            <StyledInput
+                                name="tag"
+                                placeholder="שדה חובה"
+                                value={state.tag}
+                                onChange={handleChange}
+                                required
+                            />
+                        </label>
+                        <label>
+                            תוכן כתבה
+                            <StyledInput
+                                name="content"
+                                placeholder="שדה חובה"
+                                value={state.content}
+                                onChange={handleChange}
+                            />
+                        </label>
+                        <TextUploader setState={setState}/>
+                        <label>
+                            כפתור צרו קשר
+                            <StyledSelect
+                                value={state.contactButton}
+                                name="contactButton"
+                                onChange={handleChange}
+                            >
+                                {contactLinks.map((link) => (
+                                    <option key={link.name} value={link.name}>
+                                        {link.name}{" "}
+                                    </option>
+                                ))}
+                            </StyledSelect>
+                        </label>
+                        <label>
+                            תמונה
+                            <StyledInput
+                                name="image"
+                                accept="image/*"
+                                onChange={handleImage}
+                                type="file"
+                            />
+                            תצוגה מקדימה
+                            <StyledImage src={imagePreview} alt=""/>
+                        </label>
+
+                        <Text variant={result.style}> {result.text}</Text>
+                        <Button disabled={result.status} type="submit">
+                            שלח
+                        </Button>
+                        {state.id && (
+                            <Button
+                                type="button"
+                                onClick={() => {
+                                    deleteArticle();
+                                }}
+                            >
+                                מחק כתבה
+                            </Button>
+                        )}
+                    </form>
+                </TextWrapper>
+            </Flex>
+        </ProtectRoute>
+    );
+};
+
+const StyledImage = styled.img`
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 50%;
+`;
+
+const StyledSelect = styled.select`
+  display: block;
+  width: 100%;
+  margin: auto;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 40px;
+`;
+
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+
+  display: inline-block;
+  font-size: ${(p) => p.theme.fontSize.normal};
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: black;
+  }
+`;
+
+export default ArticleManager;

@@ -4,17 +4,22 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetArticles
+// GraphQL query operation: GetService
 // ====================================================
 
-export interface GetArticles_articles {
-  __typename: "Article";
+export interface GetService_service {
+  __typename: "Service";
   id: string | null;
   title: string | null;
   introduction: string | null;
-  tag: string | null;
+  content: string | null;
+  contactButton: string | null;
 }
 
-export interface GetArticles {
-  articles: (GetArticles_articles | null)[] | null;
+export interface GetService {
+  service: GetService_service | null;
+}
+
+export interface GetServiceVariables {
+  id: any;
 }

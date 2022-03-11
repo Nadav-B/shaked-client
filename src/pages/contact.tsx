@@ -9,12 +9,12 @@ import Meta from "../components/Meta";
 import Wrapper from "../elements/Wrapper";
 import TextWrapper from "../elements/TextWrapper";
 import Flex from "../elements/Flex";
-import mutation from "../graphql/SaveContact.graphql";
+import mutation from "../graphql/CreateContact.graphql";
 import {useMutation} from "@apollo/client";
 import {
-    SaveContact,
-    SaveContact_saveContact,
-} from "../graphql/__generated__/SaveContact";
+    CreateContact,
+    CreateContact_createContact,
+} from "../graphql/__generated__/CreateContact";
 import {ContactInput} from "../graphql/__generated__/globalTypes";
 import Title from "../elements/Title";
 
@@ -42,7 +42,7 @@ const Contact: React.FC<ContactOptions> = ({
         category: category,
     });
 
-    const [submitContact, {data, loading, error}] = useMutation<{ SaveContact: SaveContact },
+    const [submitContact, {data, loading, error}] = useMutation<{ createContact: CreateContact },
         { contactInput: ContactInput }>(mutation);
 
     const [result, setResult] = useState({
@@ -74,7 +74,6 @@ const Contact: React.FC<ContactOptions> = ({
                     email: state.email,
                     address: state.address,
                     category: state.category,
-                    comment: "",
                 },
             },
         }).then(

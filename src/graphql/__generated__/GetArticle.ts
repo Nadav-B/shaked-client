@@ -4,17 +4,23 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetArticles
+// GraphQL query operation: GetArticle
 // ====================================================
 
-export interface GetArticles_articles {
+export interface GetArticle_article {
   __typename: "Article";
   id: string | null;
   title: string | null;
   introduction: string | null;
+  content: string | null;
   tag: string | null;
+  contactButton: string | null;
 }
 
-export interface GetArticles {
-  articles: (GetArticles_articles | null)[] | null;
+export interface GetArticle {
+  article: GetArticle_article | null;
+}
+
+export interface GetArticleVariables {
+  id: any;
 }

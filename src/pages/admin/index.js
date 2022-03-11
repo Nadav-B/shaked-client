@@ -13,7 +13,7 @@ const Admin = () => {
           <Link href={"/admin/contacts"}>
             <Button>הצג אנשי קשר</Button>
           </Link>
-          <Link href={"/admin/article"}>
+          <Link href={"/admin/article_editor"}>
             <Button> ערוך או הוסף כתבה</Button>
           </Link>
           <Link href={"/admin/service"}>
