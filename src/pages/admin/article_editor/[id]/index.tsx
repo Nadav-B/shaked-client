@@ -42,7 +42,7 @@ const ArticleManager = () => {
                 contactButton: data.article.contactButton,
             });
         } else {
-            setImagePreview();
+            setImagePreview(null);
             setState({
                 id: "",
                 title: "",
@@ -59,7 +59,7 @@ const ArticleManager = () => {
         const target = event.target;
         const id = target.value;
 
-        setUploadImage();
+        setUploadImage(null);
         setResult({
             text: "",
             style: "",
@@ -78,7 +78,7 @@ const ArticleManager = () => {
         contactButton: contactLinks[0].name,
     });
 
-    const [imagePreview, setImagePreview] = useState();
+    const [imagePreview, setImagePreview] = useState("");
 
     const [uploadImage, setUploadImage] = useState();
 
@@ -204,7 +204,6 @@ const ArticleManager = () => {
                                 value={state.contactButton}
                                 name="contactButton"
                                 onChange={handleChange}
-                                value={state.contactButton}
                             >
                                 {contactLinks.map((link) => (
                                     <option key={link.name} value={link.name}>

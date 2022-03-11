@@ -7,13 +7,13 @@ import Text from "../../../elements/Text";
 import Button from "../../../elements/Button";
 import api from "../../../shared/api";
 import { Progress } from "react-sweet-progress";
-import mutation from "../../../graphql/SaveContact.graphql";
+import mutation from "../../../graphql/CreateContact.graphql";
 
 import Loading from "../../../elements/Loading";
 import Meta from "../../../components/Meta";
 import Wrapper from "../../../elements/Wrapper";
 import { useMutation } from "@apollo/client";
-import { SaveContact } from "../../../graphql/__generated__/SaveContact";
+import { CreateContact } from "../../../graphql/__generated__/CreateContact";
 import {
   ContactInput,
   SurveyInput,
@@ -67,7 +67,7 @@ const Survey = ({ id }) => {
   const [index, setIndex] = useState(0);
 
   const [submitContact, { data, loading, error }] = useMutation<
-    { SaveContact: SaveContact },
+    { CreateContact: CreateContact },
     { contactInput: ContactInput },
     { surveyInput: SurveyInput }
   >(mutation);
