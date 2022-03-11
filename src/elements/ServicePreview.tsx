@@ -2,12 +2,12 @@ import Link from "next/link";
 import React, {useState} from "react";
 
 import styled from "@emotion/styled";
-import {GetService_service} from "../graphql/__generated__/GetService";
 import {useRouter} from "next/router";
+import {GetServices_services} from "../graphql/__generated__/GetServices";
 
 interface ServicePreviewOption {
     backSide?: boolean
-    service: GetService_service
+    service: GetServices_services
     index: Number,
 }
 

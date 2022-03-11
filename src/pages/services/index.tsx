@@ -6,8 +6,8 @@ import {useQuery} from "@apollo/client";
 import Loading from "../../elements/Loading";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
-
 import {GetServices } from "../../graphql/__generated__/GetServices";
+
 import query from "../../graphql/GetServices.graphql";
 import Title from "../../elements/Title";
 import Flex from "../../elements/Flex";
