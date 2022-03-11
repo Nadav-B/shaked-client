@@ -44,25 +44,6 @@ const getTexts = async () => {
   });
 };
 
-const getArticle = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/articles/article/${id}`;
-  return await axios.get(url, {
-    headers: {
-      Accept: "application/json",
-    },
-  });
-};
-
-const getArticles = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles`;
-  const token = Cookies.get("token");
-  return await axios.get(url, {
-    headers: {
-      Authorization: `${token}`,
-      Accept: "application/json",
-    },
-  });
-};
 
 const postArticle = async (article) => {
   const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles/post`;

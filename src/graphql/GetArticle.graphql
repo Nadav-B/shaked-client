@@ -1,0 +1,12 @@
+query  GetArticle($id: Long!) {
+    article(id: $id) {
+        id
+        title
+        introduction
+        content
+        tag
+        contactButton
+
+    }
+}
+
