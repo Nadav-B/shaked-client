@@ -152,7 +152,7 @@ const Survey = ({id}) => {
     };
 
     return (
-        <Flex alignItems={"center"} flexDirection={"column"}>
+        <Flex  alignItems={"center"} flexDirection={"column"}>
             <Meta seo={seo}/>
             <h1 className="title">{selectedSurvey.name}</h1>
             {currentStatus == 1 && (
@@ -279,10 +279,10 @@ const BackButtonWrapper = styled.div`
 `;
 
 const StyledAnswersWrapper = styled.div`
-  display: block;
+  display:flex;
+  flex-direction: column;
   width: 100%;
   margin: auto;
-  margin-top: 25px;
 `;
 
 const StatusWrapper = styled.div`
