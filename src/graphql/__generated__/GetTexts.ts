@@ -7,12 +7,12 @@
 // GraphQL query operation: GetTexts
 // ====================================================
 
-export interface GetTexts_getTexts {
+export interface GetTexts_texts {
   __typename: "TextContainer";
-  id: any;
+  id: string;
   content: string | null;
 }
 
 export interface GetTexts {
-  getTexts: (GetTexts_getTexts | null)[] | null;
+  texts: (GetTexts_texts | null)[] | null;
 }

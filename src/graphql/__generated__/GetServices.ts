@@ -7,13 +7,13 @@
 // GraphQL query operation: GetServices
 // ====================================================
 
-export interface GetServices_getServices {
+export interface GetServices_services {
   __typename: "Service";
-  id: any;
+  id: string | null;
   title: string | null;
   introduction: string | null;
 }
 
 export interface GetServices {
-  getServices: (GetServices_getServices | null)[] | null;
+  services: (GetServices_services | null)[] | null;
 }

@@ -1,5 +1,5 @@
 mutation SaveContact($contactInput: ContactInput!) {
-  saveContact(contact: $contactInput) {
+  createContact(contact: $contactInput) {
     fullName
     phoneNumber
     email

@@ -9,10 +9,10 @@ import { ContactInput } from "./globalTypes";
 // GraphQL mutation operation: SaveContact
 // ====================================================
 
-export interface SaveContact_saveContact {
+export interface SaveContact_createContact {
   __typename: "Contact";
-  fullName: string;
-  phoneNumber: string;
+  fullName: string | null;
+  phoneNumber: string | null;
   email: string | null;
   address: string | null;
   category: string | null;
@@ -20,7 +20,7 @@ export interface SaveContact_saveContact {
 }
 
 export interface SaveContact {
-  saveContact: SaveContact_saveContact | null;
+  createContact: SaveContact_createContact | null;
 }
 
 export interface SaveContactVariables {

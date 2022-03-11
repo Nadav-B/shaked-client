@@ -35,7 +35,7 @@ const Articles = ({ disableMetadata }) => {
       <Title>כתבות</Title>
 
         <Carousel
-          items={data?.getArticles.map((article) => (
+          items={data?.articles.map((article) => (
             <ArticlePreview key={article.id} article={article} />
           ))}
         ></Carousel>

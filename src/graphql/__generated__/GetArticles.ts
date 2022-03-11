@@ -7,14 +7,14 @@
 // GraphQL query operation: GetArticles
 // ====================================================
 
-export interface GetArticles_getArticles {
+export interface GetArticles_articles {
   __typename: "Article";
-  id: any | null;
+  id: string | null;
   title: string | null;
   introduction: string | null;
   tag: string | null;
 }
 
 export interface GetArticles {
-  getArticles: (GetArticles_getArticles | null)[] | null;
+  articles: (GetArticles_articles | null)[] | null;
 }

@@ -34,7 +34,7 @@ const About = ({ disableMetadata }) => {
     <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
       <TextWrapper>
-        {data?.getTexts.map((text) => (
+        {data?.texts.map((text) => (
           <div
             key={text.id}
             dangerouslySetInnerHTML={{
