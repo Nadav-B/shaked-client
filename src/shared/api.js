@@ -195,8 +195,6 @@ export default {
   getContacts,
   postContact,
   deleteContact,
-  getArticle,
-  getArticles,
   postArticle,
   postArticleImage,
   deleteArticle,
