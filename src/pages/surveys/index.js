@@ -27,8 +27,8 @@ const Surveys = ({disableMetadata}) => {
                 <Link
                     key={survey.name}
                     passHref
-                    href="/surveys/[id]"
-                    as={`/surveys/${survey.id}`}
+                    href="/surveys/[id]/0"
+                    as={`/surveys/${survey.id}/0`}
                 >
                     <a>
                         <StyledButton id="surveySelected">

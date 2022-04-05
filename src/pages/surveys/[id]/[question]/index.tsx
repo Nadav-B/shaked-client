@@ -11,24 +11,43 @@ import {Progress} from "react-sweet-progress";
 
 const QuestionView = () => {
     const router = useRouter()
-    console.log(router)
     const index = Number(router.query["question"]);
 
     const surveyId = router.query["id"];
     const surveys = [survey1, survey2];
     const selectedSurvey = surveys[Number(surveyId)];
+    const [results, setResults] = useState(new Map<String, String>());
+
+    console.log(results)
+    const saveSurvey = (results) => {
+        window.localStorage.setItem("results", JSON.stringify(Array.from(results.entries())));
+    }
+
+
+    const getSurvey = () => {
+        if (typeof window !== "undefined") {
+            var temporal = window.localStorage.getItem("results");
+            setResults(new Map(JSON.parse(temporal)))
+        }
+    }
+
+    if(results.size ==0) {
+        getSurvey();
+    }
+
 
     const handleAnswerSubmit = (event, question, answer) => {
         event.preventDefault();
         results.set(question, answer);
 
+        saveSurvey(results);
         if (index < selectedSurvey.questions.length - 1) {
             console.log(router);
-            var path = `/surveys/${surveyId}/${index+1}`;
+            var path = `/surveys/${surveyId}/${index + 1}`;
             router.push(path);
         }
 
-        if(index ==selectedSurvey.questions.length-1) {
+        if (index == selectedSurvey.questions.length - 1) {
             var path = `/surveys/${surveyId}`;
             router.push(path);
         }
@@ -37,71 +56,75 @@ const QuestionView = () => {
     };
 
 
-
     const backQuestion = () => {
         //event.preventDefault();
         if (index > 0) {
-            var path = `/surveys/${surveyId}/${index-1}`;
+            var path = `/surveys/${surveyId}/${index - 1}`;
             router.push(path);
         }
 
     };
 
 
-    const [results, setResults] = useState(new Map<String, String>());
-
     const isChoosen = (question, answer) => {
         if (results.get(question) === answer) return true;
         return false;
     };
-    return (
-        <Flex margin="30px" alignItems="center" flexDirection="column">
-            <Text fontSize="large">
-                שאלה {index + 1} מתוך {selectedSurvey.questions.length}
-            </Text>
-            <Progress
-                theme={{
-                    active: {
-                        symbol: "‍",
-                        color: "#0a589d",
-                    },
-                }}
-                percent={(index / selectedSurvey.questions.length) * 100}
-            />
-            <Text fontSize="large">
-                {" "}
-                {selectedSurvey.questions[index].question}
-            </Text>
 
-            <StyledAnswersWrapper>
-                {selectedSurvey.questions[index].answers.map((answer, counter) => (
-                    <Button
-                        key={counter}
-                        active={isChoosen(
-                            selectedSurvey.questions[index].question,
-                            answer
-                        )}
-                        onClick={(event) => {
-                            handleAnswerSubmit(
-                                event,
+
+    return (
+        <Flex alignItems={"center"} flexDirection={"column"}>
+
+            <Flex margin="30px" alignItems="center" flexDirection="column">
+                <Text fontSize="large">
+                    שאלה {index + 1} מתוך {selectedSurvey.questions.length}
+                </Text>
+                <Progress
+                    theme={{
+                        active: {
+                            symbol: "‍",
+                            color: "#0a589d",
+                        },
+                    }}
+                    percent={(index / selectedSurvey.questions.length) * 100}
+                />
+                <Text fontSize="large">
+                    {" "}
+                    {selectedSurvey.questions[index].question}
+                </Text>
+
+                <StyledAnswersWrapper>
+                    {selectedSurvey.questions[index].answers.map((answer, counter) => (
+                        <Button
+                            key={counter}
+                            active={isChoosen(
                                 selectedSurvey.questions[index].question,
                                 answer
-                            );
-                        }}
-                    >
-                        {answer}
-                    </Button>
-                ))}
-            </StyledAnswersWrapper>
-            {index > 0 && (
-                <BackButtonWrapper>
-                    <Button onClick={backQuestion} type="submit">
-                        <img src="/assets/back.svg" alt=">"/>
-                        <Text>לשאלה הקודמת</Text>
-                    </Button>
-                </BackButtonWrapper>
-            )}
+                            )}
+                            onClick={(event) => {
+                                handleAnswerSubmit(
+                                    event,
+                                    selectedSurvey.questions[index].question,
+                                    answer
+                                );
+                            }}
+                        >
+                            {answer}
+                        </Button>
+                    ))}
+                </StyledAnswersWrapper>
+                {index > 0 && (
+                    <BackButtonWrapper>
+
+                        <Button onClick={backQuestion} type="submit">
+                            <img src="/assets/back.svg" alt=">"/>
+                            <Text>לשאלה הקודמת</Text>
+                        </Button>
+                    </BackButtonWrapper>
+                )}
+            </Flex>
         </Flex>
+
     );
 
 }
