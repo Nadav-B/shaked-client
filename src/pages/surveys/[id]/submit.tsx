@@ -11,6 +11,7 @@ import {CreateContact} from "../../../graphql/__generated__/CreateContact";
 import {Progress} from "react-sweet-progress";
 import Loading from "../../../elements/Loading";
 import {useRouter} from "next/router";
+import Title from "../../../elements/Title";
 
 const SurveySummary = ({id}) => {
 
@@ -133,9 +134,9 @@ const SurveySummary = ({id}) => {
 
 
     return (
-        <Flex margin="30px" alignItems="center" flexDirection="column">
-            <h1 className="title">{selectedSurvey.name} {confirmation.status}
-            </h1>
+        <Flex  alignItems="center" flexDirection="column">
+            <Title className="title">{selectedSurvey.name} {confirmation.status}
+            </Title>
             {confirmation.status == null &&
                 <div>
 

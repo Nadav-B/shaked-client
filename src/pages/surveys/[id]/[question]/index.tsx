@@ -8,6 +8,7 @@ import surveys from "../../../../../public/surveys";
 import {Progress} from "react-sweet-progress";
 import Meta from "../../../../components/Meta";
 import Link from "next/link";
+import Title from "../../../../elements/Title";
 
 
 const QuestionView = ({id}) => {
@@ -65,10 +66,12 @@ const QuestionView = ({id}) => {
 
 
     return (
+
         <Flex alignItems={"center"} flexDirection={"column"}>
+            <Title className="title">{selectedSurvey.name}</Title>
+
             <Meta seo={seo}/>
-            <h1 className="title">{selectedSurvey.name}</h1>
-            <Flex margin="30px" alignItems="center" flexDirection="column">
+            <Flex alignItems="center" flexDirection="column">
                 <Text fontSize="large">
                     שאלה {index + 1} מתוך {selectedSurvey.questions.length}
                 </Text>
