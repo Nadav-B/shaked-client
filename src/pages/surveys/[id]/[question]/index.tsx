@@ -160,8 +160,7 @@ const QuestionView = () => {
         }
 
         if (index == selectedSurvey.questions.length - 1) {
-            var path = `/surveys/${surveyId}`;
-            router.push(path);
+            setCurrentstatus(Status.CompleteContact);
         }
 
 
@@ -178,7 +177,7 @@ const QuestionView = () => {
     };
 
     return (
-        <Flex  alignItems={"center"} flexDirection={"column"}>
+        <Flex alignItems={"center"} flexDirection={"column"}>
             <Meta seo={seo}/>
             <h1 className="title">{selectedSurvey.name}</h1>
             {currentStatus == 1 && (
