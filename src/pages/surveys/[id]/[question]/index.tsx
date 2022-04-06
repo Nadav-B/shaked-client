@@ -24,7 +24,7 @@ const QuestionView = () => {
         statusContact: 3,
     };
 
-    const [currentStatus, setCurrentstatus] = useState(Status.Questions);
+    const [currentStatus, setCurrentStatus] = useState(Status.Questions);
 
 
     const router = useRouter()
@@ -34,13 +34,13 @@ const QuestionView = () => {
     const surveys = [survey1, survey2];
     const selectedSurvey = surveys[Number(surveyId)];
     const [results, setResults] = useState(new Map<String, String>());
+    const question = selectedSurvey.questions[index].question;
 
 
     const [submitContact, {data, loading, error}] = useMutation<{ CreateContact: CreateContact },
         { contactInput: ContactInput },
         { surveyInput: SurveyInput }>(mutation);
 
-    const question = selectedSurvey.questions[index].question;
     console.log(results)
     const saveSurvey = (results) => {
         window.localStorage.setItem("results", JSON.stringify(Array.from(results.entries())));
@@ -86,7 +86,7 @@ const QuestionView = () => {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        setCurrentstatus(Status.statusContact);
+        setCurrentStatus(Status.statusContact);
 
         const survey: SurveyInput = {
             name: selectedSurvey.name,
@@ -160,7 +160,7 @@ const QuestionView = () => {
         }
 
         if (index == selectedSurvey.questions.length - 1) {
-            setCurrentstatus(Status.CompleteContact);
+            setCurrentStatus(Status.CompleteContact);
         }
 
 
@@ -196,7 +196,7 @@ const QuestionView = () => {
                     />
                     <Text fontSize="large">
                         {" "}
-                        {selectedSurvey.questions[index].question}
+                        {question}
                     </Text>
 
                     <StyledAnswersWrapper>
@@ -204,13 +204,13 @@ const QuestionView = () => {
                             <Button
                                 key={counter}
                                 active={isChoosen(
-                                    selectedSurvey.questions[index].question,
+                                    question,
                                     answer
                                 )}
                                 onClick={(event) => {
                                     handleAnswerSubmit(
                                         event,
-                                        selectedSurvey.questions[index].question,
+                                        question,
                                         answer
                                     );
                                 }}
