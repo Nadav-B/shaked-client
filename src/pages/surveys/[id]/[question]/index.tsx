@@ -18,6 +18,7 @@ const QuestionView = () => {
     const selectedSurvey = surveys[Number(surveyId)];
     const [results, setResults] = useState(new Map<String, String>());
 
+    const question = selectedSurvey.questions[index].question;
     console.log(results)
     const saveSurvey = (results) => {
         window.localStorage.setItem("results", JSON.stringify(Array.from(results.entries())));
@@ -31,7 +32,7 @@ const QuestionView = () => {
         }
     }
 
-    if(results.size ==0) {
+    if (results.size == 0) {
         getSurvey();
     }
 
@@ -65,13 +66,6 @@ const QuestionView = () => {
 
     };
 
-
-    const isChoosen = (question, answer) => {
-        if (results.get(question) === answer) return true;
-        return false;
-    };
-
-
     return (
         <Flex alignItems={"center"} flexDirection={"column"}>
 
@@ -89,18 +83,15 @@ const QuestionView = () => {
                     percent={(index / selectedSurvey.questions.length) * 100}
                 />
                 <Text fontSize="large">
-                    {" "}
-                    {selectedSurvey.questions[index].question}
+                    {question}
                 </Text>
 
                 <StyledAnswersWrapper>
                     {selectedSurvey.questions[index].answers.map((answer, counter) => (
                         <Button
                             key={counter}
-                            active={isChoosen(
-                                selectedSurvey.questions[index].question,
-                                answer
-                            )}
+                            active={results.get(question) === answer}
+
                             onClick={(event) => {
                                 handleAnswerSubmit(
                                     event,
