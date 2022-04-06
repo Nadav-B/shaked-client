@@ -192,7 +192,7 @@ const SurveySummary = ({id}) => {
 const ConfirmationComponent = ({confirmation}) => {
     return (
         <StatusWrapper>
-            {confirmation.status && (
+            {confirmation.status ==null && (
                 <div>
                     <Loading/>
                     <Text>שולח פרטים</Text>
