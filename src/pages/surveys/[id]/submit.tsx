@@ -35,12 +35,13 @@ const SurveySummary = ({id}) => {
     });
 
     useEffect(() => {
+
         if (typeof window !== "undefined" && results.size == 0) {
             const temporal = localStorage.getItem(selectedSurveyCache);
             setResults(new Map(JSON.parse(temporal)));
 
-
         }
+
 
     }, [results]);
 
@@ -74,7 +75,8 @@ const SurveySummary = ({id}) => {
 
 
     const clearSurvey = () => {
-        localStorage.setItem(selectedSurveyCache, null);
+        setResults(new Map<String, String>())
+        window.localStorage.setItem(selectedSurveyCache, JSON.stringify(Array.from(results.entries())));
     }
 
 
@@ -103,7 +105,7 @@ const SurveySummary = ({id}) => {
                 setConfirmation((prevState) => ({
                     ...prevState,
                     text: "פרטייך נשלחו בהצלחה, ניצור קשר בהקדם ",
-                    style: "success",
+                    style: "green",
                     status: true,
                 }));
 
@@ -112,7 +114,7 @@ const SurveySummary = ({id}) => {
                 setConfirmation((prevState) => ({
                     ...prevState,
                     text: "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
-                    style: "error",
+                    style: "red",
                     status: false,
                 }));
             }
@@ -122,7 +124,7 @@ const SurveySummary = ({id}) => {
 
                 ...prevState,
                 text: "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
-                style: "error",
+                style: "red",
                 status: false,
             }));
         })
@@ -197,7 +199,7 @@ const ConfirmationComponent = ({confirmation}) => {
                     <Text>שולח פרטים</Text>
                 </div>
             )}
-            <Text variant={confirmation.style}>{confirmation.text}</Text>
+            <Text color={confirmation.style}>{confirmation.text}</Text>
         </StatusWrapper>
     )
 };
