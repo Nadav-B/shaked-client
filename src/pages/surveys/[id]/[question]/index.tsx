@@ -8,8 +8,25 @@ import Button from "../../../../elements/Button";
 import survey1 from "../../../../../public/surveys/1.json";
 import survey2 from "../../../../../public/surveys/2.json";
 import {Progress} from "react-sweet-progress";
+import Meta from "../../../../components/Meta";
+import TextWrapper from "../../../../elements/TextWrapper";
+import Loading from "../../../../elements/Loading";
+import {ContactInput, SurveyInput} from "../../../../graphql/__generated__/globalTypes";
+import {useMutation} from "@apollo/client";
+import mutation from "../../../../graphql/CreateContact.graphql";
+import {CreateContact} from "../../../../graphql/__generated__/CreateContact";
 
 const QuestionView = () => {
+
+    const Status = {
+        Questions: 1,
+        CompleteContact: 2,
+        statusContact: 3,
+    };
+
+    const [currentStatus, setCurrentstatus] = useState(Status.Questions);
+
+
     const router = useRouter()
     const index = Number(router.query["question"]);
 
@@ -18,11 +35,105 @@ const QuestionView = () => {
     const selectedSurvey = surveys[Number(surveyId)];
     const [results, setResults] = useState(new Map<String, String>());
 
+
+    const [submitContact, {data, loading, error}] = useMutation<{ CreateContact: CreateContact },
+        { contactInput: ContactInput },
+        { surveyInput: SurveyInput }>(mutation);
+
     const question = selectedSurvey.questions[index].question;
     console.log(results)
     const saveSurvey = (results) => {
         window.localStorage.setItem("results", JSON.stringify(Array.from(results.entries())));
     }
+    const [confirmation, setConfirmation] = useState({
+        text: "",
+        style: "",
+        status: null,
+    });
+
+    const [contact, setContact] = useState({
+        fullName: "",
+        phoneNumber: "",
+        category: "שאלון",
+    });
+
+    const parseAnswersForSubmit = () => {
+        var tempArray = [];
+
+        results.forEach((key, value) => {
+            const answer = {
+                question: key,
+                answer: value,
+            };
+            tempArray.push(answer);
+        });
+
+        return tempArray;
+    };
+
+
+    const handleChange = (event) => {
+        event.preventDefault();
+
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        setContact((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setCurrentstatus(Status.statusContact);
+
+        const survey: SurveyInput = {
+            name: selectedSurvey.name,
+            answers: parseAnswersForSubmit(),
+        };
+
+        const contactForm = {
+            fullName: contact.fullName,
+            phoneNumber: contact.phoneNumber,
+            category: contact.category,
+            survey: survey,
+        };
+
+        submitContact({
+            variables: {
+                contactInput: contactForm,
+            },
+        }).then(
+            (response) => {
+                setConfirmation((prevState) => ({
+                    ...prevState,
+                    text: "פרטייך נשלחו בהצלחה, ניצור קשר בהקדם ",
+                    style: "success",
+                    status: true,
+                }));
+            },
+            (error) => {
+                setConfirmation((prevState) => ({
+                    ...prevState,
+                    text: "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
+                    style: "error",
+                    status: false,
+                }));
+            }
+        );
+    };
+
+    const isChoosen = (question, answer) => {
+        if (results.get(question) === answer) return true;
+        return false;
+    };
+
+    const seo = {
+        title: selectedSurvey.name,
+        description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
+        url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${surveyId}`,
+    };
 
 
     const getSurvey = () => {
@@ -67,57 +178,121 @@ const QuestionView = () => {
     };
 
     return (
-        <Flex alignItems={"center"} flexDirection={"column"}>
+        <Flex  alignItems={"center"} flexDirection={"column"}>
+            <Meta seo={seo}/>
+            <h1 className="title">{selectedSurvey.name}</h1>
+            {currentStatus == 1 && (
+                <Flex margin="30px" alignItems="center" flexDirection="column">
+                    <Text fontSize="large">
+                        שאלה {index + 1} מתוך {selectedSurvey.questions.length}
+                    </Text>
+                    <Progress
+                        theme={{
+                            active: {
+                                symbol: "‍",
+                                color: "#0a589d",
+                            },
+                        }}
+                        percent={(index / selectedSurvey.questions.length) * 100}
+                    />
+                    <Text fontSize="large">
+                        {" "}
+                        {selectedSurvey.questions[index].question}
+                    </Text>
 
-            <Flex margin="30px" alignItems="center" flexDirection="column">
-                <Text fontSize="large">
-                    שאלה {index + 1} מתוך {selectedSurvey.questions.length}
-                </Text>
-                <Progress
-                    theme={{
-                        active: {
-                            symbol: "‍",
-                            color: "#0a589d",
-                        },
-                    }}
-                    percent={(index / selectedSurvey.questions.length) * 100}
-                />
-                <Text fontSize="large">
-                    {question}
-                </Text>
-
-                <StyledAnswersWrapper>
-                    {selectedSurvey.questions[index].answers.map((answer, counter) => (
-                        <Button
-                            key={counter}
-                            active={results.get(question) === answer}
-
-                            onClick={(event) => {
-                                handleAnswerSubmit(
-                                    event,
+                    <StyledAnswersWrapper>
+                        {selectedSurvey.questions[index].answers.map((answer, counter) => (
+                            <Button
+                                key={counter}
+                                active={isChoosen(
                                     selectedSurvey.questions[index].question,
                                     answer
-                                );
-                            }}
-                        >
-                            {answer}
-                        </Button>
-                    ))}
-                </StyledAnswersWrapper>
-                {index > 0 && (
-                    <BackButtonWrapper>
+                                )}
+                                onClick={(event) => {
+                                    handleAnswerSubmit(
+                                        event,
+                                        selectedSurvey.questions[index].question,
+                                        answer
+                                    );
+                                }}
+                            >
+                                {answer}
+                            </Button>
+                        ))}
+                    </StyledAnswersWrapper>
+                    {index > 0 && (
+                        <BackButtonWrapper>
+                            <Button onClick={backQuestion} type="submit">
+                                <img src="/assets/back.svg" alt=">"/>
+                                <Text>לשאלה הקודמת</Text>
+                            </Button>
+                        </BackButtonWrapper>
+                    )}
+                </Flex>
+            )}
+            {currentStatus == 2 && (
+                <Flex margin="30px" alignItems="center" flexDirection="column">
+                    <Progress percent={100}/>
+                    <StatusWrapper>
+                        <Text variant="semiBold">
+                            מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת בדיקה ללא עלות
+                        </Text>
+                    </StatusWrapper>
 
-                        <Button onClick={backQuestion} type="submit">
-                            <img src="/assets/back.svg" alt=">"/>
-                            <Text>לשאלה הקודמת</Text>
-                        </Button>
-                    </BackButtonWrapper>
-                )}
-            </Flex>
+                    <TextWrapper>
+                        <form id="submitSurveyForm" onSubmit={handleSubmit}>
+                            <Flex flexDirection="column">
+                                <label>
+                                    {contact.fullName !== "" && <Text size={"small"}>שם</Text>}
+                                    <StyledInput
+                                        name="fullName"
+                                        value={contact.fullName}
+                                        placeholder="שם מלא"
+                                        type="text"
+                                        onChange={handleChange}
+                                        required
+                                    />{" "}
+                                </label>
+
+                                <label>
+                                    {contact.phoneNumber !== "" && <>טלפון</>}
+                                    <StyledInput
+                                        name="phoneNumber"
+                                        value={contact.phoneNumber}
+                                        placeholder="טלפון"
+                                        onChange={handleChange}
+                                        type="tel"
+                                        required
+                                    />{" "}
+                                </label>
+
+                                <Button
+                                    id="submitSurvey"
+                                    disabled={confirmation.status}
+                                    type="submit"
+                                >
+                                    שלח
+                                </Button>
+                            </Flex>
+                        </form>
+                    </TextWrapper>
+                </Flex>
+            )}
+
+            {currentStatus == 3 && (
+                <StatusWrapper>
+                    {confirmation.status == null && (
+                        <div>
+                            <Loading/>
+                            <Text>שולח פרטים</Text>
+                        </div>
+                    )}
+
+                    <Text variant={confirmation.style}>{confirmation.text}</Text>
+                </StatusWrapper>
+            )}
         </Flex>
-
     );
-
 }
 const BackButtonWrapper = styled.div`
   width: 200px;
