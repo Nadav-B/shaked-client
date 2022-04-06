@@ -37,8 +37,8 @@ const NewMortgage: React.FC = ({}) => {
                 </Flex>
                 <Link
                     passHref
-                    href="/surveys/[id]"
-                    as={`/surveys/1`}
+                    href="/surveys/[id]/0"
+                    as={`/surveys/1/0`}
                 >
                     <StyledButton> התחל בדיקה! </StyledButton>
                 </Link>

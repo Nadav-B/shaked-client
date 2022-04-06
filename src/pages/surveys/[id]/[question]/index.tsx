@@ -1,12 +1,10 @@
 import React, {useState} from "react";
-
 import styled from "@emotion/styled";
 import {useRouter} from "next/router";
 import Flex from "../../../../elements/Flex";
 import Text from "../../../../elements/Text";
 import Button from "../../../../elements/Button";
-import survey1 from "../../../../../public/surveys/1.json";
-import survey2 from "../../../../../public/surveys/2.json";
+import surveys from "../../../../../public/surveys";
 import {Progress} from "react-sweet-progress";
 import Meta from "../../../../components/Meta";
 import TextWrapper from "../../../../elements/TextWrapper";
@@ -16,7 +14,7 @@ import {useMutation} from "@apollo/client";
 import mutation from "../../../../graphql/CreateContact.graphql";
 import {CreateContact} from "../../../../graphql/__generated__/CreateContact";
 
-const QuestionView = () => {
+const QuestionView = ({id}) => {
 
     const Status = {
         Questions: 1,
@@ -25,16 +23,12 @@ const QuestionView = () => {
     };
 
     const [currentStatus, setCurrentStatus] = useState(Status.Questions);
-
-
     const router = useRouter()
     const index = Number(router.query["question"]);
 
-    const surveyId = router.query["id"];
-    const surveys = [survey1, survey2];
-    const selectedSurvey = surveys[Number(surveyId)];
+    const selectedSurvey = surveys[Number(id)];
     const [results, setResults] = useState(new Map<String, String>());
-    const question = selectedSurvey.questions[index].question;
+    const currentQuestion = selectedSurvey.questions[index].question;
 
 
     const [submitContact, {data, loading, error}] = useMutation<{ CreateContact: CreateContact },
@@ -132,7 +126,7 @@ const QuestionView = () => {
     const seo = {
         title: selectedSurvey.name,
         description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
-        url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${surveyId}`,
+        url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${id}`,
     };
 
 
@@ -155,7 +149,7 @@ const QuestionView = () => {
         saveSurvey(results);
         if (index < selectedSurvey.questions.length - 1) {
             console.log(router);
-            var path = `/surveys/${surveyId}/${index + 1}`;
+            var path = `/surveys/${id}/${index + 1}`;
             router.push(path);
         }
 
@@ -170,7 +164,7 @@ const QuestionView = () => {
     const backQuestion = () => {
         //event.preventDefault();
         if (index > 0) {
-            var path = `/surveys/${surveyId}/${index - 1}`;
+            var path = `/surveys/${id}/${index - 1}`;
             router.push(path);
         }
 
@@ -196,7 +190,7 @@ const QuestionView = () => {
                     />
                     <Text fontSize="large">
                         {" "}
-                        {question}
+                        {currentQuestion}
                     </Text>
 
                     <StyledAnswersWrapper>
@@ -204,13 +198,13 @@ const QuestionView = () => {
                             <Button
                                 key={counter}
                                 active={isChoosen(
-                                    question,
+                                    currentQuestion,
                                     answer
                                 )}
                                 onClick={(event) => {
                                     handleAnswerSubmit(
                                         event,
-                                        question,
+                                        currentQuestion,
                                         answer
                                     );
                                 }}
