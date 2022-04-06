@@ -118,10 +118,6 @@ const QuestionView = ({id}) => {
         );
     };
 
-    const isChoosen = (question, answer) => {
-        if (results.get(question) === answer) return true;
-        return false;
-    };
 
     const seo = {
         title: selectedSurvey.name,
@@ -197,10 +193,7 @@ const QuestionView = ({id}) => {
                         {selectedSurvey.questions[index].answers.map((answer, counter) => (
                             <Button
                                 key={counter}
-                                active={isChoosen(
-                                    currentQuestion,
-                                    answer
-                                )}
+                                active={results.get(currentQuestion) == answer}
                                 onClick={(event) => {
                                     handleAnswerSubmit(
                                         event,
