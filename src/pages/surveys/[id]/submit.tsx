@@ -36,14 +36,12 @@ const SurveySummary = ({id}) => {
 
     useEffect(() => {
 
-        if (typeof window !== "undefined" && results.size == 0) {
+        if (typeof window !== "undefined" && results.size == 0 && confirmation.status != false) {
             const temporal = localStorage.getItem(selectedSurveyCache);
             setResults(new Map(JSON.parse(temporal)));
-
         }
 
-
-    }, [results]);
+    }, []);
 
     const parseAnswersForSubmit = () => {
         var tempArray = [];
@@ -75,8 +73,9 @@ const SurveySummary = ({id}) => {
 
 
     const clearSurvey = () => {
-        setResults(new Map<String, String>())
-        window.localStorage.setItem(selectedSurveyCache, JSON.stringify(Array.from(results.entries())));
+        results.clear()
+        console.log(results)
+        window.localStorage.setItem(selectedSurveyCache, null);
     }
 
 

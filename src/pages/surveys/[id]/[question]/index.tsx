@@ -26,7 +26,7 @@ const QuestionView = ({id}) => {
             setResults(new Map(JSON.parse(temporal)));
         }
 
-    }, [results]);
+    }, []);
 
 
     useEffect(() => {
