@@ -134,7 +134,7 @@ const SurveySummary = ({id}) => {
 
 
     return (
-        <Flex  alignItems="center" flexDirection="column">
+        <Flex margin={15}   alignItems="center" flexDirection="column">
             <Title className="title">{selectedSurvey.name} {confirmation.status}
             </Title>
             {confirmation.status == null &&

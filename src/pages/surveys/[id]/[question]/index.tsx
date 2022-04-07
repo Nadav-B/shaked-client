@@ -67,7 +67,7 @@ const QuestionView = ({id}) => {
 
     return (
 
-        <Flex alignItems={"center"} flexDirection={"column"}>
+        <Flex  margin={15} alignItems={"center"} flexDirection={"column"}>
             <Title className="title">{selectedSurvey.name}</Title>
 
             <Meta seo={seo}/>
