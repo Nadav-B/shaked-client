@@ -54,8 +54,6 @@ export const AuthProvider = ({ children }) => {
 
     if(response){
   localStorage.setItem('token',base64data );
-
-    console.log("hey")
       Cookies.set("token",response.headers.token)
       setUser(true)
       return true;

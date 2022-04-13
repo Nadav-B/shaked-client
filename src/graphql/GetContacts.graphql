@@ -1,0 +1,16 @@
+query GetContacts {
+    contacts {
+        id
+        fullName
+        category
+        phoneNumber
+        survey {
+            id
+            name
+            answers {
+                answer
+                question
+            }
+        }
+    }
+}
