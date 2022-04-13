@@ -14,11 +14,11 @@ import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
 import { ApolloProvider } from "@apollo/client";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
-import { useApollo } from "../../apollo-client";
+import  client  from "../../apollo-client";
 import { AuthProvider } from "../shared/auth";
 
 const App = ({ Component, pageProps }) => {
-  const apolloClient = useApollo(pageProps);
+
 
   const requiredStyles = css`
     @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
@@ -28,7 +28,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <AuthProvider>
-        <ApolloProvider client={apolloClient}>
+        <ApolloProvider client={client}>
           <Head>
             <link
               rel="apple-touch-icon"

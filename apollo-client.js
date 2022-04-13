@@ -1,73 +1,30 @@
-import fetch from 'isomorphic-unfetch';
-import { useMemo } from 'react'
-import { ApolloClient,createHttpLink, InMemoryCache } from '@apollo/client'
-import { concatPagination } from '@apollo/client/utilities'
-import merge from 'deepmerge'
-
-// Update the GraphQL endpoint to any instance of GraphQL that you like
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 const GRAPHQL_URL = `${process.env.NEXT_PUBLIC_API_URL}/graphql`;
-const link = createHttpLink({
-  fetch, // Switches between unfetch & node-fetch for client & server.
-  uri: GRAPHQL_URL
+
+const httpLink = createHttpLink({
+  uri:GRAPHQL_URL,
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+ console.log(token, "here");
+
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Basic ${token}` : "",
+    }
+  }
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
 });
 
 
-export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
-
-let apolloClient
-
-function createApolloClient() {
-  return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
-    link: link,
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            allPosts: concatPagination(),
-          },
-        },
-      },
-    }),
-  })
-}
-
-
-
-export function initializeApollo(initialState = null) {
-  const _apolloClient = apolloClient ?? createApolloClient()
-
-  // If your page has Next.js data fetching methods that use Apollo Client, the initial state
-  // gets hydrated here
-  if (initialState) {
-    // Get existing cache, loaded during client side data fetching
-    const existingCache = _apolloClient.extract()
-
-    // Merge the existing cache into data passed from getStaticProps/getServerSideProps
-    const data = merge(initialState, existingCache)
-
-    // Restore the cache with the merged data
-    _apolloClient.cache.restore(data)
-  }
-  // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') return _apolloClient
-  // Create the Apollo Client once in the client
-  if (!apolloClient) apolloClient = _apolloClient
-
-  return _apolloClient
-}
-
-export function addApolloState(client, pageProps) {
-  if (pageProps?.props) {
-    pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract()
-  }
-
-  return pageProps
-}
-
-export function useApollo(pageProps) {
-  const state = pageProps[APOLLO_STATE_PROP_NAME]
-  const store = useMemo(() => initializeApollo(state), [state])
-  return store
-}
+export default client;

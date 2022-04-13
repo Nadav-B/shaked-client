@@ -35,12 +35,27 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (username, password) => {
-    const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/login`;
-    const response =  await axios.post(url, {
-      username: username,
-      password: password,
-    });
+    const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/offers`;
+
+    let buff = new Buffer(username+":"+password);
+    let base64data = buff.toString('base64');
+
+
+    const token = "Basic "+base64data
+        console.log(token)
+
+    const response =  await axios.get(url,{
+                                            headers: {
+                                              'Authorization': token
+                                            }
+                                          });
+    console.log(response)
+
+
     if(response){
+  localStorage.setItem('token',base64data );
+
+    console.log("hey")
       Cookies.set("token",response.headers.token)
       setUser(true)
       return true;
