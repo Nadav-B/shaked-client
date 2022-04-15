@@ -49,11 +49,13 @@ const SurveySummary = ({id}) => {
 
         results.forEach((key, value) => {
             const answer = {
-                question: key,
-                answer: value,
+                question:value ,
+                answer: key,
             };
             tempArray.push(answer);
         });
+
+        console.log(tempArray)
 
         return tempArray;
     };

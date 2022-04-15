@@ -1,0 +1,17 @@
+query GetContact($id: ID!) {
+  contact(id: $id) {
+    id
+    fullName
+    category
+    date
+    phoneNumber
+    survey {
+      id
+      name
+      answers {
+        answer
+        question
+      }
+    }
+  }
+}

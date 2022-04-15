@@ -12,13 +12,12 @@ import Wrapper from "../../../elements/Wrapper";
 import { GetContacts } from "../../../graphql/__generated__/GetContacts";
 import { useMutation, useQuery } from "@apollo/client";
 import query from "../../../graphql/GetContacts.graphql";
-import {
-  DeleteContact,
-} from "../../../graphql/__generated__/DeleteContact";
+import { DeleteContact } from "../../../graphql/__generated__/DeleteContact";
 import mutation from "../../../graphql/DeleteContact.graphql";
+import Link from "next/link";
+import Flex from "../../../elements/Flex";
 
 const ContactManagers = () => {
-  
   const { data, loading, error } = useQuery<GetContacts>(query);
 
   useEffect(() => {
@@ -73,7 +72,7 @@ const ContactManagers = () => {
 
   return (
     <ProtectRoute>
-      <Wrapper>
+        <Flex alignItems="center" flexDirection="column">
         <StyledContact>
           <h1>אנשי קשר</h1>
           {contacts && (
@@ -111,9 +110,14 @@ const ContactManagers = () => {
                       <Td> {contact.category} </Td>
                       <Td>
                         {contact.survey && (
-                          <Button onClick={() => {}}>
-                            {contact.survey.name}
-                          </Button>
+                          <Link
+                            href={{
+                              pathname: "/admin/contacts/[id]",
+                              query: { id: contact.id },
+                            }}
+                          >
+                            <Button>{contact.survey.name}</Button>
+                          </Link>
                         )}
                       </Td>
                     </Tr>
@@ -152,8 +156,7 @@ const ContactManagers = () => {
             </div>
           )}
         </StyledContact>
-        )
-      </Wrapper>
+      </Flex>
     </ProtectRoute>
   );
 };
@@ -189,11 +192,5 @@ const StyledDeleteBanner = styled.div`
   }
 `;
 
-const StyledDeleteModal = styled.div`
-  text-align: center;
-  margin: auto;
-  height: 100%;
-  vertical-align: middle;
-`;
 
 export default ContactManagers;
