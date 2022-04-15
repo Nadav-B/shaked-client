@@ -9,12 +9,13 @@
 
 export interface GetArticle_article {
   __typename: "Article";
-  id: any;
+  id: string;
   title: string | null;
   introduction: string | null;
   content: string | null;
   tag: string | null;
   contactButton: string | null;
+  modificationDate: any | null;
 }
 
 export interface GetArticle {
@@ -22,5 +23,5 @@ export interface GetArticle {
 }
 
 export interface GetArticleVariables {
-  id: any;
+  id: string;
 }

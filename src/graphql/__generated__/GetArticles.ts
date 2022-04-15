@@ -9,6 +9,7 @@
 
 export interface GetArticles_articles {
   __typename: "Article";
+  id: string;
   title: string | null;
   introduction: string | null;
   tag: string | null;

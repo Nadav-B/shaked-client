@@ -34,15 +34,13 @@ const Articles = ({ disableMetadata }) => {
       {!disableMetadata && <Meta seo={seo} />}
       <Title>כתבות</Title>
 
-        <Carousel
-          items={data?.articles.map((article) => (
-            <ArticlePreview key={article.id} article={article} />
-          ))}
-        ></Carousel>
+      <Carousel
+        items={data?.articles.map((article) => (
+          <ArticlePreview key={article.id} article={article} />
+        ))}
+      ></Carousel>
     </Flex>
   );
 };
-
-
 
 export default Articles;

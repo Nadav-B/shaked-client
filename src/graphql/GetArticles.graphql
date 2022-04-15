@@ -1,10 +1,8 @@
-
-query  GetArticles {
-   articles {
-
-      title
-      introduction
-      tag
-    }
+query GetArticles {
+  articles {
+    id
+    title
+    introduction
+    tag
   }
-
+}
