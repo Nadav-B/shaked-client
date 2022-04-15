@@ -22,13 +22,11 @@ export interface GetContacts_contacts_survey {
 
 export interface GetContacts_contacts {
   __typename: "Contact";
-  id: string | null;
+  id: string;
   fullName: string | null;
   category: string | null;
+  date: any | null;
   phoneNumber: string | null;
-  /**
-   *  date: Date
-   */
   survey: GetContacts_contacts_survey | null;
 }
 

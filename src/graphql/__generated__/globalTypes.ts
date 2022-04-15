@@ -13,7 +13,6 @@ export interface AnswerInput {
 }
 
 export interface ContactInput {
-  id?: string | null;
   fullName?: string | null;
   phoneNumber?: string | null;
   email?: string | null;

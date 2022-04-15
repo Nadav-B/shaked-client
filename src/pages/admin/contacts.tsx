@@ -14,15 +14,13 @@ import { ProtectRoute } from "../../shared/protected_route";
 import Wrapper from "../../elements/Wrapper";
 import TextWrapper from "../../elements/TextWrapper";
 import { GetContacts } from "../../graphql/__generated__/GetContacts";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import query from "../../graphql/GetContacts.graphql";
-
-const Display = {
-  contacts: 0,
-  delete: 1,
-  survey: 2,
-  chart: 3,
-};
+import {
+  DeleteContact,
+  DeleteContactVariables,
+} from "../../graphql/__generated__/DeleteContact";
+import mutation from "../../graphql/DeleteContact.graphql";
 
 const ContactManagers = () => {
   Chartkick.options = {
@@ -31,28 +29,42 @@ const ContactManagers = () => {
 
   const { data, loading, error } = useQuery<GetContacts>(query);
 
-  console.log(data);
-  const [displayView, setDisplayView] = useState(Display.contacts);
+  useEffect(() => {
+    if (data && data.contacts && contacts.length == 0) {
+      console.log(data);
+      setContacts(data.contacts);
+    }
+  }, [data]);
+
+  const [contacts, setContacts] = useState([]);
+
+  const [deleteContactMutation] = useMutation<
+    { deleteContact: DeleteContact },
+    { id: Number }
+  >(mutation);
 
   const [selectedContacts, setSelectedContacts] = useState([]);
 
-  const [survey, setSurvey] = useState();
-  const [datesData, setdatesForStatistic] = useState(null);
+  const deleteContact = (id: Number) => {
+    const result = deleteContactMutation({
+      variables: {
+        id: id,
+      },
+    });
+
+    result.then((result) => {
+      setContacts(
+        contacts.filter((contact) => contact.id !== result.data.deleteContact)
+      );
+      setSelectedContacts([]);
+    });
+  };
 
   const renderDate = (dateString) => {
     return new Date(dateString).toDateString();
   };
 
   const messagesEndRef = useRef(null);
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const deleteContact = async (id) => {
-    return await api.deleteContact(id);
-  };
-
-
 
   const updateSelectedContacts = (selected) => (event) => {
     if (event.target.checked) {
@@ -70,164 +82,87 @@ const ContactManagers = () => {
   return (
     <ProtectRoute>
       <Wrapper>
-        {displayView == Display.contacts && (
-          <StyledContact>
-            <h1>אנשי קשר</h1>
-            {data.contacts && (
-              <div>
-                <Table>
-                  <Thead>
-                    <Tr>
-                      <Th>סמן</Th>
-                      <Th> שם מלא</Th>
-                      <Th> טלפון</Th>
-                      <Th> תאריך</Th>
-                      <Th> סוג השירות</Th>
-                      <Th> שאלון </Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {data.contacts.map((contact) => (
-                      <Tr key={contact.id}>
-                        <Td>
-                          <input
-                            onClick={updateSelectedContacts(contact)}
-                            checked={selectedContacts.find(
-                              (object) => contact.id == object.id
-                            )}
-                            type="checkbox"
-                          />
-                        </Td>
-                        <Td> {contact.fullName} </Td>
-                        <Td>
-                          <a href={`tel:${contact.phoneNumber}`}>
-                            {contact.phoneNumber}
-                          </a>
-                        </Td>
-                        <Td> {renderDate(contact.date)} </Td>
-                        <Td> {contact.category} </Td>
-                        <Td>
-                          {contact.survey && (
-                            <Button
-                              onClick={() => {
-                                setDisplayView(Display.survey);
-                              }}
-                            >
-                              {contact.survey.name}
-                            </Button>
+        <StyledContact>
+          <h1>אנשי קשר</h1>
+          {contacts && (
+            <div>
+              <Table>
+                <Thead>
+                  <Tr>
+                    <Th>סמן</Th>
+                    <Th> שם מלא</Th>
+                    <Th> טלפון</Th>
+                    <Th> תאריך</Th>
+                    <Th> סוג השירות</Th>
+                    <Th> שאלון </Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {contacts.map((contact) => (
+                    <Tr key={contact.id}>
+                      <Td>
+                        <input
+                          onClick={updateSelectedContacts(contact)}
+                          checked={selectedContacts.find(
+                            (object) => contact.id == object.id
                           )}
-                        </Td>
-                      </Tr>
-                    ))}
-                  </Tbody>
-                </Table>
+                          type="checkbox"
+                        />
+                      </Td>
+                      <Td> {contact.fullName} </Td>
+                      <Td>
+                        <a href={`tel:${contact.phoneNumber}`}>
+                          {contact.phoneNumber}
+                        </a>
+                      </Td>
+                      <Td> {renderDate(contact.date)} </Td>
+                      <Td> {contact.category} </Td>
+                      <Td>
+                        {contact.survey && (
+                          <Button onClick={() => {}}>
+                            {contact.survey.name}
+                          </Button>
+                        )}
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
 
-                {selectedContacts.length > 0 && (
-                  <StyledDeleteBanner>
-                    <Button
-                      className="flex-item"
-                      onClick={() => setDisplayView(Display.delete)}
-                    >
-                      מחק {selectedContacts.length}
-                    </Button>
-                    <Button
-                      className="flex-item"
-                      onClick={() => setSelectedContacts([])}
-                    >
-                      נקה בחירה
-                    </Button>
+              {selectedContacts.length > 0 && (
+                <StyledDeleteBanner>
+                  <Button
+                    className="flex-item"
+                    onClick={() =>
+                      selectedContacts.forEach((selectedContact) =>
+                        deleteContact(selectedContact.id)
+                      )
+                    }
+                  >
+                    מחק {selectedContacts.length}
+                  </Button>
+                  <Button
+                    className="flex-item"
+                    onClick={() => setSelectedContacts([])}
+                  >
+                    נקה בחירה
+                  </Button>
 
-                    <Button
-                      className="flex-item"
-                      onClick={() => setSelectedContacts(contacts)}
-                    >
-                      סמן הכל
-                    </Button>
-                  </StyledDeleteBanner>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-            )}
-
-            <Button
-              onClick={() => {
-                showChart();
-                setDisplayView(Display.chart);
-              }}
-            >
-              פתח תרשים
-            </Button>
-          </StyledContact>
-        )}
-
-        {displayView == Display.delete && (
-          <DeleteModal
-            deleteSelectedContacts={deleteSelectedContacts}
-            setDisplayView={setDisplayView}
-          />
-        )}
-
-        {displayView == Display.survey && (
-          <SurveyModal survey={survey} setDisplayView={setDisplayView} />
-        )}
-
-        {displayView == Display.chart && (
-          <ChartModal
-            setDisplayView={setDisplayView}
-            length={contacts.length}
-            datesData={datesData}
-          />
-        )}
+                  <Button
+                    className="flex-item"
+                    onClick={() => setSelectedContacts(contacts)}
+                  >
+                    סמן הכל
+                  </Button>
+                </StyledDeleteBanner>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+          )}
+        </StyledContact>
+        )
       </Wrapper>
     </ProtectRoute>
-  );
-};
-
-const DeleteModal = ({ deleteSelectedContacts, setDisplayView }) => {
-  return (
-    <StyledDeleteModal>
-      <Text>בטוח שברצונך למחוק?</Text>
-      <Button
-        onClick={() => {
-          deleteSelectedContacts();
-          setDisplayView(Display.contacts);
-        }}
-      >
-        כן
-      </Button>
-      <Button
-        onClick={() => {
-          setDisplayView(Display.contacts);
-        }}
-      >
-        לא
-      </Button>{" "}
-    </StyledDeleteModal>
-  );
-};
-
-const SurveyModal = ({ survey, setDisplayView }) => {
-  return (
-    <div>
-      <h1> {survey.name}</h1>
-      {survey.answers.map((entry) => (
-        <TextWrapper>
-          <Text fontSize="large"> {entry.question}</Text>
-          <Text> {entry.answer}</Text>
-        </TextWrapper>
-      ))}
-      <Button onClick={() => setDisplayView(Display.contacts)}>סגור</Button>
-    </div>
-  );
-};
-
-const ChartModal = ({ length, datesData, setDisplayView }) => {
-  return (
-    <div>
-      <ColumnChart data={datesData} />
-      <p> סה״כ אנשי קשר {length}</p>
-      <Button onClick={() => setDisplayView(Display.contacts)}>סגור</Button>
-    </div>
   );
 };
 
