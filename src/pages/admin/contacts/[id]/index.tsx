@@ -10,6 +10,7 @@ import Error from "../../../../elements/Error";
 import Flex from "../../../../elements/Flex";
 import Text from "../../../../elements/Text";
 import Title from "../../../../elements/Title";
+import { ProtectRoute } from "../../../../shared/protected_route";
 
 const ContactViewer = () => {
   const router = useRouter();
@@ -25,26 +26,27 @@ const ContactViewer = () => {
   if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
   if (loading) return <Loading />;
   return (
-    <Flex marginBottom="14px" alignItems="center" flexDirection="column">
-        <Title> איש קשר</Title>
-      <div>
-        <label>שם: </label>
-        <label>{data.contact.fullName}</label>
-      </div>
-      <div>
-        <label>טלפון: </label>
-        <label>{data.contact.phoneNumber}</label>
-      </div>
-      <h4>{data.contact.survey.name}</h4>
-      <div>
-        {data.contact.survey.answers.map((entry) => (
-          <div>
-            <Text fontSize="large"> {entry.question}</Text>
-            <Text> {entry.answer}</Text>
-          </div>
-        ))}
-      </div>
-    </Flex>
+    <ProtectRoute>
+      <Flex alignItems="center" flexDirection="column">
+        <Title>{data.contact.survey.name}</Title>
+        <div>
+          <label>שם: </label>
+          <label>{data.contact.fullName}</label>
+        </div>
+        <div>
+          <label>טלפון: </label>
+          <label>{data.contact.phoneNumber}</label>
+        </div>
+        <div>
+          {data.contact.survey.answers.map((entry) => (
+            <Flex margin={3} flexDirection="column">
+              <Text fontSize="large"> {entry.question}</Text>
+              <Text> {entry.answer}</Text>
+            </Flex>
+          ))}
+        </div>
+      </Flex>
+    </ProtectRoute>
   );
 };
 

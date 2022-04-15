@@ -16,6 +16,7 @@ import { DeleteContact } from "../../../graphql/__generated__/DeleteContact";
 import mutation from "../../../graphql/DeleteContact.graphql";
 import Link from "next/link";
 import Flex from "../../../elements/Flex";
+import Title from "../../../elements/Title";
 
 const ContactManagers = () => {
   const { data, loading, error } = useQuery<GetContacts>(query);
@@ -55,7 +56,6 @@ const ContactManagers = () => {
     return new Date(dateString).toDateString();
   };
 
-  const messagesEndRef = useRef(null);
 
   const updateSelectedContacts = (selected) => (event) => {
     if (event.target.checked) {
@@ -72,90 +72,88 @@ const ContactManagers = () => {
 
   return (
     <ProtectRoute>
-        <Flex alignItems="center" flexDirection="column">
-        <StyledContact>
-          <h1>אנשי קשר</h1>
-          {contacts && (
-            <div>
-              <Table>
-                <Thead>
-                  <Tr>
-                    <Th>סמן</Th>
-                    <Th> שם מלא</Th>
-                    <Th> טלפון</Th>
-                    <Th> תאריך</Th>
-                    <Th> סוג השירות</Th>
-                    <Th> שאלון </Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {contacts.map((contact) => (
-                    <Tr key={contact.id}>
-                      <Td>
-                        <input
-                          onClick={updateSelectedContacts(contact)}
-                          checked={selectedContacts.find(
-                            (object) => contact.id == object.id
-                          )}
-                          type="checkbox"
-                        />
-                      </Td>
-                      <Td> {contact.fullName} </Td>
-                      <Td>
-                        <a href={`tel:${contact.phoneNumber}`}>
-                          {contact.phoneNumber}
-                        </a>
-                      </Td>
-                      <Td> {renderDate(contact.date)} </Td>
-                      <Td> {contact.category} </Td>
-                      <Td>
-                        {contact.survey && (
-                          <Link
-                            href={{
-                              pathname: "/admin/contacts/[id]",
-                              query: { id: contact.id },
-                            }}
-                          >
-                            <Button>{contact.survey.name}</Button>
-                          </Link>
+      <Flex alignItems="center" flexDirection="column">
+        <Title>אנשי קשר</Title>
+
+        {contacts && (
+          <StyledContact>
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>סמן</Th>
+                  <Th> שם מלא</Th>
+                  <Th> טלפון</Th>
+                  <Th> תאריך</Th>
+                  <Th> סוג השירות</Th>
+                  <Th> שאלון </Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {contacts.map((contact) => (
+                  <Tr key={contact.id}>
+                    <Td>
+                      <input
+                        onClick={updateSelectedContacts(contact)}
+                        checked={selectedContacts.find(
+                          (object) => contact.id == object.id
                         )}
-                      </Td>
-                    </Tr>
-                  ))}
-                </Tbody>
-              </Table>
+                        type="checkbox"
+                      />
+                    </Td>
+                    <Td> {contact.fullName} </Td>
+                    <Td>
+                      <a href={`tel:${contact.phoneNumber}`}>
+                        {contact.phoneNumber}
+                      </a>
+                    </Td>
+                    <Td> {renderDate(contact.date)} </Td>
+                    <Td> {contact.category} </Td>
+                    <Td>
+                      {contact.survey && (
+                        <Link
+                          href={{
+                            pathname: "/admin/contacts/[id]",
+                            query: { id: contact.id },
+                          }}
+                        >
+                          <Button>{contact.survey.name}</Button>
+                        </Link>
+                      )}
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
 
-              {selectedContacts.length > 0 && (
-                <StyledDeleteBanner>
-                  <Button
-                    className="flex-item"
-                    onClick={() =>
-                      selectedContacts.forEach((selectedContact) =>
-                        deleteContact(selectedContact.id)
-                      )
-                    }
-                  >
-                    מחק {selectedContacts.length}
-                  </Button>
-                  <Button
-                    className="flex-item"
-                    onClick={() => setSelectedContacts([])}
-                  >
-                    נקה בחירה
-                  </Button>
+            {selectedContacts.length > 0 && (
+              <StyledDeleteBanner>
+                <Button
+                  className="flex-item"
+                  onClick={() =>
+                    selectedContacts.forEach((selectedContact) =>
+                      deleteContact(selectedContact.id)
+                    )
+                  }
+                >
+                  מחק {selectedContacts.length}
+                </Button>
+                <Button
+                  className="flex-item"
+                  onClick={() => setSelectedContacts([])}
+                >
+                  נקה בחירה
+                </Button>
 
-                  <Button
-                    className="flex-item"
-                    onClick={() => setSelectedContacts(contacts)}
-                  >
-                    סמן הכל
-                  </Button>
-                </StyledDeleteBanner>
-              )}
-              <div ref={messagesEndRef} />
-            </div>
-          )}
-        </StyledContact>
+                <Button
+                  className="flex-item"
+                  onClick={() => setSelectedContacts(contacts)}
+                >
+                  סמן הכל
+                </Button>
+              </StyledDeleteBanner>
+            )}
+          </StyledContact>
+        )}
       </Flex>
     </ProtectRoute>
   );
@@ -191,6 +189,5 @@ const StyledDeleteBanner = styled.div`
     margin: 20px;
   }
 `;
-
 
 export default ContactManagers;
