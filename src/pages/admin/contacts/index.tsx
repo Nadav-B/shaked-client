@@ -1,32 +1,24 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "@emotion/styled";
-import api from "../../shared/api";
-import Text from "../../elements/Text";
 
-import Button from "../../elements/Button";
-import Error from "../../elements/Error";
-import Loading from "../../elements/Loading";
+import Button from "../../../elements/Button";
+import Error from "../../../elements/Error";
+import Loading from "../../../elements/Loading";
 
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
-import Chartkick, { ColumnChart, PieChart } from "react-chartkick";
-import "chart.js";
-import { ProtectRoute } from "../../shared/protected_route";
-import Wrapper from "../../elements/Wrapper";
-import TextWrapper from "../../elements/TextWrapper";
-import { GetContacts } from "../../graphql/__generated__/GetContacts";
+
+import { ProtectRoute } from "../../../shared/protected_route";
+import Wrapper from "../../../elements/Wrapper";
+import { GetContacts } from "../../../graphql/__generated__/GetContacts";
 import { useMutation, useQuery } from "@apollo/client";
-import query from "../../graphql/GetContacts.graphql";
+import query from "../../../graphql/GetContacts.graphql";
 import {
   DeleteContact,
-  DeleteContactVariables,
-} from "../../graphql/__generated__/DeleteContact";
-import mutation from "../../graphql/DeleteContact.graphql";
+} from "../../../graphql/__generated__/DeleteContact";
+import mutation from "../../../graphql/DeleteContact.graphql";
 
 const ContactManagers = () => {
-  Chartkick.options = {
-    colors: ["#F77F00", "#FCBF49"],
-  };
-
+  
   const { data, loading, error } = useQuery<GetContacts>(query);
 
   useEffect(() => {
