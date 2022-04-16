@@ -3,7 +3,7 @@ import Button from "./Button";
 import Text from "./Text";
 import styled from '@emotion/styled';
 import Router from "next/router";
-import Wrapper from "./Wrapper";
+import Title from "./Title";
 import Flex from "./Flex";
 
 const Login = ({ login }) => {
@@ -61,8 +61,8 @@ const Login = ({ login }) => {
     }));
   };
   return (
-      <Flex margin="auto" maxWidth={400} flexDirection="column">
-      <h1> דף ניהול</h1>
+      <Flex alignItems="center" margin="30px"  flexDirection="column">
+      <Title> דף ניהול</Title>
         <form onSubmit={handleSubmit}>
           <label>
             שם משתמש

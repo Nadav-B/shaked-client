@@ -1,15 +1,13 @@
 import Link from "next/link";
-import styled from '@emotion/styled';
 import Button from "../../elements/Button";
-import Wrapper from "../../elements/Wrapper";
 import { ProtectRoute } from "../../shared/protected_route";
-
+import Flex from "../../elements/Flex";
+import Title from "../../elements/Title";
 const Admin = () => {
   return (
     <ProtectRoute>
-      <Wrapper>
-        <StyledAdmin>
-          <h1>עמוד ניהול</h1>
+      <Flex flexDirection="column" margin="30px" alignItems="center">
+          <Title>עמוד ניהול</Title>
           <Link href={"/admin/contacts"}>
             <Button>הצג אנשי קשר</Button>
           </Link>
@@ -25,18 +23,11 @@ const Admin = () => {
           <Link href={"/admin/offer"}>
             <Button> ערוך או הוסף הצעות</Button>
           </Link>
-        </StyledAdmin>
-      </Wrapper>
+      </Flex>
     </ProtectRoute>
   );
 };
 
-const StyledAdmin = styled.div`
-  display: block;
-  padding: 4px;
-  width: 80%;
-  margin: auto;
-  height: 100%;
-`;
+
 
 export default Admin;
