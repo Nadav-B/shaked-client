@@ -21,7 +21,7 @@ const ArticleManager = () => {
     const id = router.query.id;
 
     const {data, loading, error} = useQuery<GetArticle, GetArticleVariables>(query, {
-        variables: {id: id},
+        variables: {id: String(id)},
     });
 
 
