@@ -11,27 +11,26 @@
     "generate:types": "apollo client:codegen src/graphql/__generated__ --target typescript --outputFlat"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.7",
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
+    "@apollo/client": "^3.5.10",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@styled-system/should-forward-prop": "^5.1.5",
-    "@types/react": "^17.0.38",
+    "@types/react": "^18.0.5",
     "apollo": "2.33.9",
-    "axios": "^0.25.0",
+    "axios": "^0.26.1",
 
-    "copy-webpack-plugin": "^10.2.1",
-    "deepmerge": "^4.2.2",
+    "copy-webpack-plugin": "^10.2.4",
     "graphql": "15.6.1",
     "isomorphic-unfetch": "^3.1.0",
     "js-cookie": "^3.0.1",
-    "next": "^12.0.8",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "^12.1.5",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
     "react-loadingg": "^1.7.2",
     "react-super-responsive-table": "5.2.0",
     "react-sweet-progress": "^1.1.2",
     "styled-system": "^5.1.5",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.3"
   },
   "resolutions": {
     "graphql": "15.6.1"
