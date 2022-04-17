@@ -53,6 +53,7 @@ const ContactManagers = () => {
   };
 
   const renderDate = (dateString) => {
+    console.log(dateString);
     return new Date(dateString).toDateString();
   };
 
