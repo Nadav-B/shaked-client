@@ -121,7 +121,7 @@ const getServices = async () => {
 
 const postService = async (service) => {
   const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/services/post`;
-  const token = Cookies.get("token");
+  const token = localStorage.get("token");
   return await axios.post(url, service, {
     headers: {
       Authorization: `${token}`,
