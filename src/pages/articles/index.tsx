@@ -30,7 +30,7 @@ const Articles = ({disableMetadata}) => {
     if (error) return <span></span>;
 
     return (
-        <Flex alignItems="center" flexDirection="column">
+        <Flex marginTop="30px" alignItems="center" flexDirection="column">
             {!disableMetadata && <Meta seo={seo}/>}
             <Title>כתבות</Title>
 

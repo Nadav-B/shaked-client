@@ -20,7 +20,7 @@ const Surveys = ({disableMetadata}) => {
     const data = [survey1, survey2];
 
     return (
-        <Flex alignItems="center" flexDirection="column">
+        <Flex marginTop={30} alignItems="center" flexDirection="column">
             {!disableMetadata && <Meta seo={seo}/>}
             <Titel> שאלונים לביצוע בדיקה</Titel>
             {data.map((survey) => (

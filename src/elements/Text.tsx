@@ -87,6 +87,8 @@ type StyledTextPropsWithTheme = StyledTextProps & {
 
 const TruncateText = styled.span`
   display: block;
+    transition: background-color 1s;
+
   margin: 0;
   padding: 0;
   overflow: hidden;

@@ -20,15 +20,15 @@ const Homepage = () => {
     return (
         <Flex flexDirection="column">
             <Meta seo={new Seo()}/>
+
+
             <StyledLandingPage>
                 <StyledText>
                     <h1> שקד משכנתאות</h1>
                     <h2> יעוץ משכנתאות וכלכלת המשפחה</h2>
                 </StyledText>
             </StyledLandingPage>
-            <ContentBackground id="about">
                 <About disableMetadata={true}/>
-            </ContentBackground>
             <ContentBackground id="surveys">
                 <Surveys disableMetadata={true}/>
             </ContentBackground>
@@ -49,8 +49,12 @@ const Homepage = () => {
     );
 };
 
+
+
 const ContentBackground = styled.div`
-  background: white;
+background: #ECE9E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `;
 
 
