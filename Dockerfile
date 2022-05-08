@@ -13,9 +13,9 @@ RUN yarn install
 COPY . .
 
 # Building app
-RUN npm run build
+RUN yarn build
 
 EXPOSE 3000
 
 # Running the app
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
