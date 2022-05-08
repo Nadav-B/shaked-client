@@ -6,7 +6,7 @@ import Button from "../../../elements/Button";
 import { directByContact } from "../../../config/contactButtonLinks";
 import TextWrapper from "../../../elements/TextWrapper";
 
-import Meta from "../../../components/Meta";
+import Meta from "../../../components/meta";
 import Flex from "../../../elements/Flex";
 
 const Service = ({ data }) => {

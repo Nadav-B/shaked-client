@@ -2,7 +2,7 @@ import React from "react";
 import Loading from "../../elements/Loading";
 import ArticlePreview from "../../elements/ArticlePreview";
 import {useQuery} from "@apollo/client";
-import Meta from "../../components/Meta";
+import Meta from "../../components/meta";
 
 import {GetArticles} from "../../graphql/__generated__/GetArticles";
 

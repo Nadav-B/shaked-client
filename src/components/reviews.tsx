@@ -3,14 +3,20 @@ import styled from "@emotion/styled";
 import Wrapper from "../elements/Wrapper";
 import Title from "../elements/Title";
 import Link from "next/link";
+import Flex from "../elements/Flex";
 
 const Reviews: React.FC<{}> = ({}) => {
 
     const inverted = false;
 
     return (
-        <>
-            <Title> מה לקוחות אומרים עלינו?</Title>
+        <Flex
+            marginRight="20px"
+            marginLeft="20px"
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="column"
+        >            <Title> מה לקוחות אומרים עלינו?</Title>
             <StyledFlex>
 
 
@@ -101,7 +107,7 @@ const Reviews: React.FC<{}> = ({}) => {
                 </a>
 
             </StyledFlex>
-        </>
+        </Flex>
     );
 };
 

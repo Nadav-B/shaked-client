@@ -4,7 +4,7 @@ import {useQuery} from "@apollo/client";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
 
-import Meta from "../components/Meta";
+import Meta from "../components/meta";
 import Wrapper from "../elements/Wrapper";
 
 

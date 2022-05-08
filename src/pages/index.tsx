@@ -7,9 +7,10 @@ import Surveys from "../pages/surveys";
 import About from "../pages/about";
 import Services from "../pages/services";
 
-import Meta from "../components/Meta";
+import Meta from "../components/meta";
 import Flex from "../elements/Flex";
 import Seo from "../classes/seo";
+import Reviews from "../components/reviews";
 
 const Index = () => {
     return <Homepage/>;
@@ -31,17 +32,19 @@ const Homepage = () => {
             <ContentBackground id="surveys">
                 <Surveys disableMetadata={true}/>
             </ContentBackground>
-            <ContentBackground>
-                <ContentBackground id="articles">
-                    <Articles disableMetadata={true}/>
-                </ContentBackground>
-                <ContentBackground id="services">
-                    <Services backSide={false} disableMetadata={true}/>
-                </ContentBackground>
-                <ContentBackground id="contact">
-                    <Contact disableMetadata={true}/>
-                </ContentBackground>
+            <ContentBackground id="articles">
+                <Articles disableMetadata={true}/>
             </ContentBackground>
+            <ContentBackground id="services">
+                <Services backSide={false} disableMetadata={true}/>
+            </ContentBackground>
+            <ContentBackground>
+                <Reviews/>
+            </ContentBackground>
+            <ContentBackground id="contact">
+                <Contact disableMetadata={true}/>
+            </ContentBackground>
+
         </Flex>
     );
 };

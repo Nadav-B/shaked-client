@@ -5,7 +5,7 @@ import Link from "next/link";
 import Text from "../../elements/Text";
 import styled from '@emotion/styled';
 
-import Meta from "../../components/Meta";
+import Meta from "../../components/meta";
 import Wrapper from "../../elements/Wrapper";
 import Titel from "../../elements/Title";
 import Flex from "../../elements/Flex";

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import Button from "../../../elements/Button";
 import Flex from "../../../elements/Flex";
 
-import Meta from "../../../components/Meta";
+import Meta from "../../../components/meta";
 import {useQuery} from "@apollo/client";
 import {
     GetArticle,

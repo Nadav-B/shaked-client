@@ -1,6 +1,6 @@
 import React from "react";
 
-import Meta from "../../../components/Meta";
+import Meta from "../../../components/meta";
 import Flex from "../../../elements/Flex";
 import Link from "next/link";
 

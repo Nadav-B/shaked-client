@@ -4,7 +4,7 @@ import ServicePreview from "../../elements/ServicePreview";
 import styled from "@emotion/styled";
 import {useQuery} from "@apollo/client";
 import Loading from "../../elements/Loading";
-import Meta from "../../components/Meta";
+import Meta from "../../components/meta";
 import Wrapper from "../../elements/Wrapper";
 import {GetServices} from "../../graphql/__generated__/GetServices";
 

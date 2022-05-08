@@ -6,7 +6,7 @@ import Text from "../../../../elements/Text";
 import Button from "../../../../elements/Button";
 import surveys from "../../../../../public/surveys";
 import {Progress} from "react-sweet-progress";
-import Meta from "../../../../components/Meta";
+import Meta from "../../../../components/meta";
 import Link from "next/link";
 import Title from "../../../../elements/Title";
 import Seo from "../../../../classes/seo";

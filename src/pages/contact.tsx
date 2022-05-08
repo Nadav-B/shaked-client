@@ -3,7 +3,7 @@ import Button from "../elements/Button";
 import Text from "../elements/Text";
 import styled from "@emotion/styled";
 
-import Meta from "../components/Meta";
+import Meta from "../components/meta";
 import Flex from "../elements/Flex";
 import mutation from "../graphql/CreateContact.graphql";
 import {useMutation} from "@apollo/client";
