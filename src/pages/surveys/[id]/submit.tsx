@@ -14,8 +14,7 @@ import {useRouter} from "next/router";
 import Title from "../../../elements/Title";
 
 const SurveySummary = ({id}) => {
-
-    const router = useRouter();
+    useRouter();
     const selectedSurveyCache = `survey_+ ${id}`;
     const selectedSurvey = surveys[Number(id)];
     const [results, setResults] = useState(new Map<String, String>());

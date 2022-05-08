@@ -3,25 +3,23 @@ import Button from "../elements/Button";
 import Text from "../elements/Text";
 import styled from "@emotion/styled";
 
-import api from "../shared/api";
-
 import Meta from "../components/Meta";
-import Wrapper from "../elements/Wrapper";
-import TextWrapper from "../elements/TextWrapper";
 import Flex from "../elements/Flex";
 import mutation from "../graphql/CreateContact.graphql";
 import {useMutation} from "@apollo/client";
 import {
     CreateContact,
-    CreateContact_createContact,
+
 } from "../graphql/__generated__/CreateContact";
 import {ContactInput} from "../graphql/__generated__/globalTypes";
 import Title from "../elements/Title";
+import Seo from "../classes/seo";
 
-const seo = {
-    description: "השאירו פרטים ונחזור אליכם בהקדם",
-    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/contact`,
-};
+
+const seo = new Seo();
+seo.description = "השאירו פרטים ונחזור אליכם בהקדם";
+seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/contact`;
+
 
 interface ContactOptions {
     disableMetadata: boolean
@@ -41,6 +39,7 @@ const Contact: React.FC<ContactOptions> = ({
         address: "",
         category: category,
     });
+
 
     const [submitContact, {data, loading, error}] = useMutation<{ createContact: CreateContact },
         { contactInput: ContactInput }>(mutation);
@@ -141,7 +140,6 @@ const Contact: React.FC<ContactOptions> = ({
         </Flex>
     );
 };
-
 
 
 const StyledBox = styled.div`

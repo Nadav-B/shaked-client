@@ -6,18 +6,17 @@ import {useQuery} from "@apollo/client";
 import Loading from "../../elements/Loading";
 import Meta from "../../components/Meta";
 import Wrapper from "../../elements/Wrapper";
-import {GetServices } from "../../graphql/__generated__/GetServices";
+import {GetServices} from "../../graphql/__generated__/GetServices";
 
 import query from "../../graphql/GetServices.graphql";
 import Title from "../../elements/Title";
 import Flex from "../../elements/Flex";
+import Seo from "../../classes/seo";
 
-const seo = {
-    title: "השירותים שלנו",
-    description:
-        "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה",
-    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/services`,
-};
+const seo = new Seo();
+seo.title = "השירותים שלנו";
+seo.description = "מחזור משכנתא, בדיקה למשכנתא, איחוד הלוואות,  נפרדים מהמינוס, משכנתא חדשה";
+seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/services`;
 
 
 interface ServicesOption {
@@ -25,7 +24,6 @@ interface ServicesOption {
     backSide?: boolean
     handleClick?: any
 }
-
 
 const Services: React.FC<ServicesOption> = ({
                                                 disableMetadata,
