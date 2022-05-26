@@ -1,6 +1,6 @@
 import React from "react";
 
-import Meta from "../../../components/Meta";
+import Meta from "../../../components/meta";
 import Flex from "../../../elements/Flex";
 import Link from "next/link";
 
@@ -14,12 +14,12 @@ import shouldForwardProp from "@styled-system/should-forward-prop";
 
 import Text from "../../../elements/Text";
 import StyledButton from "../../../elements/Button";
+import Seo from "../../../classes/seo";
 
-const seo = {
-    title: "שקד משכנתאות, ליווי משכנתא חדשה, הנחה לזמן מוגבל!",
-    description: "השאירו פרטים ונחזור אליכם בהקדם",
-    url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/campaigns/new-mortgage`,
-};
+const seo = new Seo();
+seo.title = "שקד משכנתאות, ליווי משכנתא חדשה, הנחה לזמן מוגבל!";
+seo.description = "השאירו פרטים ונחזור אליכם בהקדם";
+seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/campaigns/new-mortgage`;
 
 const NewMortgage: React.FC = ({}) => {
     return (

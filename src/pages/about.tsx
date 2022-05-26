@@ -1,50 +1,51 @@
 import React from "react";
 import styled from '@emotion/styled';
-import { useQuery } from "@apollo/client";
+import {useQuery} from "@apollo/client";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
 
-import Meta from "../components/Meta";
+import Meta from "../components/meta";
 import Wrapper from "../elements/Wrapper";
 
 
 import {GetTexts} from "../graphql/__generated__/GetTexts";
 import query from "../graphql/GetTexts.graphql";
+import Seo from "../classes/seo";
 
 
-const seo = {
-  title: "אודות",
-  url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/about`,
-};
+const seo = new Seo();
 
-const About = ({ disableMetadata }) => {
+seo.title = "אודות";
+seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/about`;
 
-    const { data, loading, error } = useQuery<GetTexts>(query);
+const About = ({disableMetadata}) => {
 
-  if (loading)
+    const {data, loading, error} = useQuery<GetTexts>(query);
+
+    if (loading)
+        return (
+            <>
+                {!disableMetadata && <Meta seo={seo}/>}
+                <Loading/>
+            </>
+        );
+    if (error) return <span></span>;
+
     return (
-      <>
-        {!disableMetadata && <Meta seo={seo} />}
-        <Loading />
-      </>
+        <Wrapper>
+            {!disableMetadata && <Meta seo={seo}/>}
+            <TextWrapper>
+                {data?.texts.map((text) => (
+                    <div
+                        key={text.id}
+                        dangerouslySetInnerHTML={{
+                            __html: text.content,
+                        }}
+                    ></div>
+                ))}
+            </TextWrapper>
+        </Wrapper>
     );
-  if (error) return <span></span>;
-
-  return (
-    <Wrapper>
-      {!disableMetadata && <Meta seo={seo} />}
-      <TextWrapper>
-        {data?.texts.map((text) => (
-          <div
-            key={text.id}
-            dangerouslySetInnerHTML={{
-              __html: text.content,
-            }}
-          ></div>
-        ))}
-      </TextWrapper>
-    </Wrapper>
-  );
 };
 
 export default About;

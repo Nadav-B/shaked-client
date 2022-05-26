@@ -25,44 +25,19 @@ const Carousel: React.FC<SliderProps> = ({items}) => {
 const StyledFlex = styled.div`
 
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-
-
+  
   @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
     justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
   }
 `
 
 const StyledCarousel = styled.div`
-  /* width */
-
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  /* Handle */
-
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-
-  /* Handle on hover */
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-
   width: 90%;
-
 `;
 
 

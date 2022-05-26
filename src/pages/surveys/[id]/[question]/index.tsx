@@ -6,9 +6,10 @@ import Text from "../../../../elements/Text";
 import Button from "../../../../elements/Button";
 import surveys from "../../../../../public/surveys";
 import {Progress} from "react-sweet-progress";
-import Meta from "../../../../components/Meta";
+import Meta from "../../../../components/meta";
 import Link from "next/link";
 import Title from "../../../../elements/Title";
+import Seo from "../../../../classes/seo";
 
 
 const QuestionView = ({id}) => {
@@ -40,11 +41,10 @@ const QuestionView = ({id}) => {
     });
 
 
-    const seo = {
-        title: selectedSurvey.name,
-        description: "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא",
-        url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${id}`,
-    };
+    const seo = new Seo();
+    seo.title = selectedSurvey.name;
+    seo.description = "בצעו בדיקה חינם וגלו אם תוכלו להוזיל את עלויות המשכנתא";
+    seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys/${id}`;
 
 
     const handleAnswerSubmit = (event, answer) => {
@@ -67,7 +67,7 @@ const QuestionView = ({id}) => {
 
     return (
 
-        <Flex  margin={15} alignItems={"center"} flexDirection={"column"}>
+        <Flex margin={15} alignItems={"center"} flexDirection={"column"}>
             <Title className="title">{selectedSurvey.name}</Title>
 
             <Meta seo={seo}/>

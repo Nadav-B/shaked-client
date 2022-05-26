@@ -1,4 +1,4 @@
-FROM node:16.0-alpine
+FROM node:18-alpine
 
 # Setting working directory. All the path will be relative to WORKDIR
 WORKDIR /usr/src/app
@@ -13,9 +13,9 @@ RUN yarn install
 COPY . .
 
 # Building app
-RUN npm run build
+RUN yarn build
 
 EXPOSE 3000
 
 # Running the app
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]

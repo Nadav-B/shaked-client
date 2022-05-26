@@ -15,24 +15,35 @@ import Flex from "../../../../elements/Flex";
 import {useRouter} from "next/router";
 import Loading from "../../../../elements/Loading";
 import Error from "../../../../elements/Error";
+import {GetArticles} from "../../../../graphql/__generated__/GetArticles";
+import Title from "../../../../elements/Title";
 
 const ArticleManager = () => {
     const router = useRouter()
     const id = router.query.id;
+    const [imagePreview, setImagePreview] = useState("");
+    const [uploadImage, setUploadImage] = useState();
+    const [result, setResult] = useState({
+        text: "",
+        style: "",
+        status: false,
+    });
+    const [state, setState] = useState({
+        id: null,
+        title: "",
+        introduction: "",
+        content: "",
+        tag: "",
+        contactButton: contactLinks[0].name,
+    });
+
 
     const {data, loading, error} = useQuery<GetArticle, GetArticleVariables>(query, {
         variables: {id: String(id)},
     });
 
-
     useEffect(() => {
-        if (id && data?.article) {
-
-            console.log(data)
-
-            setImagePreview(
-                `${process.env.NEXT_PUBLIC_API_URL}/articles/article/image/${id}`
-            );
+        if (data && data.article) {
             setState({
                 id: data.article.id,
                 title: data.article.title,
@@ -41,19 +52,14 @@ const ArticleManager = () => {
                 tag: data.article.tag,
                 contactButton: data.article.contactButton,
             });
-        } else {
-            setImagePreview(null);
-            setState({
-                id: "",
-                title: "",
-                introduction: "",
-                content: "",
-                tag: "",
-                contactButton: contactLinks[0].name,
-            });
         }
+    }, [data]);
 
-    }, [id]);
+    if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"}/>;
+    if (loading) return <Loading/>;
+
+    console.log(data.article)
+
     const handleArticleChange = (event) => {
         event.preventDefault();
         const target = event.target;
@@ -68,25 +74,6 @@ const ArticleManager = () => {
 
 
     };
-
-    const [state, setState] = useState({
-        id: "",
-        title: "",
-        introduction: "",
-        content: "",
-        tag: "",
-        contactButton: contactLinks[0].name,
-    });
-
-    const [imagePreview, setImagePreview] = useState("");
-
-    const [uploadImage, setUploadImage] = useState();
-
-    const [result, setResult] = useState({
-        text: "",
-        style: "",
-        status: false,
-    });
 
 
     const handleSubmit = async (event) => {
@@ -154,8 +141,8 @@ const ArticleManager = () => {
 
     return (
         <ProtectRoute>
-            <Flex margin={"20px"} flexDirection={"column"}>
-                <h1> ערוך כתבה</h1>
+            <Flex alignItems="center" flexDirection="column">
+                <Title> ערוך כתבה</Title>
                 <TextWrapper>
                     <form onSubmit={handleSubmit}>
                         <label>

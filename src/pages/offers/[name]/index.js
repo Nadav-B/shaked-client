@@ -5,7 +5,7 @@ import Button from "../../../elements/Button";
 import TextWrapper from "../../../elements/TextWrapper";
 
 import { directByContact } from "../../../config/contactButtonLinks";
-import Meta from "../../../components/Meta";
+import Meta from "../../../components/meta";
 import Wrapper from "../../../elements/Wrapper";
 
 const Offer = ({ data }) => {
