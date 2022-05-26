@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/campaigns/new-mortage/index.tss"
-  ],
+, "src/elements/Login.js", "src/shared/auth.js"  ],
   "exclude": [
     "node_modules"
   ]

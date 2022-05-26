@@ -12,6 +12,15 @@ export interface AnswerInput {
   answer?: string | null;
 }
 
+export interface ArticleInput {
+  id?: string | null;
+  title?: string | null;
+  introduction?: string | null;
+  tag?: string | null;
+  content?: string | null;
+  contactButton?: string | null;
+}
+
 export interface ContactInput {
   fullName?: string | null;
   phoneNumber?: string | null;
