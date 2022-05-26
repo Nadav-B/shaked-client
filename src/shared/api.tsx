@@ -15,17 +15,6 @@ const getTexts = async () => {
 };
 
 
-const postArticle = async (article) => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles/post`;
-  const token = localStorage.get("token");
-  return await axios.post(url, article, {
-    headers: {
-      Authorization: `${token}`,
-      Accept: "application/json",
-    },
-  });
-};
-
 const postArticleImage = async (id, image) => {
   const formData = new FormData();
   formData.append("image", image);
@@ -39,15 +28,6 @@ const postArticleImage = async (id, image) => {
   });
 };
 
-const deleteArticle = async (id) => {
-  const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/articles/delete/${id}`;
-  const token = localStorage.get("token");
-  return await axios.get(url, {
-    headers: {
-      Authorization: `${token}`,
-    },
-  });
-};
 
 const getOffer = async (id) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/offers/offer/${id}`;
@@ -162,9 +142,7 @@ const deleteText = async (id) => {
 };
 
 export default {
-  postArticle,
   postArticleImage,
-  deleteArticle,
   getService,
   getServices,
   postService,

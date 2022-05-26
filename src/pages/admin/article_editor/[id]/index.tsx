@@ -18,11 +18,12 @@ import Flex from "../../../../elements/Flex";
 import { useRouter } from "next/router";
 import Loading from "../../../../elements/Loading";
 import Error from "../../../../elements/Error";
-import { GetArticles } from "../../../../graphql/__generated__/GetArticles";
 import Title from "../../../../elements/Title";
 import { SaveArticle } from "../../../../graphql/__generated__/SaveArticle";
 import { ArticleInput } from "../../../../graphql/__generated__/globalTypes";
 import mutation from "../../../../graphql/SaveArticle.graphql";
+import { DeleteArticle } from "../../../../graphql/__generated__/DeleteArticle";
+import deleteMutation from "../../../../graphql/DeleteArticle.graphql";
 
 const ArticleManager = () => {
   const router = useRouter();
@@ -54,6 +55,11 @@ const ArticleManager = () => {
     { saveArticle: SaveArticle },
     { data: ArticleInput }
   >(mutation);
+
+  const [deleteArticleMutation] = useMutation<
+    { deleteArticle: DeleteArticle },
+    { id: Number }
+  >(deleteMutation);
 
   const saveArticle = () => {
     submitArticle({
@@ -101,8 +107,6 @@ const ArticleManager = () => {
   if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
   if (loading) return <Loading />;
 
-  console.log(data.article);
-
   const handleChange = (event) => {
     event.preventDefault();
     const target = event.target;
@@ -118,27 +122,13 @@ const ArticleManager = () => {
     setUploadImage(event.target.files[0]);
   };
 
-  const deleteArticle = async () => {
-    await api.deleteArticle(state.id).then(
-      (response) => {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "נמחק בהצלחה",
-          style: "sucess",
-          status: true,
-        }));
+  const deleteArticle = (id: Number) => {
+    const result = deleteArticleMutation({
+      variables: {
+        id: id,
       },
-      (error) => {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "שגיאה",
-          style: "error",
-          status: false,
-        }));
-      }
-    );
+    });
   };
-
   return (
     <ProtectRoute>
       <Flex alignItems="center" flexDirection="column">
@@ -219,7 +209,7 @@ const ArticleManager = () => {
               <Button
                 type="button"
                 onClick={() => {
-                  deleteArticle();
+                  deleteArticle(parseInt(data.article.id));
                 }}
               >
                 מחק כתבה

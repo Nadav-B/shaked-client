@@ -54,8 +54,6 @@ const SurveySummary = ({id}) => {
             tempArray.push(answer);
         });
 
-        console.log(tempArray)
-
         return tempArray;
     };
 
@@ -76,7 +74,6 @@ const SurveySummary = ({id}) => {
 
     const clearSurvey = () => {
         results.clear()
-        console.log(results)
         window.localStorage.setItem(selectedSurveyCache, null);
     }
 
@@ -102,7 +99,6 @@ const SurveySummary = ({id}) => {
             },
         }).then(
             (response) => {
-                console.log(response)
                 setConfirmation((prevState) => ({
                     ...prevState,
                     text: "פרטייך נשלחו בהצלחה, ניצור קשר בהקדם ",

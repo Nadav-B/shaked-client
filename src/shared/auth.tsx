@@ -8,22 +8,9 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function loadUserFromCookies() {
-      const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/users/status`;
       const token = localStorage.getItem("token");
+      if(token) setUser(true);
 
-      if (token) {
-        try {
-          const response = await axios.get(url, {
-            headers: {
-              Authorization: `${token}`,
-            },
-          });
-          if (response) setUser(true);
-        } catch (error) {
-          console.log(error);
-          logout();
-        }
-      }
     }
     if (!user) loadUserFromCookies();
   }, []);

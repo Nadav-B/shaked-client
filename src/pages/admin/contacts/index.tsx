@@ -23,7 +23,6 @@ const ContactManagers = () => {
 
   useEffect(() => {
     if (data && data.contacts && contacts.length == 0) {
-      console.log(data);
       setContacts(data.contacts);
     }
   }, [data]);

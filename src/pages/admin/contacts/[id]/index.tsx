@@ -39,7 +39,7 @@ const ContactViewer = () => {
         </div>
         <div>
           {data.contact.survey.answers.map((entry) => (
-            <Flex margin={3} flexDirection="column">
+            <Flex key={entry.answer} margin={3} flexDirection="column">
               <Text fontSize="large"> {entry.question}</Text>
               <Text> {entry.answer}</Text>
             </Flex>
