@@ -5,8 +5,11 @@ import styled from '@emotion/styled';
 import Router from "next/router";
 import Title from "./Title";
 import Flex from "./Flex";
+import { useAuth } from "../shared/auth";
 
-const Login = ({ login }) => {
+const Login = () => {
+  const { login } = useAuth();
+
   const [state, setState] = useState({
     username: "",
     password: "",
