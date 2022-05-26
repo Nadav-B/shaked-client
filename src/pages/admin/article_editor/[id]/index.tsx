@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 import Button from "../../../../elements/Button";
 import Text from "../../../../elements/Text";
-import api from "../../../../shared/api";
 import { contactLinks } from "../../../../config/contactButtonLinks";
 import TextUploader from "../../../../elements/TextUploader";
 import TextWrapper from "../../../../elements/TextWrapper";

@@ -1,0 +1,6 @@
+mutation SaveMedia($data: Upload!) {
+  saveMedia(data: $data) {
+    id
+    fileName
+  }
+}

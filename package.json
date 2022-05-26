@@ -16,8 +16,8 @@
     "@styled-system/should-forward-prop": "^5.1.5",
     "@types/react": "^18.0.5",
     "apollo": "2.33.9",
+    "apollo-upload-client": "^17.0.0",
     "axios": "^0.26.1",
-
     "copy-webpack-plugin": "^10.2.4",
     "graphql": "15.6.1",
     "isomorphic-unfetch": "^3.1.0",
