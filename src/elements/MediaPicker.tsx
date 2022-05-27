@@ -30,10 +30,10 @@ const MediaPicker: React.FC<MediaPickerProps> = ({ mediaId, handleChange }) => {
       <Flex>
         {data?.media?.map((media) => (
           <Flex flexDirection="column">
-            <Text>{media.id}</Text>
             <StyledImage
               active={media.id == selected}
               onClick={() => {
+                console.log(media.id);
                 setSelected(media.id);
                 handleChange(media.id);
               }}
