@@ -7,26 +7,26 @@ import styled from "@emotion/styled";
 const Admin = () => {
   return (
     <ProtectRoute>
-      <Flex flexDirection="column" alignItems="center">
+      <Flex flexWrap="wrap" flexDirection="column" alignItems="center">
         <Title>עמוד ניהול</Title>
-        <Flex flexDirection="column" margin="30px" alignItems="center">
+        <Flex flexDirection="row" margin="30px" alignItems="center">
           <Link href={"/admin/contacts"}>
-            <Button >אנשי קשר</Button>
+            <StyledButton>אנשי קשר</StyledButton>
           </Link>
           <Link href={"/admin/article"}>
-            <Button>כתבות</Button>
+            <StyledButton>כתבות</StyledButton>
           </Link>
           <Link href={"/admin/service"}>
-            <Button> שירותים</Button>
+            <StyledButton> שירותים</StyledButton>
           </Link>
           <Link href={"/admin/about"}>
-            <Button> אודות</Button>
+            <StyledButton> אודות</StyledButton>
           </Link>
           <Link href={"/admin/offer"}>
-            <Button> הצעות</Button>
+            <StyledButton> הצעות</StyledButton>
           </Link>
-          <Link href={"/media"}>
-            <Button> מדיה</Button>
+          <Link href={"/admin/media"}>
+            <StyledButton> מדיה</StyledButton>
           </Link>
         </Flex>
       </Flex>
@@ -34,6 +34,19 @@ const Admin = () => {
   );
 };
 
+const StyledButton = styled.div`
+  padding: 20px;
+  border-radius: ${(p) => p.theme.border}px;
+  cursor: pointer;
+  width: 120px;
+  height: 60px;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  margin: 15px;
 
-const StyledCategory = styled.button``;
+  :hover {
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  }
+`;
 export default Admin;
