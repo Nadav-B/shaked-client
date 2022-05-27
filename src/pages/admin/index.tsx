@@ -3,31 +3,37 @@ import Button from "../../elements/Button";
 import { ProtectRoute } from "../../shared/protected_route";
 import Flex from "../../elements/Flex";
 import Title from "../../elements/Title";
+import styled from "@emotion/styled";
 const Admin = () => {
   return (
     <ProtectRoute>
-      <Flex flexDirection="column" margin="30px" alignItems="center">
-          <Title>עמוד ניהול</Title>
+      <Flex flexDirection="column" alignItems="center">
+        <Title>עמוד ניהול</Title>
+        <Flex flexDirection="column" margin="30px" alignItems="center">
           <Link href={"/admin/contacts"}>
-            <Button>הצג אנשי קשר</Button>
+            <Button >אנשי קשר</Button>
           </Link>
           <Link href={"/admin/article_editor"}>
-            <Button> ערוך או הוסף כתבה</Button>
+            <Button>כתבות</Button>
           </Link>
           <Link href={"/admin/service"}>
-            <Button> ערוך או הוסף שירות</Button>
+            <Button> שירותים</Button>
           </Link>
           <Link href={"/admin/about"}>
-            <Button> ערוך או הוסף אודות</Button>
+            <Button> אודות</Button>
           </Link>
           <Link href={"/admin/offer"}>
-            <Button> ערוך או הוסף הצעות</Button>
+            <Button> הצעות</Button>
           </Link>
+          <Link href={"/media"}>
+            <Button> מדיה</Button>
+          </Link>
+        </Flex>
       </Flex>
     </ProtectRoute>
   );
 };
 
 
-
+const StyledCategory = styled.button``;
 export default Admin;

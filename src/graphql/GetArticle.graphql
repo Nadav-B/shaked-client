@@ -5,6 +5,7 @@ query GetArticle($id: ID!) {
     introduction
     content
     tag
+    mediaId
     contactButton
     modificationDate
   }

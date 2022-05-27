@@ -14,6 +14,7 @@ export interface GetArticle_article {
   introduction: string | null;
   content: string | null;
   tag: string | null;
+  mediaId: number | null;
   contactButton: string | null;
   modificationDate: any | null;
 }

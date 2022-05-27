@@ -5,6 +5,7 @@ mutation SaveArticle($data: ArticleInput!) {
     introduction
     tag
     content
+    mediaId
     contactButton
   }
 }

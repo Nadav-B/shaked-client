@@ -23,12 +23,11 @@ import { ArticleInput } from "../../../../graphql/__generated__/globalTypes";
 import mutation from "../../../../graphql/SaveArticle.graphql";
 import { DeleteArticle } from "../../../../graphql/__generated__/DeleteArticle";
 import deleteMutation from "../../../../graphql/DeleteArticle.graphql";
+import MediaPicker from "../../../../elements/MediaPicker";
 
 const ArticleManager = () => {
   const router = useRouter();
   const id = router.query.id;
-  const [imagePreview, setImagePreview] = useState("");
-  const [uploadImage, setUploadImage] = useState();
   const [result, setResult] = useState({
     text: "",
     style: "",
@@ -40,8 +39,13 @@ const ArticleManager = () => {
     introduction: "",
     content: "",
     tag: "",
+    mediaId: null,
     contactButton: contactLinks[0].name,
   });
+
+  const ImageChange = (imageId) => {
+    state.mediaId = imageId;
+  };
 
   const { data, loading, error } = useQuery<GetArticle, GetArticleVariables>(
     query,
@@ -68,6 +72,7 @@ const ArticleManager = () => {
           title: state.title,
           introduction: state.introduction,
           tag: state.tag,
+          mediaId: state.mediaId,
           contactButton: state.contactButton,
         },
       },
@@ -98,6 +103,7 @@ const ArticleManager = () => {
         introduction: data.article.introduction,
         content: data.article.content,
         tag: data.article.tag,
+        mediaId: data.article.mediaId,
         contactButton: data.article.contactButton,
       });
     }
@@ -117,9 +123,6 @@ const ArticleManager = () => {
     }));
   };
 
-  const handleImage = async (event) => {
-    setUploadImage(event.target.files[0]);
-  };
 
   const deleteArticle = (id: Number) => {
     const result = deleteArticleMutation({
@@ -190,14 +193,7 @@ const ArticleManager = () => {
             </label>
             <label>
               תמונה
-              <StyledInput
-                name="image"
-                accept="image/*"
-                onChange={handleImage}
-                type="file"
-              />
-              תצוגה מקדימה
-              <StyledImage src={imagePreview} alt="" />
+              <MediaPicker handleChange ={ImageChange} mediaId={data.article.mediaId} />
             </label>
 
             <Text variant={result.style}> {result.text}</Text>

@@ -2,6 +2,9 @@
 import axios from "axios";
 
 
+
+
+
 const getTexts = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/texts`;
   const token = localStorage.get("token");

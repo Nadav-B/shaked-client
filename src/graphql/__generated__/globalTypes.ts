@@ -19,6 +19,7 @@ export interface ArticleInput {
   tag?: string | null;
   content?: string | null;
   contactButton?: string | null;
+  mediaId?: number | null;
 }
 
 export interface ContactInput {

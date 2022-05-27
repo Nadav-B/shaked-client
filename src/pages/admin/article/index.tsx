@@ -14,7 +14,7 @@ const ArticleSelector = () => {
         event.preventDefault();
         const target = event.target;
         const value = target.value;
-        router.push(`article_editor/${value}`)
+        router.push(`article/${value}`)
     };
     return (
         <Flex flexDirection="column" margin={"20px"}>

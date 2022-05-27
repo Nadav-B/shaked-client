@@ -1,0 +1,7 @@
+query GetMedia {
+  media {
+    id
+    fileName
+    
+  }
+}

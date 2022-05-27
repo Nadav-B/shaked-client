@@ -16,6 +16,7 @@ export interface SaveArticle_saveArticle {
   introduction: string | null;
   tag: string | null;
   content: string | null;
+  mediaId: number | null;
   contactButton: string | null;
 }
 
