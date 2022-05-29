@@ -1,6 +1,0 @@
-query GetTexts {
-    texts {
-      id
-      content
-    }
-  }

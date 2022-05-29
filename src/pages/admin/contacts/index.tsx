@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "@emotion/styled";
+import dates from "../../../shared/util/dates";
 
 import Button from "../../../elements/Button";
 import Error from "../../../elements/Error";
@@ -49,11 +50,6 @@ const ContactManagers = () => {
       );
       setSelectedContacts([]);
     });
-  };
-
-  const renderDate = (dateString) => {
-    console.log(dateString);
-    return new Date(dateString).toDateString();
   };
 
 
@@ -106,7 +102,7 @@ const ContactManagers = () => {
                         {contact.phoneNumber}
                       </a>
                     </Td>
-                    <Td> {renderDate(contact.date)} </Td>
+                    <Td> {dates.renderDate(contact.createdAt)} </Td>
                     <Td> {contact.category} </Td>
                     <Td>
                       {contact.survey && (

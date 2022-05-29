@@ -9,7 +9,7 @@
 
 export interface GetMedia_media {
   __typename: "Media";
-  id: any | null;
+  id: string;
   fileName: string | null;
 }
 

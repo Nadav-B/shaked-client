@@ -3,30 +3,28 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ModuleType } from "./globalTypes";
+import { ModuleInput, ModuleType } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: GetArticle
+// GraphQL mutation operation: SaveModule
 // ====================================================
 
-export interface GetArticle_module {
+export interface SaveModule_saveModule {
   __typename: "Module";
   id: string;
   title: string | null;
   introduction: string | null;
-  content: string | null;
   tag: string | null;
+  content: string | null;
   mediaId: number | null;
   contactButton: string | null;
-  createdAt: any;
-  updatedAt: any;
   type: ModuleType;
 }
 
-export interface GetArticle {
-  module: GetArticle_module | null;
+export interface SaveModule {
+  saveModule: SaveModule_saveModule | null;
 }
 
-export interface GetArticleVariables {
-  id: string;
+export interface SaveModuleVariables {
+  data: ModuleInput;
 }

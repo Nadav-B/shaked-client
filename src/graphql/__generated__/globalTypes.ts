@@ -7,12 +7,28 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum ModuleType {
+  ARTICLE = "ARTICLE",
+  INTRODUCTION = "INTRODUCTION",
+  OFFER = "OFFER",
+  SERVICE = "SERVICE",
+}
+
 export interface AnswerInput {
   question?: string | null;
   answer?: string | null;
 }
 
-export interface ArticleInput {
+export interface ContactInput {
+  fullName: string;
+  phoneNumber: string;
+  email?: string | null;
+  address?: string | null;
+  category?: string | null;
+  survey?: SurveyInput | null;
+}
+
+export interface ModuleInput {
   id?: string | null;
   title?: string | null;
   introduction?: string | null;
@@ -20,15 +36,7 @@ export interface ArticleInput {
   content?: string | null;
   contactButton?: string | null;
   mediaId?: number | null;
-}
-
-export interface ContactInput {
-  fullName?: string | null;
-  phoneNumber?: string | null;
-  email?: string | null;
-  address?: string | null;
-  category?: string | null;
-  survey?: SurveyInput | null;
+  type?: ModuleType | null;
 }
 
 export interface SurveyInput {

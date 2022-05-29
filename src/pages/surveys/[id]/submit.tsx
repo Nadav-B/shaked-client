@@ -6,8 +6,8 @@ import surveys from "../../../../public/surveys";
 import {ContactInput, SurveyInput} from "../../../graphql/__generated__/globalTypes";
 import styled from "@emotion/styled";
 import {useMutation} from "@apollo/client";
-import mutation from "../../../graphql/CreateContact.graphql";
-import {CreateContact} from "../../../graphql/__generated__/CreateContact";
+import mutation from "../../../graphql/SaveContact.graphql";
+import {SaveContact} from "../../../graphql/__generated__/SaveContact";
 import {Progress} from "react-sweet-progress";
 import Loading from "../../../elements/Loading";
 import {useRouter} from "next/router";
@@ -18,8 +18,8 @@ const SurveySummary = ({id}) => {
     const selectedSurveyCache = `survey_+ ${id}`;
     const selectedSurvey = surveys[Number(id)];
     const [results, setResults] = useState(new Map<String, String>());
-    const [submitContact, {data, loading, error}] = useMutation<{ CreateContact: CreateContact },
-        { contactInput: ContactInput },
+    const [submitContact, {data, loading, error}] = useMutation<{ SaveContact: SaveContact },
+        { data: ContactInput },
         { surveyInput: SurveyInput }>(mutation);
 
     const [confirmation, setConfirmation] = useState({
@@ -95,7 +95,7 @@ const SurveySummary = ({id}) => {
 
         submitContact({
             variables: {
-                contactInput: contactForm,
+                data: contactForm,
             },
         }).then(
             (response) => {

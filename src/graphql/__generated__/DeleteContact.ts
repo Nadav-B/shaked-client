@@ -7,8 +7,13 @@
 // GraphQL mutation operation: DeleteContact
 // ====================================================
 
+export interface DeleteContact_deleteContact {
+  __typename: "Contact";
+  id: string;
+}
+
 export interface DeleteContact {
-  deleteContact: string;
+  deleteContact: DeleteContact_deleteContact;
 }
 
 export interface DeleteContactVariables {

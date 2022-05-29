@@ -4,19 +4,18 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: SaveMedia
+// GraphQL mutation operation: DeleteModule
 // ====================================================
 
-export interface SaveMedia_saveMedia {
-  __typename: "Media";
+export interface DeleteModule_deleteModule {
+  __typename: "Module";
   id: string;
-  fileName: string | null;
 }
 
-export interface SaveMedia {
-  saveMedia: SaveMedia_saveMedia | null;
+export interface DeleteModule {
+  deleteModule: DeleteModule_deleteModule;
 }
 
-export interface SaveMediaVariables {
-  data: any;
+export interface DeleteModuleVariables {
+  id: string;
 }

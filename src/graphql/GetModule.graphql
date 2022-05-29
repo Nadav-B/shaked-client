@@ -1,0 +1,16 @@
+query GetModule($id: ID!) {
+  module(id: $id) {
+    id
+    title
+    introduction
+    content
+    tag
+    mediaId
+    contactButton
+    createdAt
+    updatedAt
+    type
+    createdAt
+    updatedAt
+  }
+}

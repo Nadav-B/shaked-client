@@ -1,8 +1,9 @@
-query GetArticles {
-  articles {
+query GetModules {
+  modules {
     id
     title
     introduction
     tag
+    mediaId
   }
 }

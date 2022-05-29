@@ -1,5 +1,5 @@
-mutation SaveArticle($data: ArticleInput!) {
-  saveArticle(data: $data) {
+mutation SaveModule($data: ModuleInput!) {
+  saveModule(data: $data) {
     id
     title
     introduction
@@ -7,5 +7,6 @@ mutation SaveArticle($data: ArticleInput!) {
     content
     mediaId
     contactButton
+    type
   }
 }

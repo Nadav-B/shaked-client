@@ -10,6 +10,8 @@ import Error from "../../../../elements/Error";
 import Flex from "../../../../elements/Flex";
 import Text from "../../../../elements/Text";
 import Title from "../../../../elements/Title";
+import dates from "../../../../shared/util/dates";
+
 import { ProtectRoute } from "../../../../shared/protected_route";
 
 const ContactViewer = () => {
@@ -36,6 +38,11 @@ const ContactViewer = () => {
         <div>
           <label>טלפון: </label>
           <label>{data.contact.phoneNumber}</label>
+        </div>
+
+        <div>
+          <label>תאריך: </label>
+          <label>{dates.renderDate(data.contact.createdAt)}</label>
         </div>
         <div>
           {data.contact.survey.answers.map((entry) => (

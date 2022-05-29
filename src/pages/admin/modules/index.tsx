@@ -1,14 +1,14 @@
 import { useQuery } from "@apollo/client";
-import { GetArticles } from "../../../graphql/__generated__/GetArticles";
-import query from "../../../graphql/GetArticles.graphql";
+import { GetModules } from "../../../graphql/__generated__/GetModules";
+import query from "../../../graphql/GetModules.graphql";
 import styled from "@emotion/styled";
 import Flex from "../../../elements/Flex";
 import Button from "../../../elements/Button";
 import { useRouter } from "next/router";
 import Title from "../../../elements/Title";
 
-const ArticleSelector = () => {
-  const { data, loading, error } = useQuery<GetArticles>(query);
+const ModuleSelector = () => {
+  const { data, loading, error } = useQuery<GetModules>(query);
   const router = useRouter();
 
   const handleChange = (event) => {
@@ -17,19 +17,25 @@ const ArticleSelector = () => {
     const value = target.value;
     router.push(`article/${value}`);
   };
+
+
+  const addModule = () => {
+
+    router.push(`modules/new`);
+  };
   return (
     <Flex alignItems="center" flexDirection="column" margin={"20px"}>
       <Title> כתבות</Title>
       <StyledSelect name="category" onChange={handleChange}>
-        <option value=""> ערוך כתבה</option>
+        <option value=""> ערוך טקסט </option>
         {data &&
-          data.articles.map((article) => (
-            <option key={article.id} value={article.id}>
-              {article.title}
+          data.modules.map((module) => (
+            <option key={module.id} value={module.id}>
+              {module.title}
             </option>
           ))}
       </StyledSelect>
-      <Button>הוסף כתבה</Button>
+      <Button onClick={ ()=> addModule()}>הוסף מודל</Button>
     </Flex>
   );
 };
@@ -44,4 +50,4 @@ const StyledSelect = styled.select`
   height: 40px;
 `;
 
-export default ArticleSelector;
+export default ModuleSelector;

@@ -3,7 +3,7 @@ query GetContact($id: ID!) {
     id
     fullName
     category
-    date
+    createdAt
     phoneNumber
     survey {
       id

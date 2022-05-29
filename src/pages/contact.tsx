@@ -5,12 +5,12 @@ import styled from "@emotion/styled";
 
 import Meta from "../components/meta";
 import Flex from "../elements/Flex";
-import mutation from "../graphql/CreateContact.graphql";
+import mutation from "../graphql/SaveContact.graphql";
 import {useMutation} from "@apollo/client";
 import {
-    CreateContact,
+    SaveContact,
 
-} from "../graphql/__generated__/CreateContact";
+} from "../graphql/__generated__/SaveContact";
 import {ContactInput} from "../graphql/__generated__/globalTypes";
 import Title from "../elements/Title";
 import Seo from "../classes/seo";
@@ -41,8 +41,8 @@ const Contact: React.FC<ContactOptions> = ({
     });
 
 
-    const [submitContact, {data, loading, error}] = useMutation<{ createContact: CreateContact },
-        { contactInput: ContactInput }>(mutation);
+    const [submitContact, {data, loading, error}] = useMutation<{ saveContact: SaveContact },
+        { data: ContactInput }>(mutation);
 
     const [result, setResult] = useState({
         text: "",
@@ -67,7 +67,7 @@ const Contact: React.FC<ContactOptions> = ({
 
         submitContact({
             variables: {
-                contactInput: {
+                data: {
                     fullName: state.fullName,
                     phoneNumber: state.phoneNumber,
                     email: state.email,

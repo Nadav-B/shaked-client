@@ -23,10 +23,10 @@ export interface GetContacts_contacts_survey {
 export interface GetContacts_contacts {
   __typename: "Contact";
   id: string;
-  fullName: string | null;
+  fullName: string;
   category: string | null;
-  date: any | null;
-  phoneNumber: string | null;
+  createdAt: any;
+  phoneNumber: string;
   survey: GetContacts_contacts_survey | null;
 }
 

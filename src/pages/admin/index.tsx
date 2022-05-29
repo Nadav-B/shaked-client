@@ -13,18 +13,10 @@ const Admin = () => {
           <Link href={"/admin/contacts"}>
             <StyledButton>אנשי קשר</StyledButton>
           </Link>
-          <Link href={"/admin/article"}>
-            <StyledButton>כתבות</StyledButton>
+          <Link href={"/admin/modules"}>
+            <StyledButton>מודול</StyledButton>
           </Link>
-          <Link href={"/admin/service"}>
-            <StyledButton> שירותים</StyledButton>
-          </Link>
-          <Link href={"/admin/about"}>
-            <StyledButton> אודות</StyledButton>
-          </Link>
-          <Link href={"/admin/offer"}>
-            <StyledButton> הצעות</StyledButton>
-          </Link>
+
           <Link href={"/admin/media"}>
             <StyledButton> מדיה</StyledButton>
           </Link>

@@ -6,10 +6,10 @@
 import { ModuleType } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: GetArticle
+// GraphQL query operation: GetModule
 // ====================================================
 
-export interface GetArticle_module {
+export interface GetModule_module {
   __typename: "Module";
   id: string;
   title: string | null;
@@ -23,10 +23,10 @@ export interface GetArticle_module {
   type: ModuleType;
 }
 
-export interface GetArticle {
-  module: GetArticle_module | null;
+export interface GetModule {
+  module: GetModule_module | null;
 }
 
-export interface GetArticleVariables {
+export interface GetModuleVariables {
   id: string;
 }
