@@ -9,8 +9,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function loadUserFromCookies() {
       const token = localStorage.getItem("token");
-      if(token) setUser(true);
-
+      if (token) setUser(true);
     }
     if (!user) loadUserFromCookies();
   }, []);
@@ -21,25 +20,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (username, password) => {
-    const url = `${process.env.NEXT_PUBLIC_API_INTERN_URL}/offers`;
-
     let buff = new Buffer(username + ":" + password);
     let base64data = buff.toString("base64");
-
     const token = "Basic " + base64data;
-
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: token,
-      },
-    });
-
-    if (response) {
-      localStorage.setItem("token", base64data);
-      setUser(true);
-      return true;
-    }
-    return false;
+    localStorage.setItem("token", base64data);
+    setUser(true);
+    return true;
   };
 
   return (
