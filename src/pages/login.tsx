@@ -8,8 +8,14 @@ import Flex from "../elements/Flex";
 import { useLazyQuery } from "@apollo/client";
 import query from "../graphql/IsAuthenticated.graphql";
 import { IsAuthenticated } from "../graphql/__generated__/IsAuthenticated";
+import { useAuth } from "../shared/auth";
 
 const LoginPage = () => {
+  const auth = useAuth();
+
+  if (auth.isAuthenticated) {
+    Router.push("admin");
+  }
   const [isAuthenticated, { data, loading, error }] =
     useLazyQuery<IsAuthenticated>(query);
 
@@ -25,10 +31,8 @@ const LoginPage = () => {
   });
 
   useEffect(() => {
-
-    if(data?.isAuthenticated==true) {
-      Router.push("/admin");
-      console.log("here")
+    if (data?.isAuthenticated == true) {
+      auth.login(state.username, state.password);
     }
   }, [data]);
 

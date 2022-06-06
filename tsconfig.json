@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,16 +15,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "files": [
-    "src/@types/graphql.d.ts"
-  ],
+  "files": ["src/@types/graphql.d.ts"],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/campaigns/new-mortage/index.tss"
-, "src/elements/Login.js", "src/shared/auth.js"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "src/pages/campaigns/new-mortage/index.tss",
+  ],
+  "exclude": ["node_modules"]
 }

@@ -1,9 +1,21 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useContext, useEffect } from "react";
 
-const AuthContext = createContext({});
+export const AuthContext = React.createContext<IAuth>({
+  isAuthenticated: false,
+  login: null,
+  logout: null,
+});
 
-export const AuthProvider = ({ children }) => {
+export interface IAuth {
+  isAuthenticated: boolean;
+  login: (username, password) => void;
+  logout: () => void;
+}
+type Props = {
+  children: JSX.Element;
+};
+
+export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState(false);
 
   useEffect(() => {
@@ -19,19 +31,16 @@ export const AuthProvider = ({ children }) => {
     setUser(false);
   };
 
-  const login = async (username, password) => {
+  const login = (username, password) => {
     let buff = new Buffer(username + ":" + password);
     let base64data = buff.toString("base64");
     const token = "Basic " + base64data;
     localStorage.setItem("token", base64data);
     setUser(true);
-    return true;
   };
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated: user, user, login, logout }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated: user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
