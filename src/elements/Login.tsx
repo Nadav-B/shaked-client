@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Button from "../elements/Button";
-import Text from "../elements/Text";
+import Button from "./Button";
+import Text from "./Text";
 import styled from "@emotion/styled";
 import Router from "next/router";
-import Title from "../elements/Title";
-import Flex from "../elements/Flex";
+import Title from "./Title";
+import Flex from "./Flex";
 import { useLazyQuery } from "@apollo/client";
 import query from "../graphql/IsAuthenticated.graphql";
 import { IsAuthenticated } from "../graphql/__generated__/IsAuthenticated";
 import { useAuth } from "../shared/auth";
 
-const LoginPage = () => {
+const Login = () => {
   const auth = useAuth();
 
-  if (auth.isAuthenticated) {
-    Router.push("admin");
-  }
   const [isAuthenticated, { data, loading, error }] =
     useLazyQuery<IsAuthenticated>(query);
 
@@ -38,17 +35,21 @@ const LoginPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let buff = new Buffer(state.username + ":" + state.password);
-    let base64data = buff.toString("base64");
-    const token = "Basic " + base64data;
-    localStorage.setItem("token", base64data);
+
+    auth.login(state.username, state.password);
+
     isAuthenticated();
 
+    if (data?.isAuthenticated ==true) {
+      Router.push("admin");
+      console.log("push")
+    }
     if (error) {
-      localStorage.removeItem("token");
+      auth.logout();
       console.log(error);
       result.text = error.message;
-    }
+    } 
+     
   };
 
   const handleChange = (event) => {
@@ -107,10 +108,7 @@ const StyledInput = styled.input`
   border-radius: 4px;
   box-sizing: border-box;
 
-  bacgkround: silver;
-  &::placeholder {
-    color: black;
-  }
+
 `;
 
-export default LoginPage;
+export default Login;

@@ -1,9 +1,11 @@
 import { useAuth } from "./auth";
-import Error from "../elements/Error";
+import Login from "../elements/login";
 export const ProtectRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   if (!isAuthenticated) {
-    return <Error errorDescription={"התחבר מחדש"} />;
+    return (
+        <Login />
+    );
   }
   return children;
 };

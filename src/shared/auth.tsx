@@ -1,3 +1,4 @@
+import Router from "next/router";
 import React, { useState, useContext, useEffect } from "react";
 
 export const AuthContext = React.createContext<IAuth>({
@@ -34,8 +35,8 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const login = (username, password) => {
     let buff = new Buffer(username + ":" + password);
     let base64data = buff.toString("base64");
-    const token = "Basic " + base64data;
-    localStorage.setItem("token", base64data);
+    console.log("setting")
+    localStorage.setItem("token", "Basic " + base64data);
     setUser(true);
   };
 
