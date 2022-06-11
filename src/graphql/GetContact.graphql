@@ -1,5 +1,5 @@
-query GetContact($id: ID!) {
-  contact(id: $id) {
+query GetContact($where: ContactUniqueInput!) {
+  contact(where: $where) {
     id
     fullName
     category

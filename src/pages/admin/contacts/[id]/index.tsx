@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import {
   GetContact,
   GetContactVariables,
+  ContactUniqueInput
 } from "../../../../graphql/__generated__/GetContact";
 import query from "../../../../graphql/GetContact.graphql";
 import Loading from "../../../../elements/Loading";
@@ -21,7 +22,7 @@ const ContactViewer = () => {
   const { data, loading, error } = useQuery<GetContact, GetContactVariables>(
     query,
     {
-      variables: { id: String(id) },
+      variables: { where: { id: String(id)} },
     }
   );
 

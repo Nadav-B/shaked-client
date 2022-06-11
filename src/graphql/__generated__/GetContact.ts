@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { ContactUniqueInput } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetContact
 // ====================================================
@@ -35,5 +37,5 @@ export interface GetContact {
 }
 
 export interface GetContactVariables {
-  id: string;
+  where: ContactUniqueInput;
 }

@@ -28,6 +28,10 @@ export interface ContactInput {
   survey?: SurveyInput | null;
 }
 
+export interface ContactUniqueInput {
+  id: string;
+}
+
 export interface ModuleInput {
   id?: string | null;
   title?: string | null;
