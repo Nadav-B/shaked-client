@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ModuleType } from "./globalTypes";
+import { ModuleUniqueInput, ModuleType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetModule
@@ -28,5 +28,5 @@ export interface GetModule {
 }
 
 export interface GetModuleVariables {
-  id: string;
+  where: ModuleUniqueInput;
 }

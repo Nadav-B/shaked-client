@@ -43,6 +43,10 @@ export interface ModuleInput {
   type?: ModuleType | null;
 }
 
+export interface ModuleUniqueInput {
+  id: string;
+}
+
 export interface SurveyInput {
   name?: string | null;
   answers?: (AnswerInput | null)[] | null;

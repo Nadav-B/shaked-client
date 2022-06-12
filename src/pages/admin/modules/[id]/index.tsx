@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import Loading from "../../../../elements/Loading";
 import Error from "../../../../elements/Error";
 import { SaveModule } from "../../../../graphql/__generated__/SaveModule";
-import { ModuleInput } from "../../../../graphql/__generated__/globalTypes";
+import { ModuleInput, ModuleType } from "../../../../graphql/__generated__/globalTypes";
 import mutation from "../../../../graphql/SaveModule.graphql";
 import { DeleteArticle } from "../../../../graphql/__generated__/DeleteArticle";
 import deleteMutation from "../../../../graphql/DeleteModule.graphql";
@@ -26,7 +26,18 @@ const ModuleManager = () => {
   const router = useRouter();
   const id = router.query.id;
 
-  console.log(id);
+  const [getModule, { data, loading, error }] = useLazyQuery<
+    GetModule,
+    GetModuleVariables
+  >(query, {
+    variables: { where: { id: String(id)} },
+  });
+
+
+  useEffect(() => {
+    if (id!="new" && data ==null) getModule();
+  
+  });
 
   const [result, setResult] = useState({
     text: "",
@@ -44,7 +55,7 @@ const ModuleManager = () => {
     contactButton: contactLinks[0].name,
   });
 
-  const handleChange =   async (event) => {
+  const handleChange = async (event) => {
     event.preventDefault();
     const target = event.target;
     const value = target.value;
@@ -54,13 +65,6 @@ const ModuleManager = () => {
       [name]: value,
     }));
   };
-
-  const [getModule, { data, loading, error }] = useLazyQuery<
-    GetModule,
-    GetModuleVariables
-  >(query, {
-    variables: { id: String(id) },
-  });
 
   const [saveModuleMutation] = useMutation<
     { saveModule: SaveModule },
@@ -72,8 +76,8 @@ const ModuleManager = () => {
     { id: Number }
   >(deleteMutation);
 
-  const saveModule =(event) => {
-    event.preventDefault()
+  const saveModule = (event) => {
+    event.preventDefault();
     console.log(state, "now");
     saveModuleMutation({
       variables: {
@@ -84,6 +88,8 @@ const ModuleManager = () => {
           tag: state.tag,
           mediaId: state.mediaId,
           contactButton: state.contactButton,
+          type:   ModuleType.ARTICLE
+
         },
       },
     }).then(

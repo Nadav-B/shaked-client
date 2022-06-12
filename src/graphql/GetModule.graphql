@@ -1,5 +1,5 @@
-query GetModule($id: ID!) {
-  module(id: $id) {
+query GetModule($where: ModuleUniqueInput!) {
+  module(where: $where) {
     id
     title
     introduction
