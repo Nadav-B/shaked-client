@@ -1,35 +1,30 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-
-import Button from "../../../../elements/Button";
-import Text from "../../../../elements/Text";
 import { contactLinks } from "../../../../config/contactButtonLinks";
-import TextUploader from "../../../../elements/TextUploader";
-import TextWrapper from "../../../../elements/TextWrapper";
 import { ProtectRoute } from "../../../../shared/protected_route";
-import { useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import query from "../../../../graphql/GetModule.graphql";
 import {
   GetModule,
   GetModuleVariables,
 } from "../../../../graphql/__generated__/GetModule";
-import Flex from "../../../../elements/Flex";
 import { useRouter } from "next/router";
 import Loading from "../../../../elements/Loading";
 import Error from "../../../../elements/Error";
-import Title from "../../../../elements/Title";
 import { SaveModule } from "../../../../graphql/__generated__/SaveModule";
 import { ModuleInput } from "../../../../graphql/__generated__/globalTypes";
 import mutation from "../../../../graphql/SaveModule.graphql";
 import { DeleteArticle } from "../../../../graphql/__generated__/DeleteArticle";
 import deleteMutation from "../../../../graphql/DeleteModule.graphql";
 import MediaPicker from "../../../../elements/MediaPicker";
-import ModuleEditor from "../../../../elements/ModuleEditor";
+import Button from "../../../../elements/Button";
+import Flex from "../../../../elements/Flex";
+import TextUploader from "../../../../elements/TextUploader";
+import Title from "../../../../elements/Title";
 
 const ModuleManager = () => {
   const router = useRouter();
   const id = router.query.id;
-  if (id == "new") return <ModuleEditor></ModuleEditor>;
 
   console.log(id);
 
@@ -39,16 +34,37 @@ const ModuleManager = () => {
     status: false,
   });
 
-  const { data, loading, error } = useQuery<GetModule, GetModuleVariables>(
-    query,
-    {
-      variables: { id: String(id) },
-    }
-  );
+  const [state, setState] = useState({
+    id: null,
+    title: "",
+    introduction: "",
+    content: "",
+    tag: "",
+    mediaId: null,
+    contactButton: contactLinks[0].name,
+  });
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const [getModule, { data, loading, error }] = useLazyQuery<
+    GetModule,
+    GetModuleVariables
+  >(query, {
+    variables: { id: String(id) },
+  });
 
   const [saveModuleMutation] = useMutation<
     { data: SaveModule },
-    { data: ModuleInput }
+    { moduleInput: ModuleInput }
   >(mutation);
 
   const [deleteModuleMutation] = useMutation<
@@ -56,10 +72,11 @@ const ModuleManager = () => {
     { id: Number }
   >(deleteMutation);
 
-  const saveModule = () => {
+  const saveModule = (state) => {
+    console.log(state, "now");
     saveModuleMutation({
       variables: {
-        data: {
+        moduleInput: {
           id: state.id,
           title: state.title,
           introduction: state.introduction,
@@ -98,25 +115,90 @@ const ModuleManager = () => {
       },
     });
   };
+
+  const ImageChange = (imageId) => {
+    state.mediaId = imageId;
+  };
   return (
     <ProtectRoute>
-      <ModuleEditor
-        saveModule={saveModule}
-        deleteModule={deleteModule}
-      ></ModuleEditor>
+      <Flex alignItems="center" flexDirection="column">
+        <Title> ערוך כתבה</Title>
+        <form onSubmit={saveModule(state)}>
+          <label>
+            שם הכתבה
+            <StyledInput
+              name="title"
+              value={state.title}
+              placeholder="שדה חובה"
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            הקדמה
+            <StyledInput
+              name="introduction"
+              placeholder="שדה חובה"
+              value={state.introduction}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            קטגוריה
+            <StyledInput
+              name="tag"
+              placeholder="שדה חובה"
+              value={state.tag}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            תוכן כתבה
+            <StyledInput
+              name="content"
+              placeholder="שדה חובה"
+              value={state.content}
+              onChange={handleChange}
+            />
+          </label>
+          <TextUploader setState={setState} />
+          <label>
+            כפתור צרו קשר
+            <StyledSelect
+              value={state.contactButton}
+              name="contactButton"
+              onChange={handleChange}
+            >
+              {contactLinks.map((link) => (
+                <option key={link.name} value={link.name}>
+                  {link.name}{" "}
+                </option>
+              ))}
+            </StyledSelect>
+          </label>
+          <label>
+            תמונה
+            <MediaPicker handleChange={ImageChange} mediaId={state.mediaId} />
+          </label>
+
+          <Button type="submit">שלח</Button>
+          {state.id && (
+            <Button
+              type="button"
+              onClick={() => {
+                deleteModule(parseInt(state.id));
+              }}
+            >
+              מחק כתבה
+            </Button>
+          )}
+        </form>
+      </Flex>
     </ProtectRoute>
   );
 };
-
-const StyledSelect = styled.select`
-  display: block;
-  width: 100%;
-  margin: auto;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  height: 40px;
-`;
 
 const StyledInput = styled.input`
   width: 100%;
@@ -133,6 +215,16 @@ const StyledInput = styled.input`
   &::placeholder {
     color: black;
   }
+`;
+
+const StyledSelect = styled.select`
+  display: block;
+  width: 100%;
+  margin: auto;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 40px;
 `;
 
 export default ModuleManager;
