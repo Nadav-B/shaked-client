@@ -12,7 +12,10 @@ import { useRouter } from "next/router";
 import Loading from "../../../../elements/Loading";
 import Error from "../../../../elements/Error";
 import { SaveModule } from "../../../../graphql/__generated__/SaveModule";
-import { ModuleInput, ModuleType } from "../../../../graphql/__generated__/globalTypes";
+import {
+  ModuleInput,
+  ModuleType,
+} from "../../../../graphql/__generated__/globalTypes";
 import mutation from "../../../../graphql/SaveModule.graphql";
 import { DeleteArticle } from "../../../../graphql/__generated__/DeleteArticle";
 import deleteMutation from "../../../../graphql/DeleteModule.graphql";
@@ -30,30 +33,83 @@ const ModuleManager = () => {
     GetModule,
     GetModuleVariables
   >(query, {
-    variables: { where: { id: String(id)} },
+    variables: { where: { id: String(id) } },
   });
 
-
-  useEffect(() => {
-    if (id!="new" && data ==null) getModule();
-  
-  });
-
-  const [result, setResult] = useState({
-    text: "",
-    style: "",
-    status: false,
-  });
-
-  const [state, setState] = useState({
-    id: null,
+  const new ={
+    id: "null",
     title: "",
     introduction: "",
     content: "",
     tag: "",
     mediaId: null,
     contactButton: contactLinks[0].name,
+    type: ModuleType.ARTICLE,
+  };
+
+  if(id== "new") return <EditorViewer module={new} />;
+  useEffect(() => {
+    if (id != "new" && data == null) getModule();
   });
+
+  if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
+  if (loading) return <Loading />;
+
+  if (data) {
+    var module ={
+      id: data.module.id,
+      title: data.module.title,
+      introduction: data.module.introduction,
+      content: data.module.content,
+      tag: data.module.tag,
+      mediaId: data.module.mediaId,
+      contactButton: data.module.contactButton,
+      type: data.module.type,
+    };
+  }
+  if (data) return <EditorViewer module={module} />;
+};
+
+interface Module {
+  id: string;
+  title: string;
+  introduction: string;
+  content: string;
+  tag: string;
+  mediaId: number;
+  contactButton: string;
+  type: ModuleType;
+}
+
+interface EditorViewerProps {
+  module: Module;
+}
+
+const EditorViewer: React.FC<EditorViewerProps> = ({ module }) => {
+  const [state, setState] = useState(module);
+
+  const [result, setResult] = useState({
+    text: "",
+    style: "",
+    status: false,
+  });
+  const [saveModuleMutation] = useMutation<
+    { saveModule: SaveModule },
+    { data: ModuleInput }
+  >(mutation);
+
+  const [deleteModuleMutation] = useMutation<
+    { deleteArticle: DeleteArticle },
+    { id: Number }
+  >(deleteMutation);
+
+  const deleteModule = (id: Number) => {
+    const result = deleteModuleMutation({
+      variables: {
+        id: id,
+      },
+    });
+  };
 
   const handleChange = async (event) => {
     event.preventDefault();
@@ -65,17 +121,6 @@ const ModuleManager = () => {
       [name]: value,
     }));
   };
-
-  const [saveModuleMutation] = useMutation<
-    { saveModule: SaveModule },
-    { data: ModuleInput }
-  >(mutation);
-
-  const [deleteModuleMutation] = useMutation<
-    { deleteArticle: DeleteArticle },
-    { id: Number }
-  >(deleteMutation);
-
   const saveModule = (event) => {
     event.preventDefault();
     console.log(state, "now");
@@ -88,8 +133,7 @@ const ModuleManager = () => {
           tag: state.tag,
           mediaId: state.mediaId,
           contactButton: state.contactButton,
-          type:   ModuleType.ARTICLE
-
+          type: state.type,
         },
       },
     }).then(
@@ -110,17 +154,6 @@ const ModuleManager = () => {
         }));
       }
     );
-  };
-
-  if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
-  if (loading) return <Loading />;
-
-  const deleteModule = (id: Number) => {
-    const result = deleteModuleMutation({
-      variables: {
-        id: id,
-      },
-    });
   };
 
   const ImageChange = (imageId) => {
@@ -190,6 +223,20 @@ const ModuleManager = () => {
             <MediaPicker handleChange={ImageChange} mediaId={state.mediaId} />
           </label>
 
+          <label>
+            סוג
+            <StyledSelect
+              value={String(state.type)}
+              name="type"
+              onChange={handleChange}
+            >
+              {Object.values(ModuleType).map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </StyledSelect>
+          </label>
           <Button type="submit">שלח</Button>
           {state.id && (
             <Button
