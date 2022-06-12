@@ -44,7 +44,7 @@ const ModuleManager = () => {
     contactButton: contactLinks[0].name,
   });
 
-  const handleChange = (event) => {
+  const handleChange =   async (event) => {
     event.preventDefault();
     const target = event.target;
     const value = target.value;
@@ -63,8 +63,8 @@ const ModuleManager = () => {
   });
 
   const [saveModuleMutation] = useMutation<
-    { data: SaveModule },
-    { moduleInput: ModuleInput }
+    { saveModule: SaveModule },
+    { data: ModuleInput }
   >(mutation);
 
   const [deleteModuleMutation] = useMutation<
@@ -72,11 +72,12 @@ const ModuleManager = () => {
     { id: Number }
   >(deleteMutation);
 
-  const saveModule = (state) => {
+  const saveModule =(event) => {
+    event.preventDefault()
     console.log(state, "now");
     saveModuleMutation({
       variables: {
-        moduleInput: {
+        data: {
           id: state.id,
           title: state.title,
           introduction: state.introduction,
@@ -123,7 +124,7 @@ const ModuleManager = () => {
     <ProtectRoute>
       <Flex alignItems="center" flexDirection="column">
         <Title> ערוך כתבה</Title>
-        <form onSubmit={saveModule(state)}>
+        <form onSubmit={saveModule}>
           <label>
             שם הכתבה
             <StyledInput

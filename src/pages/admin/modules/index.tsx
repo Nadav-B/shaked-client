@@ -15,7 +15,7 @@ const ModuleSelector = () => {
     event.preventDefault();
     const target = event.target;
     const value = target.value;
-    router.push(`article/${value}`);
+    router.push(`modules/${value}`);
   };
 
 
