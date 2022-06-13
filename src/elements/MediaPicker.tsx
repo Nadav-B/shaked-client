@@ -15,7 +15,7 @@ interface MediaPickerProps {
 
 const MediaPicker: React.FC<MediaPickerProps> = ({
   mediaId,
-  handleChange = (mediaId) => console.log(mediaId),
+  handleChange = (mediaId) => {return mediaId},
 }) => {
   const [selected, setSelected] = useState(mediaId);
 
