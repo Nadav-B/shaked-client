@@ -1,68 +1,66 @@
 import Link from "next/link";
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import styled from "@emotion/styled";
-import {useRouter} from "next/router";
-import {GetServices_services} from "../graphql/__generated__/GetServices";
+import { useRouter } from "next/router";
+import { GetServices_services } from "../graphql/__generated__/GetServices";
+import { GetModule_module } from "../graphql/__generated__/GetModule";
 
 interface ServicePreviewOption {
-    backSide?: boolean
-    service: GetServices_services
-    index: Number,
+  backSide?: boolean;
+  service: GetModule_module;
+  index: Number;
 }
 
 const ServicePreview: React.FC<ServicePreviewOption> = ({
-                                                            service,
-                                                            index, backSide = true
+  service,
+  index,
+  backSide = true,
+}) => {
+  const [overlay, setOverlay] = useState(false);
+  const router = useRouter();
 
-                                                        }) => {
-    const [overlay, setOverlay] = useState(false);
-    const router = useRouter()
-
-    const handleClick = (e) => {
-        e.preventDefault()
-        if (backSide == false) {
-            router.push(`#contact`)
-        } else {
-            router.push(`/services/${service.id}`)
-
-
-        }
-
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (backSide == false) {
+      router.push(`#contact`);
+    } else {
+      router.push(`/services/${service.id}`);
     }
+  };
 
-    const changeOverlayStatus = (mouseOver: boolean) => {
-        if (backSide) {
-            setOverlay(mouseOver);
-        } else {
-            setOverlay(false)
-        }
+  const changeOverlayStatus = (mouseOver: boolean) => {
+    if (backSide) {
+      setOverlay(mouseOver);
+    } else {
+      setOverlay(false);
     }
+  };
 
-    return (
-        <StyledCube onClick={handleClick}
-                    onMouseOut={() => changeOverlayStatus(false)}
-                    onMouseOver={() => changeOverlayStatus(true)}
-        >
-            {!overlay && (
-                <StyledFront>
-                    <img src={`/services/${index}.svg`} alt="service-icon"/>
-                    <div className="text">{service.title}</div>
-                </StyledFront>
-            )}
+  return (
+    <StyledCube
+      onClick={handleClick}
+      onMouseOut={() => changeOverlayStatus(false)}
+      onMouseOver={() => changeOverlayStatus(true)}
+    >
+      {!overlay && (
+        <StyledFront>
+          <img src={`/services/${index}.svg`} alt="service-icon" />
+          <div className="text">{service.title}</div>
+        </StyledFront>
+      )}
 
-            {overlay && (
-                <StyledBack>
-                    <img src={`/services/${index}.svg`} alt="service-icon"/>
-                    <div>{service.title}</div>
-                    <p> {service.introduction}</p>
+      {overlay && (
+        <StyledBack>
+          <img src={`/services/${index}.svg`} alt="service-icon" />
+          <div>{service.title}</div>
+          <p> {service.introduction}</p>
 
-                    <p>  {"+"} לפרטים נוספים</p>
-                </StyledBack>
-            )}
-        </StyledCube>
-
-    );
+          <p> {"+"} לפרטים נוספים</p>
+        </StyledBack>
+      )}
+    </StyledCube>
+  );
 };
 
 const StyledCube = styled.div`

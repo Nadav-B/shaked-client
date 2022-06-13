@@ -36,8 +36,8 @@ const ModuleManager = () => {
     variables: { where: { id: String(id) } },
   });
 
-  const new ={
-    id: "null",
+  var emptyModule = {
+    id: null,
     title: "",
     introduction: "",
     content: "",
@@ -47,7 +47,7 @@ const ModuleManager = () => {
     type: ModuleType.ARTICLE,
   };
 
-  if(id== "new") return <EditorViewer module={new} />;
+  if (id == "new") return <EditorViewer module={emptyModule} />;
   useEffect(() => {
     if (id != "new" && data == null) getModule();
   });
@@ -56,7 +56,7 @@ const ModuleManager = () => {
   if (loading) return <Loading />;
 
   if (data) {
-    var module ={
+    var module = {
       id: data.module.id,
       title: data.module.title,
       introduction: data.module.introduction,
@@ -85,7 +85,18 @@ interface EditorViewerProps {
   module: Module;
 }
 
-const EditorViewer: React.FC<EditorViewerProps> = ({ module }) => {
+const EditorViewer: React.FC<EditorViewerProps> = ({
+  module = {
+    id: "null",
+    title: "",
+    introduction: "",
+    content: "",
+    tag: "",
+    mediaId: null,
+    contactButton: contactLinks[0].name,
+    type: ModuleType.ARTICLE,
+  },
+}) => {
   const [state, setState] = useState(module);
 
   const [result, setResult] = useState({

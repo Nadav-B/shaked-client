@@ -47,6 +47,10 @@ export interface ModuleUniqueInput {
   id: string;
 }
 
+export interface ModuleWhereInput {
+  type?: ModuleType | null;
+}
+
 export interface SurveyInput {
   name?: string | null;
   answers?: (AnswerInput | null)[] | null;

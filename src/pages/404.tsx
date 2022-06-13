@@ -1,23 +1,28 @@
 import Link from "next/link";
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import Button from "../elements/Button";
-import Wrapper from "../elements/Wrapper";
+import Flex from "../elements/Flex";
+import Title from "../elements/Title";
 
 const Custom404 = () => {
   return (
-    <Wrapper>
-      <h1>דף האינטרנט שביקשת לא נמצא</h1>
+    <Flex alignItems="center" flexDirection="column">
+      <Title> העמוד המבוקש לא נמצא</Title>
       <Link href="/">
         <a>
           <BackButtonWrapper>
             <Button>
+              <Flex>
+
               <img src="/assets/back.svg" alt=">" />
-              <h3> לעמוד הבית</h3>
+               חזרה לעמוד הראשי
+              </Flex>
+
             </Button>
           </BackButtonWrapper>
         </a>
       </Link>
-    </Wrapper>
+    </Flex>
   );
 };
 const BackButtonWrapper = styled.div`
@@ -29,9 +34,8 @@ const BackButtonWrapper = styled.div`
   }
 
   h3 {
-      display: inline;
+    display: inline;
   }
 `;
-
 
 export default Custom404;

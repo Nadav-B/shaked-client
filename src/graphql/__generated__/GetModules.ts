@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { ModuleWhereInput } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetModules
 // ====================================================
@@ -18,4 +20,8 @@ export interface GetModules_modules {
 
 export interface GetModules {
   modules: (GetModules_modules | null)[] | null;
+}
+
+export interface GetModulesVariables {
+  where: ModuleWhereInput;
 }
