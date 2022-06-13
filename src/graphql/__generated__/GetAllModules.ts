@@ -3,13 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ModuleWhereInput } from "./globalTypes";
-
 // ====================================================
-// GraphQL query operation: GetModules
+// GraphQL query operation: GetAllModules
 // ====================================================
 
-export interface GetModules_modules {
+export interface GetAllModules_modules {
   __typename: "Module";
   id: string;
   title: string | null;
@@ -18,10 +16,6 @@ export interface GetModules_modules {
   mediaId: number | null;
 }
 
-export interface GetModules {
-  modules: (GetModules_modules | null)[] | null;
-}
-
-export interface GetModulesVariables {
-  where?: ModuleWhereInput | null;
+export interface GetAllModules {
+  modules: (GetAllModules_modules | null)[] | null;
 }

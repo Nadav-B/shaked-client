@@ -1,0 +1,9 @@
+query GetAllModules {
+  modules {
+    id
+    title
+    introduction
+    tag
+    mediaId
+  }
+}

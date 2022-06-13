@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GetModules } from "../../../graphql/__generated__/GetModules";
+import { GetAllModules } from "../../../graphql/__generated__/GetAllModules";
 import query from "../../../graphql/GetModules.graphql";
 import styled from "@emotion/styled";
 import Flex from "../../../elements/Flex";
@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Title from "../../../elements/Title";
 
 const ModuleSelector = () => {
-  const { data, loading, error } = useQuery<GetModules>(query);
+  const { data, loading, error } = useQuery<GetAllModules>(query);
   const router = useRouter();
 
   const handleChange = (event) => {
