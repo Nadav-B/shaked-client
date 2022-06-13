@@ -13,7 +13,10 @@ interface MediaPickerProps {
   handleChange?: Function;
 }
 
-const MediaPicker: React.FC<MediaPickerProps> = ({ mediaId, handleChange }) => {
+const MediaPicker: React.FC<MediaPickerProps> = ({
+  mediaId,
+  handleChange = (mediaId) => console.log(mediaId),
+}) => {
   const [selected, setSelected] = useState(mediaId);
 
   const { data, loading, error } = useQuery<GetMedia>(query);
@@ -22,27 +25,26 @@ const MediaPicker: React.FC<MediaPickerProps> = ({ mediaId, handleChange }) => {
 
   const getImageUrl = (id) => {
     const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/media/${id}`;
-    console.log(imageUrl);
     return imageUrl;
   };
 
   return (
-      <Flex>
-        {data?.media?.map((media) => (
-          <Flex  flexWrap="wrap" flexDirection="column">
-            <StyledImage
-              active={media.id == selected}
-              onClick={() => {
-                console.log(media.id);
-                setSelected(media.id);
-                handleChange(media.id);
-              }}
-              key={media.id}
-              src={getImageUrl(media.id)}
-            ></StyledImage>
-          </Flex>
-        ))}
-      </Flex>
+    <Flex>
+      {data?.media?.map((media) => (
+        <Flex flexWrap="wrap" flexDirection="column">
+          <StyledImage
+            active={Number(media.id) == selected}
+            onClick={() => {
+              console.log(media.id);
+              setSelected(Number(media.id));
+              handleChange(media.id);
+            }}
+            key={media.id}
+            src={getImageUrl(media.id)}
+          ></StyledImage>
+        </Flex>
+      ))}
+    </Flex>
   );
 };
 
