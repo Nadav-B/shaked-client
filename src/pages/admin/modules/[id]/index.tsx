@@ -24,6 +24,7 @@ import Button from "../../../../elements/Button";
 import Flex from "../../../../elements/Flex";
 import TextUploader from "../../../../elements/TextUploader";
 import Title from "../../../../elements/Title";
+import RichtextEditor from "../../../../elements/RichtextEditor";
 
 const ModuleManager = () => {
   const router = useRouter();
@@ -214,6 +215,9 @@ const EditorViewer: React.FC<EditorViewerProps> = ({
               onChange={handleChange}
             />
           </label>
+
+
+          <RichtextEditor html={"text"} />
           <TextUploader setState={setState} />
           <label>
             כפתור צרו קשר
