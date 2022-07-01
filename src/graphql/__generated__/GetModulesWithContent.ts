@@ -6,22 +6,23 @@
 import { ModuleWhereInput } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: GetModules
+// GraphQL query operation: GetModulesWithContent
 // ====================================================
 
-export interface GetModules_modules {
+export interface GetModulesWithContent_modules {
   __typename: "Module";
   id: string;
   title: string | null;
   introduction: string | null;
   tag: string | null;
+  content: string | null;
   mediaId: number | null;
 }
 
-export interface GetModules {
-  modules: (GetModules_modules | null)[] | null;
+export interface GetModulesWithContent {
+  modules: (GetModulesWithContent_modules | null)[] | null;
 }
 
-export interface GetModulesVariables {
+export interface GetModulesWithContentVariables {
   where: ModuleWhereInput;
 }

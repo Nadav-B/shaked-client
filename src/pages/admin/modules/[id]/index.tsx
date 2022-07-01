@@ -199,10 +199,8 @@ const EditorViewer: React.FC<EditorViewerProps> = ({
             קטגוריה
             <StyledInput
               name="tag"
-              placeholder="שדה חובה"
               value={state.tag}
               onChange={handleChange}
-              required
             />
           </label>
           <label>

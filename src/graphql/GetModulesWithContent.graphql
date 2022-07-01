@@ -1,0 +1,10 @@
+query GetModulesWithContent($where: ModuleWhereInput!) {
+  modules(where: $where) {
+    id
+    title
+    introduction
+    tag
+    content
+    mediaId
+  }
+}

@@ -7,13 +7,14 @@ import TextWrapper from "../elements/TextWrapper";
 import Meta from "../components/meta";
 import Wrapper from "../elements/Wrapper";
 
-import query from "../graphql/GetModules.graphql";
+import query from "../graphql/GetModulesWithContent.graphql";
 import Seo from "../classes/seo";
 import {
   GetModules,
   GetModulesVariables,
 } from "../graphql/__generated__/GetModules";
 import { ModuleType } from "../graphql/__generated__/globalTypes";
+import { GetModulesWithContent } from "../graphql/__generated__/GetModulesWithContent";
 
 const seo = new Seo();
 
@@ -21,7 +22,7 @@ seo.title = "אודות";
 seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/about`;
 
 const About = ({ disableMetadata }) => {
-  const { data, loading, error } = useQuery<GetModules, GetModulesVariables>(
+  const { data, loading, error } = useQuery<GetModulesWithContent, GetModulesVariables>(
     query,
     {
       variables: { where: { type: ModuleType.INTRODUCTION } },
