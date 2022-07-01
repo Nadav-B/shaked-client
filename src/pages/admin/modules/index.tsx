@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { GetAllModules } from "../../../graphql/__generated__/GetAllModules";
-import query from "../../../graphql/GetModules.graphql";
+import query from "../../../graphql/GetAllModules.graphql";
 import styled from "@emotion/styled";
 import Flex from "../../../elements/Flex";
 import Button from "../../../elements/Button";
