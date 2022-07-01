@@ -3,12 +3,12 @@ import React, { useState } from "react";
 
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { GetServices_services } from "../graphql/__generated__/GetServices";
-import { GetModule_module } from "../graphql/__generated__/GetModule";
+import { GetModules_modules } from "../graphql/__generated__/GetModules";
 
 interface ServicePreviewOption {
+  
   backSide?: boolean;
-  service: GetModule_module;
+  service: GetModules_modules;
   index: Number;
 }
 
@@ -101,7 +101,7 @@ const StyledBack = styled.div`
     width: 10px;
   }
 
-}
+
 `;
 
 export default ServicePreview;

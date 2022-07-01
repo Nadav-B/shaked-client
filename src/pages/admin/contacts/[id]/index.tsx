@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import {
   GetContact,
   GetContactVariables,
-  ContactUniqueInput
 } from "../../../../graphql/__generated__/GetContact";
 import query from "../../../../graphql/GetContact.graphql";
 import Loading from "../../../../elements/Loading";

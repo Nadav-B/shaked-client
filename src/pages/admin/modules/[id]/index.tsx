@@ -17,13 +17,13 @@ import {
   ModuleType,
 } from "../../../../graphql/__generated__/globalTypes";
 import mutation from "../../../../graphql/SaveModule.graphql";
-import { DeleteArticle } from "../../../../graphql/__generated__/DeleteArticle";
 import deleteMutation from "../../../../graphql/DeleteModule.graphql";
 import MediaPicker from "../../../../elements/MediaPicker";
 import Button from "../../../../elements/Button";
 import Flex from "../../../../elements/Flex";
 import TextUploader from "../../../../elements/TextUploader";
 import Title from "../../../../elements/Title";
+import { DeleteModule } from "../../../../graphql/__generated__/DeleteModule";
 
 const ModuleManager = () => {
   const router = useRouter();
@@ -110,7 +110,7 @@ const EditorViewer: React.FC<EditorViewerProps> = ({
   >(mutation);
 
   const [deleteModuleMutation] = useMutation<
-    { deleteArticle: DeleteArticle },
+    { deleteArticle: DeleteModule },
     { id: Number }
   >(deleteMutation);
 
