@@ -9,7 +9,6 @@ import Loading from "../../../elements/Loading";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 
 import { ProtectRoute } from "../../../shared/protected_route";
-import Wrapper from "../../../elements/Wrapper";
 import { GetContacts } from "../../../graphql/__generated__/GetContacts";
 import { useMutation, useQuery } from "@apollo/client";
 import query from "../../../graphql/GetContacts.graphql";
@@ -51,7 +50,6 @@ const ContactManagers = () => {
       setSelectedContacts([]);
     });
   };
-
 
   const updateSelectedContacts = (selected) => (event) => {
     if (event.target.checked) {
@@ -156,8 +154,7 @@ const ContactManagers = () => {
 };
 
 const StyledContact = styled.div`
-  margin-left: 20px;
-  margin-right: 20px;
+  width: 100%;
 
   a:hover {
     color: blue;
