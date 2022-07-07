@@ -6,7 +6,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import styled from "@emotion/styled";
 import Flex from "./Flex";
-import Text from "./Text";
+import Carousel from "./Carousel";
 
 interface MediaPickerProps {
   mediaId?: number;
@@ -15,7 +15,9 @@ interface MediaPickerProps {
 
 const MediaPicker: React.FC<MediaPickerProps> = ({
   mediaId,
-  handleChange = (mediaId) => {return mediaId},
+  handleChange = (mediaId) => {
+    return mediaId;
+  },
 }) => {
   const [selected, setSelected] = useState(mediaId);
 
@@ -29,21 +31,21 @@ const MediaPicker: React.FC<MediaPickerProps> = ({
   };
 
   return (
-    <Flex>
-      {data?.media?.map((media) => (
-        <Flex flexWrap="wrap" flexDirection="column">
-          <StyledImage
-            active={Number(media.id) == selected}
-            onClick={() => {
-              console.log(media.id);
-              setSelected(Number(media.id));
-              handleChange(media.id);
-            }}
-            key={media.id}
-            src={getImageUrl(media.id)}
-          ></StyledImage>
-        </Flex>
-      ))}
+    <Flex flexDirection="row" flexWrap="wrap">
+        <Carousel
+          items={data?.media.map((media) => (
+            <StyledImage
+              active={Number(media.id) == selected}
+              onClick={() => {
+                console.log(media.id);
+                setSelected(Number(media.id));
+                handleChange(media.id);
+              }}
+              key={media.id}
+              src={getImageUrl(media.id)}
+            ></StyledImage>
+          ))}
+        ></Carousel>
     </Flex>
   );
 };

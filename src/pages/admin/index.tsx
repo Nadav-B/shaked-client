@@ -9,7 +9,12 @@ const Admin = () => {
     <ProtectRoute>
       <Flex flexWrap="wrap" flexDirection="column" alignItems="center">
         <Title>עמוד ניהול</Title>
-        <Flex flexDirection="row" margin="30px" alignItems="center">
+        <Flex
+          flexWrap="wrap"
+          flexDirection="row"
+          margin="30px"
+          alignItems="center"
+        >
           <Link href={"/admin/contacts"}>
             <StyledButton>אנשי קשר</StyledButton>
           </Link>

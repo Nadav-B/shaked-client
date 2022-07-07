@@ -7,7 +7,7 @@ const MediaManager = () => {
   return (
     <Flex  alignItems="center" flexDirection="column">
       <Title>ניהול מדיה</Title>
-      <MediaPicker></MediaPicker>
+      <MediaPicker/>
       <MediaUploader></MediaUploader>
     </Flex>
   );
