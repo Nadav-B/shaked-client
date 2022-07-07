@@ -31,21 +31,26 @@ const MediaPicker: React.FC<MediaPickerProps> = ({
   };
 
   return (
-    <Flex flexDirection="row" alignContent="flex-end" flexWrap="wrap">
-        <Carousel
-          items={data?.media.map((media) => (
-            <StyledImage
-              active={Number(media.id) == selected}
-              onClick={() => {
-                console.log(media.id);
-                setSelected(Number(media.id));
-                handleChange(media.id);
-              }}
-              key={media.id}
-              src={getImageUrl(media.id)}
-            ></StyledImage>
-          ))}
-        ></Carousel>
+    <Flex
+      justifyContent="center"
+      flexDirection="row"
+      alignContent="flex-start"
+      flexWrap="wrap"
+    >
+      <Carousel
+        items={data?.media.map((media) => (
+          <StyledImage
+            active={Number(media.id) == selected}
+            onClick={() => {
+              console.log(media.id);
+              setSelected(Number(media.id));
+              handleChange(media.id);
+            }}
+            key={media.id}
+            src={getImageUrl(media.id)}
+          ></StyledImage>
+        ))}
+      ></Carousel>
     </Flex>
   );
 };
@@ -55,9 +60,10 @@ interface StyledImageProp {
 }
 
 const StyledImage = styled.img<StyledImageProp>`
-  height: 70px;
-  opacity: 0.3; 
-
+  opacity: 0.3;
+  height: auto;
+  max-height: 100px;
+  max-width: 200px;
 
   ${({ active }) =>
     active &&

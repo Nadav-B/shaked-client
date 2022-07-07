@@ -20,8 +20,9 @@ const ArticlePreview: React.FC<{ article: GetModules_modules }> = ({
         as={`/articles/${article.id}`}
       >
         <Flex width="200px" flexDirection="column">
-          <StyledPicture src={image} alt={article.title} />
-
+          <ImageBox>
+            <StyledPicture src={image} alt={article.title} />
+          </ImageBox>
           <ArticleTitle>
             <Text fontWeight="bold" fontSize="14px">
               {article.title}
@@ -46,6 +47,10 @@ const StyledArticlePreview = styled.div`
   cursor: pointer;
 `;
 
+const ImageBox = styled.div`
+  height: 120px;
+`;
+
 const ArticleTitle = styled.div`
   margin-top: 10px;
   animation: fadeIn linear 7s;
@@ -56,9 +61,10 @@ const ArticleTitle = styled.div`
 `;
 
 const StyledPicture = styled.img`
-  display: block;
-  width: 100%;
-  max-height: 300px;
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+    object-fit: fill;
   border-radius: 3px;
   transition: transform 0.5s ease;
 
