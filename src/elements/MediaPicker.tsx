@@ -31,7 +31,7 @@ const MediaPicker: React.FC<MediaPickerProps> = ({
   };
 
   return (
-    <Flex flexDirection="row" flexWrap="wrap">
+    <Flex flexDirection="row" alignContent="flex-end" flexWrap="wrap">
         <Carousel
           items={data?.media.map((media) => (
             <StyledImage
@@ -55,9 +55,9 @@ interface StyledImageProp {
 }
 
 const StyledImage = styled.img<StyledImageProp>`
-  width: auto;
-  height: 200px;
-  opacity: 0.3;
+  height: 70px;
+  opacity: 0.3; 
+
 
   ${({ active }) =>
     active &&

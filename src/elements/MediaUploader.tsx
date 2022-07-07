@@ -14,7 +14,7 @@ const MediaUploader = () => {
 
   return (
     <Flex alignItems="center" flexDirection="column">
-      <Title>קובץ חדש</Title>
+      <Title> העלאת קובץ</Title>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -22,14 +22,14 @@ const MediaUploader = () => {
         }}
       >
         <label>
-          <input
+          <input required
             type="file"
             ref={(ref) => {
               setScriptMultipartInput(ref!);
             }}
           />
         </label>
-        <Button type="submit">אישור</Button>
+        <Button type="submit">אשר</Button>
       </form>
     </Flex>
   );

@@ -5,9 +5,9 @@ import Title from "../../../elements/Title";
 
 const MediaManager = () => {
   return (
-    <Flex  alignItems="center" flexDirection="column">
+    <Flex alignItems="center" flexDirection="column">
       <Title>ניהול מדיה</Title>
-      <MediaPicker/>
+      <MediaPicker></MediaPicker>
       <MediaUploader></MediaUploader>
     </Flex>
   );
