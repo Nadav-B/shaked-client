@@ -4,11 +4,11 @@ import Text from "./Text";
 import Link from "next/link";
 
 import Flex from "./Flex";
+import { Module } from "src/graphql/generated/graphql";
 
-import { GetModules_modules } from "../graphql/__generated__/GetModules";
 
-const ArticlePreview: React.FC<{ article: GetModules_modules }> = ({
-  article,
+const ArticlePreview: React.FC<{ module: Module }> = ({
+  module: article,
 }) => {
   const image = `${process.env.NEXT_PUBLIC_API_URL}/media/${article.mediaId}`;
 
@@ -21,7 +21,7 @@ const ArticlePreview: React.FC<{ article: GetModules_modules }> = ({
       >
         <Flex width="200px" flexDirection="column">
           <ImageBox>
-            <StyledPicture src={image} alt={article.title} />
+            <StyledPicture src={image} alt={String(article.title)} />
           </ImageBox>
           <ArticleTitle>
             <Text fontWeight="bold" fontSize="14px">
@@ -55,9 +55,7 @@ const ArticleTitle = styled.div`
   margin-top: 10px;
   animation: fadeIn linear 7s;
 
-  &:hover {
-    color: ${(p) => p.theme.colors.darkGreen};
-  }
+
 `;
 
 const StyledPicture = styled.img`

@@ -1,12 +1,10 @@
-import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
-import { GetMedia } from "../graphql/__generated__/GetMedia";
-import query from "../graphql/GetMedia.graphql";
 import Loading from "./Loading";
 import Error from "./Error";
 import styled from "@emotion/styled";
 import Flex from "./Flex";
 import Carousel from "./Carousel";
+import { useGetMediaQuery } from "src/graphql/generated/graphql";
 
 interface MediaPickerProps {
   mediaId?: number;
@@ -21,7 +19,7 @@ const MediaPicker: React.FC<MediaPickerProps> = ({
 }) => {
   const [selected, setSelected] = useState(mediaId);
 
-  const { data, loading, error } = useQuery<GetMedia>(query);
+  const { data, loading, error } = useGetMediaQuery();
   if (loading) return <Loading />;
   if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
 
@@ -38,16 +36,16 @@ const MediaPicker: React.FC<MediaPickerProps> = ({
       flexWrap="wrap"
     >
       <Carousel
-        items={data?.media.map((media) => (
+        items={data?.media?.map((media) => (
           <StyledImage
-            active={Number(media.id) == selected}
+            active={Number(media?.id) == selected}
             onClick={() => {
-              console.log(media.id);
-              setSelected(Number(media.id));
-              handleChange(media.id);
+              console.log(media?.id);
+              setSelected(Number(media?.id));
+              handleChange(media?.id);
             }}
-            key={media.id}
-            src={getImageUrl(media.id)}
+            key={media?.id}
+            src={getImageUrl(media?.id)}
           ></StyledImage>
         ))}
       ></Carousel>

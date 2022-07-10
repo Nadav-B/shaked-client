@@ -5,15 +5,10 @@ import styled from "@emotion/styled";
 
 import Meta from "../components/meta";
 import Flex from "../elements/Flex";
-import mutation from "../graphql/SaveContact.graphql";
-import {useMutation} from "@apollo/client";
-import {
-    SaveContact,
 
-} from "../graphql/__generated__/SaveContact";
-import {ContactInput} from "../graphql/__generated__/globalTypes";
 import Title from "../elements/Title";
 import Seo from "../classes/seo";
+import { useSaveContactMutation } from "../graphql/generated/graphql";
 
 
 const seo = new Seo();
@@ -41,8 +36,8 @@ const Contact: React.FC<ContactOptions> = ({
     });
 
 
-    const [submitContact, {data, loading, error}] = useMutation<{ saveContact: SaveContact },
-        { data: ContactInput }>(mutation);
+    const [submitContact, {data, loading, error}] = useSaveContactMutation();
+
 
     const [result, setResult] = useState({
         text: "",
@@ -151,14 +146,11 @@ const StyledInput = styled.input`
   height: 30px;
   font-size: 16px;
   margin-top: 10px;
-  border: 1px solid ${(p) => p.theme.colors.veryLightGrey};
   border-radius: 4px;
   box-sizing: border-box;
-  background: ${(p) => p.theme.colors.veryLightGrey};
 
   &::placeholder {
     padding-right: 10px;
-    color: ${(p) => p.theme.colors.black};
 
   }
 `;

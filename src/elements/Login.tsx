@@ -5,16 +5,14 @@ import styled from "@emotion/styled";
 import Router from "next/router";
 import Title from "./Title";
 import Flex from "./Flex";
-import { useLazyQuery } from "@apollo/client";
-import query from "../graphql/IsAuthenticated.graphql";
-import { IsAuthenticated } from "../graphql/__generated__/IsAuthenticated";
 import { useAuth } from "../shared/auth";
+import { useIsAuthenticatedLazyQuery } from "src/graphql/generated/graphql";
 
 const Login = () => {
   const auth = useAuth();
 
   const [isAuthenticated, { data, loading, error }] =
-    useLazyQuery<IsAuthenticated>(query);
+    useIsAuthenticatedLazyQuery();
 
   const [state, setState] = useState({
     username: "",
@@ -40,16 +38,15 @@ const Login = () => {
 
     isAuthenticated();
 
-    if (data?.isAuthenticated ==true) {
+    if (data?.isAuthenticated == true) {
       Router.push("admin");
-      console.log("push")
+      console.log("push");
     }
     if (error) {
       auth.logout();
       console.log(error);
       result.text = error.message;
-    } 
-     
+    }
   };
 
   const handleChange = (event) => {
@@ -107,8 +104,6 @@ const StyledInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-
-
 `;
 
 export default Login;

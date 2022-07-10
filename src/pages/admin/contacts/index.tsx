@@ -9,17 +9,21 @@ import Loading from "../../../elements/Loading";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 
 import { ProtectRoute } from "../../../shared/protected_route";
-import { GetContacts } from "../../../graphql/__generated__/GetContacts";
-import { useMutation, useQuery } from "@apollo/client";
-import query from "../../../graphql/GetContacts.graphql";
-import { DeleteContact } from "../../../graphql/__generated__/DeleteContact";
-import mutation from "../../../graphql/DeleteContact.graphql";
+
 import Link from "next/link";
 import Flex from "../../../elements/Flex";
 import Title from "../../../elements/Title";
+import {
+  useDeleteContactMutation,
+  Contact,
+  useGetContactsQuery,
+} from "src/graphql/generated/graphql";
 
 const ContactManagers = () => {
-  const { data, loading, error } = useQuery<GetContacts>(query);
+  const { data, loading, error } = useGetContactsQuery();
+
+  
+  const [contacts, setContacts] = useState>([]);
 
   useEffect(() => {
     if (data && data.contacts && contacts.length == 0) {
@@ -27,25 +31,20 @@ const ContactManagers = () => {
     }
   }, [data]);
 
-  const [contacts, setContacts] = useState([]);
-
-  const [deleteContactMutation] = useMutation<
-    { deleteContact: DeleteContact },
-    { id: Number }
-  >(mutation);
+  const [deleteContactMutation] = useDeleteContactMutation();
 
   const [selectedContacts, setSelectedContacts] = useState([]);
 
   const deleteContact = (id: Number) => {
     const result = deleteContactMutation({
       variables: {
-        id: id,
+        id: String(id),
       },
     });
 
     result.then((result) => {
       setContacts(
-        contacts.filter((contact) => contact.id !== result.data.deleteContact)
+        contacts.filter((contact) => contact.id !== result.data?.deleteContact)
       );
       setSelectedContacts([]);
     });
@@ -184,3 +183,6 @@ const StyledDeleteBanner = styled.div`
 `;
 
 export default ContactManagers;
+function useGetContacts(): { data: any; loading: any; error: any } {
+  throw new Error("Function not implemented.");
+}

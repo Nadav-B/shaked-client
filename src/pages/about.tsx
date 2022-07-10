@@ -7,14 +7,10 @@ import TextWrapper from "../elements/TextWrapper";
 import Meta from "../components/meta";
 import Wrapper from "../elements/Wrapper";
 
-import query from "../graphql/GetModulesWithContent.graphql";
 import Seo from "../classes/seo";
-import {
-  GetModules,
-  GetModulesVariables,
-} from "../graphql/__generated__/GetModules";
-import { ModuleType } from "../graphql/__generated__/globalTypes";
-import { GetModulesWithContent } from "../graphql/__generated__/GetModulesWithContent";
+
+
+import { ModuleType, useGetModulesWithContentQuery } from "src/graphql/generated/graphql";
 
 const seo = new Seo();
 
@@ -22,12 +18,10 @@ seo.title = "אודות";
 seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/about`;
 
 const About = ({ disableMetadata }) => {
-  const { data, loading, error } = useQuery<GetModulesWithContent, GetModulesVariables>(
-    query,
-    {
-      variables: { where: { type: ModuleType.INTRODUCTION } },
-    }
-  );
+  const { data, loading, error } = useGetModulesWithContentQuery({
+    variables: { where: { type: ModuleType.Introduction } },
+  });
+
   if (loading)
     return (
       <>
@@ -41,11 +35,11 @@ const About = ({ disableMetadata }) => {
     <Wrapper>
       {!disableMetadata && <Meta seo={seo} />}
       <TextWrapper>
-        {data?.modules.map((text) => (
+        {data?.modules?.map((text) => (
           <div
-            key={text.id}
+            key={text?.id}
             dangerouslySetInnerHTML={{
-              __html: text.content,
+              __html: String(text?.content),
             }}
           ></div>
         ))}

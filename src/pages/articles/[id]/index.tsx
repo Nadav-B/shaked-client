@@ -5,12 +5,9 @@ import Button from "../../../elements/Button";
 import Flex from "../../../elements/Flex";
 
 import Meta from "../../../components/meta";
-import { useQuery } from "@apollo/client";
 import {
-  GetModule,
-  GetModuleVariables,
-} from "../../../graphql/__generated__/GetModule";
-import query from "../../../graphql/GetModule.graphql";
+  useGetModuleQuery,
+} from "../../../graphql/generated/graphql";
 import { useRouter } from "next/router";
 import Loading from "../../../elements/Loading";
 import Error from "../../../elements/Error";
@@ -20,12 +17,9 @@ const Article = () => {
   const router = useRouter();
   const id = router.query.id;
 
-  const { data, loading, error } = useQuery<GetModule, GetModuleVariables>(
-    query,
-    {
-      variables: { where: { id: String(id) } },
-    }
-  );
+  const { data, loading, error } = useGetModuleQuery({
+    variables: { where: { id: String(id) } },
+  });
 
   if (loading) return <Loading />;
   if (error || data.module == null)

@@ -1,0 +1,10 @@
+overwrite: true
+schema: "http://localhost:8081/api/graphql"
+documents: ./src/graphql/*.graphql
+generates:
+  src/graphql/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - named-operations-object
+      - typescript-react-apollo

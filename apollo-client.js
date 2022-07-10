@@ -1,10 +1,9 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { createUploadLink } from "apollo-upload-client";
 
 const GRAPHQL_URL = `${process.env.NEXT_PUBLIC_API_URL}/graphql`;
 
-const httpLink = createUploadLink({
+const httpLink = createHttpLink({
   uri: GRAPHQL_URL,
 });
 

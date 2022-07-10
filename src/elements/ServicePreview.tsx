@@ -3,12 +3,12 @@ import React, { useState } from "react";
 
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { GetModules_modules } from "../graphql/__generated__/GetModules";
+import { Module } from "src/graphql/generated/graphql";
 
 interface ServicePreviewOption {
   
   backSide?: boolean;
-  service: GetModules_modules;
+  service: Module;
   index: Number;
 }
 

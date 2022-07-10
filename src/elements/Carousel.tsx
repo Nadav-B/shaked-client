@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
 import * as React from "react";
-import { useState } from "react";
-import Flex from "./Flex";
 
 interface SliderProps {
   items: any;

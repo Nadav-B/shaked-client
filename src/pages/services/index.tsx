@@ -10,9 +10,7 @@ import query from "../../graphql/GetModules.graphql";
 import Title from "../../elements/Title";
 import Flex from "../../elements/Flex";
 import Seo from "../../classes/seo";
-import { GetModules } from "../../graphql/__generated__/GetModules";
-import { GetModulesVariables } from "../../graphql/__generated__/GetModules";
-import { ModuleType } from "../../graphql/__generated__/globalTypes";
+import { ModuleType, useGetAllModulesQuery, useGetModulesQuery } from "../../graphql/generated/graphql";
 
 const seo = new Seo();
 seo.title = "השירותים שלנו";
@@ -31,12 +29,9 @@ const Services: React.FC<ServicesOption> = ({
   handleClick,
   backSide,
 }) => {
-  const { data, loading, error } = useQuery<GetModules, GetModulesVariables>(
-    query,
-    {
-      variables: { where: { type: ModuleType.SERVICE } },
-    }
-  );
+  const { data, loading, error } = useGetModulesQuery({
+    variables: { where: { type: ModuleType.Service } },
+  });
 
   if (loading)
     return (
