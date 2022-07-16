@@ -4,3 +4,7 @@ dist
 node_modules/
 .build
 .build/*
+node_modules
+**/.next/**
+**/_next/**
+**/dist/**
