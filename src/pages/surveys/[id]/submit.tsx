@@ -16,8 +16,16 @@ import {
   useSaveContactMutation,
 } from "src/graphql/generated/graphql";
 
+enum Mode {
+  FILL_CONTACT,
+  SUMMARY,
+}
+
 const SurveySummary = ({ id }) => {
   useRouter();
+
+  const [mode, setMode] = useState(Mode.FILL_CONTACT);
+
   const selectedSurveyCache = `survey_+ ${id}`;
   const selectedSurvey = surveys[Number(id)];
   const [results, setResults] = useState(new Map<string, string>());
@@ -39,22 +47,18 @@ const SurveySummary = ({ id }) => {
     if (
       typeof window !== "undefined" &&
       results.size == 0 &&
-      confirmation.status != false
+      mode == Mode.FILL_CONTACT
     ) {
       const temporal = localStorage.getItem(selectedSurveyCache);
-      if (temporal != null) setResults(new Map(JSON.parse(temporal)));
+      console.log(temporal);
+      if (temporal != undefined) setResults(new Map(JSON.parse(temporal)));
     }
-  }, []);
+  }, [results.size, confirmation.status, selectedSurveyCache, mode]);
 
   const parseAnswersForSubmit = () => {
     const tempArray: AnswerInput[] = [];
+    console.log(results);
     results.forEach((key, value) => {
-      const answer = {
-        question: value,
-        answer: key,
-      };
-      ``;
-
       tempArray.push({ question: value, answer: key });
     });
 
@@ -93,6 +97,7 @@ const SurveySummary = ({ id }) => {
       survey: survey,
     };
 
+    console.log(survey);
     submitContact({
       variables: {
         data: contactForm,
@@ -110,7 +115,8 @@ const SurveySummary = ({ id }) => {
         (error) => {
           setConfirmation((prevState) => ({
             ...prevState,
-            text: "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
+            text:
+              "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
             style: "red",
             status: false,
           }));
@@ -119,13 +125,16 @@ const SurveySummary = ({ id }) => {
       .catch((reason) => {
         setConfirmation((prevState) => ({
           ...prevState,
-          text: "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
+          text:
+            "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
           style: "red",
           status: false,
         }));
       });
 
     clearSurvey();
+
+    setMode(Mode.SUMMARY);
   };
 
   return (
@@ -133,7 +142,7 @@ const SurveySummary = ({ id }) => {
       <Title className="title">
         {selectedSurvey.name} {confirmation.status}
       </Title>
-      {confirmation.status == null && (
+      {mode == Mode.FILL_CONTACT && (
         <div>
           <Progress percent={100} />
           <StatusWrapper>

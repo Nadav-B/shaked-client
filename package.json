@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf node_modules yarn.lock package-lock.json",
+    "clean": "rm -rf node_modules",
     "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
