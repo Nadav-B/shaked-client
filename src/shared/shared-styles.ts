@@ -1,7 +1,7 @@
-import { theme } from "./theme";
 import { createGlobalStyle } from "styled-components";
+import theme  from "../shared/theme";
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles  =  createGlobalStyle `
 
   
   * {
