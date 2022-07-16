@@ -387,7 +387,7 @@ export type Query = {
   __typename?: 'Query';
   _service?: Maybe<_Service>;
   contact?: Maybe<Contact>;
-  contacts?: Maybe<Array<Maybe<Contact>>>;
+  contacts: Array<Maybe<Contact>>;
   isAuthenticated?: Maybe<Scalars['Boolean']>;
   media?: Maybe<Array<Maybe<Media>>>;
   module?: Maybe<Module>;
@@ -455,7 +455,7 @@ export type GetContactQuery = { __typename?: 'Query', contact?: { __typename?: '
 export type GetContactsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetContactsQuery = { __typename?: 'Query', contacts?: Array<{ __typename?: 'Contact', id: string, fullName: string, category?: string | null, createdAt: any, phoneNumber: string, survey?: { __typename?: 'Survey', id?: string | null, name?: string | null, answers?: Array<{ __typename?: 'Answer', answer?: string | null, question?: string | null } | null> | null } | null } | null> | null };
+export type GetContactsQuery = { __typename?: 'Query', contacts: Array<{ __typename?: 'Contact', id: string, fullName: string, category?: string | null, createdAt: any, phoneNumber: string, survey?: { __typename?: 'Survey', id?: string | null, name?: string | null, answers?: Array<{ __typename?: 'Answer', answer?: string | null, question?: string | null } | null> | null } | null } | null> };
 
 export type GetMediaQueryVariables = Exact<{ [key: string]: never; }>;
 

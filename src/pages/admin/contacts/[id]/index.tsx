@@ -1,26 +1,22 @@
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
-import query from "../../../../graphql/GetContact.graphql";
 import Loading from "../../../../elements/Loading";
 import Error from "../../../../elements/Error";
 import Flex from "../../../../elements/Flex";
 import Text from "../../../../elements/Text";
 import Title from "../../../../elements/Title";
 import dates from "../../../../shared/util/dates";
-
+import React from "react";
 import { ProtectRoute } from "../../../../shared/protected_route";
 import { useGetContactQuery } from "src/graphql/generated/graphql";
 
-const ContactViewer = () => {
+const ContactViewer: React.FC = () => {
   const router = useRouter();
   const id = router.query.id;
 
-  const { data, loading, error } = useGetContactQuery(
-    {
-      variables: { where: { id: String(id)} },
-    }
-  );
+  const { data, loading, error } = useGetContactQuery({
+    variables: { where: { id: String(id) } },
+  });
 
   if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
   if (loading) return <Loading />;
