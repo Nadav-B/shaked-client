@@ -20,14 +20,23 @@ const Article = () => {
   });
 
   if (loading) return <Loading />;
-  if (error || data.module == null) return <Error description={undefined} />;
+  if (error || data?.module == null) return <Error description={undefined} />;
 
   const image = `${process.env.NEXT_PUBLIC_API_URL}/media/${data.module.mediaId}`;
   const seo = new Seo();
-  seo.title = data.module.title;
-  seo.description = data.module.introduction;
+
+  if (data?.module.title) {
+    seo.title = data.module.title;
+  }
+
+  if (data?.module.introduction) {
+    seo.description = data.module.introduction;
+  }
+
+  if (data?.module.id) {
+    seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/articles/${data.module.id}`;
+  }
   seo.image = image;
-  seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/articles/${data.module.id}`;
 
   return (
     <Flex
@@ -47,7 +56,7 @@ const Article = () => {
       <Button
         maxWidth={"400px"}
         onClick={() => {
-          directByContact(data.module.contactButton);
+          directByContact(data.module?.contactButton);
         }}
       >
         {data.module.contactButton}

@@ -1,17 +1,17 @@
 import Router from "next/router";
 import React, { useState, useContext, useEffect } from "react";
 
-export const AuthContext = React.createContext<IAuth>({
-  isAuthenticated: false,
-  login: null,
-  logout: null,
-});
-
-export interface IAuth {
+interface IAuth {
   isAuthenticated: boolean;
   login: (username, password) => void;
   logout: () => void;
 }
+const AuthContext = React.createContext<IAuth>({
+  isAuthenticated: false,
+  login: () => {},
+  logout: () => {},
+});
+
 type Props = {
   children: JSX.Element;
 };
@@ -35,7 +35,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const login = (username, password) => {
     let buff = new Buffer(username + ":" + password);
     let base64data = buff.toString("base64");
-    console.log("setting")
+    console.log("setting");
     localStorage.setItem("token", "Basic " + base64data);
     setUser(true);
   };

@@ -1,16 +1,16 @@
 import React from "react";
-import Link from "next/link";
 import ServicePreview from "../../elements/ServicePreview";
 import styled from "@emotion/styled";
-import { useQuery } from "@apollo/client";
 import Loading from "../../elements/Loading";
 import Meta from "../../components/meta";
 
-import query from "../../graphql/GetModules.graphql";
 import Title from "../../elements/Title";
 import Flex from "../../elements/Flex";
 import Seo from "../../classes/seo";
-import { ModuleType, useGetAllModulesQuery, useGetModulesQuery } from "../../graphql/generated/graphql";
+import {
+  ModuleType,
+  useGetModulesQuery,
+} from "../../graphql/generated/graphql";
 
 const seo = new Seo();
 seo.title = "השירותים שלנו";
@@ -46,11 +46,11 @@ const Services: React.FC<ServicesOption> = ({
       {!disableMetadata && <Meta seo={seo} />}
       <Title>השירותים שלנו</Title>
       <StyledService>
-        {data?.modules.map((service, index) => (
+        {data?.modules?.map((service, index) => (
           <ServicePreview
             backSide={backSide}
             index={index}
-            key={service.id}
+            key={service?.id}
             service={service}
           />
         ))}

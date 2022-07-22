@@ -149,10 +149,12 @@ const SurveySummary = ({ id }) => {
 
 const StyledInput = styled.input`
   width: 100%;
-  font-size: 16px;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
+  font-size: ${(p) => p.theme.fontSize.normal};
+
+  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 `;

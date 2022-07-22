@@ -37,8 +37,8 @@ const Articles = ({ disableMetadata }) => {
       <Title>כתבות</Title>
 
       <Carousel
-        items={data?.modules.map((article) => (
-          <ArticlePreview key={article.id} module={article} />
+        items={data?.modules?.map((module) => (
+          <ArticlePreview key={module?.id} module={module} />
         ))}
       ></Carousel>
     </Flex>

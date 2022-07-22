@@ -6,9 +6,8 @@ import { useRouter } from "next/router";
 import { Module } from "src/graphql/generated/graphql";
 
 interface ServicePreviewOption {
-  
   backSide?: boolean;
-  service: Module;
+  service: any;
   index: Number;
 }
 
@@ -100,8 +99,6 @@ const StyledBack = styled.div`
   img {
     width: 10px;
   }
-
-
 `;
 
 export default ServicePreview;
