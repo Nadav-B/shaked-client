@@ -1,0 +1,35 @@
+import styled from "@emotion/styled";
+import Flex from "./Flex";
+import TextWrapper from "./TextWrapper";
+import Title from "./Title";
+
+interface ErrorProps {
+  description?: String;
+  optional?: String;
+}
+
+const Error: React.FC<ErrorProps> = ({ description, optional }) => {
+  return (
+    <Flex margin={20} alignItems="center" flexDirection="column">
+      <TextWrapper>
+        <StyledError>מצטערים </StyledError>
+        <StyledDescription>{description}</StyledDescription>
+        <StyledOptional>{optional}</StyledOptional>
+      </TextWrapper>
+    </Flex>
+  );
+};
+
+const StyledError = styled.div`
+  color: ${(props) => props.theme.colors.roseWood};
+  font-size: ${(props) => props.theme.fontSize.xl};
+`;
+
+const StyledDescription = styled.div`
+  color: ${(props) => props.theme.colors.roseWood};
+`;
+
+const StyledOptional = styled.div`
+  font-size: ${(props) => props.theme.fontSize.small};
+`;
+export default Error;

@@ -1,7 +1,7 @@
 import { jsx, ThemeProvider } from "@emotion/react";
 
 import GlobalStyles from "../shared/shared-styles";
-import  theme  from "../shared/theme";
+import theme from "../shared/theme";
 import Header from "../components/header";
 import menuLinks from "../config/menuLinks";
 import Footer from "../components/footer";
@@ -14,15 +14,13 @@ import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
 import { ApolloProvider } from "@apollo/client";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
-import  client  from "../../apollo-client";
+import client from "../../apollo-client";
 import { AuthProvider } from "../shared/auth";
 
 const App = ({ Component, pageProps }) => {
-
-
   const requiredStyles = css`
     @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
-    @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap');
+    @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap");
   `;
 
   return (
@@ -41,6 +39,7 @@ const App = ({ Component, pageProps }) => {
               sizes="32x32"
               href="logos/favicon-32x32.png"
             />
+
             <link
               rel="icon"
               type="image/png"
@@ -54,7 +53,7 @@ const App = ({ Component, pageProps }) => {
           <ThemeProvider theme={theme}>
             <Global styles={requiredStyles} />
 
-            <GlobalStyles theme={theme}/>
+            <GlobalStyles theme={theme} />
             <Header menuLinks={menuLinks} />
             <StyledBody>
               <Component {...pageProps} />

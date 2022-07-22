@@ -18,7 +18,7 @@ const ContactViewer: React.FC = () => {
     variables: { where: { id: String(id) } },
   });
 
-  if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
+  if (error) return <Error description={"שגיאה בטעינה העמוד"} />;
   if (loading) return <Loading />;
   return (
     <ProtectRoute>

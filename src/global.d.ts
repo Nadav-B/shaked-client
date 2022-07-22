@@ -37,6 +37,7 @@ declare module App {
       turquoise: String;
       whiteSmoke: String;
       whisper: String;
+      roseWood: String;
       white: String;
       zambezi: Strin;
     };
@@ -47,6 +48,7 @@ declare module App {
       semiBold: Number;
     };
     border: Number;
+    borderRadius: String;
     responsive: {
       small: String;
       medium: String;

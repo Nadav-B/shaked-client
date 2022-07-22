@@ -4,9 +4,9 @@ import shouldForwardProp from "@styled-system/should-forward-prop";
 import {
   position,
   border,
-  space,
   layout,
   color,
+  space,
   background,
   flex,
   flexbox,
@@ -15,6 +15,7 @@ import {
   PositionProps,
   LayoutProps,
   SpaceProps,
+  display,
   ColorProps,
   BorderProps,
   ShadowProps,
@@ -34,6 +35,7 @@ export type ButtonProps = PositionProps &
   ShadowProps &
   BackgroundProps &
   TypographyProps &
+  layout &
   GridProps &
   React.AllHTMLAttributes<HTMLElement> & {
     as?: As;
@@ -41,33 +43,39 @@ export type ButtonProps = PositionProps &
   };
 type As<P = any> = React.ElementType<P>;
 
-const StyledButton = styled("button", { shouldForwardProp })<ButtonProps>`
-  display: block;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  width: 100%;
-  max-width: ${(p) => p.maxWidth};
+const StyledButton = styled("button", { shouldForwardProp })<ButtonProps>(
+  {
+    display: "block",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "40px",
+    width: "100%",
+    color: "white",
+    fontWeight: "bold",
+    margin: "auto",
+    marginBottom: "20px",
+    marginTop: "9px",
+  },
+  (props) => ({
+    background: `${
+      props.active ? "blue" : props.disabled ? "grey" : "#21646b"
+    }`,
+    cursor: `${props.disabled ? " not-allowed" : "pointer"}`,
+    fontSize: `${props.fontSize || props.theme.fontSize.normal}`,
+    fontFamily: `${props.fontFamily || props.theme.fontFamily}`,
+    borderRadius: `${props.theme.borderRadius}`,
+    border: `1px solid ${props.theme.colors.lightGrey}`,
+  }),
+  background,
+  BorderProps,
+  space,
+  display,
+  layout
+);
 
-  font-size: ${(p) => p.fontSize || p.theme.fontSize.normal};
-  font-family: ${(p) => p.theme.fontFamily};
-  border-radius: ${(p) => p.theme.border}px;
-  border: 1px solid ${(p) => p.theme.colors.lightGrey};
-  background: #21646b;
-  color: white;
-  font-weight: bold;
-  margin: auto;
-  margin-bottom: 20px;
-  margin-top: 9px;
-  cursor: pointer;
+/*
 
-  ${({ active }) =>
-    active &&
-    `
-    border-radius: 10px;
-    background: green;
-    font-weight: bold;
-`}
+
 
   &:hover {
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
@@ -79,9 +87,6 @@ const StyledButton = styled("button", { shouldForwardProp })<ButtonProps>`
     background-color: ${(p) => p.theme.colors.darkGrey};
   }
 
-  ::-moz-focus-inner {
-    border: 0;
-  }
 `;
-
+*/
 export default StyledButton;

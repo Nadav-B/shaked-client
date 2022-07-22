@@ -5,9 +5,7 @@ import Button from "../../../elements/Button";
 import Flex from "../../../elements/Flex";
 
 import Meta from "../../../components/meta";
-import {
-  useGetModuleQuery,
-} from "../../../graphql/generated/graphql";
+import { useGetModuleQuery } from "../../../graphql/generated/graphql";
 import { useRouter } from "next/router";
 import Loading from "../../../elements/Loading";
 import Error from "../../../elements/Error";
@@ -22,8 +20,7 @@ const Article = () => {
   });
 
   if (loading) return <Loading />;
-  if (error || data.module == null)
-    return <Error errorDescription={undefined} />;
+  if (error || data.module == null) return <Error description={undefined} />;
 
   const image = `${process.env.NEXT_PUBLIC_API_URL}/media/${data.module.mediaId}`;
   const seo = new Seo();

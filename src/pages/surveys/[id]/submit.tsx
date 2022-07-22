@@ -6,36 +6,24 @@ import surveys from "../../../../public/surveys";
 import styled from "@emotion/styled";
 
 import { Progress } from "react-sweet-progress";
-import Loading from "../../../elements/Loading";
+import Error from "../../../elements/Error";
+import ContactViewer from "../../../elements/ContactViewer";
+
 import { useRouter } from "next/router";
 import Title from "../../../elements/Title";
 import {
   AnswerInput,
-  InputMaybe,
   SurveyInput,
   useSaveContactMutation,
 } from "src/graphql/generated/graphql";
 
-enum Mode {
-  FILL_CONTACT,
-  SUMMARY,
-}
-
 const SurveySummary = ({ id }) => {
   useRouter();
-
-  const [mode, setMode] = useState(Mode.FILL_CONTACT);
 
   const selectedSurveyCache = `survey_+ ${id}`;
   const selectedSurvey = surveys[Number(id)];
   const [results, setResults] = useState(new Map<string, string>());
   const [submitContact, { data, loading, error }] = useSaveContactMutation();
-
-  const [confirmation, setConfirmation] = useState({
-    text: "",
-    style: "",
-    status: false,
-  });
 
   const [contact, setContact] = useState({
     fullName: "",
@@ -44,16 +32,12 @@ const SurveySummary = ({ id }) => {
   });
 
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      results.size == 0 &&
-      mode == Mode.FILL_CONTACT
-    ) {
+    if (typeof window !== "undefined" && results.size == 0 && data == null) {
       const temporal = localStorage.getItem(selectedSurveyCache);
       console.log(temporal);
       if (temporal != undefined) setResults(new Map(JSON.parse(temporal)));
     }
-  }, [results.size, confirmation.status, selectedSurveyCache, mode]);
+  }, [results.size, selectedSurveyCache, data]);
 
   const parseAnswersForSubmit = () => {
     const tempArray: AnswerInput[] = [];
@@ -102,108 +86,64 @@ const SurveySummary = ({ id }) => {
       variables: {
         data: contactForm,
       },
-    })
-      .then(
-        (response) => {
-          setConfirmation((prevState) => ({
-            ...prevState,
-            text: "פרטייך נשלחו בהצלחה, ניצור קשר בהקדם ",
-            style: "green",
-            status: true,
-          }));
-        },
-        (error) => {
-          setConfirmation((prevState) => ({
-            ...prevState,
-            text:
-              "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
-            style: "red",
-            status: false,
-          }));
-        }
-      )
-      .catch((reason) => {
-        setConfirmation((prevState) => ({
-          ...prevState,
-          text:
-            "מצטערים אך חלה שגיאה בשליחת השאלון ניתן לפנות בפרטים המופעים בתחתית העמוד",
-          style: "red",
-          status: false,
-        }));
-      });
+    });
 
     clearSurvey();
-
-    setMode(Mode.SUMMARY);
   };
+
+  if (error) {
+    return (
+      <Error
+        description={"ארעה שגיאה בשליחת הפרטים "}
+        optional={"באפשרותך ליצור קשר בפרטי התקשורת שבתחתית העמוד"}
+      />
+    );
+  }
+  if (data) {
+    return <ContactViewer />;
+  }
 
   return (
     <Flex margin={15} alignItems="center" flexDirection="column">
-      <Title className="title">
-        {selectedSurvey.name} {confirmation.status}
-      </Title>
-      {mode == Mode.FILL_CONTACT && (
-        <div>
-          <Progress percent={100} />
-          <StatusWrapper>
-            <Text variant="semiBold">
-              מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת בדיקה ללא עלות
-            </Text>
-          </StatusWrapper>
-          <form id="submitSurveyForm" onSubmit={handleSubmit}>
-            <Flex flexDirection="column">
-              <label>
-                {contact.fullName !== "" && <Text size={"small"}>שם</Text>}
-                <StyledInput
-                  name="fullName"
-                  value={contact.fullName}
-                  placeholder="שם מלא"
-                  type="text"
-                  onChange={handleChange}
-                  required
-                />{" "}
-              </label>
-              <label>
-                {contact.phoneNumber !== "" && <>טלפון</>}
-                <StyledInput
-                  name="phoneNumber"
-                  value={contact.phoneNumber}
-                  placeholder="טלפון"
-                  onChange={handleChange}
-                  type="tel"
-                  required
-                />{" "}
-              </label>
-              <Button
-                id="submitSurvey"
-                disabled={confirmation.status}
-                type="submit"
-              >
-                שלח
-              </Button>
-            </Flex>
-          </form>
-        </div>
-      )}
-
-      {confirmation.status != null && (
-        <ConfirmationComponent confirmation={confirmation} />
-      )}
+      <Title className="title">{selectedSurvey.name}</Title>
+      <div>
+        <Progress percent={100} />
+        <StatusWrapper>
+          <Text variant="semiBold">
+            מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת בדיקה ללא עלות
+          </Text>
+        </StatusWrapper>
+        <form id="submitSurveyForm" onSubmit={handleSubmit}>
+          <Flex flexDirection="column">
+            <label>
+              {contact.fullName !== "" && <Text size={"small"}>שם</Text>}
+              <StyledInput
+                name="fullName"
+                value={contact.fullName}
+                placeholder="שם מלא"
+                type="text"
+                onChange={handleChange}
+                required
+              />{" "}
+            </label>
+            <label>
+              {contact.phoneNumber !== "" && <>טלפון</>}
+              <StyledInput
+                name="phoneNumber"
+                value={contact.phoneNumber}
+                placeholder="טלפון"
+                onChange={handleChange}
+                type="tel"
+                required
+              />{" "}
+            </label>
+            <Button id="submitSurvey" type="submit">
+              שלח
+            </Button>
+          </Flex>
+        </form>
+      </div>
     </Flex>
-  );
-};
-
-const ConfirmationComponent = ({ confirmation }) => {
-  return (
-    <StatusWrapper>
-      {confirmation.status == null && (
-        <div>
-          <Loading />
-          <Text>שולח פרטים</Text>
-        </div>
-      )}
-      <Text color={confirmation.style}>{confirmation.text}</Text>
-    </StatusWrapper>
   );
 };
 

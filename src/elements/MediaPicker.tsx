@@ -21,7 +21,7 @@ const MediaPicker: React.FC<MediaPickerProps> = ({
 
   const { data, loading, error } = useGetMediaQuery();
   if (loading) return <Loading />;
-  if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
+  if (error) return <Error description={"שגיאה בטעינה העמוד"} />;
 
   const getImageUrl = (id) => {
     const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}/media/${id}`;

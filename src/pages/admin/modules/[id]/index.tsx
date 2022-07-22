@@ -1,185 +1,92 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { contactLinks } from "../../../../config/contactButtonLinks";
 import { ProtectRoute } from "../../../../shared/protected_route";
-import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
-import query from "../../../../graphql/GetModule.graphql";
-import {
-  GetModule,
-  GetModuleVariables,
-} from "../../../../graphql/__generated__/GetModule";
 import { useRouter } from "next/router";
 import Loading from "../../../../elements/Loading";
 import Error from "../../../../elements/Error";
-import { SaveModule } from "../../../../graphql/__generated__/SaveModule";
-import {
-  ModuleInput,
-  ModuleType,
-} from "../../../../graphql/__generated__/globalTypes";
-import mutation from "../../../../graphql/SaveModule.graphql";
-import deleteMutation from "../../../../graphql/DeleteModule.graphql";
+
 import MediaPicker from "../../../../elements/MediaPicker";
 import Button from "../../../../elements/Button";
 import Flex from "../../../../elements/Flex";
 import TextUploader from "../../../../elements/TextUploader";
 import Title from "../../../../elements/Title";
-import { DeleteModule } from "../../../../graphql/__generated__/DeleteModule";
+import {
+  ModuleType,
+  Module,
+  useDeleteModuleMutation,
+  useGetModuleQuery,
+  useSaveModuleMutation,
+  ModuleInput,
+} from "src/graphql/generated/graphql";
 
 const ModuleManager = () => {
   const router = useRouter();
   const id = router.query.id;
 
-  const [getModule, { data, loading, error }] = useLazyQuery<
-    GetModule,
-    GetModuleVariables
-  >(query, {
-    variables: { where: { id: String(id) } },
-  });
-
   var emptyModule = {
-    id: null,
+    id: "",
     title: "",
     introduction: "",
     content: "",
     tag: "",
     mediaId: null,
     contactButton: contactLinks[0].name,
-    type: ModuleType.ARTICLE,
-  };
+    type: ModuleType.Article,
+  } as ModuleInput;
 
   if (id == "new") return <EditorViewer module={emptyModule} />;
-  useEffect(() => {
-    if (id != "new" && data == null) getModule();
-  });
-
-  if (error) return <Error errorDescription={"שגיאה בטעינה העמוד"} />;
-  if (loading) return <Loading />;
-
-  if (data) {
-    var module = {
-      id: data.module.id,
-      title: data.module.title,
-      introduction: data.module.introduction,
-      content: data.module.content,
-      tag: data.module.tag,
-      mediaId: data.module.mediaId,
-      contactButton: data.module.contactButton,
-      type: data.module.type,
-    };
-  }
-  if (data) return <EditorViewer module={module} />;
+  return <LoadArticle id={id} />;
 };
 
-interface Module {
-  id: string;
-  title: string;
-  introduction: string;
-  content: string;
-  tag: string;
-  mediaId: number;
-  contactButton: string;
-  type: ModuleType;
-}
+const LoadArticle = ({ id }) => {
+  const { data, error, loading } = useGetModuleQuery({
+    variables: {
+      where: { id: id },
+    },
+  });
+
+  if (error) return <Error description={"שגיאה בטעינה העמוד"} />;
+  if (loading) return <Loading />;
+  return <EditorViewer module={data?.module!} />;
+};
 
 interface EditorViewerProps {
-  module: Module;
+  module: ModuleInput;
 }
 
-const EditorViewer: React.FC<EditorViewerProps> = ({
-  module = {
-    id: "null",
-    title: "",
-    introduction: "",
-    content: "",
-    tag: "",
-    mediaId: null,
-    contactButton: contactLinks[0].name,
-    type: ModuleType.ARTICLE,
-  },
-}) => {
-  const [state, setState] = useState(module);
+const EditorViewer: React.FC<EditorViewerProps> = ({ module }) => {
+  Object.freeze(module);
+  const [editedModule, setEditedModule] = useState({ ...module });
 
-  const [result, setResult] = useState({
-    text: "",
-    style: "",
-    status: false,
-  });
-  const [saveModuleMutation] = useMutation<
-    { saveModule: SaveModule },
-    { data: ModuleInput }
-  >(mutation);
-
-  const [deleteModuleMutation] = useMutation<
-    { deleteArticle: DeleteModule },
-    { id: Number }
-  >(deleteMutation);
-
-  const deleteModule = (id: Number) => {
-    const result = deleteModuleMutation({
-      variables: {
-        id: id,
-      },
-    });
-  };
+  editedModule.id = String(module.id);
 
   const handleChange = async (event) => {
     event.preventDefault();
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    setState((prevState) => ({
+
+    setEditedModule((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
-  const saveModule = (event) => {
-    event.preventDefault();
-    console.log(state, "now");
-    saveModuleMutation({
-      variables: {
-        data: {
-          id: state.id,
-          title: state.title,
-          introduction: state.introduction,
-          tag: state.tag,
-          mediaId: state.mediaId,
-          contactButton: state.contactButton,
-          type: state.type,
-        },
-      },
-    }).then(
-      (response) => {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "נשלח בהצלחה!",
-          style: "success",
-          status: true,
-        }));
-      },
-      (error) => {
-        setResult((prevState) => ({
-          ...prevState,
-          text: "שגיאה",
-          style: "error",
-          status: false,
-        }));
-      }
-    );
-  };
 
+  console.log(module.title);
   const ImageChange = (imageId) => {
-    state.mediaId = imageId;
+    editedModule.mediaId = imageId;
   };
   return (
     <ProtectRoute>
-      <Flex alignItems="center" flexDirection="column">
+      <Flex margin={20} alignItems="center" flexDirection="column">
         <Title> ערוך כתבה</Title>
-        <form onSubmit={saveModule}>
+        <form>
           <label>
             שם הכתבה
             <StyledInput
               name="title"
-              value={state.title}
+              value={editedModule.title}
               placeholder="שדה חובה"
               onChange={handleChange}
               required
@@ -190,7 +97,7 @@ const EditorViewer: React.FC<EditorViewerProps> = ({
             <StyledInput
               name="introduction"
               placeholder="שדה חובה"
-              value={state.introduction}
+              value={editedModule.introduction}
               onChange={handleChange}
               required
             />
@@ -199,7 +106,7 @@ const EditorViewer: React.FC<EditorViewerProps> = ({
             קטגוריה
             <StyledInput
               name="tag"
-              value={state.tag}
+              value={editedModule.tag}
               onChange={handleChange}
             />
           </label>
@@ -208,15 +115,15 @@ const EditorViewer: React.FC<EditorViewerProps> = ({
             <StyledInput
               name="content"
               placeholder="שדה חובה"
-              value={state.content}
+              value={editedModule.content}
               onChange={handleChange}
             />
           </label>
-          <TextUploader setState={setState} />
+          <TextUploader setState={editedModule.content} />
           <label>
             כפתור צרו קשר
             <StyledSelect
-              value={state.contactButton}
+              value={editedModule.contactButton}
               name="contactButton"
               onChange={handleChange}
             >
@@ -229,13 +136,16 @@ const EditorViewer: React.FC<EditorViewerProps> = ({
           </label>
           <label>
             תמונה
-            <MediaPicker handleChange={ImageChange} mediaId={state.mediaId} />
+            <MediaPicker
+              handleChange={ImageChange}
+              mediaId={Number(editedModule.mediaId)}
+            />
           </label>
 
           <label>
             סוג
             <StyledSelect
-              value={String(state.type)}
+              value={String(editedModule.type)}
               name="type"
               onChange={handleChange}
             >
@@ -246,20 +156,74 @@ const EditorViewer: React.FC<EditorViewerProps> = ({
               ))}
             </StyledSelect>
           </label>
-          <Button type="submit">שלח</Button>
-          {state.id && (
-            <Button
-              type="button"
-              onClick={() => {
-                deleteModule(parseInt(state.id));
-              }}
-            >
-              מחק כתבה
-            </Button>
-          )}
+          <Flex>
+            <SaveModuleComponent module={editedModule} />
+            <DeleteComponent id={editedModule.id} />
+          </Flex>
         </form>
       </Flex>
     </ProtectRoute>
+  );
+};
+
+interface SaveViewerProps {
+  module: ModuleInput;
+}
+
+const SaveModuleComponent: React.FC<SaveViewerProps> = ({ module }) => {
+  const [saveModule, { data, loading, error }] = useSaveModuleMutation();
+
+  if (error) return <Error description={"שגיאה בשמירת הפרטים"}></Error>;
+
+  return (
+    <Button
+      type="button"
+      onClick={() =>
+        saveModule({
+          variables: {
+            data: {
+              id: String(module.id),
+              title: module.title,
+              introduction: module.introduction,
+              tag: module.tag,
+              content: module.content,
+              mediaId: module.mediaId,
+              type: module.type,
+            },
+          },
+        })
+      }
+    >
+      עדכן
+    </Button>
+  );
+};
+
+const DeleteComponent = (id) => {
+  const [
+    deleteModuleMutation,
+    { data, loading, error },
+  ] = useDeleteModuleMutation({
+    variables: {
+      id: id,
+    },
+  });
+
+  if (data) {
+    return <div>נמחק</div>;
+  }
+
+  return (
+    <Button
+      maxWidth={"120px"}
+      background="red"
+      type="button"
+      onClick={() => {
+        deleteModuleMutation({ variables: { id: id } });
+      }}
+    >
+      מחק כתבה
+    </Button>
   );
 };
 

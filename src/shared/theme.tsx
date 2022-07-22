@@ -34,6 +34,7 @@ const theme: App.Theme = {
     summerSky: "#29B4FD",
     torchRed: "#FC103E",
     turquoise: "#42DEE4",
+    roseWood: "#65000b",
     whiteSmoke: "#F5F5F5",
     whisper: "#E8E8E8",
     white: "#fff",
@@ -47,6 +48,7 @@ const theme: App.Theme = {
     semiBold: 600,
   },
 
+  borderRadius: "7px",
   border: 10,
   responsive: {
     small: "640px",

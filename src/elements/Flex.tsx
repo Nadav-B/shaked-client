@@ -38,7 +38,7 @@ const Flex = styled("div", { shouldForwardProp })<FlexProps>(
   flex,
   flexbox,
   space,
-  
+
   color,
   background,
   border,

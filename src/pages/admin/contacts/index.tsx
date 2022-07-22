@@ -20,20 +20,7 @@ import {
 const ContactManagers: React.FC = () => {
   const { data, loading, error, refetch } = useGetContactsQuery();
 
-  const [deleteContactMutation] = useDeleteContactMutation();
-
-  const deleteContact = (id: string) => {
-    const result = deleteContactMutation({
-      variables: {
-        id: String(id),
-      },
-    });
-    result.catch(() => {
-      refetch();
-    });
-  };
-
-  if (error) return <Error errorDescription={"התחבר מחדש"} />;
+  if (error) return <Error description={"התחבר מחדש"} />;
   if (loading) return <Loading />;
 
   return (
@@ -57,9 +44,9 @@ const ContactManagers: React.FC = () => {
               {data?.contacts?.map((contact) => (
                 <Tr key={contact?.id}>
                   <Td>
-                    <Button onClick={() => deleteContact(contact.id)}>
-                      מחק
-                    </Button>
+                    <DeleteContactComponent
+                      id={contact?.id}
+                    ></DeleteContactComponent>
                   </Td>
                   <Td> {contact?.fullName} </Td>
                   <Td>
@@ -88,6 +75,33 @@ const ContactManagers: React.FC = () => {
         </StyledContact>
       </Flex>
     </ProtectRoute>
+  );
+};
+
+const DeleteContactComponent = ({ id }) => {
+  const [
+    deleteModuleMutation,
+    { data, loading, error },
+  ] = useDeleteContactMutation();
+
+  if (data) {
+    return (
+      <Button disabled={true} maxWidth={"50px"} background="blue" type="button">
+        הוסר
+      </Button>
+    );
+  }
+
+  return (
+    <Button
+      maxWidth={"50px"}
+      type="button"
+      onClick={() => {
+        deleteModuleMutation({ variables: { id: String(id) } });
+      }}
+    >
+      הסר
+    </Button>
   );
 };
 
