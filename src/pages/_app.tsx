@@ -4,7 +4,7 @@ import GlobalStyles from "../shared/shared-styles";
 import theme from "../shared/theme";
 import Header from "../components/header";
 import menuLinks from "../config/menuLinks";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 import { css, Global } from "@emotion/react";
 
 import Head from "next/head";
