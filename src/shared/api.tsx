@@ -1,6 +1,4 @@
-
 import axios from "axios";
-
 
 const uploadFile = async (image) => {
   const formData = new FormData();
@@ -15,16 +13,6 @@ const uploadFile = async (image) => {
   });
 };
 
-
-
-
-
-
-
-
-
-
-
 export default {
-  uploadFile: uploadFile
+  uploadFile: uploadFile,
 };

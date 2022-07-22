@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import Flex from "./Flex";
 import TextWrapper from "./TextWrapper";
-import Title from "./Title";
 
 interface ErrorProps {
   description?: String;
