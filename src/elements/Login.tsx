@@ -11,8 +11,10 @@ import { useIsAuthenticatedLazyQuery } from "src/graphql/generated/graphql";
 const Login = () => {
   const auth = useAuth();
 
-  const [isAuthenticated, { data, loading, error }] =
-    useIsAuthenticatedLazyQuery();
+  const [
+    isAuthenticated,
+    { data, loading, error },
+  ] = useIsAuthenticatedLazyQuery();
 
   const [state, setState] = useState({
     username: "",
@@ -29,7 +31,7 @@ const Login = () => {
     if (data?.isAuthenticated == true) {
       auth.login(state.username, state.password);
     }
-  }, [data]);
+  }, [auth, data, state.password, state.username]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

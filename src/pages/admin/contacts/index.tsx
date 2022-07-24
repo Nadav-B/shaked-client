@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import dates from "../../../shared/util/dates";
+import { toDateString } from "../../../shared/util/dates";
 
 import Button from "../../../elements/Button";
 import Error from "../../../elements/Error";
@@ -54,7 +54,7 @@ const ContactManagers: React.FC = () => {
                       {contact?.phoneNumber}
                     </a>
                   </Td>
-                  <Td> {dates.renderDate(contact?.createdAt)} </Td>
+                  <Td> {toDateString(contact?.createdAt)} </Td>
                   <Td> {contact?.category} </Td>
                   <Td>
                     {contact?.survey && (

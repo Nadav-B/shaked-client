@@ -2,14 +2,14 @@ import { useState } from "react";
 import Title from "../elements/Title";
 import Button from "../elements/Button";
 import Flex from "./Flex";
-import api from "../shared/api";
+import { uploadFile } from "../shared/api";
 
 const MediaUploader = () => {
   const [scriptMultipartInput, setScriptMultipartInput] = useState<any>();
 
   const onSubmitScriptMultipart = () => {
     const fileInput = scriptMultipartInput.files[0];
-    api.uploadFile(fileInput)
+    uploadFile(fileInput);
   };
 
   return (
@@ -22,7 +22,8 @@ const MediaUploader = () => {
         }}
       >
         <label>
-          <input required
+          <input
+            required
             type="file"
             ref={(ref) => {
               setScriptMultipartInput(ref!);

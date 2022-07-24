@@ -5,7 +5,7 @@ import Error from "../../../../elements/Error";
 import Flex from "../../../../elements/Flex";
 import Text from "../../../../elements/Text";
 import Title from "../../../../elements/Title";
-import dates from "../../../../shared/util/dates";
+import { toDateString } from "../../../../shared/util/dates";
 import React from "react";
 import { ProtectRoute } from "../../../../shared/protected_route";
 import { useGetContactQuery } from "src/graphql/generated/graphql";
@@ -35,7 +35,7 @@ const ContactViewer: React.FC = () => {
 
         <div>
           <label>תאריך: </label>
-          <label>{dates.renderDate(data?.contact?.createdAt)}</label>
+          <label>{toDateString(data?.contact?.createdAt)}</label>
         </div>
         <div>
           {data?.contact?.survey?.answers?.map((entry) => (

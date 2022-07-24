@@ -1,7 +1,5 @@
-const renderDate = (dateString) => {
-  return new Date(dateString).toDateString();
+const toDateString = (date) => {
+  return new Date(date).toDateString();
 };
 
-export default {
-  renderDate,
-};
+export { renderDate };
