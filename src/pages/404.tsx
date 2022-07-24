@@ -4,7 +4,7 @@ import Button from "../elements/Button";
 import Flex from "../elements/Flex";
 import Title from "../elements/Title";
 
-const Custom404 = () => {
+const Custom404: React.FC = () => {
   return (
     <Flex alignItems="center" flexDirection="column">
       <Title> העמוד המבוקש לא נמצא</Title>
@@ -13,11 +13,9 @@ const Custom404 = () => {
           <BackButtonWrapper>
             <Button>
               <Flex>
-
-              <img src="/assets/back.svg" alt=">" />
-               חזרה לעמוד הראשי
+                <img src="/assets/back.svg" alt=">" />
+                חזרה לעמוד הראשי
               </Flex>
-
             </Button>
           </BackButtonWrapper>
         </a>

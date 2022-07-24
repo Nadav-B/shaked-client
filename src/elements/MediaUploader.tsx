@@ -2,7 +2,7 @@ import { useState } from "react";
 import Title from "../elements/Title";
 import Button from "../elements/Button";
 import Flex from "./Flex";
-import { uploadFile } from "../shared/api";
+import uploadFile from "../shared/file_uploader";
 
 const MediaUploader = () => {
   const [scriptMultipartInput, setScriptMultipartInput] = useState<any>();

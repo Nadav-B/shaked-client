@@ -73,20 +73,4 @@ const StyledButton = styled("button", { shouldForwardProp })<ButtonProps>(
   layout
 );
 
-/*
-
-
-
-  &:hover {
-    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-    color: black;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    background-color: ${(p) => p.theme.colors.darkGrey};
-  }
-
-`;
-*/
 export default StyledButton;
