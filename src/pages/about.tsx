@@ -4,13 +4,14 @@ import { useQuery } from "@apollo/client";
 import Loading from "../elements/Loading";
 import TextWrapper from "../elements/TextWrapper";
 
-import Meta from "../components/meta";
 import Wrapper from "../elements/Wrapper";
 
 import Seo from "../classes/seo";
 
-
-import { ModuleType, useGetModulesWithContentQuery } from "src/graphql/generated/graphql";
+import {
+  ModuleType,
+  useGetModulesWithContentQuery,
+} from "src/graphql/generated/graphql";
 
 const seo = new Seo();
 
@@ -25,7 +26,6 @@ const About = ({ disableMetadata }) => {
   if (loading)
     return (
       <>
-        {!disableMetadata && <Meta seo={seo} />}
         <Loading />
       </>
     );
@@ -33,7 +33,6 @@ const About = ({ disableMetadata }) => {
 
   return (
     <Wrapper>
-      {!disableMetadata && <Meta seo={seo} />}
       <TextWrapper>
         {data?.modules?.map((text) => (
           <div

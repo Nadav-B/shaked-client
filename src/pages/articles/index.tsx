@@ -1,7 +1,6 @@
 import React from "react";
 import Loading from "../../elements/Loading";
 import ArticlePreview from "../../elements/ArticlePreview";
-import Meta from "../../components/meta";
 
 import Carousel from "../../elements/Carousel";
 import Flex from "../../elements/Flex";
@@ -25,7 +24,6 @@ const Articles = ({ disableMetadata }) => {
   if (loading)
     return (
       <>
-        {!disableMetadata && <Meta seo={seo} />}
         <Loading />
       </>
     );
@@ -33,7 +31,6 @@ const Articles = ({ disableMetadata }) => {
 
   return (
     <Flex marginTop="30px" alignItems="center" flexDirection="column">
-      {!disableMetadata && <Meta seo={seo} />}
       <Title>כתבות</Title>
 
       <Carousel

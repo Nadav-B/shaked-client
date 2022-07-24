@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 import Button from "../../../elements/Button";
 import Flex from "../../../elements/Flex";
 
-import Meta from "../../../components/meta";
 import { useGetModuleQuery } from "../../../graphql/generated/graphql";
 import { useRouter } from "next/router";
 import Loading from "../../../elements/Loading";
@@ -46,7 +45,6 @@ const Article = () => {
       justifyContent="center"
       flexDirection="column"
     >
-      <Meta seo={seo} />
       <StyledImage src={image} alt="image" />
       <StyledContent
         dangerouslySetInnerHTML={{

@@ -3,7 +3,6 @@ import Button from "../elements/Button";
 import Text from "../elements/Text";
 import styled from "@emotion/styled";
 
-import Meta from "../components/meta";
 import Flex from "../elements/Flex";
 
 import Title from "../elements/Title";
@@ -78,7 +77,6 @@ const Contact: React.FC<ContactOptions> = ({
 
   return (
     <Flex flexDirection="column">
-      {!disableMetadata && <Meta seo={seo} />}
       <Title textAlign="center"> {title} </Title>
 
       <form onSubmit={handleSubmit}>

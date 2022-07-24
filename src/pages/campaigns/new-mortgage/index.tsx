@@ -1,6 +1,5 @@
 import React from "react";
 
-import Meta from "../../../components/meta";
 import Flex from "../../../elements/Flex";
 import Link from "next/link";
 
@@ -24,7 +23,6 @@ seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/campaigns/new-mortgage`;
 const NewMortgage: React.FC = ({}) => {
   return (
     <StyledWrapper>
-      <Meta seo={seo} />
       <Flex fontSize="18px" flexDirection="column" justifyContent="center">
         <Flex alignItems="center" flexDirection="column">
           <StyledHeadlineTitle>
