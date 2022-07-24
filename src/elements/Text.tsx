@@ -1,22 +1,22 @@
-import * as React from 'react';
-import styled from '@emotion/styled';
-import { Theme } from '@emotion/react';
+import * as React from "react";
+import styled from "@emotion/styled";
+import { Theme } from "@emotion/react";
 
-export type TextSizeProps = 'large' | 'medium' | 'small';
+export type TextSizeProps = "large" | "medium" | "small";
 
-import shouldForwardProp from '@styled-system/should-forward-prop';
+import shouldForwardProp from "@styled-system/should-forward-prop";
 
-import { color, typography, ColorProps, TypographyProps } from 'styled-system';
+import { color, typography, ColorProps, TypographyProps } from "styled-system";
 
 const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
   (
     {
       children,
-      as = 'p',
-      size = 'medium',
+      as = "p",
+      size = "medium",
       truncate = false,
       capsize = true,
-      weight = 'regular',
+      weight = "regular",
       color,
       ...props
     },
@@ -24,11 +24,11 @@ const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
   ) => {
     const fontSize = props.fontSize || size;
     const fontWeight =
-      weight === 'regular'
+      weight === "regular"
         ? 400
-        : weight === 'medium'
+        : weight === "medium"
         ? 500
-        : weight === 'strong'
+        : weight === "strong"
         ? 700
         : 400;
 
@@ -39,7 +39,6 @@ const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
         size={size}
         truncate={truncate}
         fontWeight={fontWeight}
-      
         {...props}
         ref={ref}
       >
@@ -49,7 +48,7 @@ const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
   }
 );
 
-export type TextProps = Omit<TypographyProps, 'fontSize'> &
+export type TextProps = Omit<TypographyProps, "fontSize"> &
   ColorProps & {
     size?: TextSizeProps;
     truncate?: boolean;
@@ -57,21 +56,21 @@ export type TextProps = Omit<TypographyProps, 'fontSize'> &
     as?: As;
     fontSize?: string | number;
     children?: React.ReactNode;
-  
-    weight?: 'regular' | 'medium' | 'strong';
+
+    weight?: "regular" | "medium" | "strong";
   };
 
 type As<P = any> = React.ElementType<P>;
 
-const StyledText = styled('p', { shouldForwardProp })<StyledTextProps>(
+const StyledText = styled("p", { shouldForwardProp })<StyledTextProps>(
   (p: StyledTextPropsWithTheme) => ({
     ...p.textStyles,
     margin: 0,
     fontFamily: p.theme.fontFamily,
     fontWeight: "bold",
-    letterSpacing: '0.000001px',
+    letterSpacing: "0.000001px",
     color: p.theme.colors.text,
-    boxSizing: 'border-box',
+    boxSizing: "border-box",
   }),
   color,
   typography
@@ -87,7 +86,7 @@ type StyledTextPropsWithTheme = StyledTextProps & {
 
 const TruncateText = styled.span`
   display: block;
-    transition: background-color 1s;
+  transition: background-color 1s;
 
   margin: 0;
   padding: 0;
@@ -96,5 +95,5 @@ const TruncateText = styled.span`
   white-space: nowrap;
 `;
 
-Text.displayName = 'Text';
+Text.displayName = "Text";
 export default Text;

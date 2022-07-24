@@ -89,7 +89,7 @@ const Login = () => {
             required
           />
         </label>
-        <Text variant={result.style}> {result.text}</Text>
+        <Text> {result.text}</Text>
         <Button type="submit">שלח</Button>
       </form>
     </Flex>

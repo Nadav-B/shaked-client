@@ -109,7 +109,7 @@ const SurveySummary = ({ id }) => {
       <div>
         <Progress percent={100} />
         <StatusWrapper>
-          <Text variant="semiBold">
+          <Text>
             מלאו את שמכם וטלפון ונציגנו יצרו עמכם קשר להשלמת בדיקה ללא עלות
           </Text>
         </StatusWrapper>

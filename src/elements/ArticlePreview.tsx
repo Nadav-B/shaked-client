@@ -26,12 +26,10 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({ module }) => {
             </Text>
           </ArticleTitle>
 
-          <Text fontWeight="medium" variant="" fontSize="10px">
+          <Text fontWeight="medium" fontSize="10px">
             {module.tag}
           </Text>
-          <Text fontSize="12px" margin="6px 6px 6px 0">
-            {module.introduction}
-          </Text>
+          <Text fontSize="12px">{module.introduction}</Text>
         </Flex>
       </Link>
     </StyledArticlePreview>

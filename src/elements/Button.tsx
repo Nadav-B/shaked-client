@@ -35,7 +35,6 @@ export type ButtonProps = PositionProps &
   ShadowProps &
   BackgroundProps &
   TypographyProps &
-  layout &
   GridProps &
   React.AllHTMLAttributes<HTMLElement> & {
     as?: As;
@@ -67,8 +66,8 @@ const StyledButton = styled("button", { shouldForwardProp })<ButtonProps>(
     border: `1px solid ${props.theme.colors.lightGrey}`,
   }),
   background,
-  BorderProps,
   space,
+  border,
   display,
   layout
 );
