@@ -26,7 +26,10 @@ const Reviews: React.FC<{}> = ({}) => {
         >
           <StyledReview>
             <StyledCircle>
-              <img src="/reviews/5.jpg"></img>
+              <img
+                alt="לא מובן למצוא אנשי מקצוע שנותנים לך שקט"
+                src="/reviews/5.jpg"
+              ></img>
             </StyledCircle>
             <StyledClient>יעל .ב. מכמורת</StyledClient>
             <StyledComment invertedSide={inverted}>
@@ -44,7 +47,10 @@ const Reviews: React.FC<{}> = ({}) => {
         >
           <StyledReview>
             <StyledCircle>
-              <img src="/reviews/1.jpg"></img>
+              <img
+                alt="מתחילת הדרך הרגשנו שאנחנו בידיים טובות"
+                src="/reviews/1.jpg"
+              ></img>
             </StyledCircle>
             <StyledClient> לירן .מ. תל-אביב</StyledClient>
             <StyledComment invertedSide={!inverted}>
@@ -61,7 +67,7 @@ const Reviews: React.FC<{}> = ({}) => {
         >
           <StyledReview>
             <StyledCircle>
-              <img src="/reviews/2.jpg"></img>
+              <img alt="סופר מקצועי" src="/reviews/2.jpg"></img>
             </StyledCircle>{" "}
             <StyledClient> הדר .מ. חריש</StyledClient>
             <StyledComment invertedSide={inverted}>
@@ -77,7 +83,7 @@ const Reviews: React.FC<{}> = ({}) => {
         >
           <StyledReview>
             <StyledCircle>
-              <img src="/reviews/3.jpg"></img>
+              <img alt="בזכותו חסנו המון כסף" src="/reviews/3.jpg"></img>
             </StyledCircle>{" "}
             <StyledClient>אסף .ד. ראש העין</StyledClient>
             <StyledComment invertedSide={!inverted}>
