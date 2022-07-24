@@ -100,7 +100,7 @@ const Reviews: React.FC<{}> = ({}) => {
         >
           <StyledReview>
             <StyledCircle>
-              <img src="/reviews/4.jpg"></img>
+              <img alt="בשבלינו לאורך כל הדרך" src="/reviews/4.jpg"></img>
             </StyledCircle>{" "}
             <StyledClient>גל .ר. חולון</StyledClient>
             <StyledComment invertedSide={inverted}>
