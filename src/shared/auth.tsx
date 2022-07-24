@@ -25,7 +25,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       if (token) setUser(true);
     }
     if (!user) loadUserFromCookies();
-  }, []);
+  }, [user]);
 
   const logout = () => {
     localStorage.removeItem("token");
