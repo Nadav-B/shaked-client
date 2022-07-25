@@ -10,7 +10,6 @@ import { css, Global } from "@emotion/react";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 import styled from "@emotion/styled";
-import GoogleTagManager from "../socialNetwork/GoogleTagManager";
 import "react-sweet-progress/lib/style.css";
 import { ApolloProvider } from "@apollo/client";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
@@ -47,7 +46,6 @@ const App = ({ Component, pageProps }) => {
               href="logos/favicon-16x16.png"
             />
             <meta name="theme-color" content="#ffffff" />
-            <GoogleTagManager />
           </Head>
 
           <ThemeProvider theme={theme}>
