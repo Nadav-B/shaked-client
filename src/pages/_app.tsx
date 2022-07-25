@@ -15,6 +15,7 @@ import { ApolloProvider } from "@apollo/client";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import client from "../../apollo-client";
 import { AuthProvider } from "../shared/auth";
+import Script from "next/script";
 
 const App = ({ Component, pageProps }) => {
   const requiredStyles = css`
@@ -47,7 +48,10 @@ const App = ({ Component, pageProps }) => {
             />
             <meta name="theme-color" content="#ffffff" />
           </Head>
-
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=GTM-KN4G37P"
+            strategy="afterInteractive"
+          />
           <ThemeProvider theme={theme}>
             <Global styles={requiredStyles} />
 
