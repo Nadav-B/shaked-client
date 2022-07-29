@@ -1,8 +1,6 @@
 import React from "react";
 import Loading from "../elements/Loading";
 
-import Wrapper from "../elements/Wrapper";
-
 import Seo from "../classes/seo";
 
 import {
@@ -10,6 +8,7 @@ import {
   useGetModulesWithContentQuery,
 } from "src/graphql/generated/graphql";
 import Flex from "src/elements/Flex";
+import styled from "@emotion/styled";
 
 const seo = new Seo();
 
@@ -21,33 +20,35 @@ const About = () => {
     variables: { where: { type: ModuleType.Introduction } },
   });
 
-  if (loading)
-    return (
-      <>
-        <Loading />
-      </>
-    );
+  if (loading) return <Loading />;
   if (error) return <span></span>;
 
   return (
-    <Wrapper>
+    <Flex justifyContent=" center" alignItems="center" margin="auto">
       <Flex
-        flexDirection="row"
-        alignItems="center"
         maxWidth="700px"
-        margin="20px"
+        flexDirection="column"
+        alignItems="center"
+        margin="30px"
       >
         {data?.modules?.map((text) => (
-          <div
+          <StyledContent
             key={text?.id}
             dangerouslySetInnerHTML={{
               __html: String(text?.content),
             }}
-          ></div>
+          ></StyledContent>
         ))}
       </Flex>
-    </Wrapper>
+    </Flex>
   );
 };
 
+const StyledContent = styled.div`
+  h1,
+  h2 {
+    text-align: center;
+    color: "black";
+  }
+`;
 export default About;

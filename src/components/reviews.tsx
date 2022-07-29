@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import Wrapper from "../elements/Wrapper";
 import Title from "../elements/Title";
-import Link from "next/link";
 import Flex from "../elements/Flex";
 
 const Reviews: React.FC<{}> = ({}) => {

@@ -1,7 +1,6 @@
 // Burger.styled.js
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import { bool, func } from "prop-types";
-
 
 const ToggleButton = ({ open, onClick }) => {
   return (
@@ -18,7 +17,7 @@ export const StyledToggleButton = styled.div`
   top: 20px;
   left: 22px;
   width: 375px;
-  height: 146px;  
+  height: 146px;
   z-index: 103;
 
   width: 33px;
@@ -33,7 +32,6 @@ export const StyledToggleButton = styled.div`
       margin-bottom: 11px;
 
       :first-child {
-
         transform: ${({ open }) =>
           open ? "rotate(45deg)  translate(0px, 10px)" : "rotate(0)"};
       }

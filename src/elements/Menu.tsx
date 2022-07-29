@@ -5,10 +5,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { bool, func } from "prop-types";
 import { useAuth } from "../shared/auth";
-import { route } from "next/dist/server/router";
 
 const Menu = ({ menuLinks, open, onClick }) => {
-  const { asPath, pathname } = useRouter();
+  const { asPath } = useRouter();
   const { isAuthenticated, logout } = useAuth();
 
   return (
@@ -33,14 +32,13 @@ const Menu = ({ menuLinks, open, onClick }) => {
           </StyledLink>,
           <StyledLink
             key="logout"
-            className="admin"
             onClick={() => {
               logout();
               onClick();
             }}
           >
             <Link href={"/"}>
-              <a className="admin">התנתק</a>
+              <a>התנתק</a>
             </Link>
           </StyledLink>,
         ]}
@@ -53,7 +51,6 @@ const StyledLink = styled.li`
   margin-top: 20px;
   margin-right: 30px;
   cursor: pointer;
-  color: black;
 
   ${({ active }) =>
     active &&

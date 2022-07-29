@@ -5,7 +5,6 @@ import Link from "next/link";
 import Text from "../../elements/Text";
 import styled from "@emotion/styled";
 
-import Wrapper from "../../elements/Wrapper";
 import Titel from "../../elements/Title";
 import Flex from "../../elements/Flex";
 
@@ -15,7 +14,7 @@ const seo = {
   url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/surveys`,
 };
 
-const Surveys = ({ disableMetadata }) => {
+const Surveys = () => {
   const data = [survey1, survey2];
 
   return (
@@ -30,9 +29,7 @@ const Surveys = ({ disableMetadata }) => {
         >
           <a>
             <StyledButton id="surveySelected">
-              <Text margin={45} fontSize="large">
-                {survey.name}
-              </Text>
+              <Text fontSize="large">{survey.name}</Text>
             </StyledButton>
           </a>
         </Link>

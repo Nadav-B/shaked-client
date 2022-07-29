@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import theme  from "../shared/theme";
+import theme from "../shared/theme";
 
-const GlobalStyles  =  createGlobalStyle `
+const GlobalStyles = createGlobalStyle`
 
   
   * {
@@ -38,9 +38,7 @@ const GlobalStyles  =  createGlobalStyle `
   }
 
   .ltr {
-
     direction: ltr;
-
   }
 
 `;

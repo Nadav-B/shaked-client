@@ -12,10 +12,6 @@ import Seo from "../classes/seo";
 import Reviews from "../components/reviews";
 
 const Index = () => {
-  return <Homepage />;
-};
-
-const Homepage = () => {
   return (
     <Flex flexDirection="column">
       <StyledLandingPage>
@@ -24,9 +20,9 @@ const Homepage = () => {
           <h2> יעוץ משכנתאות וכלכלת המשפחה</h2>
         </StyledText>
       </StyledLandingPage>
-      <About disableMetadata={true} />
+      <About />
       <ContentBackground id="surveys">
-        <Surveys disableMetadata={true} />
+        <Surveys />
       </ContentBackground>
       <ContentBackground id="articles">
         <Articles disableMetadata={true} />
@@ -62,7 +58,7 @@ const StyledLandingPage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 200px;
+  height: 150px;
   text-align: center;
 `;
 
