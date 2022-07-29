@@ -31,11 +31,11 @@ export const StyledToggleButton = styled.div`
       border: 1px solid #000000;
       margin-bottom: 11px;
 
-      :first-child {
+      :nth-of-type(1) {
         transform: ${({ open }) =>
           open ? "rotate(45deg)  translate(0px, 10px)" : "rotate(0)"};
       }
-      :nth-child(2) {
+      :nth-of-type(2) {
         transform: ${({ open }) =>
           open ? "rotate(-45deg)  translate(0px, -10px)" : "rotate(0)"};
       }
