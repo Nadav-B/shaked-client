@@ -1,13 +1,11 @@
 import React from "react";
 import { directByContact } from "../../../config/contactButtonLinks";
 import styled from "@emotion/styled";
-import Button from "../../../elements/Button";
-import Flex from "../../../elements/Flex";
+import { Button, Flex, Loading, Error } from "../../../elements";
 
 import { useGetModuleQuery } from "../../../graphql/generated/graphql";
 import { useRouter } from "next/router";
-import Loading from "../../../elements/Loading";
-import Error from "../../../elements/Error";
+
 import Seo from "../../../classes/seo";
 
 const Article = () => {

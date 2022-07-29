@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
-
 import Articles from "../pages/articles";
 import Contact from "../pages/contact";
 import Surveys from "../pages/surveys";
 import About from "./about";
 import Services from "../pages/services";
 
-import Flex from "../elements/Flex";
-import Seo from "../classes/seo";
+import { Flex } from "../elements";
 import Reviews from "../components/reviews";
 
 const Index = () => {

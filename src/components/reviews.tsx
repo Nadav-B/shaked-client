@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import Title from "../elements/Title";
-import Flex from "../elements/Flex";
+import { Title, Flex } from "../elements";
 
 const Reviews: React.FC<{}> = ({}) => {
   const inverted = false;

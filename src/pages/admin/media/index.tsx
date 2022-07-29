@@ -1,7 +1,4 @@
-import Flex from "../../../elements/Flex";
-import MediaPicker from "../../../elements/MediaPicker";
-import MediaUploader from "../../../elements/MediaUploader";
-import Title from "../../../elements/Title";
+import { MediaUploader, Title, MediaPicker, Flex } from "../../../elements";
 
 const MediaManager = () => {
   return (

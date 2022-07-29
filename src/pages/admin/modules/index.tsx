@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
-import Flex from "../../../elements/Flex";
-import Button from "../../../elements/Button";
-import Title from "../../../elements/Title";
+import { Flex, Title, Button } from "../../../elements";
 import { useGetAllModulesQuery } from "src/graphql/generated/graphql";
 import Router from "next/router";
 

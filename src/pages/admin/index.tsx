@@ -1,8 +1,6 @@
 import Link from "next/link";
-import Button from "../../elements/Button";
 import { ProtectRoute } from "../../shared/protected_route";
-import Flex from "../../elements/Flex";
-import Title from "../../elements/Title";
+import { Flex, Title } from "../../elements";
 import styled from "@emotion/styled";
 const Admin = () => {
   return (

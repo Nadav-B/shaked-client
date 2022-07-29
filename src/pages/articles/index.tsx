@@ -1,10 +1,5 @@
 import React from "react";
-import Loading from "../../elements/Loading";
-import ArticlePreview from "../../elements/ArticlePreview";
-
-import Carousel from "../../elements/Carousel";
-import Flex from "../../elements/Flex";
-import Title from "../../elements/Title";
+import { Title, Loading, ArticlePreview, Flex, Carousel } from "../../elements";
 import Seo from "../../classes/seo";
 import {
   ModuleType,

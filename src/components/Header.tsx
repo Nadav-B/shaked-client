@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import ToggleButton from "../elements/ToggleButton";
-import Menu from "../elements/Menu";
-
+import { ToggleButton, Menu } from "../elements";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import styled from "@emotion/styled";

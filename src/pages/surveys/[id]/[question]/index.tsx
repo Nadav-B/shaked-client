@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import Flex from "../../../../elements/Flex";
-import Text from "../../../../elements/Text";
-import Button from "../../../../elements/Button";
+import { Flex, Title, Button, Text } from "../../../../elements";
 import surveys from "../../../../../public/surveys";
 import { Progress } from "react-sweet-progress";
 import Link from "next/link";
-import Title from "../../../../elements/Title";
 import Seo from "../../../../classes/seo";
 
 const QuestionView = ({ id }) => {

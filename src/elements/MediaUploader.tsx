@@ -1,6 +1,5 @@
 import { useState } from "react";
-import Title from "../elements/Title";
-import Button from "../elements/Button";
+import { Button, Title } from "../elements";
 import Flex from "./Flex";
 import uploadFile from "../shared/file_uploader";
 

@@ -1,8 +1,6 @@
 import Link from "next/link";
 import styled from "@emotion/styled";
-import Button from "../elements/Button";
-import Flex from "../elements/Flex";
-import Title from "../elements/Title";
+import { Button, Flex, Title } from "../elements";
 
 const Custom404: React.FC = () => {
   return (

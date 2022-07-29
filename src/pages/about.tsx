@@ -1,13 +1,11 @@
 import React from "react";
-import Loading from "../elements/Loading";
-
+import { Flex, Loading } from "../elements";
 import Seo from "../classes/seo";
 
 import {
   ModuleType,
   useGetModulesWithContentQuery,
 } from "src/graphql/generated/graphql";
-import Flex from "src/elements/Flex";
 import styled from "@emotion/styled";
 
 const seo = new Seo();

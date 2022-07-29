@@ -1,17 +1,10 @@
 import styled from "@emotion/styled";
 import { toDateString } from "../../../shared/util/dates";
-
-import Button from "../../../elements/Button";
-import Error from "../../../elements/Error";
-import Loading from "../../../elements/Loading";
-
+import { Button, Title, Flex, Error, Loading } from "../../../elements";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import React from "react";
 import { ProtectRoute } from "../../../shared/protected_route";
-
 import Link from "next/link";
-import Flex from "../../../elements/Flex";
-import Title from "../../../elements/Title";
 import {
   useDeleteContactMutation,
   useGetContactsQuery,

@@ -1,18 +1,15 @@
 import React from "react";
 
-import Flex from "../../../elements/Flex";
+import { Flex, Text, Button, Title } from "../../../elements";
 import Link from "next/link";
 
 import Services from "../../services";
 import Contact from "../../contact";
 import Reviews from "../../../components/reviews";
 import styled from "@emotion/styled";
-import Title from "../../../elements/Title";
 import { typography, TypographyProps } from "styled-system";
 import shouldForwardProp from "@styled-system/should-forward-prop";
 
-import Text from "../../../elements/Text";
-import StyledButton from "../../../elements/Button";
 import Seo from "../../../classes/seo";
 
 const seo = new Seo();
@@ -36,7 +33,7 @@ const NewMortgage: React.FC = ({}) => {
           </ProductBox>
         </Flex>
         <Link passHref href="/surveys/[id]/0" as={`/surveys/1/0`}>
-          <StyledButton> התחל בדיקה! </StyledButton>
+          <Button> התחל בדיקה! </Button>
         </Link>
         <StyledWrapper>
           <Title> למה שקד?</Title>

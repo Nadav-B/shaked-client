@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
-import Text from "./Text";
-import styled from "@emotion/styled";
 import Router from "next/router";
-import Title from "./Title";
 import Input from "./Input";
 import Flex from "./Flex";
+import { Title, Text } from "./";
 import { useAuth } from "../shared/auth";
 import { useIsAuthenticatedLazyQuery } from "src/graphql/generated/graphql";
+import Loading from "./Loading";
 
 const Login = () => {
   const auth = useAuth();
@@ -49,6 +48,10 @@ const Login = () => {
       auth.logout();
       console.log(error);
       result.text = error.message;
+    }
+
+    if (loading) {
+      return Loading;
     }
   };
 

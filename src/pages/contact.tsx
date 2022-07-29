@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import Button from "../elements/Button";
-import Text from "../elements/Text";
+import {
+  Button,
+  ContactViewer,
+  Input,
+  Error,
+  Title,
+  Text,
+  Flex,
+} from "../elements";
 import styled from "@emotion/styled";
-
-import Flex from "../elements/Flex";
-
-import Title from "../elements/Title";
-import Input from "../elements/Input";
 
 import Seo from "../classes/seo";
 import { useSaveContactMutation } from "../graphql/generated/graphql";
-import ContactViewer from "src/elements/ContactViewer";
-import Error from "src/elements/Error";
 
 const seo = new Seo();
 seo.description = "השאירו פרטים ונחזור אליכם בהקדם";

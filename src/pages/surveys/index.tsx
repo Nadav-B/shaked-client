@@ -1,11 +1,8 @@
 import React from "react";
 import surveys from "../../../public/surveys";
 import Link from "next/link";
-import Text from "../../elements/Text";
+import { Text, Titel, Flex } from "../../elements";
 import styled from "@emotion/styled";
-
-import Titel from "../../elements/Title";
-import Flex from "../../elements/Flex";
 
 const seo = {
   title: "שאלונים",

@@ -1,10 +1,7 @@
 import React from "react";
-import ServicePreview from "../../elements/ServicePreview";
+import { Title, Flex, ServicePreview, Loading } from "../../elements";
 import styled from "@emotion/styled";
-import Loading from "../../elements/Loading";
 
-import Title from "../../elements/Title";
-import Flex from "../../elements/Flex";
 import Seo from "../../classes/seo";
 import {
   ModuleType,

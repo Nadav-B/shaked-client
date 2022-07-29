@@ -1,10 +1,5 @@
 import { useRouter } from "next/router";
-
-import Loading from "../../../../elements/Loading";
-import Error from "../../../../elements/Error";
-import Flex from "../../../../elements/Flex";
-import Text from "../../../../elements/Text";
-import Title from "../../../../elements/Title";
+import { Text, Error, Loading, Flex, Title } from "../../../../elements";
 import { toDateString } from "../../../../shared/util/dates";
 import React from "react";
 import { ProtectRoute } from "../../../../shared/protected_route";

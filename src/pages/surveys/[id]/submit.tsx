@@ -1,18 +1,17 @@
-import Flex from "../../../elements/Flex";
-import Text from "../../../elements/Text";
-import Button from "../../../elements/Button";
 import { useEffect, useState } from "react";
 import surveys from "../../../../public/surveys";
 import styled from "@emotion/styled";
-
 import { Progress } from "react-sweet-progress";
-import Error from "../../../elements/Error";
-import ContactViewer from "../../../elements/ContactViewer";
-
 import { useRouter } from "next/router";
-import Title from "../../../elements/Title";
-import Input from "../../../elements/Input";
-
+import {
+  Flex,
+  Text,
+  Title,
+  Input,
+  Button,
+  Error,
+  ContactViewer,
+} from "../../../elements";
 import {
   AnswerInput,
   SurveyInput,

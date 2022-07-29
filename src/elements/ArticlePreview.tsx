@@ -4,7 +4,6 @@ import Text from "./Text";
 import Link from "next/link";
 
 import Flex from "./Flex";
-import { Module } from "src/graphql/generated/graphql";
 
 interface ArticlePreviewProps {
   module: any;

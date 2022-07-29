@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import SizeWrapper from "../elements/SizeWrapper";
-import Flex from "../elements/Flex";
+import { SizeWrapper, Flex } from "../elements";
 
 const Footer: React.FC = () => (
   <StyledFooter>

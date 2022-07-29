@@ -3,14 +3,17 @@ import React, { useState } from "react";
 import { contactLinks } from "../../../../config/contactButtonLinks";
 import { ProtectRoute } from "../../../../shared/protected_route";
 import { useRouter } from "next/router";
-import Loading from "../../../../elements/Loading";
-import Error from "../../../../elements/Error";
+import {
+  Title,
+  TextUploader,
+  Error,
+  Flex,
+  Button,
+  MediaPicker,
+  Loading,
+  Input,
+} from "../../../../elements";
 
-import MediaPicker from "../../../../elements/MediaPicker";
-import Button from "../../../../elements/Button";
-import Flex from "../../../../elements/Flex";
-import TextUploader from "../../../../elements/TextUploader";
-import Title from "../../../../elements/Title";
 import {
   ModuleType,
   Module,
@@ -19,7 +22,6 @@ import {
   useSaveModuleMutation,
   ModuleInput,
 } from "src/graphql/generated/graphql";
-import Input from "src/elements/Input";
 
 const ModuleManager = () => {
   const router = useRouter();
