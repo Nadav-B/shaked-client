@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 
 import GlobalStyles from "../shared/shared-styles";
 import theme from "../shared/theme";
-import Header from "../components/header";
+import Header from "../components/Header";
 import menuLinks from "../config/menuLinks";
 import Footer from "../components/Footer";
 import { css, Global } from "@emotion/react";
@@ -31,7 +31,6 @@ const App = ({ Component, pageProps }) => {
           />
           <ThemeProvider theme={theme}>
             <Global styles={requiredStyles} />
-
             <GlobalStyles theme={theme} />
             <Header menuLinks={menuLinks} />
             <StyledBody>

@@ -1,8 +1,5 @@
 import React from "react";
-import styled from "@emotion/styled";
-import { useQuery } from "@apollo/client";
 import Loading from "../elements/Loading";
-import TextWrapper from "../elements/TextWrapper";
 
 import Wrapper from "../elements/Wrapper";
 
@@ -12,13 +9,14 @@ import {
   ModuleType,
   useGetModulesWithContentQuery,
 } from "src/graphql/generated/graphql";
+import Flex from "src/elements/Flex";
 
 const seo = new Seo();
 
 seo.title = "אודות";
 seo.url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/about`;
 
-const About = ({ disableMetadata }) => {
+const About = () => {
   const { data, loading, error } = useGetModulesWithContentQuery({
     variables: { where: { type: ModuleType.Introduction } },
   });
@@ -33,7 +31,12 @@ const About = ({ disableMetadata }) => {
 
   return (
     <Wrapper>
-      <TextWrapper>
+      <Flex
+        flexDirection="row"
+        alignItems="center"
+        maxWidth="700px"
+        margin="20px"
+      >
         {data?.modules?.map((text) => (
           <div
             key={text?.id}
@@ -42,7 +45,7 @@ const About = ({ disableMetadata }) => {
             }}
           ></div>
         ))}
-      </TextWrapper>
+      </Flex>
     </Wrapper>
   );
 };

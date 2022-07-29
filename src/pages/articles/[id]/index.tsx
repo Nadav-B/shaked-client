@@ -19,7 +19,8 @@ const Article = () => {
   });
 
   if (loading) return <Loading />;
-  if (error || data?.module == null) return <Error description={undefined} />;
+  if (error || data?.module == null)
+    return <Error description="העמוד המבוקש לא נמצא" />;
 
   const image = `${process.env.NEXT_PUBLIC_API_URL}/media/${data.module.mediaId}`;
   const seo = new Seo();

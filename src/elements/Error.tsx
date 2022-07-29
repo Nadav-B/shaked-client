@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import Flex from "./Flex";
-import TextWrapper from "./TextWrapper";
 
 interface ErrorProps {
   description?: String;
@@ -10,11 +9,9 @@ interface ErrorProps {
 const Error: React.FC<ErrorProps> = ({ description, optional }) => {
   return (
     <Flex margin={20} alignItems="center" flexDirection="column">
-      <TextWrapper>
-        <StyledError>מצטערים </StyledError>
-        <StyledDescription>{description}</StyledDescription>
-        <StyledOptional>{optional}</StyledOptional>
-      </TextWrapper>
+      <StyledError>מצטערים </StyledError>
+      <StyledDescription>{description}</StyledDescription>
+      <StyledOptional>{optional}</StyledOptional>
     </Flex>
   );
 };
