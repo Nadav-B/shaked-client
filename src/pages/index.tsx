@@ -60,11 +60,13 @@ const StyledLandingPage = styled.div`
   justify-content: center;
   height: 150px;
   text-align: center;
+  margin-right: 20px;
+  margin-left: 20px;
 `;
 
 const StyledText = styled.div`
   h1 {
-    font-size: 50px;
+    font-size: 40px;
     color: ${(p) => p.theme.colors.darkGreen};
     margin: auto;
   }

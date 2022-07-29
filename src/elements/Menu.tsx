@@ -55,12 +55,12 @@ const StyledLink = styled.li`
   ${({ active }) =>
     active &&
     `
-
   font-weight: bold;
 `}
 
-  @media screen and(max-width: ${(props) => props.theme.responsive.medium}) {
-    margin: 0;
+  @media screen and (max-width: ${(props) => props.theme.responsive.medium}) {
+    margin: 20px;
+    
   }
 `;
 
