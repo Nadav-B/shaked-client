@@ -1,7 +1,7 @@
 import React from "react";
 import surveys from "../../../public/surveys";
 import Link from "next/link";
-import { Text, Titel, Flex } from "../../elements";
+import { Text, Title, Flex } from "../../elements";
 import styled from "@emotion/styled";
 
 const seo = {
@@ -15,7 +15,7 @@ const Surveys = () => {
 
   return (
     <Flex marginTop={30} alignItems="center" flexDirection="column">
-      <Titel> שאלונים לביצוע בדיקה</Titel>
+      <Title> שאלונים לביצוע בדיקה</Title>
       {data.map((survey) => (
         <Link
           key={survey.name}

@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import TypeFontSize from "./FontSize";
 import shouldForwardProp from "@styled-system/should-forward-prop";
 import {
   position,
@@ -29,7 +28,6 @@ export type ButtonProps = PositionProps &
   LayoutProps &
   FlexboxProps &
   SpaceProps &
-  TypeFontSize &
   ColorProps &
   BorderProps &
   ShadowProps &
