@@ -6,6 +6,8 @@ import styled from "@emotion/styled";
 import Flex from "../elements/Flex";
 
 import Title from "../elements/Title";
+import Input from "../elements/Input";
+
 import Seo from "../classes/seo";
 import { useSaveContactMutation } from "../graphql/generated/graphql";
 import ContactViewer from "src/elements/ContactViewer";
@@ -83,7 +85,7 @@ const Contact: React.FC<ContactOptions> = ({
         <Flex alignItems="center" flexDirection="column">
           {state.fullName !== "" && <Text size={"small"}>שם</Text>}
           <label>
-            <StyledInput
+            <Input
               title="שם"
               name="fullName"
               value={state.fullName}
@@ -95,7 +97,7 @@ const Contact: React.FC<ContactOptions> = ({
           {state.phoneNumber !== "" && <>טלפון</>}
 
           <label>
-            <StyledInput
+            <Input
               name="phoneNumber"
               placeholder="מספר טלפון"
               value={state.phoneNumber}
@@ -120,18 +122,6 @@ const Contact: React.FC<ContactOptions> = ({
 
 const StyledBox = styled.div`
   width: 200px;
-`;
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  font-size: ${(p) => p.theme.fontSize.normal};
-
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
 `;
 
 export default Contact;

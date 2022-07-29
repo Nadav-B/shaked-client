@@ -19,6 +19,7 @@ import {
   useSaveModuleMutation,
   ModuleInput,
 } from "src/graphql/generated/graphql";
+import Input from "src/elements/Input";
 
 const ModuleManager = () => {
   const router = useRouter();
@@ -79,22 +80,24 @@ const EditorViewer: React.FC<EditorViewerProps> = ({ module }) => {
   };
   return (
     <ProtectRoute>
-      <Flex margin={20} alignItems="center" flexDirection="column">
+      <Flex margin={20} alignItems="right" flexDirection="column">
         <Title> ערוך כתבה</Title>
         <form>
           <label>
             שם הכתבה
-            <StyledInput
+            <Input
               name="title"
               value={editedModule.title}
               placeholder="שדה חובה"
+              width="100%"
               onChange={handleChange}
               required
             />
           </label>
           <label>
             הקדמה
-            <StyledInput
+            <Input
+              width="100%"
               name="introduction"
               placeholder="שדה חובה"
               value={editedModule.introduction}
@@ -104,15 +107,17 @@ const EditorViewer: React.FC<EditorViewerProps> = ({ module }) => {
           </label>
           <label>
             קטגוריה
-            <StyledInput
+            <Input
               name="tag"
+              width="100%"
               value={editedModule.tag}
               onChange={handleChange}
             />
           </label>
           <label>
             תוכן כתבה
-            <StyledInput
+            <Input
+              width="100%"
               name="content"
               placeholder="שדה חובה"
               value={editedModule.content}
@@ -120,6 +125,14 @@ const EditorViewer: React.FC<EditorViewerProps> = ({ module }) => {
             />
           </label>
           <TextUploader setState={editedModule.content} />
+
+          <label>
+            תמונה
+            <MediaPicker
+              handleChange={ImageChange}
+              mediaId={Number(editedModule.mediaId)}
+            />
+          </label>
           <label>
             כפתור צרו קשר
             <StyledSelect
@@ -133,13 +146,6 @@ const EditorViewer: React.FC<EditorViewerProps> = ({ module }) => {
                 </option>
               ))}
             </StyledSelect>
-          </label>
-          <label>
-            תמונה
-            <MediaPicker
-              handleChange={ImageChange}
-              mediaId={Number(editedModule.mediaId)}
-            />
           </label>
 
           <label>
@@ -226,23 +232,6 @@ const DeleteComponent = (id) => {
     </Button>
   );
 };
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-
-  display: inline-block;
-  font-size: ${(p) => p.theme.fontSize.normal};
-
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-
-  &::placeholder {
-    color: black;
-  }
-`;
 
 const StyledSelect = styled.select`
   display: block;

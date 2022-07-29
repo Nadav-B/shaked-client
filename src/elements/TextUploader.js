@@ -1,10 +1,9 @@
-import styled from '@emotion/styled';
-
+import Input from "./Input";
 const TextUploader = ({ setState }) => {
   const handleText = async (event) => {
     const fileReader = new FileReader();
 
-    fileReader.onloadend = function (e) {
+    fileReader.onloadend = function(e) {
       console.log(e.target.result);
       setState((prevState) => ({
         ...prevState,
@@ -17,7 +16,7 @@ const TextUploader = ({ setState }) => {
   return (
     <label>
       העלה תוכן ממסמך html
-      <StyledInput
+      <Input
         name="content"
         placeholder="שדה חובה"
         type="file"
@@ -27,22 +26,5 @@ const TextUploader = ({ setState }) => {
     </label>
   );
 };
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  font-size: ${(p) => p.theme.fontSize.normal};
-
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-
-  bacgkround: silver;
-  &::placeholder {
-    color: black;
-  }
-`;
 
 export default TextUploader;

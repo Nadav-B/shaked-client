@@ -17,7 +17,7 @@ const Iframe = ({ src = "", title = "" }) => {
           position: "absolute",
           top: 110,
           left: 0,
-          right:0,
+          right: 0,
 
           display: () => (ready ? "none" : "block"),
         }}

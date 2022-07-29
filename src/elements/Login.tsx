@@ -4,6 +4,7 @@ import Text from "./Text";
 import styled from "@emotion/styled";
 import Router from "next/router";
 import Title from "./Title";
+import Input from "./Input";
 import Flex from "./Flex";
 import { useAuth } from "../shared/auth";
 import { useIsAuthenticatedLazyQuery } from "src/graphql/generated/graphql";
@@ -67,7 +68,7 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <label>
           שם משתמש
-          <StyledInput
+          <Input
             name="username"
             value={state.username}
             placeholder="שדה חובה"
@@ -79,7 +80,7 @@ const Login = () => {
         </label>
         <label>
           סיסמא
-          <StyledInput
+          <Input
             name="password"
             id="password"
             value={state.password}
@@ -95,17 +96,5 @@ const Login = () => {
     </Flex>
   );
 };
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  font-size: ${(p) => p.theme.fontSize.normal};
-
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-`;
 
 export default Login;

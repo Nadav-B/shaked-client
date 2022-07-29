@@ -11,6 +11,8 @@ import ContactViewer from "../../../elements/ContactViewer";
 
 import { useRouter } from "next/router";
 import Title from "../../../elements/Title";
+import Input from "../../../elements/Input";
+
 import {
   AnswerInput,
   SurveyInput,
@@ -117,10 +119,11 @@ const SurveySummary = ({ id }) => {
           <Flex flexDirection="column">
             <label>
               {contact.fullName !== "" && <Text size={"small"}>שם</Text>}
-              <StyledInput
+              <Input
                 name="fullName"
                 value={contact.fullName}
                 placeholder="שם מלא"
+                width="100%"
                 type="text"
                 onChange={handleChange}
                 required
@@ -128,10 +131,11 @@ const SurveySummary = ({ id }) => {
             </label>
             <label>
               {contact.phoneNumber !== "" && <>טלפון</>}
-              <StyledInput
+              <Input
                 name="phoneNumber"
                 value={contact.phoneNumber}
                 placeholder="טלפון"
+                width="100%"
                 onChange={handleChange}
                 type="tel"
                 required
@@ -146,18 +150,6 @@ const SurveySummary = ({ id }) => {
     </Flex>
   );
 };
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  font-size: ${(p) => p.theme.fontSize.normal};
-
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-`;
 
 export async function getServerSideProps({ query }) {
   const id = query.id;
