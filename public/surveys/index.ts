@@ -1,5 +1,5 @@
-import survey1 from "./1.json";
-import survey2 from "./2.json";
+import survey1 from "./0.json";
+import survey2 from "./1.json";
 
-
-export default [survey1, survey2];
+const surveys = [survey1, survey2];
+export default surveys;

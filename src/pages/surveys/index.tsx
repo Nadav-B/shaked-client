@@ -1,6 +1,5 @@
 import React from "react";
-import survey1 from "../../../public/surveys/1.json";
-import survey2 from "../../../public/surveys/2.json";
+import surveys from "../../../public/surveys";
 import Link from "next/link";
 import Text from "../../elements/Text";
 import styled from "@emotion/styled";
@@ -15,7 +14,7 @@ const seo = {
 };
 
 const Surveys = () => {
-  const data = [survey1, survey2];
+  const data = surveys;
 
   return (
     <Flex marginTop={30} alignItems="center" flexDirection="column">

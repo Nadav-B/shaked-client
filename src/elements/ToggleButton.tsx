@@ -17,9 +17,8 @@ export const StyledToggleButton = styled.div`
   top: 20px;
   left: 22px;
   width: 375px;
-  height: 146px;
+  height: 45px;
   z-index: 103;
-
   width: 33px;
   @media (max-width: 768px) {
     cursor: pointer;
