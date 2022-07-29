@@ -1,4 +1,4 @@
-import { jsx, ThemeProvider } from "@emotion/react";
+import { ThemeProvider } from "@emotion/react";
 
 import GlobalStyles from "../shared/shared-styles";
 import theme from "../shared/theme";
@@ -7,8 +7,6 @@ import menuLinks from "../config/menuLinks";
 import Footer from "../components/Footer";
 import { css, Global } from "@emotion/react";
 
-import Head from "next/head";
-import React, { useState, useRef } from "react";
 import styled from "@emotion/styled";
 import "react-sweet-progress/lib/style.css";
 import { ApolloProvider } from "@apollo/client";
@@ -27,27 +25,6 @@ const App = ({ Component, pageProps }) => {
     <>
       <AuthProvider>
         <ApolloProvider client={client}>
-          <Head>
-            <link
-              rel="apple-touch-icon"
-              sizes="180x180"
-              href="logos/apple-touch-icon.png"
-            />
-            <link
-              rel="icon"
-              type="image/png"
-              sizes="32x32"
-              href="logos/favicon-32x32.png"
-            />
-
-            <link
-              rel="icon"
-              type="image/png"
-              sizes="16x16"
-              href="logos/favicon-16x16.png"
-            />
-            <meta name="theme-color" content="#ffffff" />
-          </Head>
           <Script
             src="https://www.googletagmanager.com/gtag/js?id=GTM-KN4G37P"
             strategy="afterInteractive"
