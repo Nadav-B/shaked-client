@@ -1,21 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project
+# Shaked Client
 
-## Getting Started
+**Authors**: Nadav Babai
 
-First, run the development server:
+A web application for shaked company 
 
+### Build, Run Test
+
+- Install dependencies 
 ```bash
-npm run dev
-# or
+yarn install 
+```
+- Run Dev:
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Tech-Stack
+- [GraphQL](https://graphql.org/)
+- [NextJS](https://nextjs.org/)
+- More: ```build.gradle```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-
-## Dependencies
-
+### More Info | Documentation | Papers
 - [Emotion](https://emotion.sh/)
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
