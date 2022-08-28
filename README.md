@@ -15,6 +15,12 @@ yarn install
 yarn dev
 ```
 
+Update depenecies:
+
+```bash
+yarn upgrade-interactive --latest
+``` 
+
 ### Tech-Stack
 - [GraphQL](https://graphql.org/)
 - [NextJS](https://nextjs.org/)

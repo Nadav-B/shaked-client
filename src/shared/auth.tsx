@@ -35,7 +35,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   const login = (username, password) => {
     let buff = new Buffer(username + ":" + password);
     let base64data = buff.toString("base64");
-    console.log("setting");
     localStorage.setItem("token", "Basic " + base64data);
     setUser(true);
   };

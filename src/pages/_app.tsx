@@ -48,3 +48,4 @@ const StyledBody = styled.menu`
   margin: auto;
   padding: 0;
 `;
+export default App;
