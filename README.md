@@ -15,10 +15,16 @@ yarn install
 yarn dev
 ```
 
-Update depenecies:
+- Update depenecies:
 
 ```bash
 yarn upgrade-interactive --latest
+``` 
+
+- Docker Build:
+
+```bash
+docker build --tag nextjs:latest .
 ``` 
 
 ### Tech-Stack
